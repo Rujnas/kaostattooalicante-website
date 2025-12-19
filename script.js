@@ -1,0 +1,93 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    const pageLinks = document.querySelectorAll('[data-page]');
+    const pages = document.querySelectorAll('.page');
+    const hasDropdowns = document.querySelectorAll('.has-dropdown');
+    
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parentLi = this.parentElement;
+            const isActive = parentLi.classList.contains('active');
+            
+            document.querySelectorAll('.has-dropdown').forEach(item => {
+                if (item !== parentLi) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            if (!isActive) {
+                parentLi.classList.add('active');
+            } else {
+                parentLi.classList.remove('active');
+            }
+        });
+    });
+    
+    hasDropdowns.forEach(dropdown => {
+        dropdown.addEventListener('mouseenter', function() {
+            this.classList.add('active');
+        });
+        
+        dropdown.addEventListener('mouseleave', function() {
+            this.classList.remove('active');
+        });
+    });
+    
+    pageLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetPage = this.getAttribute('data-page');
+            
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            const targetPageElement = document.getElementById(targetPage);
+            if (targetPageElement) {
+                targetPageElement.classList.add('active');
+            }
+            
+            document.querySelectorAll('.has-dropdown').forEach(item => {
+                item.classList.remove('active');
+            });
+        });
+    });
+    
+    const galleryItems = document.querySelectorAll('.gallery-item, .home-gallery-item');
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            if (!img) return;
+            
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox';
+            lightbox.innerHTML = `
+                <div class="lightbox-content">
+                    <span class="lightbox-close">&times;</span>
+                    <img src="${img.src}" alt="${img.alt}">
+                </div>
+            `;
+            
+            document.body.appendChild(lightbox);
+            
+            setTimeout(() => {
+                lightbox.style.opacity = '1';
+            }, 10);
+            
+            const closeLightbox = () => {
+                lightbox.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(lightbox);
+                }, 300);
+            };
+            
+            lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        });
+    });
+});

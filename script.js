@@ -4,6 +4,36 @@ document.addEventListener('DOMContentLoaded', function() {
     const pages = document.querySelectorAll('.page');
     const hasDropdowns = document.querySelectorAll('.has-dropdown');
     
+    // Parallax scrolling effect
+    const parallaxElements = document.querySelectorAll('.home-about, .home-gallery, .home-cta');
+    
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        
+        parallaxElements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            const elementTop = rect.top + scrolled;
+            const elementHeight = rect.height;
+            
+            // Check if element is in viewport
+            if (scrolled + window.innerHeight > elementTop && scrolled < elementTop + elementHeight) {
+                const speed = 0.5; // Adjust parallax speed
+                const yPos = -(scrolled - elementTop) * speed;
+                const beforeElement = element.querySelector('::before');
+                
+                // Apply transform to the ::before pseudo-element via CSS variable
+                element.style.setProperty('--parallax-y', `${yPos}px`);
+            }
+        });
+    }
+    
+    // Update parallax on scroll
+    window.addEventListener('scroll', updateParallax);
+    window.addEventListener('resize', updateParallax);
+    
+    // Initial parallax update
+    updateParallax();
+    
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
             e.preventDefault();

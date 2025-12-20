@@ -213,6 +213,10 @@ body {
     transform: translate(-50%, -50%);
     object-fit: cover;
     z-index: 0;
+    filter: contrast(1.1) brightness(0.9);
+    transform: translate(-50%, -50%) scale(1.05);
+    will-change: transform;
+    transition: transform 0.1s ease-out;
 }
 
 .hero-overlay {
@@ -221,8 +225,9 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.6), rgba(26, 26, 26, 0.7));
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.4), rgba(26, 26, 26, 0.5));
     z-index: 1;
+    backdrop-filter: blur(2px);
 }
 
 .hero-content {
@@ -230,6 +235,11 @@ body {
     z-index: 2;
     text-align: center;
     animation: fadeInUp 1s ease-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    padding-bottom: 4rem;
 }
 
 .hero-title {

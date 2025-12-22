@@ -252,8 +252,8 @@ body {
 }
 
 .team-hero .hero-content {
-    justify-content: center;
-    padding-bottom: 0;
+    justify-content: flex-end;
+    padding-bottom: 2rem;
 }
 
 .team-hero .hero-title {
@@ -561,7 +561,19 @@ body {
 }
 
 .contact-item a:hover {
-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: brightness(1);
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
 }
 
 .footer {

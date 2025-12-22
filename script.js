@@ -4,6 +4,45 @@ document.addEventListener('DOMContentLoaded', function() {
     const pages = document.querySelectorAll('.page');
     const hasDropdowns = document.querySelectorAll('.has-dropdown');
     
+    // Function to show page based on hash
+    function showPageFromHash() {
+        const hash = window.location.hash.substring(1) || 'home';
+        
+        pages.forEach(page => {
+            page.classList.remove('active');
+        });
+        
+        const targetPageElement = document.getElementById(hash);
+        if (targetPageElement) {
+            targetPageElement.classList.add('active');
+        } else {
+            // Fallback to home if page doesn't exist
+            document.getElementById('home').classList.add('active');
+        }
+        
+        document.querySelectorAll('.has-dropdown').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Scroll to top when changing pages
+        window.scrollTo(0, 0);
+    }
+    
+    // Check hash on page load
+    showPageFromHash();
+    
+    // Listen for hash changes
+    window.addEventListener('hashchange', showPageFromHash);
+    
+    // Logo click handler
+    const logoLink = document.querySelector('.logo-link');
+    if (logoLink) {
+        logoLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.hash = 'home';
+        });
+    }
+    
     // Parallax scrolling effect
     const parallaxElements = document.querySelectorAll('.home-about, .home-gallery, .home-cta');
     
@@ -69,18 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const targetPage = this.getAttribute('data-page');
             
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            const targetPageElement = document.getElementById(targetPage);
-            if (targetPageElement) {
-                targetPageElement.classList.add('active');
-            }
-            
-            document.querySelectorAll('.has-dropdown').forEach(item => {
-                item.classList.remove('active');
-            });
+            // Update hash to trigger page change
+            window.location.hash = targetPage;
         });
     });
     

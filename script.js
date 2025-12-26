@@ -73,6 +73,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial parallax update
     updateParallax();
     
+    // Flip card functionality
+    const flipCards = document.querySelectorAll('.flip-card');
+    
+    flipCards.forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+    });
+    
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
             e.preventDefault();

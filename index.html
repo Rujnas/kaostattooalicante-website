@@ -14,14 +14,13 @@
     <nav class="sidebar">
         <div class="sidebar-header">
             <a href="#home" class="logo-link">
-                <img src="images/logo.png" alt="Kaos Tattoo Logo" class="sidebar-logo">
+                <img src="images/logo_nobackground.png" alt="Kaos Tattoo Logo" class="sidebar-logo">
             </a>
-            <h2 class="logo">Kaos Tattoo Studio</h2>
         </div>
         <ul class="nav-menu">
             <li>
                 <a href="#" class="nav-link" data-page="home">
-                    <img src="images/logo_perro.png" alt="Home Logo" class="nav-logo">
+                    <img src="images/logo_perro-nobackground.png" alt="Home Logo" class="nav-logo">
                     Home
                 </a>
             </li>
@@ -110,11 +109,15 @@
             </section>
 
             <section class="home-cta">
+                <video class="home-cta-video" autoplay muted loop playsinline>
+                    <source src="videos/musicentrance_video.MOV" type="video/mp4">
+                </video>
+                <div class="home-cta-overlay"></div>
                 <div class="cta-content">
                     <div class="cta-left">
-                        <h2>¿Listo para tu próximo tatuaje?</h2>
-                        <p>¡Reserva tu cita ya!</p>
-                        <a href="#" data-page="contacto" class="btn btn-primary">CONTACTAR AHORA</a>
+                        <h2>¡VEN A VISITARNOS!</h2>
+                        <p>¿Quieres preguntarnos algo?</p>
+                        <a href="#" data-page="contacto" class="btn btn-primary">¡CONTACTA AHORA!</a>
                     </div>
                     <div class="cta-right">
                         <iframe 
@@ -143,19 +146,41 @@
             </section>
             <div class="page-content">
                 <div class="team-grid">
-                    <div class="team-member">
-                        <div class="member-image-placeholder">
-                            <span>Foto</span>
+                    <div class="team-member flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="images/tailor_cuadro1.PNG" alt="Tailor" class="member-image">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="member-info">
+                                    <h3>Tailor</h3>
+                                    <p class="member-description">Especialista en tatuajes realistas y fineline. Con más de 5 años de experiencia, crea obras únicas con atención al detalle excepcional.</p>
+                                    <div class="card-gallery">
+                                        <img src="https://images.unsplash.com/photo-1571309396454-9837b75b5d81?w=150&h=150&fit=crop" alt="Tattoo work 1">
+                                        <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=150&h=150&fit=crop" alt="Tattoo work 2">
+                                        <img src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=150&h=150&fit=crop" alt="Tattoo work 3">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h3>Tailor</h3>
-                        <p class="member-description">[Descripción pendiente]</p>
                     </div>
-                    <div class="team-member">
-                        <div class="member-image-placeholder">
-                            <span>Foto</span>
+                    <div class="team-member flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="images/carrie1.JPG" alt="Carrie" class="member-image">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="member-info">
+                                    <h3>Carrie</h3>
+                                    <p class="member-description">Artista especializada en estilos tradicionales y neotradicionales. Apasionada por el arte clásico del tatuaje con un toque contemporáneo.</p>
+                                    <div class="card-gallery">
+                                        <img src="https://images.unsplash.com/photo-1590246814883-57c511a8c494?w=150&h=150&fit=crop" alt="Tattoo work 1">
+                                        <img src="https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=150&h=150&fit=crop" alt="Tattoo work 2">
+                                        <img src="https://images.unsplash.com/photo-1562962230-16e4623d36e6?w=150&h=150&fit=crop" alt="Tattoo work 3">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h3>Carrie</h3>
-                        <p class="member-description">[Descripción pendiente]</p>
                     </div>
                 </div>
             </div>
@@ -173,12 +198,36 @@
             </section>
             <div class="page-content">
                 <div class="team-grid">
-                    <div class="team-member">
-                        <div class="member-image-placeholder">
-                            <span>Foto</span>
+                    <div class="team-member flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="images/prelagreka.png" alt="La Greka" class="member-image">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="member-info">
+                                    <h3>La Greka</h3>
+                                    <p class="member-description">Profesional especializada en piercing y anillado. Con amplia experiencia en todo tipo de perforaciones, garantizando máxima higiene y seguridad en cada procedimiento.</p>
+                                </div>
+                            </div>
                         </div>
-                        <h3>La Greka</h3>
-                        <p class="member-description">[Descripción pendiente]</p>
+                    </div>
+                    <div class="team-member flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="images/greka2.jpg" alt="La Greka Work" class="member-image">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="member-info">
+                                    <h3>La Greka</h3>
+                                    <p class="member-description">Especialista en piercing avanzado y anillado personalizado. Arte y precisión en cada perforación con técnicas innovadoras y materiales de la más alta calidad.</p>
+                                    <div class="card-gallery">
+                                        <img src="https://images.unsplash.com/photo-1615461066159-fea0960485d5?w=150&h=150&fit=crop" alt="Piercing work 1">
+                                        <img src="https://images.unsplash.com/photo-1595429226836-755a965c9e6a?w=150&h=150&fit=crop" alt="Piercing work 2">
+                                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=150&h=150&fit=crop" alt="Piercing work 3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

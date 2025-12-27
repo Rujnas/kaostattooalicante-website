@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <nav class="sidebar">
@@ -314,9 +314,102 @@
         </div>
 
         <div id="tatuajes" class="page">
+            <section class="tattoo-hero">
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="videos/tatuadores_video.MOV" type="video/mp4">
+                </video>
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Tatuajes Personalizados</h1>
+                    <p class="hero-subtitle">Creamos arte corporal único y significativo para ti.</p>
+                </div>
+            </section>
+            
             <div class="page-content">
-                <h1>Tatuajes</h1>
-                <p>Información sobre nuestros servicios de tatuajes.</p>
+                <section class="tattoo-features">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <img src="images/logo_perro-nobackground.png" alt="Arte Único" class="icon-image">
+                            </div>
+                            <h3>Arte Único</h3>
+                            <p>Cada diseño es creado exclusivamente para ti, reflejando tu personalidad e historia.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <img src="images/logo_perroseñalando.png" alt="Calidad Premium" class="icon-image">
+                            </div>
+                            <h3>Calidad Premium</h3>
+                            <p>Utilizamos los mejores materiales y técnicas para garantizar resultados duraderos.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <img src="images/logo_nobackground.png" alt="Artistas Profesionales" class="icon-image">
+                            </div>
+                            <h3>Artistas Profesionales</h3>
+                            <p>Nuestro equipo cuenta con años de experiencia y especialización en diversos estilos.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tattoo-process">
+                    <div class="process-container">
+                        <h2 class="process-title">Nuestro Proceso Creativo</h2>
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="step-icon">
+                                    <img src="images/logo_perro-nobackground.png" alt="Consulta" class="step-image">
+                                </div>
+                                <h3 class="step-title">Consulta</h3>
+                                <p class="step-description">Escuchamos tus ideas y visionamos juntos el diseño perfecto.</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-icon">
+                                    <img src="images/logo_perroseñalando.png" alt="Diseño" class="step-image">
+                                </div>
+                                <h3 class="step-title">Diseño</h3>
+                                <p class="step-description">Creamos un boceto único basado en tus preferencias y nuestro estilo artístico.</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-icon">
+                                    <img src="images/logo_nobackground.png" alt="Ejecución" class="step-image">
+                                </div>
+                                <h3 class="step-title">Ejecución</h3>
+                                <p class="step-description">Plasmamos el arte en tu piel con precisión y cuidado profesional.</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-icon">
+                                    <img src="images/logo_perro-nobackground.png" alt="Cuidado" class="step-image">
+                                </div>
+                                <h3 class="step-title">Cuidado</h3>
+                                <p class="step-description">Te orientamos sobre el cuidado post-tatuaje para asegurar una perfecta cicatrización.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tattoo-signature">
+                    <div class="signature-container">
+                        <div class="signature-content">
+                            <div class="signature-line"></div>
+                            <h2 class="signature-title">Tu Historia, Nuestro Arte</h2>
+                            <div class="signature-divider">
+                                <svg class="signature-logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                    <text x="100" y="35" 
+                                          font-family="Cinzel, serif" 
+                                          font-size="24" 
+                                          font-weight="bold"
+                                          text-anchor="middle" 
+                                          fill="var(--accent-color)"
+                                          class="logo-text">KAOS TATTOO</text>
+                                </svg>
+                            </div>
+                            <div class="signature-line"></div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
 

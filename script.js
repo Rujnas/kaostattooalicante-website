@@ -158,4 +158,60 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+    
+    // Scroll-triggered animations for process cards and signature
+    const observerOptions = {
+        threshold: 0.2, // Trigger when 20% of element is visible
+        rootMargin: '0px 0px -50px 0px' // Start animation 50px before element comes into view
+    };
+    
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Handle process cards animation
+                if (entry.target.classList.contains('process-steps')) {
+                    const steps = entry.target.querySelectorAll('.step');
+                    steps.forEach((step, index) => {
+                        setTimeout(() => {
+                            step.classList.add('animate-in');
+                        }, index * 200); // 200ms delay between each step
+                    });
+                }
+                
+                // Handle signature logo animation
+                if (entry.target.classList.contains('signature-divider')) {
+                    const logoSvg = entry.target.querySelector('.signature-logo-svg');
+                    if (logoSvg) {
+                        // Reset and restart animation
+                        const text = logoSvg.querySelector('.logo-text');
+                        
+                        // Reset animation
+                        text.style.animation = 'none';
+                        
+                        // Force reflow
+                        text.offsetHeight;
+                        
+                        // Restart animation
+                        setTimeout(() => {
+                            text.style.animation = 'smoothTextReveal 1.8s ease-out forwards';
+                        }, 100);
+                    }
+                }
+                
+                animationObserver.unobserve(entry.target); // Stop observing after animation
+            }
+        });
+    }, observerOptions);
+    
+    // Observe the process section
+    const processSection = document.querySelector('.process-steps');
+    if (processSection) {
+        animationObserver.observe(processSection);
+    }
+    
+    // Observe the signature section
+    const signatureDivider = document.querySelector('.signature-divider');
+    if (signatureDivider) {
+        animationObserver.observe(signatureDivider);
+    }
 });

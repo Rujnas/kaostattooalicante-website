@@ -1,0 +1,220 @@
+/* Team & Gallery Sections */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.team-member {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.85));
+    backdrop-filter: blur(5px);
+    padding: 0;
+    border-radius: 0;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    aspect-ratio: 1;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
+}
+
+.team-member::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(212, 165, 116, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.team-member:hover::before {
+    opacity: 1;
+}
+
+/* Flip Cards */
+.flip-card {
+    background-color: transparent;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    inset: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.85));
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+}
+
+.flip-card-front {
+    justify-content: flex-end;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    justify-content: center;
+    padding: 2rem;
+}
+
+.member-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.flip-card-front h3,
+.member-info h3 {
+    position: relative;
+    z-index: 1;
+    color: var(--accent-light);
+    margin: 1rem;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Cinzel', 'Georgia', serif;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.member-info {
+    z-index: 1;
+    color: var(--text-light);
+}
+
+.member-info p {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.card-gallery {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card-gallery img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 0;
+    border: 1px solid var(--accent-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card-gallery img:hover {
+    transform: scale(1.1);
+    border-color: var(--accent-light);
+    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+}
+
+.empty-message {
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 1.2rem;
+    padding: 3rem;
+}
+
+/* Galleries */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+    cursor: pointer;
+    border: 2px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(229, 90, 43, 0.4));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.gallery-item:hover::before {
+    opacity: 1;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-dark);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-placeholder {
+    background: linear-gradient(135deg, rgba(28, 28, 28, 0.8), rgba(37, 37, 37, 0.75));
+    backdrop-filter: blur(5px);
+    padding: 4rem;
+    border-radius: 0;
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 1.3rem;
+    border: 1px solid rgba(184, 147, 92, 0.25);
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    .team-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}

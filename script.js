@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Scroll-triggered animations for process cards and signature
+    // Scroll-triggered animations for process cards, signature, and piercings page
     const observerOptions = {
         threshold: 0.2, // Trigger when 20% of element is visible
         rootMargin: '0px 0px -50px 0px' // Start animation 50px before element comes into view
@@ -182,20 +182,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (entry.target.classList.contains('signature-divider')) {
                     const logoSvg = entry.target.querySelector('.signature-logo-svg');
                     if (logoSvg) {
-                        // Reset and restart animation
                         const text = logoSvg.querySelector('.logo-text');
-                        
-                        // Reset animation
-                        text.style.animation = 'none';
-                        
-                        // Force reflow
-                        text.offsetHeight;
-                        
-                        // Restart animation
-                        setTimeout(() => {
-                            text.style.animation = 'smoothTextReveal 1.8s ease-out forwards';
-                        }, 100);
+                        if (text) {
+                            text.style.animation = 'none';
+                            text.offsetHeight;
+                            setTimeout(() => {
+                                text.style.animation = 'smoothTextReveal 1.8s ease-out forwards';
+                            }, 100);
+                        }
                     }
+                }
+
+                if (entry.target.classList.contains('piercings-hero')) {
+                    entry.target.classList.add('is-visible');
+                }
+
+                if (entry.target.classList.contains('piercing-card')) {
+                    entry.target.classList.add('is-visible');
+                }
+
+                if (entry.target.classList.contains('metric-card')) {
+                    entry.target.classList.add('is-visible');
                 }
                 
                 animationObserver.unobserve(entry.target); // Stop observing after animation
@@ -203,15 +210,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    // Observe the process section
-    const processSection = document.querySelector('.process-steps');
-    if (processSection) {
-        animationObserver.observe(processSection);
-    }
+    // Observe all process sections (tatuajes, piercings, etc.)
+    const processSections = document.querySelectorAll('.process-steps');
+    processSections.forEach(section => animationObserver.observe(section));
     
     // Observe the signature section
     const signatureDivider = document.querySelector('.signature-divider');
     if (signatureDivider) {
         animationObserver.observe(signatureDivider);
     }
+
+    // Piercings page animations
+    const piercingsHero = document.querySelector('.piercings-hero');
+    if (piercingsHero) {
+        animationObserver.observe(piercingsHero);
+    }
+
+    const piercingCards = document.querySelectorAll('.piercing-card');
+    piercingCards.forEach((card, index) => {
+        card.style.setProperty('--card-delay', index);
+        animationObserver.observe(card);
+    });
+
+    const metricCards = document.querySelectorAll('.metric-card');
+    metricCards.forEach(card => animationObserver.observe(card));
 });

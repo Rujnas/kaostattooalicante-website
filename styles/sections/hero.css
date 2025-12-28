@@ -86,7 +86,7 @@
 .tattoo-hero .hero-title {
     font-size: 4rem;
     font-weight: 700;
-    color: var(--text-light);
+    color: #e4c49a;
     text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 0, 0, 0.7);
     letter-spacing: 4px;
     position: relative;
@@ -119,7 +119,7 @@
 
 .tattoo-hero .hero-subtitle {
     font-size: 1.6rem;
-    color: var(--accent-light);
+    color: #d9c6b0;
     max-width: 700px;
     margin: 0 auto;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.7);

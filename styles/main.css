@@ -13,6 +13,8 @@
 @import 'sections/team.css';
 @import 'sections/tattoo.css';
 @import 'sections/contact.css';
+@import 'sections/piercings.css';
+@import 'sections/walkins.css';
 
 /* Utilities & Effects */
 @import 'animations.css';

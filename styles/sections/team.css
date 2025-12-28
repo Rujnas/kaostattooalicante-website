@@ -8,6 +8,87 @@
     box-sizing: border-box;
 }
 
+/* Tatuadores page background */
+#tatuadores .page-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* Anilladora page background */
+#anilladora .page-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.team-profile {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 2rem;
+    align-items: stretch;
+    margin-bottom: 2rem;
+}
+
+.team-profile-gallery {
+    display: grid;
+    grid-template-columns: 48px 1fr 48px;
+    align-items: stretch;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.85), rgba(42, 42, 42, 0.8));
+    border: none;
+    padding: 1rem;
+    box-sizing: border-box;
+    min-height: 340px;
+}
+
+.team-profile .card-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    width: 100%;
+    height: 100%;
+}
+
+.team-profile .card-gallery img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: none;
+}
+
+.team-profile .card-gallery img.hidden {
+    display: none;
+}
+
+.card-gallery-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gallery-nav {
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--accent-light);
+    border: none;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.gallery-nav:hover {
+    background: rgba(184, 147, 92, 0.15);
+    color: var(--accent-color);
+}
+
 .team-member {
     background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.85));
     backdrop-filter: blur(5px);
@@ -21,6 +102,38 @@
     aspect-ratio: 1;
     cursor: pointer;
     border: 2px solid transparent;
+}
+
+.card-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform-origin: top right;
+    transform: translate(25%, -75%) rotate(8deg) perspective(600px) rotateX(15deg);
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.97), rgba(184, 147, 92, 0.92));
+    color: #0f0f0f;
+    padding: 0.6rem 1.4rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    clip-path: polygon(18% 0, 100% 0, 100% 82%, 82% 100%, 0 100%, 0 18%);
+    box-shadow: 
+        0 10px 24px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease, box-shadow 0.3s ease;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.flip-card:hover .card-corner,
+.flip-card:focus-visible .card-corner {
+    opacity: 1;
+    transform: translate(4%, -22%) rotate(0deg) perspective(600px) rotateX(0deg);
+    box-shadow: 
+        0 16px 32px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 .team-member:hover {
@@ -91,6 +204,21 @@
     position: absolute;
     inset: 0;
     z-index: 0;
+    transition: filter 0.3s ease;
+}
+
+.flip-card-front::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.55));
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.flip-card:hover .flip-card-front::after {
+    opacity: 0;
 }
 
 .flip-card-front h3,
@@ -214,7 +342,16 @@
 
 @media (max-width: 768px) {
     .team-grid,
-    .gallery-grid {
+    .gallery-grid,
+    .team-profile {
         grid-template-columns: 1fr;
+    }
+
+    .team-profile {
+        margin-bottom: 1.5rem;
+    }
+
+    .team-profile .card-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
 }

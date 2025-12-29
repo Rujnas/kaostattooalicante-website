@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    const pageLinks = document.querySelectorAll('[data-page]');
-    const pages = document.querySelectorAll('.page');
     const hasDropdowns = document.querySelectorAll('.has-dropdown');
+    const pages = document.querySelectorAll('.page');
     
     // Sticky sidebar hide/show on scroll
     const sidebar = document.querySelector('.sidebar');
@@ -45,43 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
             page.classList.remove('active');
         });
 
-    // Inline galleries (team-profile) paginated thumbnails (3x3 per view)
-    const profileGalleries = document.querySelectorAll('.team-profile-gallery');
-    profileGalleries.forEach(gallery => {
-        const thumbs = Array.from(gallery.querySelectorAll('.card-gallery img'));
-        const prevBtn = gallery.querySelector('.gallery-nav.prev');
-        const nextBtn = gallery.querySelector('.gallery-nav.next');
-        if (thumbs.length === 0) return;
-
-        const pageSize = 9;
-        let page = 0;
-        const totalPages = Math.max(1, Math.ceil(thumbs.length / pageSize));
-
-        const renderPage = () => {
-            thumbs.forEach((thumb, idx) => {
-                const start = page * pageSize;
-                const end = start + pageSize;
-                if (idx >= start && idx < end) {
-                    thumb.classList.remove('hidden');
-                } else {
-                    thumb.classList.add('hidden');
-                }
-            });
-        };
-
-        prevBtn && prevBtn.addEventListener('click', () => {
-            page = (page - 1 + totalPages) % totalPages;
-            renderPage();
-        });
-
-        nextBtn && nextBtn.addEventListener('click', () => {
-            page = (page + 1) % totalPages;
-            renderPage();
-        });
-
-        renderPage();
-    });
-        
         const targetPageElement = document.getElementById(hash);
         if (targetPageElement) {
             targetPageElement.classList.add('active');
@@ -161,6 +122,69 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Page navigation
+    const navLinks = document.querySelectorAll('.nav-link[data-page], .dropdown-menu a[data-page], .btn-primary[data-page]');
+    const categoryLinks = document.querySelectorAll('.category-link[data-page]');
+    
+    // Sidebar navigation
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetPage = this.getAttribute('data-page');
+            console.log('Nav link clicked:', targetPage);
+            
+            // Update hash to trigger page change
+            window.location.hash = targetPage;
+        });
+    });
+    
+    // Category navigation
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetPage = this.getAttribute('data-page');
+            console.log('Category link clicked:', targetPage);
+            
+            // Update hash to trigger page change
+            window.location.hash = targetPage;
+        });
+    });
+    
+    // Function to show page based on hash
+    function showPageFromHash() {
+        const hash = window.location.hash.substring(1) || 'home';
+        console.log('showPageFromHash called with hash:', hash);
+        
+        pages.forEach(page => {
+            page.classList.remove('active');
+        });
+
+        const targetPageElement = document.getElementById(hash);
+        console.log('Looking for element with ID:', hash, 'Found:', targetPageElement);
+        
+        if (targetPageElement) {
+            targetPageElement.classList.add('active');
+            console.log('Successfully switched to page:', hash);
+            // Scroll to top when navigating to a new page
+            window.scrollTo(0, 0);
+        } else {
+            // Fallback to home if page doesn't exist
+            document.getElementById('home').classList.add('active');
+            console.log('Page not found, fallback to home');
+            window.scrollTo(0, 0);
+        }
+    }
+
+    // Handle initial page load
+    showPageFromHash();
+    
+    // Handle hash changes
+    window.addEventListener('hashchange', showPageFromHash);
+    
+    // Dropdown menu functionality
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
             e.preventDefault();
@@ -181,27 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    hasDropdowns.forEach(dropdown => {
-        dropdown.addEventListener('mouseenter', function() {
-            this.classList.add('active');
-        });
-        
-        dropdown.addEventListener('mouseleave', function() {
-            this.classList.remove('active');
-        });
-    });
-    
-    pageLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetPage = this.getAttribute('data-page');
-            
-            // Update hash to trigger page change
-            window.location.hash = targetPage;
-        });
-    });
-    
-    const galleryItems = document.querySelectorAll('.gallery-item, .home-gallery-item, .card-gallery img, .gallery-main img');
+    const galleryItems = document.querySelectorAll('.gallery-item, .card-gallery img, .gallery-main img');
     galleryItems.forEach(item => {
         item.addEventListener('click', function() {
             const img = this.tagName === 'IMG' ? this : this.querySelector('img');
@@ -313,4 +317,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const metricCards = document.querySelectorAll('.metric-card');
     metricCards.forEach(card => animationObserver.observe(card));
+    
+    // Inline galleries (team-profile) 3-image carousel with center highlight
+    const profileGalleries = document.querySelectorAll('.team-profile-gallery');
+    profileGalleries.forEach(gallery => {
+        const thumbs = Array.from(gallery.querySelectorAll('.card-gallery img'));
+        const prevBtn = gallery.querySelector('.gallery-nav.prev');
+        const nextBtn = gallery.querySelector('.gallery-nav.next');
+        if (thumbs.length === 0) return;
+
+        let currentIndex = 1; // Start with center image
+        const visibleCount = 3;
+
+        const renderGallery = () => {
+            thumbs.forEach((thumb, idx) => {
+                thumb.classList.remove('hidden', 'center');
+                const startIdx = Math.max(0, currentIndex - 1);
+                const endIdx = Math.min(thumbs.length, startIdx + visibleCount);
+                if (idx >= startIdx && idx < endIdx) {
+                    thumb.classList.remove('hidden');
+                    if (idx === currentIndex) {
+                        thumb.classList.add('center');
+                    }
+                } else {
+                    thumb.classList.add('hidden');
+                }
+            });
+        };
+
+        const navigateGallery = (direction) => {
+            if (direction === 'next') {
+                currentIndex = (currentIndex + 1) % thumbs.length;
+            } else {
+                currentIndex = (currentIndex - 1 + thumbs.length) % thumbs.length;
+            }
+            renderGallery();
+        };
+
+        prevBtn && prevBtn.addEventListener('click', () => navigateGallery('prev'));
+        nextBtn && nextBtn.addEventListener('click', () => navigateGallery('next'));
+
+        // Wheel event for scroll navigation on images only
+        const galleryImages = gallery.querySelectorAll('.card-gallery img');
+        galleryImages.forEach(img => {
+            img.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const direction = e.deltaY > 0 ? 'next' : 'prev';
+                navigateGallery(direction);
+            }, { passive: false });
+        });
+
+        renderGallery();
+    });
 });

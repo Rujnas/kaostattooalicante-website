@@ -15,10 +15,69 @@
     box-sizing: border-box;
 }
 
-.home-about-video,
+/* Cool section separators */
+.home-about::after,
+.home-gallery::after,
+.home-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(135deg, 
+        transparent 0%, 
+        transparent 25%, 
+        rgba(212, 165, 116, 0.15) 30%, 
+        rgba(212, 165, 116, 0.3) 50%, 
+        rgba(212, 165, 116, 0.15) 70%, 
+        transparent 75%, 
+        transparent 100%
+    );
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    z-index: 3;
+}
+
+.home-about::before,
 .home-gallery::before,
-.home-cta-video,
 .home-cta::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(135deg, 
+        transparent 0%, 
+        transparent 25%, 
+        rgba(212, 165, 116, 0.15) 30%, 
+        rgba(212, 165, 116, 0.3) 50%, 
+        rgba(212, 165, 116, 0.15) 70%, 
+        transparent 75%, 
+        transparent 100%
+    );
+    clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
+    z-index: 3;
+}
+
+/* Diagonal separator between sections */
+.home-about {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), 0 100%);
+}
+
+.home-gallery {
+    clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%);
+    margin-top: -40px;
+}
+
+.home-cta {
+    clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
+    margin-top: -40px;
+}
+
+.home-about-video,
+.home-gallery-bg,
+.home-cta-video {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -32,6 +91,11 @@
     filter: contrast(1.1) brightness(0.9);
     will-change: transform;
     transition: transform 0.1s ease-out;
+}
+
+.home-gallery-bg {
+    background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
+    opacity: 0.15;
 }
 
 .home-about-video,

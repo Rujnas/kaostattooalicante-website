@@ -35,6 +35,7 @@
     background: transparent;
     mix-blend-mode: screen;
     filter: contrast(1.5) brightness(1.2);
+    animation: neonFlicker 8s infinite;
 }
 
 .logo-link {

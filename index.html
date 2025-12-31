@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaos Tattoo | Tatuajes y Piercings en Alicante</title>
     <meta name="description" content="Kaos Tattoo - Estudio de tatuajes y piercings en Alicante. Equipo profesional especializado en diversos estilos.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="preload" href="fonts/Bokor/Bokor-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Cinzel/Cinzel-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Cinzel/Cinzel-Medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/CormorantGaramond/CormorantGaramond-Light.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/CormorantGaramond/CormorantGaramond-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/CormorantGaramond/CormorantGaramond-Medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="icon" type="image/png" href="images/logo_perro-nobackground.png">
 </head>
-<body>
+<body class="is-loading">
+    <div class="loading-overlay" aria-live="polite" aria-label="Cargando Kaos Tattoo">
+        <div class="loading-content">
+            <div class="loading-logo-wrapper">
+                <img src="images/logo_perro-nobackground.png" alt="Kaos Tattoo Logo" class="loading-logo">
+            </div>
+            <p class="loading-text">Entrando al estudio...</p>
+        </div>
+    </div>
     <nav class="sidebar">
         <div class="sidebar-header">
             <a href="#home" class="logo-link">
@@ -62,7 +74,7 @@
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
-                    <a href="https://wa.me/34618710976" target="_blank" class="btn btn-primary">
+                    <a href="https://wa.me/34618710976" target="_blank" class="btn btn-primary btn-book-now">
                         <img src="images/logotipos_contacts/whatsapp.png" alt="WhatsApp" class="btn-icon">
                         PIDE CITA
                     </a>
@@ -86,7 +98,7 @@
                 <div class="home-gallery-bg"></div>
                 <h2 class="home-gallery-title">
                     <img src="images/logo_perroseñalando-nobg.png" alt="Kaos Tattoo Dog Logo" class="gallery-logo">
-                    ¿QUÉ HACEMOS?
+                    NUESTRO TRABAJO
                 </h2>
                 <div class="home-gallery-grid">
                     <div class="home-gallery-item">
@@ -143,7 +155,7 @@
                     <div class="cta-left">
                         <h2>¡VEN A VISITARNOS!</h2>
                         <p>¿Quieres preguntarnos algo?</p>
-                        <a href="#" data-page="contacto" class="btn btn-primary">¡CONTACTA AHORA!</a>
+                        <a href="#" data-page="contacto" class="btn btn-primary btn-book-now">¡CONTACTA AHORA!</a>
                     </div>
                     <div class="cta-right">
                         <iframe 
@@ -190,6 +202,9 @@
                         </div>
                     </div>
                     <div class="team-profile-gallery">
+                        <video class="gallery-smoke-bg" autoplay muted loop playsinline>
+                            <source src="videos/Smoke_14___45s___4k_res.mp4" type="video/mp4">
+                        </video>
                         <button class="gallery-nav prev" aria-label="Anterior">&#8249;</button>
                         <div class="card-gallery-wrapper">
                             <div class="card-gallery">
@@ -224,6 +239,9 @@
                         </div>
                     </div>
                     <div class="team-profile-gallery">
+                        <video class="gallery-smoke-bg" autoplay muted loop playsinline>
+                            <source src="videos/Smoke_14___45s___4k_res.mp4" type="video/mp4">
+                        </video>
                         <button class="gallery-nav prev" aria-label="Anterior">&#8249;</button>
                         <div class="card-gallery-wrapper">
                             <div class="card-gallery">
@@ -274,6 +292,9 @@
                         </div>
                     </div>
                     <div class="team-profile-gallery">
+                        <video class="gallery-smoke-bg" autoplay muted loop playsinline>
+                            <source src="videos/Smoke_14___45s___4k_res.mp4" type="video/mp4">
+                        </video>
                         <button class="gallery-nav prev" aria-label="Anterior">&#8249;</button>
                         <div class="card-gallery-wrapper">
                             <div class="card-gallery">

@@ -137,7 +137,7 @@
     font-weight: 300;
     letter-spacing: 4px;
     text-transform: uppercase;
-    font-family: 'Cinzel', 'Georgia', serif;
+    font-family: 'Bokor', sans-serif;
 }
 
 .home-about p,
@@ -149,13 +149,6 @@
 }
 
 /* Gallery */
-.home-gallery::before {
-    content: '';
-    background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
-    opacity: 0.15;
-    z-index: -1;
-}
-
 .home-gallery-title {
     display: flex;
     align-items: center;
@@ -298,11 +291,11 @@
 
 .cta-left {
     flex: 1;
-    text-align: left;
+    text-align: center;
     min-width: 300px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
 }
 

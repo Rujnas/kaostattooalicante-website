@@ -1,6 +1,51 @@
 document.addEventListener('DOMContentLoaded', function() {
     const hasDropdowns = document.querySelectorAll('.has-dropdown');
     const pages = document.querySelectorAll('.page');
+    const SCROLL_KEY_PREFIX = 'kaos-scroll-';
+    const loadingOverlay = document.querySelector('.loading-overlay');
+
+    const normalizeHash = (hashValue = window.location.hash) => {
+        const raw = hashValue || '';
+        return raw.replace('#', '');
+    };
+
+    const getPageIdFromHash = (hashValue = window.location.hash) => {
+        const normalized = normalizeHash(hashValue);
+        return normalized === '' ? 'home' : normalized;
+    };
+
+    const getScrollKey = (pageId) => `${SCROLL_KEY_PREFIX}${pageId}`;
+
+    const restoreScrollPosition = (pageId) => {
+        const stored = sessionStorage.getItem(getScrollKey(pageId));
+        if (stored !== null && !Number.isNaN(parseFloat(stored))) {
+            requestAnimationFrame(() => {
+                window.scrollTo(0, parseFloat(stored));
+            });
+        }
+    };
+
+    const saveScrollPosition = (pageId) => {
+        sessionStorage.setItem(getScrollKey(pageId), window.scrollY.toString());
+    };
+
+    let currentPageId = getPageIdFromHash();
+    let scrollSaveTimer = null;
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.body.classList.remove('is-loading');
+            if (loadingOverlay) {
+                loadingOverlay.classList.add('is-hidden');
+            }
+            restoreScrollPosition(currentPageId);
+        }, 300);
+    });
+    window.addEventListener('beforeunload', () => saveScrollPosition(currentPageId));
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollSaveTimer);
+        scrollSaveTimer = setTimeout(() => saveScrollPosition(currentPageId), 150);
+    }, { passive: true });
     
     // Sticky sidebar hide/show on scroll
     const sidebar = document.querySelector('.sidebar');
@@ -35,8 +80,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', debouncedScroll, { passive: true });
     
-    // Function to show page based on hash
-    function showPageFromHash() {
+    // Logo click handler
+    const logoLink = document.querySelector('.logo-link');
+    if (logoLink) {
+        logoLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.hash = 'home';
+        });
+    }
+    
+    // Function to show page based on hash with optional scroll control
+    function showPageFromHash({ shouldScrollTop = true } = {}) {
         const hash = window.location.hash.substring(1) || 'home';
         
         pages.forEach(page => {
@@ -47,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (targetPageElement) {
             targetPageElement.classList.add('active');
         } else {
-            // Fallback to home if page doesn't exist
             document.getElementById('home').classList.add('active');
         }
         
@@ -55,25 +108,17 @@ document.addEventListener('DOMContentLoaded', function() {
             item.classList.remove('active');
         });
         
-        // Scroll to top when changing pages
-        window.scrollTo(0, 0);
+        if (shouldScrollTop) {
+            window.scrollTo(0, 0);
+        }
     }
+
+    // Initial page load should preserve scroll position
+    showPageFromHash({ shouldScrollTop: false });
     
-    // Check hash on page load
-    showPageFromHash();
-    
-    // Listen for hash changes
-    window.addEventListener('hashchange', showPageFromHash);
-    
-    // Logo click handler
-    const logoLink = document.querySelector('.logo-link');
-    if (logoLink) {
-        logoLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.hash = 'home';
-        });
-    }
-    
+    // Listen for hash changes (navigate to sections)
+    window.addEventListener('hashchange', () => showPageFromHash({ shouldScrollTop: true }));
+
     // Parallax scrolling effect (exclude home-gallery background)
     const parallaxElements = document.querySelectorAll('.home-about, .home-cta');
     const heroVideos = document.querySelectorAll('.hero-video');

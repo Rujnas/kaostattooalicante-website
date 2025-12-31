@@ -50,6 +50,8 @@
     padding: 1rem;
     box-sizing: border-box;
     height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .team-masonry .team-profile-gallery .card-gallery-wrapper {
@@ -65,17 +67,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
     width: 100%;
     height: 100%;
 }
 
 .team-masonry .team-profile-gallery .card-gallery img {
-    width: 240px;
-    height: 240px;
+    width: 320px;
+    height: 320px;
     aspect-ratio: 1;
     object-fit: cover;
     border: none;
+    border-radius: 0.5rem;
     transition: transform 0.3s ease, filter 0.3s ease;
     cursor: pointer;
 }
@@ -85,8 +88,8 @@
 }
 
 .team-masonry .team-profile-gallery .card-gallery img.center {
-    width: 320px;
-    height: 320px;
+    width: 420px;
+    height: 420px;
     transform: scale(1);
     filter: brightness(1.1);
     z-index: 1;
@@ -102,6 +105,68 @@
         0 0 30px rgba(212, 165, 116, 0.6),
         0 0 60px rgba(212, 165, 116, 0.3),
         0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.team-masonry .team-profile-gallery .card-gallery img:hover {
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.team-profile-gallery .gallery-smoke-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    filter: saturate(1.1) brightness(0.7);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.team-profile-gallery::before {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 55%),
+                radial-gradient(circle at 80% 25%, rgba(255, 107, 53, 0.12), transparent 60%),
+                radial-gradient(circle at 40% 80%, rgba(212, 165, 116, 0.08), transparent 65%);
+    filter: blur(30px);
+    opacity: 0.45;
+    animation: smokeShift 22s ease-in-out infinite alternate;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    z-index: 0;
+}
+
+.team-profile-gallery::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(0, 0, 0, 0.65), transparent 40%, rgba(0, 0, 0, 0.65));
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.team-profile-gallery > *:not(.gallery-smoke-bg) {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes smokeShift {
+    0% {
+        transform: translate3d(-5%, -3%, 0) scale(1);
+        opacity: 0.35;
+    }
+    50% {
+        transform: translate3d(3%, 4%, 0) scale(1.12);
+        opacity: 0.55;
+    }
+    100% {
+        transform: translate3d(5%, -2%, 0) scale(1.2);
+        opacity: 0.42;
+    }
 }
 
 /* Responsive Masonry */
@@ -305,7 +370,13 @@
     position: absolute;
     inset: 0;
     z-index: 0;
+    filter: grayscale(100%);
     transition: filter 0.3s ease;
+}
+
+.flip-card:hover .member-image,
+.flip-card:focus-visible .member-image {
+    filter: grayscale(0%);
 }
 
 .flip-card-front::after {
@@ -377,7 +448,7 @@
     font-weight: 300;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-family: 'Cinzel', 'Georgia', serif;
+    font-family: 'Bokor', sans-serif;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
 }
 

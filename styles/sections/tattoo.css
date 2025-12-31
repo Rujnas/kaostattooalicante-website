@@ -118,7 +118,7 @@
     font-size: 1.8rem;
     color: var(--accent-color);
     margin-bottom: 1rem;
-    font-family: 'Cinzel', serif;
+    font-family: 'Bokor', sans-serif;
     font-weight: 500;
 }
 
@@ -147,7 +147,7 @@
     font-size: 2.8rem;
     color: var(--accent-color);
     margin-bottom: 4rem;
-    font-family: 'Cinzel', serif;
+    font-family: 'Bokor', sans-serif;
     font-weight: 500;
     letter-spacing: 2px;
     position: relative;
@@ -224,7 +224,7 @@
     font-size: 1.6rem;
     color: var(--accent-color);
     margin-bottom: 1rem;
-    font-family: 'Cinzel', serif;
+    font-family: 'Bokor', sans-serif;
     font-weight: 500;
 }
 
@@ -280,7 +280,7 @@
     font-size: 3rem;
     color: var(--accent-color);
     margin-bottom: 1.5rem;
-    font-family: 'Cinzel', serif;
+    font-family: 'Bokor', sans-serif;
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -356,7 +356,7 @@
 .signature-studio {
     font-size: 1.2rem;
     color: var(--accent-color);
-    font-family: 'Cinzel', serif;
+    font-family: 'Bokor', sans-serif;
     font-weight: 500;
     letter-spacing: 2px;
 }

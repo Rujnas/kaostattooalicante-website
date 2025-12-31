@@ -1,3 +1,141 @@
+@font-face {
+    font-family: 'Bokor';
+    src: url('../fonts/Bokor/Bokor-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cinzel';
+    src: url('../fonts/Cinzel/Cinzel-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cinzel';
+    src: url('../fonts/Cinzel/Cinzel-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('../fonts/CormorantGaramond/CormorantGaramond-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('../fonts/CormorantGaramond/CormorantGaramond-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('../fonts/CormorantGaramond/CormorantGaramond-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+body.is-loading {
+    overflow: hidden;
+}
+
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(255, 107, 53, 0.25), rgba(8, 8, 8, 0.95)),
+                linear-gradient(135deg, rgba(12, 12, 12, 0.95), rgba(20, 20, 20, 0.9));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loading-overlay.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-content {
+    text-align: center;
+    color: var(--accent-light);
+    letter-spacing: 3px;
+}
+
+.loading-logo-wrapper {
+    width: 160px;
+    height: 160px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.25);
+    animation: rotateGlow 3.5s linear infinite;
+}
+
+.loading-logo {
+    width: 90%;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.25));
+    animation: pulseLogo 1.8s ease-in-out infinite;
+}
+
+.loading-text {
+    font-family: 'Bokor', sans-serif;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    text-shadow: 0 0 15px rgba(255, 107, 53, 0.35);
+}
+
+@keyframes pulseLogo {
+    0%, 100% { transform: scale(0.95); opacity: 0.85; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes rotateGlow {
+    0% { box-shadow: 0 0 15px rgba(255, 107, 53, 0.2); }
+    50% { box-shadow: 0 0 35px rgba(255, 107, 53, 0.4); }
+    100% { box-shadow: 0 0 15px rgba(255, 107, 53, 0.2); }
+}
+
 /* Base Styles */
 *,
 *::before,
@@ -27,11 +165,12 @@ body {
     min-height: 100vh;
     letter-spacing: 0.3px;
     overflow-x: hidden;
+    cursor: url('../images/cursor-tattoo-needle.svg') 4 4, auto;
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cinzel', 'Georgia', serif;
+    font-family: 'Bokor', sans-serif;
     font-weight: 300;
     letter-spacing: 2px;
     line-height: 1.2;
@@ -69,6 +208,10 @@ ul, ol {
     list-style: none;
 }
 
+a, button, .btn, .gallery-nav, .nav-link, .logo-link, .dropdown-menu a, [role="button"] {
+    cursor: url('../images/cursor-tattoo-needle-dark.svg') 4 12, pointer;
+}
+
 button, 
 input, 
 textarea, 
@@ -77,7 +220,6 @@ select {
 }
 
 button {
-    cursor: pointer;
     border: none;
     background: none;
 }

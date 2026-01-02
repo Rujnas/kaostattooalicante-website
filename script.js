@@ -170,16 +170,99 @@ document.addEventListener('DOMContentLoaded', function() {
     // Page navigation
     const navLinks = document.querySelectorAll('.nav-link[data-page], .dropdown-menu a[data-page], .btn-primary[data-page]');
     const categoryLinks = document.querySelectorAll('.category-link[data-page]');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    const mobileSubmenuWrapper = document.querySelector('.mobile-submenu-wrapper');
+    const mobileSubmenuList = mobileSubmenuWrapper ? mobileSubmenuWrapper.querySelector('.mobile-submenu-list') : null;
+    const mobileSubmenuTitle = mobileSubmenuWrapper ? mobileSubmenuWrapper.querySelector('.mobile-submenu-title') : null;
+    const mobileSubmenuBack = mobileSubmenuWrapper ? mobileSubmenuWrapper.querySelector('.mobile-submenu-back') : null;
+
+    const isMobileViewport = () => window.innerWidth <= 768;
+
+    const closeMobileMenu = () => {
+        if (!mobileMenuToggle || !navMenu) return;
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        navMenu.classList.remove('is-open');
+        document.body.classList.remove('mobile-menu-open');
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.classList.remove('is-visible');
+        }
+        if (mobileSubmenuWrapper) {
+            mobileSubmenuWrapper.setAttribute('aria-hidden', 'true');
+        }
+        if (navMenu) {
+            navMenu.classList.remove('show-submenu');
+        }
+    };
+
+    const openMobileMenu = () => {
+        if (!mobileMenuToggle || !navMenu) return;
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        navMenu.classList.add('is-open');
+        document.body.classList.add('mobile-menu-open');
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.classList.add('is-visible');
+        }
+    };
+
+    const closeMobileSubmenu = () => {
+        if (mobileSubmenuWrapper) {
+            mobileSubmenuWrapper.setAttribute('aria-hidden', 'true');
+        }
+        if (navMenu) {
+            navMenu.classList.remove('show-submenu');
+        }
+    };
+
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            if (isExpanded) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileSubmenuBack) {
+            mobileSubmenuBack.addEventListener('click', (event) => {
+                event.preventDefault();
+                closeMobileSubmenu();
+            });
+        }
+
+        window.addEventListener('resize', () => {
+            if (!isMobileViewport()) {
+                closeMobileMenu();
+            }
+        });
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && mobileMenuToggle.getAttribute('aria-expanded') === 'true') {
+                closeMobileMenu();
+            }
+        });
+    }
     
     // Sidebar navigation
+    const handleNavClick = (linkElement, event) => {
+        event.preventDefault();
+        const targetPage = linkElement.getAttribute('data-page');
+        window.location.hash = targetPage;
+        if (isMobileViewport()) {
+            closeMobileMenu();
+        }
+        closeMobileSubmenu();
+    };
+
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetPage = this.getAttribute('data-page');
-            console.log('Nav link clicked:', targetPage);
-            
-            // Update hash to trigger page change
-            window.location.hash = targetPage;
+            handleNavClick(this, e);
         });
     });
     
@@ -232,20 +315,46 @@ document.addEventListener('DOMContentLoaded', function() {
     
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            const parentLi = this.parentElement;
-            const isActive = parentLi.classList.contains('active');
-            
-            document.querySelectorAll('.has-dropdown').forEach(item => {
-                if (item !== parentLi) {
-                    item.classList.remove('active');
+            if (isMobileViewport()) {
+                e.preventDefault();
+                const submenuItems = this.nextElementSibling?.querySelectorAll('a[data-page]');
+                if (!submenuItems || submenuItems.length === 0 || !mobileSubmenuList || !mobileSubmenuTitle) return;
+
+                mobileSubmenuTitle.textContent = this.textContent.trim();
+                mobileSubmenuList.innerHTML = '';
+                submenuItems.forEach(item => {
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = '#';
+                    link.dataset.page = item.dataset.page;
+                    link.textContent = item.textContent.trim();
+                    link.addEventListener('click', (evt) => {
+                        handleNavClick(link, evt);
+                    });
+                    li.appendChild(link);
+                    mobileSubmenuList.appendChild(li);
+                });
+
+                navMenu.classList.add('show-submenu');
+                if (mobileSubmenuWrapper) {
+                    mobileSubmenuWrapper.setAttribute('aria-hidden', 'false');
                 }
-            });
-            
-            if (!isActive) {
-                parentLi.classList.add('active');
             } else {
-                parentLi.classList.remove('active');
+                e.preventDefault();
+                const parentLi = this.parentElement;
+                const isActive = parentLi.classList.contains('active');
+                
+                document.querySelectorAll('.has-dropdown').forEach(item => {
+                    if (item !== parentLi) {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                if (!isActive) {
+                    parentLi.classList.add('active');
+                } else {
+                    parentLi.classList.remove('active');
+                }
             }
         });
     });

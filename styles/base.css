@@ -168,6 +168,10 @@ body {
     cursor: url('../images/cursor-tattoo-needle.svg') 4 4, auto;
 }
 
+body.mobile-menu-open {
+    overflow: hidden;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Bokor', sans-serif;

@@ -154,44 +154,189 @@
     z-index: 1;
 }
 
-@keyframes smokeShift {
-    0% {
-        transform: translate3d(-5%, -3%, 0) scale(1);
-        opacity: 0.35;
-    }
-    50% {
-        transform: translate3d(3%, 4%, 0) scale(1.12);
-        opacity: 0.55;
-    }
-    100% {
-        transform: translate3d(5%, -2%, 0) scale(1.2);
-        opacity: 0.42;
-    }
+.team-profile-gallery .gallery-frame {
+    position: absolute;
+    inset: 0.9rem;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 1.4rem;
+    background: transparent;
 }
 
-/* Responsive Masonry */
-@media (max-width: 1024px) {
-    .team-masonry {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.2rem;
-    }
-    .team-masonry .team-member {
-        grid-column: span 2;
-    }
-    .team-masonry .team-profile-gallery {
-        grid-column: span 2;
-    }
+.gallery-frame::before,
+.gallery-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.2rem;
+    pointer-events: none;
 }
 
-@media (max-width: 768px) {
-    .team-masonry {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    .team-masonry .team-member,
-    .team-masonry .team-profile-gallery {
-        grid-column: span 1;
-    }
+.gallery-frame::before {
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow:
+        0 0 25px rgba(255, 255, 255, 0.35),
+        0 0 55px rgba(255, 107, 53, 0.45);
+    animation: neonPulse 7s ease-in-out infinite;
+}
+
+.gallery-frame::after {
+    inset: -0.9rem;
+    border: 1px solid rgba(0, 0, 0, 0.45);
+    border-radius: 1.8rem;
+    box-shadow:
+        0 0 35px rgba(0, 0, 0, 0.55),
+        inset 0 0 18px rgba(0, 0, 0, 0.45);
+}
+
+.gallery-frame .frame-corner {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 0.4rem;
+    mix-blend-mode: screen;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.45);
+}
+
+.frame-corner.top-left {
+    top: -8px;
+    left: -8px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.frame-corner.top-right {
+    top: -8px;
+    right: -8px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.frame-corner.bottom-left {
+    bottom: -8px;
+    left: -8px;
+    border-right: none;
+    border-top: none;
+}
+
+.frame-corner.bottom-right {
+    bottom: -8px;
+    right: -8px;
+    border-left: none;
+    border-top: none;
+}
+
+.gallery-frame .frame-glyph {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.frame-glyph.top-left {
+    top: -10px;
+    left: -6px;
+    transform: rotate(-10deg);
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.frame-glyph.top-right {
+    top: -10px;
+    right: -6px;
+    transform: rotate(12deg);
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.frame-glyph.bottom-left {
+    bottom: -8px;
+    left: -2px;
+    transform: rotate(8deg);
+}
+
+.gallery-frame .frame-sigil {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.55);
+    animation: sigilPulse 4.5s ease-in-out infinite;
+}
+
+.frame-sigil.top {
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.frame-sigil.bottom {
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.frame-sigil.left {
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.frame-sigil.right {
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.frame-edge.horizontal {
+    height: 2px;
+    left: 50px;
+    right: 50px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+}
+
+.frame-edge.vertical {
+    width: 2px;
+    top: 50px;
+    bottom: 50px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+}
+
+.frame-edge.horizontal.top { top: 10px; }
+.frame-edge.horizontal.bottom { bottom: 10px; }
+.frame-edge.vertical.left { left: 10px; }
+.frame-edge.vertical.right { right: 10px; }
+
+.frame-edge.vertical.left::before,
+.frame-edge.vertical.right::before {
+    content: attr(data-marker);
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+}
+
+.frame-edge.vertical.left::before {
+    left: -12px;
+}
+
+.frame-edge.vertical.right::before {
+    left: 12px;
+    transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .team-profile {
@@ -570,5 +715,70 @@
 
     .team-profile .card-gallery {
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .team-masonry {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .team-masonry .team-profile-gallery {
+        grid-column: 1 / -1;
+        grid-template-columns: 40px 1fr 40px;
+        padding: 0.75rem;
+        min-height: 280px;
+    }
+
+    .team-masonry .team-profile-gallery .card-gallery {
+        gap: 1rem;
+    }
+
+    .team-masonry .team-profile-gallery .card-gallery img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .team-profile-gallery .gallery-frame {
+        inset: 0.5rem;
+        border-radius: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .team-masonry .team-profile-gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        padding: 0.75rem 0.5rem 1.5rem;
+    }
+
+    .team-profile-gallery .gallery-frame::before {
+        border-width: 1px;
+        box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
+    }
+
+    .team-profile-gallery .gallery-frame::after,
+    .team-profile-gallery .frame-corner,
+    .team-profile-gallery .frame-glyph,
+    .team-profile-gallery .frame-sigil,
+    .team-profile-gallery .frame-edge {
+        display: none;
+    }
+
+    .team-masonry .team-profile-gallery .card-gallery {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 0.75rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .team-masonry .team-profile-gallery .card-gallery img {
+        width: 160px;
+        height: 160px;
+        flex: 0 0 auto;
+    }
+
+    .gallery-nav {
+        font-size: 1.2rem;
+        padding: 0.35rem 0.5rem;
     }
 }

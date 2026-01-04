@@ -4,6 +4,107 @@ document.addEventListener('DOMContentLoaded', function() {
     const SCROLL_KEY_PREFIX = 'kaos-scroll-';
     const loadingOverlay = document.querySelector('.loading-overlay');
 
+    // Sequential scroll reveal setup
+    const scrollRevealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -60px 0px'
+    });
+
+    const pageRevealConfigs = {
+        home: [
+            { selector: '.hero-content', baseDelay: 0, step: 80 },
+            { selector: '.home-about-content > *', baseDelay: 80, step: 70 },
+            { selector: '.home-gallery-title', baseDelay: 220, step: 60 },
+            { selector: '.home-gallery-item', baseDelay: 260, step: 60 },
+            { selector: '.cta-left > *', baseDelay: 420, step: 50 },
+            { selector: '.cta-right', baseDelay: 450, step: 0 }
+        ],
+        tatuadores: [
+            { selector: '.team-hero .hero-content', baseDelay: 0, step: 80 },
+            { selector: '.team-profile-card', baseDelay: 120, step: 70 },
+            { selector: '.team-logo-divider', baseDelay: 160, step: 60 },
+            { selector: '.team-profile-card .btn-portfolio', baseDelay: 220, step: 50 }
+        ],
+        anilladora: [
+            { selector: '.team-hero .hero-content', baseDelay: 0, step: 80 },
+            { selector: '.team-logo-divider', baseDelay: 100, step: 60 },
+            { selector: '.team-profile-card', baseDelay: 160, step: 60 },
+            { selector: '.team-profile-card .btn-portfolio', baseDelay: 220, step: 50 }
+        ],
+        'portfolio-tailor': [
+            { selector: '.page-content > *:not(.portfolio-gallery-wrap)', baseDelay: 0, step: 70 },
+            { selector: '.portfolio-gallery .gallery-item', baseDelay: 180, step: 50 }
+        ],
+        'portfolio-carrie': [
+            { selector: '.page-content > *:not(.portfolio-gallery-wrap)', baseDelay: 0, step: 70 },
+            { selector: '.portfolio-gallery .gallery-item', baseDelay: 180, step: 50 }
+        ],
+        'portfolio-greka': [
+            { selector: '.page-content > *:not(.portfolio-gallery-wrap)', baseDelay: 0, step: 70 },
+            { selector: '.portfolio-gallery .gallery-item', baseDelay: 180, step: 50 }
+        ]
+    };
+
+    const scrollRevealTargetsByPage = new Map();
+
+    const getOrCreateScrollRevealTargets = (pageId) => {
+        if (scrollRevealTargetsByPage.has(pageId)) {
+            return scrollRevealTargetsByPage.get(pageId);
+        }
+
+        const config = pageRevealConfigs[pageId];
+        const pageElement = document.getElementById(pageId);
+        if (!config || !pageElement) {
+            return [];
+        }
+
+        const collected = new Set();
+        const targets = [];
+
+        config.forEach(({ selector, baseDelay = 0, step = 60 }) => {
+            const elements = pageElement.querySelectorAll(selector);
+            elements.forEach((element, index) => {
+                if (collected.has(element)) return;
+                collected.add(element);
+
+                if (!element.hasAttribute('data-scroll-reveal')) {
+                    element.setAttribute('data-scroll-reveal', '');
+                }
+
+                const isHomePage = pageId === 'home';
+                const isPortfolioPage = pageId.startsWith('portfolio-');
+                const isMobileViewport = window.innerWidth <= 768;
+                const shouldAccelerate = isMobileViewport && (isHomePage || isPortfolioPage);
+                const delayFactor = shouldAccelerate ? 0.55 : 1;
+                const rawDelay = (baseDelay + index * step) * delayFactor;
+                const delayCap = isHomePage ? 500 : (isPortfolioPage ? 520 : 650);
+                const delay = Math.min(rawDelay, delayCap);
+                element.style.setProperty('--scroll-seq-delay', `${Math.round(delay)}ms`);
+                element.dataset.scrollRevealDelay = delay;
+                targets.push(element);
+            });
+        });
+
+        scrollRevealTargetsByPage.set(pageId, targets);
+        return targets;
+    };
+
+    const resetScrollRevealForPage = (pageId) => {
+        const targets = getOrCreateScrollRevealTargets(pageId);
+        targets.forEach(target => {
+            target.classList.remove('is-visible');
+            scrollRevealObserver.unobserve(target);
+            scrollRevealObserver.observe(target);
+        });
+    };
+
     const normalizeHash = (hashValue = window.location.hash) => {
         const raw = hashValue || '';
         return raw.replace('#', '');
@@ -92,21 +193,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to show page based on hash with optional scroll control
     function showPageFromHash({ shouldScrollTop = true } = {}) {
         const hash = window.location.hash.substring(1) || 'home';
-        
+        let targetPageId = hash;
+        let targetPageElement = document.getElementById(hash);
+
+        if (!targetPageElement) {
+            targetPageId = 'home';
+            targetPageElement = document.getElementById(targetPageId);
+        }
+
+        if (!targetPageElement) {
+            return;
+        }
+
         pages.forEach(page => {
             page.classList.remove('active');
         });
 
-        const targetPageElement = document.getElementById(hash);
-        if (targetPageElement) {
-            targetPageElement.classList.add('active');
-        } else {
-            document.getElementById('home').classList.add('active');
-        }
+        targetPageElement.classList.add('active');
+        currentPageId = targetPageId;
         
         document.querySelectorAll('.has-dropdown').forEach(item => {
             item.classList.remove('active');
         });
+
+        resetScrollRevealForPage(targetPageId);
         
         if (shouldScrollTop) {
             window.scrollTo(0, 0);
@@ -272,43 +382,9 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             e.stopPropagation();
             const targetPage = this.getAttribute('data-page');
-            console.log('Category link clicked:', targetPage);
-            
-            // Update hash to trigger page change
             window.location.hash = targetPage;
         });
     });
-    
-    // Function to show page based on hash
-    function showPageFromHash() {
-        const hash = window.location.hash.substring(1) || 'home';
-        console.log('showPageFromHash called with hash:', hash);
-        
-        pages.forEach(page => {
-            page.classList.remove('active');
-        });
-
-        const targetPageElement = document.getElementById(hash);
-        console.log('Looking for element with ID:', hash, 'Found:', targetPageElement);
-        
-        if (targetPageElement) {
-            targetPageElement.classList.add('active');
-            console.log('Successfully switched to page:', hash);
-            // Scroll to top when navigating to a new page
-            window.scrollTo(0, 0);
-        } else {
-            // Fallback to home if page doesn't exist
-            document.getElementById('home').classList.add('active');
-            console.log('Page not found, fallback to home');
-            window.scrollTo(0, 0);
-        }
-    }
-
-    // Handle initial page load
-    showPageFromHash();
-    
-    // Handle hash changes
-    window.addEventListener('hashchange', showPageFromHash);
     
     // Dropdown menu functionality
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');

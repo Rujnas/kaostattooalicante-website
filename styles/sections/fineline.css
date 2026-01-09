@@ -3,9 +3,10 @@
 /* Hero Section */
 .fineline-hero {
     position: relative;
-    height: 70vh;
-    min-height: 500px;
+    height: 45vh;
+    min-height: 360px;
     overflow: hidden;
+    margin-bottom: 2.5rem;
 }
 
 .fineline-hero .hero-video {
@@ -355,5 +356,13 @@
     .cta-buttons .btn {
         width: 100%;
         max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fineline-hero {
+        height: 24vh;
+        min-height: 220px;
+        margin-bottom: 1rem;
     }
 }

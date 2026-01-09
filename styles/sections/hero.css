@@ -15,12 +15,13 @@
 }
 
 .team-hero {
-    height: 60vh;
+    height: 45vh;
+    min-height: 360px;
 }
 
 .tattoo-hero {
-    height: 70vh;
-    min-height: 500px;
+    height: 45vh;
+    min-height: 360px;
 }
 
 .hero-video {
@@ -137,8 +138,10 @@
         padding: 1rem 0;
     }
 
-    .team-hero {
-        height: 40vh;
+    .team-hero,
+    .tattoo-hero {
+        height: 32vh;
+        min-height: 300px;
     }
 
     .hero-title {
@@ -167,8 +170,10 @@
         padding: 0.5rem 0;
     }
 
-    .team-hero {
-        height: 30vh;
+    .team-hero,
+    .tattoo-hero {
+        height: 26vh;
+        min-height: 260px;
     }
 
     .hero-title {

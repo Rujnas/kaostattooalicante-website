@@ -507,8 +507,38 @@
     color: #050505;
 }
 
+.portfolio-section {
+    position: relative;
+    background: #050505;
+    overflow: hidden;
+}
+
+.portfolio-section::before,
+.portfolio-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.portfolio-section::before {
+    background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
+    opacity: 0.08;
+    filter: saturate(0.8) contrast(1.05);
+    z-index: 0;
+}
+
+.portfolio-section::after {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(10, 10, 10, 0.85));
+    z-index: 1;
+}
+
 .portfolio-page {
     text-align: center;
+    position: relative;
+    padding: 3rem 0;
+    overflow: hidden;
+    z-index: 2;
 }
 
 .portfolio-page h1 {
@@ -558,6 +588,105 @@
 .portfolio-gallery {
     position: relative;
     z-index: 1;
+}
+
+.portfolio-header {
+    position: relative;
+    z-index: 1;
+    padding: 1rem 2rem 2rem;
+}
+
+.portfolio-section .gallery-masonry {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: auto;
+    gap: 1.5rem;
+    grid-auto-flow: dense;
+    max-width: 1400px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+}
+
+.portfolio-section .masonry-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background: rgba(26, 26, 26, 0.5);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-section .masonry-item.tall {
+    grid-row: span 2;
+}
+
+.portfolio-section .masonry-item.wide {
+    grid-column: span 2;
+}
+
+.portfolio-section .image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.portfolio-section .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-section .masonry-item:hover .image-container img {
+    transform: scale(1.08);
+    filter: brightness(0.8);
+}
+
+.portfolio-section .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.08), rgba(10, 10, 10, 0.75));
+    display: flex;
+    align-items: flex-end;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 15px;
+}
+
+.portfolio-section .masonry-item:hover .image-overlay {
+    opacity: 1;
+}
+
+.portfolio-section .overlay-content {
+    padding: 1.8rem;
+    color: #fff;
+    transform: translateY(18px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-section .masonry-item:hover .overlay-content {
+    transform: translateY(0);
+}
+
+.portfolio-section .image-category {
+    display: inline-block;
+    background: var(--accent-color);
+    color: #050505;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.6rem;
+}
+
+.portfolio-gallery-wrap.fineline-gallery {
+    padding: 0;
+    background: none;
+    border-radius: 0;
 }
 
 @media (min-width: 769px) and (max-width: 1180px) {
@@ -617,6 +746,22 @@
 
     .team-masonry.simple-grid.single-column.with-side-logos .team-logo-divider.right {
         display: none;
+    }
+
+    .portfolio-section .gallery-masonry {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .portfolio-section .masonry-item.tall,
+    .portfolio-section .masonry-item.wide {
+        grid-row: span 1;
+        grid-column: span 1;
+    }
+
+    .portfolio-section .overlay-content {
+        padding: 1.2rem;
     }
 }
 

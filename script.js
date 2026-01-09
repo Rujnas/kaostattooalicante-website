@@ -40,15 +40,15 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         'portfolio-tailor': [
             { selector: '.page-content > *:not(.portfolio-gallery-wrap)', baseDelay: 0, step: 70 },
-            { selector: '.portfolio-gallery .gallery-item', baseDelay: 180, step: 50 }
+            { selector: '.portfolio-gallery .gallery-item, .portfolio-gallery-wrap .masonry-item', baseDelay: 180, step: 50 }
         ],
         'portfolio-carrie': [
             { selector: '.page-content > *:not(.portfolio-gallery-wrap)', baseDelay: 0, step: 70 },
-            { selector: '.portfolio-gallery .gallery-item', baseDelay: 180, step: 50 }
+            { selector: '.portfolio-gallery .gallery-item, .portfolio-gallery-wrap .masonry-item', baseDelay: 180, step: 50 }
         ],
         'portfolio-greka': [
             { selector: '.page-content > *:not(.portfolio-gallery-wrap)', baseDelay: 0, step: 70 },
-            { selector: '.portfolio-gallery .gallery-item', baseDelay: 180, step: 50 }
+            { selector: '.portfolio-gallery .gallery-item, .portfolio-gallery-wrap .masonry-item', baseDelay: 180, step: 50 }
         ]
     };
 

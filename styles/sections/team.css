@@ -8,6 +8,23 @@
     box-sizing: border-box;
 }
 
+.flip-card-front .tailor-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    transform-origin: center 28%;
+    transform: scale(1.2);
+}
+
+.flip-card-front .greka-image {
+    width: 108%;
+    height: 108%;
+    object-fit: cover;
+    object-position: center 10%;
+    transform: translate(-4%, -4%);
+}
+
 /* Tatuadores page background */
 #tatuadores .page-content::before {
     content: '';
@@ -630,6 +647,7 @@
     height: 100%;
     overflow: hidden;
     border-radius: 15px;
+    cursor: zoom-in;
 }
 
 .portfolio-section .image-container img {
@@ -653,6 +671,7 @@
     opacity: 0;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 15px;
+    pointer-events: none;
 }
 
 .portfolio-section .masonry-item:hover .image-overlay {
@@ -855,7 +874,7 @@
 .flip-card-back {
     position: absolute;
     inset: 0;
-    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     backface-visibility: hidden;
     background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.85));
     backdrop-filter: blur(5px);
@@ -865,6 +884,7 @@
 
 .flip-card-front {
     justify-content: flex-end;
+    overflow: hidden;
 }
 
 .flip-card-back {

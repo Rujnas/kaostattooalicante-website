@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    const galleryItems = document.querySelectorAll('.gallery-item, .card-gallery img, .gallery-main img');
+    const galleryItems = document.querySelectorAll('.gallery-item, .card-gallery img, .gallery-main img, .portfolio-section .masonry-item img');
     galleryItems.forEach(item => {
         item.addEventListener('click', function() {
             const img = this.tagName === 'IMG' ? this : this.querySelector('img');

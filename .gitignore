@@ -12,25 +12,27 @@ eggs/
 .eggs/
 lib/
 lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
 
 # Virtual Environment
 venv/
 env/
 ENV/
 
-# Credentials and secrets
+# Credentials and secrets - CRITICAL SECURITY
 credentials/
 *.json
 .env
 .env.local
 .env.*.local
+service_account.json
+*service_account.json
+google_credentials.json
+*google_credentials.json
+
+# Environment files with any sensitive data
+*.config
+config.json
+secrets.json
 
 # Logs
 *.log

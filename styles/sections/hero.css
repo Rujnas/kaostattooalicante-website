@@ -84,6 +84,31 @@
     letter-spacing: 6px;
 }
 
+#tatuadores .team-hero .hero-title,
+#anilladora .team-hero .hero-title {
+    position: relative;
+    display: inline-block;
+}
+
+#tatuadores .team-hero .hero-title::before,
+#tatuadores .team-hero .hero-title::after,
+#anilladora .team-hero .hero-title::before,
+#anilladora .team-hero .hero-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: var(--accent-color);
+}
+
+#tatuadores .team-hero .hero-title::before,
+#anilladora .team-hero .hero-title::before { top: -15px; }
+
+#tatuadores .team-hero .hero-title::after,
+#anilladora .team-hero .hero-title::after { bottom: -15px; }
+
 .tattoo-hero .hero-title {
     font-size: 4rem;
     font-weight: 700;

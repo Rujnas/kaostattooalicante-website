@@ -1,0 +1,57 @@
+name: Gallery Sync Automation
+
+on:
+  schedule:
+    # Run every 30 minutes
+    - cron: '*/30 * * * *'
+  workflow_dispatch: # Allow manual trigger
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'images/STYLES/**'
+      - 'gallery_data.json'
+
+jobs:
+  gallery-sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        
+    - name: Create credentials directory
+      run: |
+        mkdir -p credentials
+        
+    - name: Setup Google Drive credentials
+      env:
+        SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+      run: |
+        echo "$SERVICE_ACCOUNT_JSON" > credentials/service_account.json
+        
+    - name: Run gallery sync
+      env:
+        GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
+      run: |
+        python gallery_automation.py
+        
+    - name: Update HTML galleries
+      run: |
+        python gallery_updater.py
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git diff --staged --quiet || git commit -m "Auto-sync gallery images $(date '+%Y-%m-%d %H:%M:%S')"
+        git push

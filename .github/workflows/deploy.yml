@@ -1,0 +1,39 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js (for GitHub Pages)
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        cname: kaostattooalicante.com  # Your custom domain
+        keep_files: |
+          .nojekyll
+          
+    - name: Deploy to Custom Hosting (Alternative)
+      if: github.ref == 'refs/heads/main'
+      run: |
+        # Example for SSH deployment to your hosting
+        # Uncomment and configure if using custom hosting
+        # echo "${{ secrets.DEPLOY_KEY }}" > deploy_key
+        # chmod 600 deploy_key
+        # rsync -avz --delete -e "ssh -i deploy_key -o StrictHostKeyChecking=no" ./ user@yourhosting.com:/path/to/website/
+        # rm deploy_key

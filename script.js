@@ -294,6 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!mobileMenuToggle || !navMenu) return;
         mobileMenuToggle.setAttribute('aria-expanded', 'false');
         navMenu.classList.remove('is-open');
+        navMenu.classList.remove('styles-submenu-scroll');
         document.body.classList.remove('mobile-menu-open');
         if (mobileMenuOverlay) {
             mobileMenuOverlay.classList.remove('is-visible');
@@ -322,6 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (navMenu) {
             navMenu.classList.remove('show-submenu');
+            navMenu.classList.remove('styles-submenu-scroll');
         }
     };
 
@@ -395,6 +397,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 const submenuItems = this.nextElementSibling?.querySelectorAll('a[data-page]');
                 if (!submenuItems || submenuItems.length === 0 || !mobileSubmenuList || !mobileSubmenuTitle) return;
+
+                if (navMenu) {
+                    navMenu.classList.remove('styles-submenu-scroll');
+                }
+
+                const isStylesSubmenu = this.textContent.trim().toLowerCase() === 'estilos';
+                if (isStylesSubmenu && navMenu) {
+                    navMenu.classList.add('styles-submenu-scroll');
+                }
 
                 mobileSubmenuTitle.textContent = this.textContent.trim();
                 mobileSubmenuList.innerHTML = '';

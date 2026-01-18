@@ -1,4 +1,52 @@
 /* Tattoo Hero */
+#tatuajes h1,
+#tatuajes h2,
+#tatuajes h3,
+#tatuajes h4,
+#tatuajes h5,
+#tatuajes h6 {
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+}
+
+#piercings h1,
+#piercings h2,
+#piercings h3,
+#piercings h4,
+#piercings h5,
+#piercings h6,
+#walkins h1,
+#walkins h2,
+#walkins h3,
+#walkins h4,
+#walkins h5,
+#walkins h6,
+#dibujos-cuadros h1,
+#dibujos-cuadros h2,
+#dibujos-cuadros h3,
+#dibujos-cuadros h4,
+#dibujos-cuadros h5,
+#dibujos-cuadros h6 {
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+}
+
+#tatuajes .hero-title,
+#piercings .hero-title,
+#walkins .hero-title,
+#dibujos-cuadros .hero-title {
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+}
+
+#tatuajes .btn,
+#tatuajes .btn-secondary,
+#piercings .btn,
+#piercings .btn-secondary,
+#walkins .btn,
+#walkins .btn-secondary,
+#dibujos-cuadros .btn,
+#dibujos-cuadros .btn-secondary {
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+}
+
 .tattoo-hero {
     position: relative;
     overflow: hidden;
@@ -118,7 +166,7 @@
     font-size: 1.8rem;
     color: var(--accent-color);
     margin-bottom: 1rem;
-    font-family: 'Bokor', sans-serif;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
     font-weight: 500;
 }
 
@@ -147,7 +195,7 @@
     font-size: 2.8rem;
     color: var(--accent-color);
     margin-bottom: 4rem;
-    font-family: 'Bokor', sans-serif;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
     font-weight: 500;
     letter-spacing: 2px;
     position: relative;
@@ -224,7 +272,7 @@
     font-size: 1.6rem;
     color: var(--accent-color);
     margin-bottom: 1rem;
-    font-family: 'Bokor', sans-serif;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
     font-weight: 500;
 }
 
@@ -280,7 +328,7 @@
     font-size: 3rem;
     color: var(--accent-color);
     margin-bottom: 1.5rem;
-    font-family: 'Bokor', sans-serif;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -356,7 +404,7 @@
 .signature-studio {
     font-size: 1.2rem;
     color: var(--accent-color);
-    font-family: 'Bokor', sans-serif;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
     font-weight: 500;
     letter-spacing: 2px;
 }
@@ -364,7 +412,7 @@
 .signature-location {
     font-size: 1rem;
     color: var(--text-gray);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
     position: relative;
 }
 
@@ -396,8 +444,30 @@
     }
     
     .tattoo-hero .hero-title {
-        font-size: 3rem;
-        letter-spacing: 4px;
+        font-size: 2.55rem;
+        letter-spacing: 1.4px;
+        line-height: 1.1;
+        max-width: 92vw;
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: none;
+    }
+
+    #piercings .tattoo-hero .hero-title {
+        letter-spacing: 1.1px;
+    }
+
+    #walkins .tattoo-hero .hero-title,
+    #dibujos-cuadros .tattoo-hero .hero-title {
+        font-size: 2.35rem;
+        letter-spacing: 0.8px;
+    }
+
+    .tattoo-hero .hero-title::before { top: -12px; }
+    .tattoo-hero .hero-title::after { bottom: -12px; }
+
+    .tattoo-hero .hero-content {
+        padding: 0 1.5rem;
     }
     
     .tattoo-hero .hero-subtitle {
@@ -447,8 +517,30 @@
     }
     
     .tattoo-hero .hero-title {
-        font-size: 2.2rem;
-        letter-spacing: 2px;
+        font-size: 2.05rem;
+        letter-spacing: 1px;
+        line-height: 1.1;
+        max-width: 92vw;
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: none;
+    }
+
+    #piercings .tattoo-hero .hero-title {
+        letter-spacing: 0.9px;
+    }
+
+    #walkins .tattoo-hero .hero-title,
+    #dibujos-cuadros .tattoo-hero .hero-title {
+        font-size: 1.85rem;
+        letter-spacing: 0.6px;
+    }
+
+    .tattoo-hero .hero-title::before { top: -10px; }
+    .tattoo-hero .hero-title::after { bottom: -10px; }
+
+    .tattoo-hero .hero-content {
+        padding: 0 1.1rem;
     }
     
     .tattoo-hero .hero-subtitle {

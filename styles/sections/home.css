@@ -138,6 +138,15 @@
     margin: 0 auto;
 }
 
+#home h1,
+#home h2,
+#home h3,
+#home h4,
+#home h5,
+#home h6 {
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+}
+
 .home-about h2,
 .home-gallery-title,
 .home-cta h2 {
@@ -147,7 +156,7 @@
     font-weight: 300;
     letter-spacing: 4px;
     text-transform: uppercase;
-    font-family: 'Bokor', sans-serif;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
 }
 
 .home-about p,

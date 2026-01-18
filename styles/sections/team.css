@@ -1,4 +1,61 @@
 /* Team & Gallery Sections */
+
+ #tatuadores h1,
+ #tatuadores h2,
+ #tatuadores h3,
+ #tatuadores h4,
+ #tatuadores h5,
+ #tatuadores h6,
+ #anilladora h1,
+ #anilladora h2,
+ #anilladora h3,
+ #anilladora h4,
+ #anilladora h5,
+ #anilladora h6 {
+     font-family: 'Space Grotesk', 'Arial', sans-serif;
+ }
+
+ #tatuadores .hero-title,
+ #anilladora .hero-title {
+     font-family: 'Space Grotesk', 'Arial', sans-serif;
+     font-weight: 700;
+ }
+
+ #portfolio-tailor h1,
+ #portfolio-tailor h2,
+ #portfolio-tailor h3,
+ #portfolio-tailor h4,
+ #portfolio-tailor h5,
+ #portfolio-tailor h6,
+ #portfolio-carrie h1,
+ #portfolio-carrie h2,
+ #portfolio-carrie h3,
+ #portfolio-carrie h4,
+ #portfolio-carrie h5,
+ #portfolio-carrie h6,
+ #portfolio-greka h1,
+ #portfolio-greka h2,
+ #portfolio-greka h3,
+ #portfolio-greka h4,
+ #portfolio-greka h5,
+ #portfolio-greka h6 {
+     font-family: 'Space Grotesk', 'Arial', sans-serif;
+ }
+
+ #portfolio-tailor .page-content h1,
+ #portfolio-carrie .page-content h1,
+ #portfolio-greka .page-content h1 {
+     font-size: clamp(2.2rem, 6vw, 3.1rem);
+     letter-spacing: 2px;
+     line-height: 1.1;
+     max-width: 92vw;
+     margin-left: auto;
+     margin-right: auto;
+     overflow-wrap: normal;
+     word-break: normal;
+     hyphens: none;
+ }
+
 .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -516,7 +573,7 @@
     font-size: 1.15rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    font-family: 'Bokor', sans-serif;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
     border-radius: 999px;
 }
 
@@ -782,6 +839,14 @@
     .portfolio-section .overlay-content {
         padding: 1.2rem;
     }
+
+    #portfolio-tailor .page-content h1,
+    #portfolio-carrie .page-content h1,
+    #portfolio-greka .page-content h1 {
+        font-size: 2.35rem;
+        letter-spacing: 1.2px;
+        max-width: 94vw;
+    }
 }
 
 .team-member {
@@ -978,7 +1043,7 @@
     font-weight: 300;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-family: 'Bokor', sans-serif;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
 }
 

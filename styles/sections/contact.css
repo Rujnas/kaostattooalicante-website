@@ -1,5 +1,15 @@
 /* Contact Section Styles */
 
+ #contacto h1,
+ #contacto h2,
+ #contacto h3,
+ #contacto h4,
+ #contacto h5,
+ #contacto h6,
+ #contacto .contact-title {
+     font-family: 'Space Grotesk', 'Arial', sans-serif;
+ }
+
 /* Contact Header */
 .contact-header {
     text-align: center;

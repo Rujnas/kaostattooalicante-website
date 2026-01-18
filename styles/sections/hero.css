@@ -206,6 +206,26 @@
         letter-spacing: 2.5px;
     }
 
+    #tatuadores .team-hero .hero-title {
+        font-size: 3rem;
+        letter-spacing: 0.6px;
+        line-height: 1.1;
+        max-width: 92vw;
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: none;
+    }
+
+    #anilladora .team-hero .hero-title {
+        font-size: 3rem;
+        letter-spacing: 0.6px;
+        line-height: 1.1;
+        max-width: 92vw;
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: none;
+    }
+
     .hero-subtitle {
         font-size: 1.05rem;
     }
@@ -227,6 +247,18 @@
 
     .hero-title {
         font-size: 1.9rem;
+    }
+
+    #tatuadores .team-hero .hero-title {
+        font-size: 3rem;
+        letter-spacing: 0.6px;
+        max-width: 92vw;
+    }
+
+    #anilladora .team-hero .hero-title {
+        font-size: 3rem;
+        letter-spacing: 0.6px;
+        max-width: 92vw;
     }
 
     .hero-video {

@@ -49,6 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
         'portfolio-greka': [
             { selector: '.page-content > *:not(.portfolio-gallery-wrap)', baseDelay: 0, step: 70 },
             { selector: '.portfolio-gallery .gallery-item, .portfolio-gallery-wrap .masonry-item', baseDelay: 180, step: 50 }
+        ],
+        blog: [
+            { selector: '.page-content > *', baseDelay: 0, step: 70 },
+            { selector: '.blog-card', baseDelay: 160, step: 55 }
         ]
     };
 
@@ -116,6 +120,452 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const getScrollKey = (pageId) => `${SCROLL_KEY_PREFIX}${pageId}`;
+
+    const BLOG_PAGE_ID = 'blog';
+    const BLOG_FEED_URL = 'https://medium.com/@sastreg86/feed';
+    const BLOG_MAX_ITEMS = 6;
+    const BLOG_CACHE_KEY = 'kaos-medium-feed-v3';
+    const BLOG_CACHE_TTL_MS = 30 * 60 * 1000;
+    const BLOG_OG_IMAGE_CACHE_KEY = 'kaos-medium-og-image-v1';
+    const BLOG_OG_IMAGE_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+
+    const formatBlogDate = (dateValue) => {
+        if (!dateValue) return '';
+        const date = new Date(dateValue);
+        if (Number.isNaN(date.getTime())) return '';
+        return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: 'numeric' });
+    };
+
+    const stripHtmlToText = (value) => {
+        if (!value) return '';
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = value;
+        return (wrapper.textContent || wrapper.innerText || '').trim();
+    };
+
+    const pickLargestFromSrcset = (srcset) => {
+        if (!srcset) return '';
+        const parts = srcset
+            .split(',')
+            .map(part => part.trim())
+            .filter(Boolean);
+
+        if (parts.length === 0) return '';
+        const last = parts[parts.length - 1];
+        return (last.split(/\s+/)[0] || '').trim();
+    };
+
+    const isUsableImageUrl = (url) => {
+        if (!url) return false;
+        const value = String(url).trim();
+        if (!value) return false;
+        if (value.startsWith('data:')) return false;
+        return true;
+    };
+
+    const isProbablyContentImageUrl = (url) => {
+        if (!isUsableImageUrl(url)) return false;
+        const value = String(url).toLowerCase();
+        if (value.includes('/_/stat')) return false;
+        if (value.includes('pixel')) return false;
+        return true;
+    };
+
+    const getMediumItemImage = (item) => {
+        if (!item) return '';
+        const content = item.content || item.description || '';
+
+        if (content) {
+            const template = document.createElement('template');
+            template.innerHTML = content;
+
+            const images = Array.from(template.content.querySelectorAll('img'));
+            for (const img of images) {
+                const candidates = [
+                    img.getAttribute('data-src'),
+                    img.getAttribute('data-original'),
+                    pickLargestFromSrcset(img.getAttribute('srcset')),
+                    img.getAttribute('src')
+                ];
+
+                for (const candidate of candidates) {
+                    if (isProbablyContentImageUrl(candidate)) return String(candidate).trim();
+                }
+            }
+        }
+
+        if (isUsableImageUrl(item.thumbnail)) return item.thumbnail;
+        return '';
+    };
+
+    const getCachedBlogFeed = () => {
+        try {
+            const raw = localStorage.getItem(BLOG_CACHE_KEY);
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            if (!parsed || !parsed.timestamp || !Array.isArray(parsed.items)) return null;
+            if (Date.now() - parsed.timestamp > BLOG_CACHE_TTL_MS) return null;
+            return parsed.items;
+        } catch {
+            return null;
+        }
+    };
+
+    const getCachedOgImage = (link) => {
+        if (!link) return '';
+        try {
+            const raw = localStorage.getItem(BLOG_OG_IMAGE_CACHE_KEY);
+            if (!raw) return '';
+            const parsed = JSON.parse(raw);
+            if (!parsed || typeof parsed !== 'object') return '';
+
+            const entry = parsed[link];
+            if (!entry || typeof entry !== 'object') return '';
+            if (!entry.ts || !entry.url) return '';
+            if (Date.now() - entry.ts > BLOG_OG_IMAGE_CACHE_TTL_MS) return '';
+            return entry.url;
+        } catch {
+            return '';
+        }
+    };
+
+    const setCachedOgImage = (link, url) => {
+        if (!link || !url) return;
+        try {
+            const raw = localStorage.getItem(BLOG_OG_IMAGE_CACHE_KEY);
+            const parsed = raw ? JSON.parse(raw) : {};
+            const next = parsed && typeof parsed === 'object' ? parsed : {};
+            next[link] = { ts: Date.now(), url };
+            localStorage.setItem(BLOG_OG_IMAGE_CACHE_KEY, JSON.stringify(next));
+        } catch {
+            // ignore
+        }
+    };
+
+    const fetchMediumOgImage = async (postUrl) => {
+        if (!postUrl) return '';
+        const cached = getCachedOgImage(postUrl);
+        if (cached) return cached;
+
+        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(postUrl)}`;
+        const response = await fetch(proxyUrl, { cache: 'no-store' });
+        if (!response.ok) return '';
+
+        const html = await response.text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const meta = doc.querySelector('meta[property="og:image"], meta[name="og:image"], meta[name="twitter:image"]');
+        const imageUrl = meta ? (meta.getAttribute('content') || '') : '';
+        if (!isUsableImageUrl(imageUrl)) return '';
+
+        setCachedOgImage(postUrl, imageUrl);
+        return imageUrl;
+    };
+
+    const setCachedBlogFeed = (items) => {
+        try {
+            localStorage.setItem(BLOG_CACHE_KEY, JSON.stringify({ timestamp: Date.now(), items }));
+        } catch {
+            // ignore
+        }
+    };
+
+    const fetchMediumFeed = async () => {
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(BLOG_FEED_URL)}`;
+        const response = await fetch(apiUrl, { cache: 'no-store' });
+        if (!response.ok) {
+            throw new Error(`Medium feed error (${response.status})`);
+        }
+        const data = await response.json();
+        if (!data || data.status !== 'ok' || !Array.isArray(data.items)) {
+            throw new Error('Medium feed invalid');
+        }
+        return data.items;
+    };
+
+    const sanitizeMediumHtml = (html) => {
+        const template = document.createElement('template');
+        template.innerHTML = html || '';
+
+        template.content.querySelectorAll('script, iframe').forEach(node => node.remove());
+        template.content.querySelectorAll('[style]').forEach(node => node.removeAttribute('style'));
+
+        return template.innerHTML;
+    };
+
+    const openBlogArticleModal = ({ title, pubDate, link, html, imageUrl }) => {
+        const overlay = document.createElement('div');
+        overlay.className = 'blog-modal';
+        overlay.innerHTML = `
+            <div class="blog-modal-content" role="dialog" aria-modal="true" aria-label="${(title || 'Artículo').replace(/"/g, '&quot;')}">
+                <button class="blog-modal-close" type="button" aria-label="Cerrar">&times;</button>
+                <div class="blog-modal-header">
+                    <h2 class="blog-modal-title">${title || ''}</h2>
+                    <div class="blog-modal-meta">
+                        <span class="blog-modal-date">${formatBlogDate(pubDate)}</span>
+                        <a class="blog-modal-medium" href="${link || '#'}" target="_blank" rel="noopener">Leer en Medium</a>
+                    </div>
+                </div>
+                <div class="blog-modal-article"></div>
+            </div>
+        `;
+
+        const normalizeImageUrlForCompare = (url) => {
+            if (!url) return '';
+            const raw = String(url).trim();
+            if (!raw) return '';
+            try {
+                const parsed = new URL(raw);
+                return `${parsed.origin}${parsed.pathname}`;
+            } catch {
+                return raw.split('?')[0];
+            }
+        };
+
+        const getBestImgSrc = (img) => {
+            if (!img) return '';
+            const candidates = [
+                img.getAttribute('data-src'),
+                img.getAttribute('data-original'),
+                pickLargestFromSrcset(img.getAttribute('srcset')),
+                img.getAttribute('src')
+            ];
+            for (const candidate of candidates) {
+                if (isUsableImageUrl(candidate)) return String(candidate).trim();
+            }
+            return '';
+        };
+
+        const articleEl = overlay.querySelector('.blog-modal-article');
+        if (articleEl) {
+            const sanitized = sanitizeMediumHtml(html);
+            const template = document.createElement('template');
+            template.innerHTML = sanitized;
+
+            const normalizedCover = normalizeImageUrlForCompare(imageUrl);
+            const hasCoverAlready = Boolean(imageUrl) && Array.from(template.content.querySelectorAll('img')).some(img => {
+                const best = getBestImgSrc(img);
+                return normalizeImageUrlForCompare(best) === normalizedCover;
+            });
+            const shouldAddCover = Boolean(imageUrl) && !hasCoverAlready;
+
+            articleEl.innerHTML = '';
+            if (shouldAddCover) {
+                const cover = document.createElement('div');
+                cover.className = 'blog-modal-cover';
+
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = title ? `Imagen de ${title}` : 'Imagen del artículo';
+                img.loading = 'lazy';
+                img.decoding = 'async';
+                cover.appendChild(img);
+
+                articleEl.appendChild(cover);
+            }
+
+            articleEl.appendChild(template.content);
+            articleEl.querySelectorAll('img').forEach(img => {
+                const currentSrc = img.getAttribute('src') || '';
+                if (!isProbablyContentImageUrl(currentSrc)) {
+                    const best = getBestImgSrc(img);
+                    if (isUsableImageUrl(best)) {
+                        img.setAttribute('src', best);
+                    }
+                }
+
+                if (!img.getAttribute('loading')) img.setAttribute('loading', 'lazy');
+                img.setAttribute('decoding', 'async');
+            });
+            articleEl.querySelectorAll('a').forEach(anchor => {
+                anchor.setAttribute('target', '_blank');
+                anchor.setAttribute('rel', 'noopener');
+            });
+        }
+
+        const closeBtn = overlay.querySelector('.blog-modal-close');
+
+        const close = () => {
+            window.removeEventListener('keydown', onKeyDown);
+            overlay.style.opacity = '0';
+            document.body.classList.remove('blog-modal-open');
+            setTimeout(() => {
+                if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+            }, 250);
+        };
+
+        const onKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                close();
+            }
+        };
+
+        closeBtn && closeBtn.addEventListener('click', close);
+        overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) close();
+        });
+        window.addEventListener('keydown', onKeyDown);
+
+        document.body.appendChild(overlay);
+        document.body.classList.add('blog-modal-open');
+        requestAnimationFrame(() => {
+            overlay.style.opacity = '1';
+        });
+    };
+
+    const renderBlogFeed = (items) => {
+        const blogPage = document.getElementById(BLOG_PAGE_ID);
+        if (!blogPage) return;
+
+        const statusEl = blogPage.querySelector('.blog-status');
+        const gridEl = blogPage.querySelector('.blog-grid');
+        if (!statusEl || !gridEl) return;
+
+        gridEl.innerHTML = '';
+
+        const sliced = (items || []).slice(0, BLOG_MAX_ITEMS);
+        if (sliced.length === 0) {
+            statusEl.textContent = 'No hay publicaciones disponibles ahora mismo.';
+            return;
+        }
+
+        statusEl.textContent = '';
+
+        sliced.forEach(item => {
+            const card = document.createElement('article');
+            card.className = 'blog-card';
+            card.tabIndex = 0;
+            card.setAttribute('role', 'button');
+
+            const extractedImageUrl = getMediumItemImage(item);
+            const cachedOgImageUrl = extractedImageUrl ? '' : getCachedOgImage(item.link);
+            const imageUrl = extractedImageUrl || cachedOgImageUrl || '';
+            if (imageUrl) card.dataset.coverUrl = imageUrl;
+
+            const openFromCard = () => {
+                const coverUrl = card.dataset.coverUrl || imageUrl;
+                openBlogArticleModal({
+                    title: item.title || '',
+                    pubDate: item.pubDate,
+                    link: item.link,
+                    html: item.content || item.description || '',
+                    imageUrl: coverUrl
+                });
+            };
+
+            card.addEventListener('click', () => {
+                openFromCard();
+            });
+
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openFromCard();
+                }
+            });
+
+            const media = document.createElement('div');
+            media.className = 'blog-card-media';
+            if (imageUrl) {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = item.title || 'Publicación de Medium';
+                img.loading = 'lazy';
+                media.appendChild(img);
+            }
+
+            const body = document.createElement('div');
+            body.className = 'blog-card-body';
+
+            const title = document.createElement('h3');
+            title.className = 'blog-card-title';
+            title.textContent = item.title || '';
+
+            const meta = document.createElement('div');
+            meta.className = 'blog-card-meta';
+            meta.textContent = formatBlogDate(item.pubDate);
+
+            const excerpt = document.createElement('p');
+            excerpt.className = 'blog-card-excerpt';
+            const rawText = stripHtmlToText(item.description || item.content || '');
+            excerpt.textContent = rawText.length > 160 ? `${rawText.slice(0, 160).trim()}...` : rawText;
+
+            const cta = document.createElement('a');
+            cta.className = 'blog-card-cta';
+            cta.textContent = 'Leer en Medium';
+            cta.href = item.link;
+            cta.target = '_blank';
+            cta.rel = 'noopener';
+            cta.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+            cta.addEventListener('keydown', (event) => {
+                event.stopPropagation();
+            });
+
+            body.appendChild(title);
+            body.appendChild(meta);
+            body.appendChild(excerpt);
+            body.appendChild(cta);
+
+            card.appendChild(media);
+            card.appendChild(body);
+            gridEl.appendChild(card);
+
+            if (!imageUrl && item.link) {
+                fetchMediumOgImage(item.link)
+                    .then(fetchedUrl => {
+                        if (!isUsableImageUrl(fetchedUrl)) return;
+                        if (!card.isConnected) return;
+                        if (card.dataset.coverUrl) return;
+
+                        card.dataset.coverUrl = fetchedUrl;
+                        if (!media.querySelector('img')) {
+                            const img = document.createElement('img');
+                            img.src = fetchedUrl;
+                            img.alt = item.title || 'Publicación de Medium';
+                            img.loading = 'lazy';
+                            media.appendChild(img);
+                        }
+                    })
+                    .catch(() => {
+                        // ignore
+                    });
+            }
+        });
+    };
+
+    const ensureBlogFeedLoaded = async ({ force = false } = {}) => {
+        const blogPage = document.getElementById(BLOG_PAGE_ID);
+        if (!blogPage) return;
+
+        const statusEl = blogPage.querySelector('.blog-status');
+        const gridEl = blogPage.querySelector('.blog-grid');
+        if (!statusEl || !gridEl) return;
+
+        if (!force) {
+            const cached = getCachedBlogFeed();
+            if (cached) {
+                renderBlogFeed(cached);
+                scrollRevealTargetsByPage.delete(BLOG_PAGE_ID);
+                resetScrollRevealForPage(BLOG_PAGE_ID);
+                return;
+            }
+        }
+
+        statusEl.textContent = 'Cargando publicaciones...';
+        gridEl.innerHTML = '';
+
+        try {
+            const items = await fetchMediumFeed();
+            setCachedBlogFeed(items);
+            renderBlogFeed(items);
+            scrollRevealTargetsByPage.delete(BLOG_PAGE_ID);
+            resetScrollRevealForPage(BLOG_PAGE_ID);
+        } catch (error) {
+            statusEl.textContent = 'No se pudieron cargar las publicaciones. Puedes verlas directamente en Medium.';
+            gridEl.innerHTML = '';
+        }
+    };
 
     const restoreScrollPosition = (pageId) => {
         const stored = sessionStorage.getItem(getScrollKey(pageId));
@@ -217,6 +667,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         resetScrollRevealForPage(targetPageId);
+
+        if (targetPageId === BLOG_PAGE_ID) {
+            ensureBlogFeedLoaded();
+        }
         
         if (shouldScrollTop) {
             window.scrollTo(0, 0);

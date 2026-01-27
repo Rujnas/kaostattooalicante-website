@@ -76,6 +76,62 @@
      font-family: 'Space Grotesk', 'Arial', sans-serif;
  }
 
+ #fineline,
+ #realismo,
+ #tradicional,
+ #anime,
+ #blackwork,
+ #cartoon,
+ #geometrico,
+ #japones,
+ #lettering,
+ #microrealismo {
+     position: relative;
+ }
+
+ #fineline::before,
+ #realismo::before,
+ #tradicional::before,
+ #anime::before,
+ #blackwork::before,
+ #cartoon::before,
+ #geometrico::before,
+ #japones::before,
+ #lettering::before,
+ #microrealismo::before {
+     content: '';
+     position: absolute;
+     inset: 0;
+     background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
+     opacity: 0.15;
+     z-index: 0;
+     pointer-events: none;
+ }
+
+ #fineline .fineline-hero,
+ #fineline .fineline-gallery,
+ #realismo .fineline-hero,
+ #realismo .fineline-gallery,
+ #tradicional .fineline-hero,
+ #tradicional .fineline-gallery,
+ #anime .fineline-hero,
+ #anime .fineline-gallery,
+ #blackwork .fineline-hero,
+ #blackwork .fineline-gallery,
+ #cartoon .fineline-hero,
+ #cartoon .fineline-gallery,
+ #geometrico .fineline-hero,
+ #geometrico .fineline-gallery,
+ #japones .fineline-hero,
+ #japones .fineline-gallery,
+ #lettering .fineline-hero,
+ #lettering .fineline-gallery,
+ #microrealismo .fineline-hero,
+ #microrealismo .fineline-gallery {
+     position: relative;
+     z-index: 1;
+ }
+
 /* Hero Section */
 .fineline-hero {
     position: relative;

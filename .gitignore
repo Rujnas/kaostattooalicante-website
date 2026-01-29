@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Credentials and secrets - CRITICAL SECURITY
+credentials/
+*.json
+.env
+.env.local
+.env.*.local
+service_account.json
+*service_account.json
+google_credentials.json
+*google_credentials.json
+
+# Environment files with any sensitive data
+*.config
+config.json
+secrets.json
+
+# Logs
+*.log
+gallery_sync.log
+
+# Gallery data (optional - remove if you want to track in git)
+# gallery_data.json
+
+# Backups
+index_backup_*.html
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

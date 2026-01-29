@@ -47,6 +47,17 @@
     font-family: 'Space Grotesk', 'Arial', sans-serif;
 }
 
+/* Video position adjustments for services pages */
+#tatuajes .tattoo-hero .hero-video {
+    transform: translate(-50%, -40%) translateY(var(--hero-parallax, 0px)) scale(1.08);
+}
+
+#piercings .tattoo-hero .hero-video,
+#walkins .tattoo-hero .hero-video,
+#dibujos-cuadros .tattoo-hero .hero-video {
+    transform: translate(-50%, -35%) translateY(var(--hero-parallax, 0px)) scale(1.08);
+}
+
 .tattoo-hero {
     position: relative;
     overflow: hidden;
@@ -73,16 +84,16 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.3;
-    filter: brightness(0.7) contrast(1.1);
+    opacity: 0.6;
+    filter: brightness(1.0) contrast(1.05);
 }
 
 .tattoo-hero .hero-overlay {
     background: linear-gradient(
         135deg,
-        rgba(10, 10, 10, 0.4) 0%,
-        rgba(10, 10, 10, 0.3) 50%,
-        rgba(10, 10, 10, 0.4) 100%
+        rgba(10, 10, 10, 0.2) 0%,
+        rgba(10, 10, 10, 0.15) 50%,
+        rgba(10, 10, 10, 0.2) 100%
     );
 }
 

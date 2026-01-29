@@ -243,27 +243,50 @@
 
 .gallery-masonry {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: auto;
-    gap: 1.5rem;
-    grid-auto-flow: dense;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 90px;
+    gap: 1.3rem;
+    align-items: stretch;
 }
 
 .masonry-item {
     position: relative;
     overflow: hidden;
-    border-radius: 15px;
-    background: rgba(26, 26, 26, 0.5);
+    border-radius: 18px;
+    background: rgba(18, 18, 18, 0.65);
     backdrop-filter: blur(10px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    aspect-ratio: auto;
+    grid-row: span 4;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.masonry-item:nth-child(3n + 1) {
+    grid-row: span 3;
+}
+
+.masonry-item:nth-child(4n + 2) {
+    grid-row: span 5;
+}
+
+.masonry-item:nth-child(5n + 3) {
+    grid-row: span 4;
+}
+
+.masonry-item:nth-child(6n + 5) {
+    grid-row: span 6;
+}
+
+.masonry-item:nth-child(7n + 4) {
+    grid-row: span 7;
 }
 
 .masonry-item.tall {
-    grid-row: span 2;
+    grid-row: span 1;
 }
 
 .masonry-item.wide {
-    grid-column: span 2;
+    grid-column: span 1;
 }
 
 .image-container {
@@ -427,11 +450,19 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
     .gallery-masonry {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 84px;
     }
     
     .masonry-item.wide {
         grid-column: span 1;
+    }
+}
+
+@media (max-width: 980px) {
+    .gallery-masonry {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 86px;
     }
 }
 
@@ -449,7 +480,8 @@
     }
     
     .gallery-masonry {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 80px;
         gap: 1rem;
     }
     
@@ -479,6 +511,17 @@
     .cta-buttons .btn {
         width: 100%;
         max-width: 250px;
+    }
+}
+
+@media (max-width: 520px) {
+    .gallery-masonry {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 78px;
+    }
+
+    .masonry-item {
+        grid-row: span 5;
     }
 }
 

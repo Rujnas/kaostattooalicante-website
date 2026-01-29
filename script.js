@@ -900,40 +900,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    const galleryItems = document.querySelectorAll('.gallery-item, .card-gallery img, .gallery-main img, .portfolio-section .masonry-item img, .fineline-gallery .masonry-item');
-    galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const img = this.tagName === 'IMG' ? this : this.querySelector('img');
-            if (!img) return;
+    document.addEventListener('click', (event) => {
+        const target = event.target.closest('.gallery-item, .card-gallery img, .gallery-main img, .portfolio-section .masonry-item, .fineline-gallery .masonry-item, .gallery-masonry .masonry-item');
+        if (!target) return;
 
-            const lightbox = document.createElement('div');
-            lightbox.className = 'lightbox';
-            lightbox.innerHTML = `
-                <div class="lightbox-content">
-                    <span class="lightbox-close">&times;</span>
-                    <img src="${img.src}" alt="${img.alt}">
-                </div>
-            `;
-            
-            document.body.appendChild(lightbox);
-            
+        const img = target.tagName === 'IMG' ? target : target.querySelector('img');
+        if (!img) return;
+
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.innerHTML = `
+            <div class="lightbox-content">
+                <span class="lightbox-close">&times;</span>
+                <img src="${img.src}" alt="${img.alt}">
+            </div>
+        `;
+
+        document.body.appendChild(lightbox);
+
+        setTimeout(() => {
+            lightbox.style.opacity = '1';
+        }, 10);
+
+        const closeLightbox = () => {
+            lightbox.style.opacity = '0';
             setTimeout(() => {
-                lightbox.style.opacity = '1';
-            }, 10);
-            
-            const closeLightbox = () => {
-                lightbox.style.opacity = '0';
-                setTimeout(() => {
-                    document.body.removeChild(lightbox);
-                }, 300);
-            };
-            
-            lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) {
-                    closeLightbox();
-                }
-            });
+                document.body.removeChild(lightbox);
+            }, 300);
+        };
+
+        lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
         });
     });
     

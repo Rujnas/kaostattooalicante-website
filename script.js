@@ -589,15 +589,26 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPageId = getPageIdFromHash();
     let scrollSaveTimer = null;
 
+    const hideLoadingOverlay = () => {
+        document.body.classList.remove('is-loading');
+        if (loadingOverlay) {
+            loadingOverlay.classList.add('is-hidden');
+        }
+        restoreScrollPosition(currentPageId);
+    };
+
+    // Hide overlay when page loads
     window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.body.classList.remove('is-loading');
-            if (loadingOverlay) {
-                loadingOverlay.classList.add('is-hidden');
-            }
-            restoreScrollPosition(currentPageId);
-        }, 300);
+        setTimeout(hideLoadingOverlay, 300);
     });
+
+    // Fallback: hide overlay after max 5 seconds even if load event doesn't fire
+    setTimeout(() => {
+        if (document.body.classList.contains('is-loading')) {
+            console.warn('Loading timeout reached, forcing overlay hide');
+            hideLoadingOverlay();
+        }
+    }, 5000);
     window.addEventListener('beforeunload', () => saveScrollPosition(currentPageId));
     window.addEventListener('scroll', () => {
         clearTimeout(scrollSaveTimer);

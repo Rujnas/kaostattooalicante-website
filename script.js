@@ -683,6 +683,14 @@ document.addEventListener('DOMContentLoaded', function() {
             item.classList.remove('active');
         });
 
+        // Load videos in the active page (for preload="none" videos)
+        const pageVideos = targetPageElement.querySelectorAll('video[preload="none"]');
+        pageVideos.forEach(video => {
+            if (video.readyState === 0) {
+                video.load();
+            }
+        });
+
         resetScrollRevealForPage(targetPageId);
 
         if (targetPageId === BLOG_PAGE_ID) {

@@ -651,10 +651,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Logo click handler
     const logoLink = document.querySelector('.logo-link');
     if (logoLink) {
-        logoLink.addEventListener('click', function(e) {
+        const logoHandler = function(e) {
             e.preventDefault();
+            e.stopPropagation();
             window.location.hash = 'home';
-        });
+        };
+        logoLink.addEventListener('click', logoHandler);
+        logoLink.addEventListener('touchend', logoHandler, { passive: false });
     }
     
     // Function to show page based on hash with optional scroll control
@@ -977,24 +980,32 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', () => {
+        const toggleMobileMenuHandler = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
             if (isExpanded) {
                 closeMobileMenu();
             } else {
                 openMobileMenu();
             }
-        });
+        };
+        mobileMenuToggle.addEventListener('click', toggleMobileMenuHandler);
+        mobileMenuToggle.addEventListener('touchend', toggleMobileMenuHandler, { passive: false });
 
         if (mobileMenuOverlay) {
             mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+            mobileMenuOverlay.addEventListener('touchend', closeMobileMenu, { passive: true });
         }
 
         if (mobileSubmenuBack) {
-            mobileSubmenuBack.addEventListener('click', (event) => {
+            const submenuBackHandler = (event) => {
                 event.preventDefault();
+                event.stopPropagation();
                 closeMobileSubmenu();
-            });
+            };
+            mobileSubmenuBack.addEventListener('click', submenuBackHandler);
+            mobileSubmenuBack.addEventListener('touchend', submenuBackHandler, { passive: false });
         }
 
         window.addEventListener('resize', () => {
@@ -1022,28 +1033,36 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        const navLinkHandler = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             handleNavClick(this, e);
-        });
+        };
+        link.addEventListener('click', navLinkHandler);
+        link.addEventListener('touchend', navLinkHandler, { passive: false });
     });
     
     // Category navigation
     categoryLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        const categoryHandler = function(e) {
             e.preventDefault();
             e.stopPropagation();
             const targetPage = this.getAttribute('data-page');
             window.location.hash = targetPage;
-        });
+        };
+        link.addEventListener('click', categoryHandler);
+        link.addEventListener('touchend', categoryHandler, { passive: false });
     });
     
     // Dropdown menu functionality
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     
     dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
+        const dropdownHandler = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             if (isMobileViewport()) {
-                e.preventDefault();
                 const submenuItems = this.nextElementSibling?.querySelectorAll('a[data-page]');
                 if (!submenuItems || submenuItems.length === 0 || !mobileSubmenuList || !mobileSubmenuTitle) return;
 
@@ -1064,9 +1083,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     link.href = '#';
                     link.dataset.page = item.dataset.page;
                     link.textContent = item.textContent.trim();
-                    link.addEventListener('click', (evt) => {
+                    const linkHandler = (evt) => {
+                        evt.preventDefault();
+                        evt.stopPropagation();
                         handleNavClick(link, evt);
-                    });
+                    };
+                    link.addEventListener('click', linkHandler);
+                    link.addEventListener('touchend', linkHandler, { passive: false });
                     li.appendChild(link);
                     mobileSubmenuList.appendChild(li);
                 });
@@ -1076,7 +1099,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     mobileSubmenuWrapper.setAttribute('aria-hidden', 'false');
                 }
             } else {
-                e.preventDefault();
                 const parentLi = this.parentElement;
                 const isActive = parentLi.classList.contains('active');
                 
@@ -1092,7 +1114,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     parentLi.classList.remove('active');
                 }
             }
-        });
+        };
+        
+        toggle.addEventListener('click', dropdownHandler);
+        toggle.addEventListener('touchend', dropdownHandler, { passive: false });
     });
     
     const galleryItems = document.querySelectorAll('.gallery-item, .card-gallery img, .gallery-main img, .portfolio-section .masonry-item img, .fineline-gallery .masonry-item');

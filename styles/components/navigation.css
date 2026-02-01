@@ -42,6 +42,9 @@
     display: inline-flex;
     align-items: center;
     text-decoration: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .logo {
@@ -132,6 +135,8 @@
     border-radius: 999px;
     background: rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
     transition: transform 0.2s ease;
 }
 
@@ -168,6 +173,9 @@
     letter-spacing: 2px;
     font-family: 'Space Grotesk', 'Arial', sans-serif;
     font-size: 1.1rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .nav-link {
@@ -183,6 +191,8 @@
     font-weight: 400;
     text-decoration: none;
     cursor: url('../images/cursor-tattoo-needle-dark.svg') 4 12, pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
     transition: color 0.3s ease;
 }
 
@@ -243,6 +253,9 @@
     letter-spacing: 0.5px;
     font-family: 'Montserrat', 'Arial', sans-serif;
     font-weight: 500;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
     transition: color 0.3s ease, background-color 0.3s ease;
     white-space: nowrap;
 }
@@ -292,6 +305,9 @@
         border-radius: 999px;
         background: rgba(0, 0, 0, 0.35);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 

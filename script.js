@@ -472,6 +472,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 img.loading = 'lazy';
                 media.appendChild(img);
             }
+            
+            const tapHint = document.createElement('span');
+            tapHint.className = 'tap-hint';
+            tapHint.setAttribute('aria-hidden', 'true');
+            tapHint.textContent = '👆';
+            media.appendChild(tapHint);
 
             const body = document.createElement('div');
             body.className = 'blog-card-body';
@@ -722,12 +728,182 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial parallax update
     updateParallax();
     
-    // Flip card functionality
-    const flipCards = document.querySelectorAll('.flip-card');
+    // Team profile modal
+    const openTeamModal = ({ name, specialty, description, image, portfolio }) => {
+        const overlay = document.createElement('div');
+        overlay.className = 'team-modal';
+        overlay.innerHTML = `
+            <div class="team-modal-content" role="dialog" aria-modal="true" aria-label="${(name || 'Miembro del equipo').replace(/"/g, '&quot;')}">
+                <button class="team-modal-close" type="button" aria-label="Cerrar">&times;</button>
+                <div class="team-modal-body">
+                    <div class="team-modal-media">
+                        <div class="team-modal-photo">
+                            <img src="${image || ''}" alt="${name ? `Retrato de ${name}` : 'Miembro del equipo'}" class="${name === 'Tailor' ? 'tailor-modal-img' : ''}" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="team-modal-info">
+                        <p class="team-modal-eyebrow">${specialty || ''}</p>
+                        <h2 class="team-modal-name">${name || ''}</h2>
+                        <p class="team-modal-description">${description || ''}</p>
+                        <div class="team-modal-actions">
+                            ${portfolio ? `<a href="${portfolio}" class="btn btn-primary team-modal-portfolio-btn" data-page="${portfolio.replace('#', '')}">Ver Portfolio</a>` : ''}
+                            <button class="btn btn-secondary team-modal-close-btn" type="button">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        const closeBtn = overlay.querySelector('.team-modal-close');
+        const closeCta = overlay.querySelector('.team-modal-close-btn');
+        const portfolioBtn = overlay.querySelector('.team-modal-portfolio-btn');
+        
+        const close = () => {
+            window.removeEventListener('keydown', onKeyDown);
+            overlay.style.opacity = '0';
+            document.body.classList.remove('team-modal-open');
+            setTimeout(() => overlay.remove(), 250);
+        };
+        
+        const onKeyDown = (event) => {
+            if (event.key === 'Escape') close();
+        };
+        
+        closeBtn && closeBtn.addEventListener('click', close);
+        closeCta && closeCta.addEventListener('click', close);
+        portfolioBtn && portfolioBtn.addEventListener('click', close);
+        overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) close();
+        });
+        window.addEventListener('keydown', onKeyDown);
+        
+        document.body.appendChild(overlay);
+        document.body.classList.add('team-modal-open');
+        requestAnimationFrame(() => {
+            overlay.style.opacity = '1';
+        });
+    };
     
-    flipCards.forEach(card => {
-        card.addEventListener('click', function() {
-            this.classList.toggle('flipped');
+    const teamCards = document.querySelectorAll('.team-profile-card[data-member-name]');
+    teamCards.forEach(card => {
+        const button = card.querySelector('.team-card-cta');
+        const handleClick = (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            openTeamModal({
+                name: card.dataset.memberName,
+                specialty: card.dataset.memberSpecialty,
+                description: card.dataset.memberDescription,
+                image: card.dataset.memberImage,
+                portfolio: card.dataset.memberPortfolio
+            });
+        };
+        
+        if (button) {
+            button.addEventListener('click', handleClick);
+        }
+    });
+    
+    // Image lightbox for care images
+    const openImageLightbox = ({ imageSrc, title }) => {
+        const overlay = document.createElement('div');
+        overlay.className = 'image-lightbox';
+        overlay.innerHTML = `
+            <div class="image-lightbox-content">
+                <button class="image-lightbox-close" type="button" aria-label="Cerrar">&times;</button>
+                <img src="${imageSrc}" alt="${title || 'Imagen'}">
+                ${title ? `<p class="image-lightbox-title">${title}</p>` : ''}
+            </div>
+        `;
+        
+        const closeBtn = overlay.querySelector('.image-lightbox-close');
+        
+        const close = () => {
+            window.removeEventListener('keydown', onKeyDown);
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.remove(), 250);
+        };
+        
+        const onKeyDown = (event) => {
+            if (event.key === 'Escape') close();
+        };
+        
+        closeBtn && closeBtn.addEventListener('click', close);
+        overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) close();
+        });
+        window.addEventListener('keydown', onKeyDown);
+        
+        document.body.appendChild(overlay);
+        requestAnimationFrame(() => {
+            overlay.style.opacity = '1';
+        });
+    };
+    
+    const careImageCards = document.querySelectorAll('.care-image-card');
+    careImageCards.forEach(card => {
+        card.addEventListener('click', () => {
+            openImageLightbox({
+                imageSrc: card.dataset.image,
+                title: card.dataset.title
+            });
+        });
+    });
+    
+    // Dibujos gallery lightbox
+    const dibujosGalleryItems = document.querySelectorAll('.dibujos-gallery-item');
+    dibujosGalleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            openImageLightbox({
+                imageSrc: item.dataset.image,
+                title: ''
+            });
+        });
+    });
+    
+    // FAQ modal
+    const openFaqModal = ({ question, answer }) => {
+        const overlay = document.createElement('div');
+        overlay.className = 'faq-modal';
+        overlay.innerHTML = `
+            <div class="faq-modal-content" role="dialog" aria-modal="true">
+                <button class="faq-modal-close" type="button" aria-label="Cerrar">&times;</button>
+                <h3 class="faq-modal-question">${question || ''}</h3>
+                <p class="faq-modal-answer">${answer || ''}</p>
+            </div>
+        `;
+        
+        const closeBtn = overlay.querySelector('.faq-modal-close');
+        
+        const close = () => {
+            window.removeEventListener('keydown', onKeyDown);
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.remove(), 250);
+        };
+        
+        const onKeyDown = (event) => {
+            if (event.key === 'Escape') close();
+        };
+        
+        closeBtn && closeBtn.addEventListener('click', close);
+        overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) close();
+        });
+        window.addEventListener('keydown', onKeyDown);
+        
+        document.body.appendChild(overlay);
+        requestAnimationFrame(() => {
+            overlay.style.opacity = '1';
+        });
+    };
+    
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        item.addEventListener('click', () => {
+            openFaqModal({
+                question: item.dataset.question,
+                answer: item.dataset.answer
+            });
         });
     });
     

@@ -65,13 +65,20 @@
     box-sizing: border-box;
 }
 
-.flip-card-front .tailor-image {
+.flip-card-front .tailor-image,
+.team-member .tailor-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%;
-    transform-origin: center 28%;
-    transform: scale(1.2);
+    object-position: center 35%;
+    transform-origin: center 35%;
+    transform: scale(1.5);
+}
+
+.team-modal-photo .tailor-modal-img {
+    object-position: center 35%;
+    transform: scale(1.3);
+    transform-origin: center 35%;
 }
 
 .flip-card-front .greka-image {
@@ -597,13 +604,13 @@
 
 .portfolio-section::before {
     background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
-    opacity: 0.08;
+    opacity: 0.15;
     filter: saturate(0.8) contrast(1.05);
     z-index: 0;
 }
 
 .portfolio-section::after {
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(10, 10, 10, 0.85));
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.85), rgba(10, 10, 10, 0.75));
     z-index: 1;
 }
 
@@ -617,6 +624,8 @@
 
 .portfolio-page h1 {
     margin-bottom: 1rem;
+    color: var(--accent-light);
+    animation: neonTextGlow 4s ease-in-out infinite;
 }
 
 .portfolio-intro {
@@ -970,11 +979,13 @@
 }
 
 .flip-card:hover .member-image,
-.flip-card:focus-visible .member-image {
+.flip-card:focus-visible .member-image,
+.team-member:hover .member-image {
     filter: grayscale(0%);
 }
 
-.flip-card-front::after {
+.flip-card-front::after,
+.team-member::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -985,11 +996,13 @@
     opacity: 0;
 }
 
-.flip-card:hover .flip-card-front::after {
+.flip-card:hover .flip-card-front::after,
+.team-member:hover::after {
     opacity: 1;
 }
 
-.flip-card-front .artist-overlay {
+.flip-card-front .artist-overlay,
+.team-member .artist-overlay {
     position: absolute;
     inset: 0;
     display: flex;
@@ -1006,7 +1019,8 @@
     will-change: opacity;
 }
 
-.flip-card:hover .flip-card-front .artist-overlay {
+.flip-card:hover .flip-card-front .artist-overlay,
+.team-member:hover .artist-overlay {
     opacity: 1;
 }
 
@@ -1031,6 +1045,181 @@
         0 0 15px rgba(212, 165, 116, 0.6),
         0 0 30px rgba(212, 165, 116, 0.3),
         0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Team card CTA button */
+.team-card-cta {
+    margin-top: 1rem;
+    border: 1px solid var(--accent-light);
+    background: rgba(5, 5, 5, 0.65);
+    color: var(--accent-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    padding: 0.65rem 1.5rem;
+    border-radius: 999px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.team-card-cta:hover,
+.team-card-cta:focus-visible {
+    background: var(--accent-light);
+    color: #050505;
+    transform: translateY(-2px);
+}
+
+/* Team modal */
+.team-modal-open {
+    overflow: hidden;
+}
+
+.team-modal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2600;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    padding: 1.5rem;
+}
+
+.team-modal-content {
+    position: relative;
+    width: min(1100px, 96vw);
+    max-height: 92vh;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.98), rgba(10, 10, 10, 0.94));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.75);
+}
+
+.team-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.team-modal-body {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 2rem;
+    padding: 2.5rem;
+    overflow-y: auto;
+}
+
+.team-modal-photo {
+    aspect-ratio: 3 / 4;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+}
+
+.team-modal-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-modal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.team-modal-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-light);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.team-modal-name {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.team-modal-description {
+    color: var(--text-gray);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.team-modal-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.team-modal-actions .btn {
+    min-width: 160px;
+    justify-content: center;
+}
+
+@media (max-width: 900px) {
+    .team-modal-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-modal-photo {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .team-modal {
+        padding: 1rem;
+    }
+    
+    .team-modal-body {
+        padding: 1.5rem;
+        gap: 1.25rem;
+    }
+}
+
+/* Tap hint indicator for touch devices */
+.tap-hint {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    font-size: 1.5rem;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.85;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    animation: tap-hint-pulse 2s ease-in-out infinite;
+}
+
+@keyframes tap-hint-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.15); opacity: 1; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .tap-hint {
+        display: none;
+    }
 }
 
 .flip-card-front h3,

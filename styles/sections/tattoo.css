@@ -585,3 +585,958 @@
         padding: 2rem 1rem;
     }
 }
+
+/* Tattoo Intro Section */
+.tattoo-intro {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(26, 26, 26, 0.9));
+    padding: 4rem 2rem;
+}
+
+.tattoo-intro-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('../../images/logo_perro-nobackground.png') center/contain no-repeat;
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+.tattoo-intro-content {
+    position: relative;
+    max-width: 800px;
+    text-align: center;
+    z-index: 1;
+}
+
+.tattoo-intro-content h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.tattoo-intro-content p {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    line-height: 1.8;
+    color: var(--text-gray);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+}
+
+/* Tattoo CTA Section */
+.tattoo-cta {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(10, 10, 10, 0.95));
+    border-top: 1px solid rgba(212, 165, 116, 0.2);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.tattoo-cta .btn-book-now {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+}
+
+/* Tattoo Info Split Section */
+.tattoo-info-split {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 4rem 2rem;
+    width: 100%;
+    max-width: none;
+}
+
+.tattoo-info-split::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.tattoo-info-split::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(26, 26, 26, 0.9));
+    z-index: 1;
+}
+
+.tattoo-info-left,
+.tattoo-info-right {
+    position: relative;
+    z-index: 2;
+    padding: 2.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.tattoo-info-left h2,
+.tattoo-info-right h2 {
+    font-size: 1.8rem;
+    color: var(--accent-light);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+    text-shadow: 
+        0 0 10px rgba(212, 165, 116, 0.6),
+        0 0 20px rgba(212, 165, 116, 0.4),
+        0 0 30px rgba(212, 165, 116, 0.2);
+    animation: neonTextGlow 4s ease-in-out infinite;
+}
+
+@keyframes neonTextGlow {
+    0%, 100% {
+        text-shadow: 
+            0 0 10px rgba(212, 165, 116, 0.6),
+            0 0 20px rgba(212, 165, 116, 0.4),
+            0 0 30px rgba(212, 165, 116, 0.2);
+    }
+    25% {
+        text-shadow: 
+            0 0 15px rgba(212, 165, 116, 0.8),
+            0 0 30px rgba(212, 165, 116, 0.6),
+            0 0 45px rgba(212, 165, 116, 0.4);
+    }
+    50% {
+        text-shadow: 
+            0 0 8px rgba(212, 165, 116, 0.5),
+            0 0 15px rgba(212, 165, 116, 0.3),
+            0 0 25px rgba(212, 165, 116, 0.15);
+    }
+    75% {
+        text-shadow: 
+            0 0 20px rgba(212, 165, 116, 0.9),
+            0 0 35px rgba(212, 165, 116, 0.7),
+            0 0 50px rgba(212, 165, 116, 0.5);
+    }
+}
+
+/* Care Images */
+.tattoo-care-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.care-image-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.care-image-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
+    border-color: var(--accent-light);
+}
+
+.care-image-card img {
+    width: 100%;
+    height: auto;
+    min-height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.care-image-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.75rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    color: var(--accent-light);
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+/* FAQ List */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.faq-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.faq-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.faq-list::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 3px;
+}
+
+.faq-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1.25rem 1.75rem;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.85));
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    border-radius: 10px;
+    color: var(--text-light);
+    font-size: 1.15rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: var(--accent-light);
+    background: linear-gradient(135deg, rgba(42, 42, 42, 0.95), rgba(26, 26, 26, 0.95));
+}
+
+.faq-item span:first-child {
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.faq-icon {
+    color: var(--accent-light);
+    font-size: 1.4rem;
+    font-weight: 300;
+    flex-shrink: 0;
+}
+
+/* FAQ Modal */
+.faq-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2600;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    padding: 1.5rem;
+}
+
+.faq-modal-content {
+    position: relative;
+    width: min(600px, 94vw);
+    max-height: 85vh;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.98), rgba(10, 10, 10, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+.faq-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.faq-modal-question {
+    font-size: 1.6rem;
+    color: var(--accent-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.faq-modal-answer {
+    font-size: 1.25rem;
+    color: var(--text-gray);
+    line-height: 1.8;
+}
+
+/* Image Lightbox Modal */
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2600;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    padding: 1rem;
+}
+
+.image-lightbox-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+}
+
+.image-lightbox-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.image-lightbox-close {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.image-lightbox-title {
+    position: absolute;
+    bottom: -2.5rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--accent-light);
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .tattoo-info-split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+    
+    .tattoo-info-left,
+    .tattoo-info-right {
+        padding: 1rem;
+    }
+    
+    .faq-list {
+        max-height: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .tattoo-intro,
+    .piercing-intro {
+        min-height: 40vh;
+        padding: 3rem 1.5rem;
+    }
+    
+    .tattoo-care-images,
+    .piercing-care-images {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .faq-item {
+        padding: 0.85rem 1rem;
+        font-size: 1rem;
+    }
+    
+    .faq-modal-content {
+        padding: 1.5rem;
+    }
+    
+    .faq-modal-question {
+        font-size: 1.3rem;
+    }
+    
+    .faq-modal-answer {
+        font-size: 1.1rem;
+    }
+}
+
+/* Piercing Page Styles */
+.piercing-intro {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(26, 26, 26, 0.9));
+    padding: 4rem 2rem;
+}
+
+.piercing-intro-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('../../images/logo_perro-nobackground.png') center/contain no-repeat;
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+.piercing-intro-content {
+    position: relative;
+    max-width: 850px;
+    text-align: center;
+    z-index: 1;
+}
+
+.piercing-intro-tagline {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--accent-light);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
+    text-shadow: 
+        0 0 10px rgba(212, 165, 116, 0.6),
+        0 0 20px rgba(212, 165, 116, 0.4);
+}
+
+.piercing-intro-content h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.piercing-intro-content p:not(.piercing-intro-tagline) {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.8;
+    color: var(--text-gray);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+}
+
+.piercing-cta {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(10, 10, 10, 0.95));
+    border-top: 1px solid rgba(212, 165, 116, 0.2);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.piercing-cta .btn-book-now {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+}
+
+.piercing-info-split {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 4rem 2rem;
+    width: 100%;
+}
+
+.piercing-info-split::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.piercing-info-split::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(26, 26, 26, 0.9));
+    z-index: 1;
+}
+
+.piercing-info-left,
+.piercing-info-right {
+    position: relative;
+    z-index: 2;
+    padding: 2.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.piercing-info-left h2,
+.piercing-info-right h2 {
+    font-size: 1.8rem;
+    color: var(--accent-light);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+    text-shadow: 
+        0 0 10px rgba(212, 165, 116, 0.6),
+        0 0 20px rgba(212, 165, 116, 0.4),
+        0 0 30px rgba(212, 165, 116, 0.2);
+    animation: neonTextGlow 4s ease-in-out infinite;
+}
+
+.piercing-care-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 900px) {
+    .piercing-info-split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .piercing-info-left,
+    .piercing-info-right {
+        padding: 1rem;
+    }
+}
+
+/* =====================================================
+   WALKINS PAGE STYLES
+   ===================================================== */
+
+.walkins-intro {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(26, 26, 26, 0.9));
+    padding: 4rem 2rem;
+}
+
+.walkins-intro-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('../../images/logo_perro-nobackground.png') center/contain no-repeat;
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+.walkins-intro-content {
+    position: relative;
+    max-width: 850px;
+    text-align: center;
+    z-index: 1;
+}
+
+.walkins-intro-tagline {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--accent-light);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 2rem;
+    text-shadow: 
+        0 0 10px rgba(212, 165, 116, 0.6),
+        0 0 20px rgba(212, 165, 116, 0.4);
+    animation: neonTextGlow 4s ease-in-out infinite;
+}
+
+.walkins-intro-quote {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    line-height: 1.8;
+    color: var(--text-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.walkins-intro-content > p:last-child {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--text-gray);
+}
+
+.walkins-schedule {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(10, 10, 10, 0.95));
+    border-top: 1px solid rgba(212, 165, 116, 0.2);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.walkins-schedule-content h3 {
+    font-size: 1.5rem;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.walkins-schedule-hours {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: var(--text-light);
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.walkins-video {
+    width: 100%;
+    background: var(--bg-dark);
+}
+
+.walkins-entrance-video {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: cover;
+    display: block;
+}
+
+.walkins-map {
+    width: 100%;
+    background: var(--bg-dark);
+}
+
+.walkins-map-container {
+    width: 100%;
+}
+
+.walkins-map-container iframe {
+    width: 100%;
+    display: block;
+}
+
+/* =====================================================
+   DIBUJOS Y CUADROS PAGE STYLES
+   ===================================================== */
+
+.dibujos-intro {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(26, 26, 26, 0.9));
+    padding: 4rem 2rem;
+}
+
+.dibujos-intro-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('../../images/logo_perro-nobackground.png') center/contain no-repeat;
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+.dibujos-intro-content {
+    position: relative;
+    max-width: 900px;
+    text-align: center;
+    z-index: 1;
+}
+
+.dibujos-intro-tagline {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 500;
+    color: var(--accent-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.dibujos-intro-content > p:last-child {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.8;
+    color: var(--text-gray);
+}
+
+.dibujos-secondary {
+    position: relative;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(42, 42, 42, 0.9));
+    border-top: 1px solid rgba(212, 165, 116, 0.15);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.15);
+}
+
+.dibujos-secondary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
+    opacity: 0.08;
+    z-index: 0;
+}
+
+.dibujos-secondary-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.dibujos-secondary-content p {
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.9;
+    color: var(--text-light);
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.dibujos-gallery {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.98), rgba(26, 26, 26, 0.95));
+}
+
+.dibujos-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.dibujos-gallery-item {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dibujos-gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(212, 165, 116, 0.15);
+    border-color: var(--accent-light);
+}
+
+.dibujos-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.dibujos-gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .walkins-intro,
+    .dibujos-intro {
+        min-height: 40vh;
+        padding: 3rem 1.5rem;
+    }
+    
+    .walkins-schedule {
+        padding: 2rem 1.5rem;
+    }
+    
+    .dibujos-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dibujos-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================================================
+   CONTACTO PAGE STYLES
+   ===================================================== */
+
+.contacto-social {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+}
+
+.contacto-social::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(26, 26, 26, 0.9)),
+        url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
+    opacity: 0.9;
+    z-index: 0;
+}
+
+.contacto-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--accent-light);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    animation: neonTextGlow 4s ease-in-out infinite;
+}
+
+.contacto-social-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 900px;
+    position: relative;
+    z-index: 1;
+}
+
+.social-icon-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.social-icon-name {
+    font-size: 0.9rem;
+    color: var(--accent-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.social-icon-link:hover .social-icon-name {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.social-icon-wrapper {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(26, 26, 26, 0.8);
+    border: 2px solid rgba(212, 165, 116, 0.3);
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(212, 165, 116, 0.5),
+        transparent,
+        rgba(212, 165, 116, 0.5),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    animation: iconRotate 3s linear infinite paused;
+}
+
+.social-icon-wrapper:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.social-icon-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: rgba(26, 26, 26, 0.95);
+    z-index: -1;
+}
+
+.social-icon-wrapper:hover {
+    transform: translateY(-10px) scale(1.1);
+    border-color: var(--accent-light);
+    box-shadow: 
+        0 20px 40px rgba(212, 165, 116, 0.25),
+        0 0 30px rgba(212, 165, 116, 0.15),
+        inset 0 0 20px rgba(212, 165, 116, 0.1);
+}
+
+.social-icon-wrapper img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: grayscale(30%) brightness(0.9);
+    transition: all 0.4s ease;
+}
+
+.social-icon-wrapper:hover img {
+    filter: grayscale(0%) brightness(1.1);
+    transform: scale(1.15);
+}
+
+@keyframes iconRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .contacto-social {
+        min-height: 50vh;
+        padding: 3rem 1.5rem;
+    }
+    
+    .contacto-social-grid {
+        gap: 2rem;
+    }
+    
+    .social-icon-wrapper {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .social-icon-wrapper img {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .social-icon-name {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .contacto-social-grid {
+        gap: 1.5rem;
+    }
+    
+    .social-icon-wrapper {
+        width: 75px;
+        height: 75px;
+    }
+    
+    .social-icon-wrapper img {
+        width: 38px;
+        height: 38px;
+    }
+}

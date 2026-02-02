@@ -712,43 +712,48 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('hashchange', () => showPageFromHash({ shouldScrollTop: true }));
 
     // Parallax scrolling effect (exclude home-gallery background)
-    const parallaxElements = document.querySelectorAll('.home-about, .home-cta');
-    const heroVideos = document.querySelectorAll('.hero-video');
+    // Disabled on mobile devices for better performance and compatibility
+    const isMobile = window.matchMedia('(max-width: 768px)').matches || 
+                     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
-    function updateParallax() {
-        const scrolled = window.pageYOffset;
+    if (!isMobile) {
+        const parallaxElements = document.querySelectorAll('.home-about, .home-cta');
+        const heroVideos = document.querySelectorAll('.hero-video');
         
-        parallaxElements.forEach(element => {
-            const rect = element.getBoundingClientRect();
-            const elementTop = rect.top + scrolled;
-            const elementHeight = rect.height;
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
             
-            // Check if element is in viewport
-            if (scrolled + window.innerHeight > elementTop && scrolled < elementTop + elementHeight) {
-                const speed = 0.5; // Adjust parallax speed
-                const yPos = -(scrolled - elementTop) * speed;
-                const beforeElement = element.querySelector('::before');
+            parallaxElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.top + scrolled;
+                const elementHeight = rect.height;
                 
-                // Apply transform to the ::before pseudo-element via CSS variable
-                element.style.setProperty('--parallax-y', `${yPos}px`);
-            }
-        });
+                // Check if element is in viewport
+                if (scrolled + window.innerHeight > elementTop && scrolled < elementTop + elementHeight) {
+                    const speed = 0.5; // Adjust parallax speed
+                    const yPos = -(scrolled - elementTop) * speed;
+                    
+                    // Apply transform to the ::before pseudo-element via CSS variable
+                    element.style.setProperty('--parallax-y', `${yPos}px`);
+                }
+            });
 
-        // Hero video subtle parallax on scroll
-        heroVideos.forEach(video => {
-            const rect = video.getBoundingClientRect();
-            const offsetCenter = (rect.top + rect.height * 0.5) - (window.innerHeight * 0.5);
-            const translateY = Math.max(Math.min(offsetCenter * 0.18, 100), -100); // stronger, clamped
-            video.style.setProperty('--hero-parallax', `${translateY}px`);
-        });
+            // Hero video subtle parallax on scroll
+            heroVideos.forEach(video => {
+                const rect = video.getBoundingClientRect();
+                const offsetCenter = (rect.top + rect.height * 0.5) - (window.innerHeight * 0.5);
+                const translateY = Math.max(Math.min(offsetCenter * 0.18, 100), -100); // stronger, clamped
+                video.style.setProperty('--hero-parallax', `${translateY}px`);
+            });
+        }
+        
+        // Update parallax on scroll
+        window.addEventListener('scroll', updateParallax);
+        window.addEventListener('resize', updateParallax);
+        
+        // Initial parallax update
+        updateParallax();
     }
-    
-    // Update parallax on scroll
-    window.addEventListener('scroll', updateParallax);
-    window.addEventListener('resize', updateParallax);
-    
-    // Initial parallax update
-    updateParallax();
     
     // Team profile modal
     const openTeamModal = ({ name, specialty, description, image, portfolio }) => {

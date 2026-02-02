@@ -716,6 +716,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const isMobile = window.matchMedia('(max-width: 768px)').matches || 
                      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
+    // Mobile video optimization: pause videos not in viewport
+    if (isMobile) {
+        const allVideos = document.querySelectorAll('video');
+        
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                if (entry.isIntersecting) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        allVideos.forEach(video => {
+            video.pause();
+            videoObserver.observe(video);
+        });
+    }
+    
     if (!isMobile) {
         const parallaxElements = document.querySelectorAll('.home-about, .home-cta');
         const heroVideos = document.querySelectorAll('.hero-video');

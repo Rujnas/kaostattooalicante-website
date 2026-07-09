@@ -1322,18 +1322,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (waFloatBtn) {
         setTimeout(() => {
+            waFloatBtn.removeAttribute('hidden');
             waFloatBtn.classList.add('is-visible');
         }, 10000);
 
         waFloatBtn.addEventListener('click', () => {
-            waChat.classList.toggle('is-open');
-            if (waChat.classList.contains('is-open')) {
+            const isOpen = waChat.style.display === 'block';
+            if (isOpen) {
+                waChat.classList.remove('is-open');
+                setTimeout(() => { waChat.style.display = 'none'; }, 300);
+            } else {
+                waChat.style.display = 'block';
+                requestAnimationFrame(() => {
+                    waChat.classList.add('is-open');
+                });
                 waMessageInput.focus();
             }
         });
 
         waChatClose.addEventListener('click', () => {
             waChat.classList.remove('is-open');
+            setTimeout(() => { waChat.style.display = 'none'; }, 300);
         });
 
         waSendBtn.addEventListener('click', () => {

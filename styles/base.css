@@ -316,6 +316,10 @@ button {
     visibility: hidden;
 }
 
+.whatsapp-float[hidden] {
+    display: none !important;
+}
+
 .whatsapp-float.is-visible {
     opacity: 1;
     visibility: visible;

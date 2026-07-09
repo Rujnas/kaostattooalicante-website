@@ -4053,10 +4053,33 @@
         </footer>
     </main>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/34618710976" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contactar por WhatsApp">
-        <img src="images/logotipos_contacts/whatsapp.png" alt="WhatsApp">
-    </a>
+    <!-- Floating WhatsApp Button + Chat Widget -->
+    <div id="whatsapp-container" class="whatsapp-container">
+        <div id="whatsapp-chat" class="whatsapp-chat">
+            <div class="whatsapp-chat-header">
+                <img src="images/logotipos_contacts/whatsapp.png" alt="WhatsApp" class="whatsapp-chat-avatar">
+                <div class="whatsapp-chat-header-info">
+                    <span class="whatsapp-chat-name">Kaos Tattoo Alicante</span>
+                    <span class="whatsapp-chat-status">Normalmente responde en menos de 1 hora</span>
+                </div>
+                <button id="whatsapp-chat-close" class="whatsapp-chat-close" aria-label="Cerrar chat">&times;</button>
+            </div>
+            <div class="whatsapp-chat-body">
+                <div class="whatsapp-chat-bubble">
+                    ¡Hola! 👋 ¿En qué podemos ayudarte? Escríbenos tu mensaje y te responderemos por WhatsApp.
+                </div>
+            </div>
+            <div class="whatsapp-chat-footer">
+                <textarea id="whatsapp-message" class="whatsapp-chat-input" placeholder="Escribe tu mensaje..." rows="2"></textarea>
+                <button id="whatsapp-send" class="whatsapp-chat-send" aria-label="Enviar mensaje">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+        <button id="whatsapp-float-btn" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+            <img src="images/logotipos_contacts/whatsapp.png" alt="WhatsApp">
+        </button>
+    </div>
 
     <script async src="https://www.tiktok.com/embed.js"></script>
     <script src="script.js"></script>

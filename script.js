@@ -1311,4 +1311,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
         renderGallery();
     });
+
+    // WhatsApp floating button + chat widget
+    const waFloatBtn = document.getElementById('whatsapp-float-btn');
+    const waChat = document.getElementById('whatsapp-chat');
+    const waChatClose = document.getElementById('whatsapp-chat-close');
+    const waMessageInput = document.getElementById('whatsapp-message');
+    const waSendBtn = document.getElementById('whatsapp-send');
+    const waPhoneNumber = '34618710976';
+
+    if (waFloatBtn) {
+        setTimeout(() => {
+            waFloatBtn.classList.add('is-visible');
+        }, 10000);
+
+        waFloatBtn.addEventListener('click', () => {
+            waChat.classList.toggle('is-open');
+            if (waChat.classList.contains('is-open')) {
+                waMessageInput.focus();
+            }
+        });
+
+        waChatClose.addEventListener('click', () => {
+            waChat.classList.remove('is-open');
+        });
+
+        waSendBtn.addEventListener('click', () => {
+            const message = waMessageInput.value.trim();
+            const url = message
+                ? `https://wa.me/${waPhoneNumber}?text=${encodeURIComponent(message)}`
+                : `https://wa.me/${waPhoneNumber}`;
+            window.open(url, '_blank');
+        });
+
+        waMessageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                waSendBtn.click();
+            }
+        });
+    }
 });

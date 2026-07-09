@@ -4076,10 +4076,57 @@
                 </button>
             </div>
         </div>
-        <button id="whatsapp-float-btn" class="whatsapp-float" aria-label="Contactar por WhatsApp" hidden>
+        <button id="whatsapp-float-btn" class="whatsapp-float" style="display:none" aria-label="Contactar por WhatsApp">
             <img src="images/logotipos_contacts/whatsapp.png" alt="WhatsApp">
         </button>
     </div>
+
+    <script>
+    (function() {
+        var waBtn = document.getElementById('whatsapp-float-btn');
+        var waChat = document.getElementById('whatsapp-chat');
+        var waClose = document.getElementById('whatsapp-chat-close');
+        var waInput = document.getElementById('whatsapp-message');
+        var waSend = document.getElementById('whatsapp-send');
+        var waPhone = '34618710976';
+
+        setTimeout(function() {
+            waBtn.style.display = 'flex';
+            waBtn.classList.add('is-visible');
+        }, 10000);
+
+        waBtn.addEventListener('click', function() {
+            if (waChat.style.display === 'block') {
+                waChat.classList.remove('is-open');
+                setTimeout(function() { waChat.style.display = 'none'; }, 300);
+            } else {
+                waChat.style.display = 'block';
+                requestAnimationFrame(function() { waChat.classList.add('is-open'); });
+                waInput.focus();
+            }
+        });
+
+        waClose.addEventListener('click', function() {
+            waChat.classList.remove('is-open');
+            setTimeout(function() { waChat.style.display = 'none'; }, 300);
+        });
+
+        waSend.addEventListener('click', function() {
+            var message = waInput.value.trim();
+            var url = message
+                ? 'https://wa.me/' + waPhone + '?text=' + encodeURIComponent(message)
+                : 'https://wa.me/' + waPhone;
+            window.open(url, '_blank');
+        });
+
+        waInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                waSend.click();
+            }
+        });
+    })();
+    </script>
 
     <script async src="https://www.tiktok.com/embed.js"></script>
     <script src="script.js"></script>

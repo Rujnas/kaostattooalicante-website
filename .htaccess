@@ -1,0 +1,16 @@
+# Force HTTPS and canonical domain (no www)
+# Redirect kaostattoo.es (all variants) to kaostattooalicante.es
+RewriteEngine On
+
+# Redirect kaostattoo.es (with or without www, http or https) to canonical
+RewriteCond %{HTTP_HOST} ^(www\.)?kaostattoo\.es$ [NC]
+RewriteRule ^(.*)$ https://kaostattooalicante.es/$1 [R=301,L]
+
+# Redirect www.kaostattooalicante.es to non-www
+RewriteCond %{HTTP_HOST} ^www\.kaostattooalicante\.es$ [NC]
+RewriteRule ^(.*)$ https://kaostattooalicante.es/$1 [R=301,L]
+
+# Redirect HTTP to HTTPS (for kaostattooalicante.es)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^kaostattooalicante\.es$ [NC]
+RewriteRule ^(.*)$ https://kaostattooalicante.es/$1 [R=301,L]

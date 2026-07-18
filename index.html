@@ -165,26 +165,23 @@
     <main class="main-content">
         <div id="home" class="page active">
             <section class="hero">
-                <video class="hero-video" autoplay muted loop playsinline>
+                <video class="hero-video" autoplay muted loop playsinline poster="images/posters/KAOS_logo_video.webp">
                     <source src="videos/KAOS_logo_video.MP4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
-                    <a href="https://wa.me/34618710976" target="_blank" class="btn btn-primary btn-book-now">
-                        <img src="images/logotipos_contacts/whatsapp.webp" alt="WhatsApp" class="btn-icon">
-                        PIDE CITA
-                    </a>
                 </div>
             </section>
 
             <section class="home-about">
-                <video class="home-about-video" autoplay muted loop playsinline>
-                    <source src="videos/music_video.MP4" type="video/mp4">
+                <video class="home-about-video" muted loop playsinline preload="none" poster="images/posters/music_video.webp" data-lazy-video>
+                    <source data-src="videos/music_video.MP4" type="video/mp4">
                 </video>
                 <div class="home-about-overlay"></div>
                 <div class="home-about-content">
                     <h2>Estudio de Tatuajes en Alicante</h2>
-                    <p>Todo lo que suceda en este estudio de tatuajes en Alicante, se queda en este estudio. No somos Las Vegas pero haremos que te lo pases igual de bien. Nuestro proposito de vida es ayudar a que te sientas mas agusto que en tu casa, somos gente maja aunque te hagamos daño. en Kaos Tattoo nos gusta dar la tabarra solo para que quieras repetir y vuelvas a vernos. Si estás leyendo esto es por algo, sonríe y dejate llevar.</p>
+                    <p>Todo lo que suceda en este estudio de tatuajes en Alicante, se queda en este estudio. No somos Las Vegas pero haremos que te lo pases igual de bien. Nuestro proposito de vida es ayudar a que te sientas mas agusto que en tu casa. Somos gente maja, aunque te hagamos daño. En Kaos Tattoo nos gusta dar la tabarra solo para que quieras repetir y vuelvas a vernos. Si estás leyendo esto es por algo: sonríe y dejate llevar.</p>
+                    <a href="#" data-page="contacto" class="btn btn-primary btn-book-now" data-scroll-reveal>CUÉNTANOS TU IDEA</a>
                 </div>
             </section>
 
@@ -229,8 +226,8 @@
             </section>
 
             <section class="home-cta">
-                <video class="home-cta-video" autoplay muted loop playsinline>
-                    <source src="videos/musicentrance_video.mp4" type="video/mp4">
+                <video class="home-cta-video" muted loop playsinline preload="none" poster="images/posters/musicentrance_video.webp" data-lazy-video>
+                    <source data-src="videos/musicentrance_video.mp4" type="video/mp4">
                 </video>
                 <div class="home-cta-overlay"></div>
                 <div class="cta-content">
@@ -241,22 +238,22 @@
                     </div>
                     <div class="cta-right">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.7481267873!2d-0.4735056846816652!3d38.345995979654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6236a3b4c5c5c5%3A0x4b5c5c5c5c5c5c5c!2sPintor%20Vel%C3%A1zquez%2017%2C%2003004%20Alicante%2C%20Spain!5e0!3m2!1sen!2ses!4v1234567890"
+                            data-lazy-iframe
+                            data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.7481267873!2d-0.4735056846816652!3d38.345995979654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6236a3b4c5c5c5%3A0x4b5c5c5c5c5c5c5c!2sPintor%20Vel%C3%A1zquez%2017%2C%2003004%20Alicante%2C%20Spain!5e0!3m2!1sen!2ses!4v1234567890"
                             width="100%" 
                             height="300" 
-                            style="border:0; border-radius: 8px;" 
+                            style="border:0; border-radius: 8px; aspect-ratio: 16/9; background: #1a1a1a;" 
                             allowfullscreen="" 
-                            loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>
             </section>
 
-            <section class="home-tiktok">
+            <section class="home-tiktok" data-lazy-tiktok>
                 <div class="home-tiktok-overlay"></div>
                 <div class="home-tiktok-content">
-                    <div class="home-tiktok-widget">
+                    <div class="home-tiktok-widget" style="min-height: 400px;">
                         <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@kaos.tattoo.alicante" data-unique-id="kaos.tattoo.alicante" data-embed-type="creator" style="max-width: 605px; min-width: 325px;">
                             <section>
                                 <a target="_blank" href="https://www.tiktok.com/@kaos.tattoo.alicante?refer=creator_embed">@kaos.tattoo.alicante</a>
@@ -269,8 +266,8 @@
 
         <div id="tatuadores" class="page">
             <section class="team-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/tatuadores_video.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/tatuadores_video.webp" data-lazy-video>
+                    <source data-src="videos/tatuadores_video.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -1404,8 +1401,8 @@
 
         <div id="anilladora" class="page">
             <section class="team-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/anilladora_video.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/anilladora_video.webp" data-lazy-video>
+                    <source data-src="videos/anilladora_video.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -1444,8 +1441,8 @@
 
         <div id="fineline" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/headers/FINELINE.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/FINELINE.webp" data-lazy-video>
+                    <source data-src="videos/headers/FINELINE.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -1891,8 +1888,8 @@
         </div>
 <div id="anime" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/headers/ANIME.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/ANIME.webp" data-lazy-video>
+                    <source data-src="videos/headers/ANIME.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -1938,8 +1935,8 @@
 
 <div id="blackwork" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/headers/BLACKWORK.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/BLACKWORK.webp" data-lazy-video>
+                    <source data-src="videos/headers/BLACKWORK.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -2076,8 +2073,8 @@
 
 <div id="cartoon" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline>
-                    <source src="videos/headers/CARTOON.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/CARTOON.webp" data-lazy-video>
+                    <source data-src="videos/headers/CARTOON.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -2148,8 +2145,8 @@
 
 <div id="geometrico" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/headers/GEOMETRICO.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/GEOMETRICO.webp" data-lazy-video>
+                    <source data-src="videos/headers/GEOMETRICO.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -2246,8 +2243,8 @@
 
 <div id="japones" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline>
-                    <source src="videos/headers/JAPONES.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/JAPONES.webp" data-lazy-video>
+                    <source data-src="videos/headers/JAPONES.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -2357,8 +2354,8 @@
 
 <div id="lettering" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline>
-                    <source src="videos/headers/LETTERING.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/LETTERING.webp" data-lazy-video>
+                    <source data-src="videos/headers/LETTERING.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -2401,8 +2398,8 @@
 
 <div id="microrealismo" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/headers/MICROREALISMO.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/MICROREALISMO.webp" data-lazy-video>
+                    <source data-src="videos/headers/MICROREALISMO.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -2824,8 +2821,8 @@
 
         <div id="realismo" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/headers/REALISMO.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/REALISMO.webp" data-lazy-video>
+                    <source data-src="videos/headers/REALISMO.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -3245,8 +3242,8 @@
 
         <div id="tradicional" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/headers/TRADICIONAL.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/TRADICIONAL.webp" data-lazy-video>
+                    <source data-src="videos/headers/TRADICIONAL.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -3641,8 +3638,8 @@
 
         <div id="tatuajes" class="page">
             <section class="tattoo-hero">
-                <video class="hero-video" autoplay muted loop playsinline>
-                    <source src="videos/headers/TATUAJES.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/TATUAJES.webp" data-lazy-video>
+                    <source data-src="videos/headers/TATUAJES.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -3746,8 +3743,8 @@
 
         <div id="piercings" class="page">
             <section class="tattoo-hero piercings-hero">
-                <video class="hero-video" autoplay muted loop playsinline>
-                    <source src="videos/headers/PIERCINGS.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/PIERCINGS.webp" data-lazy-video>
+                    <source data-src="videos/headers/PIERCINGS.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -3844,8 +3841,8 @@
 
         <div id="walkins" class="page">
             <section class="tattoo-hero walkins-hero">
-                <video class="hero-video" autoplay muted loop playsinline>
-                    <source src="videos/headers/WALKINS.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/WALKINS.webp" data-lazy-video>
+                    <source data-src="videos/headers/WALKINS.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="walkins-hero-content hero-content">
@@ -3869,20 +3866,20 @@
             </section>
 
             <section class="walkins-video">
-                <video class="walkins-entrance-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/musicentrance_video.mp4" type="video/mp4">
+                <video class="walkins-entrance-video" muted loop playsinline preload="none" poster="images/posters/musicentrance_video.webp" data-lazy-video>
+                    <source data-src="videos/musicentrance_video.mp4" type="video/mp4">
                 </video>
             </section>
 
             <section class="walkins-map">
                 <div class="walkins-map-container">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.7481267873!2d-0.4735056846816652!3d38.345995979654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6236a3b4c5c5c5%3A0x4b5c5c5c5c5c5c5c!2sPintor%20Vel%C3%A1zquez%2017%2C%2003004%20Alicante%2C%20Spain!5e0!3m2!1sen!2ses!4v1234567890"
+                        data-lazy-iframe
+                        data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.7481267873!2d-0.4735056846816652!3d38.345995979654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6236a3b4c5c5c5%3A0x4b5c5c5c5c5c5c5c!2sPintor%20Vel%C3%A1zquez%2017%2C%2003004%20Alicante%2C%20Spain!5e0!3m2!1sen!2ses!4v1234567890"
                         width="100%" 
                         height="400" 
-                        style="border:0;" 
+                        style="border:0; aspect-ratio: 16/9; background: #1a1a1a;" 
                         allowfullscreen="" 
-                        loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
@@ -3891,8 +3888,8 @@
 
         <div id="dibujos-cuadros" class="page">
             <section class="tattoo-hero dibujos-hero">
-                <video class="hero-video" autoplay muted loop playsinline>
-                    <source src="videos/headers/DIBUJOSYCUADROS2.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/DIBUJOSYCUADROS2.webp" data-lazy-video>
+                    <source data-src="videos/headers/DIBUJOSYCUADROS2.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="dibujos-cuadros-hero-content hero-content">
@@ -3957,11 +3954,146 @@
 
         <div id="contacto" class="page">
             <section class="tattoo-hero contacto-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/gracias_video.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/gracias_video.webp" data-lazy-video>
+                    <source data-src="videos/gracias_video.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="contacto-hero-content hero-content">
+                </div>
+            </section>
+
+            <section class="contacto-form-section">
+                <div class="contacto-form-container">
+                    <h2 class="contacto-form-title">Cuéntanos tu idea</h2>
+                    <p class="contacto-form-subtitle">Te responderemos lo antes posible</p>
+
+                    <div class="form-progress">
+                        <div class="form-progress-step active" data-step="1"></div>
+                        <div class="form-progress-step" data-step="2"></div>
+                        <div class="form-progress-step" data-step="3"></div>
+                    </div>
+
+                    <form id="contacto-form" novalidate autocomplete="off">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_subject" value="Nueva consulta desde la web">
+                        <!-- Step 1: Type -->
+                        <div class="form-step active" data-form-step="1">
+                            <div class="form-type-grid">
+                                <button type="button" class="form-type-btn" data-type="tatuaje">
+                                    <span class="form-type-icon">🖋️</span>
+                                    Tatuaje
+                                </button>
+                                <button type="button" class="form-type-btn" data-type="piercing">
+                                    <span class="form-type-icon">💎</span>
+                                    Piercing
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Details -->
+                        <div class="form-step" data-form-step="2">
+                            <!-- Tattoo fields -->
+                            <div id="fields-tatuaje" style="display:none">
+                                <div class="form-field">
+                                    <label class="form-label" for="zona-tatuaje">Zona del cuerpo</label>
+                                    <select class="form-select" id="zona-tatuaje" name="zona">
+                                        <option value="" disabled selected>Selecciona una zona</option>
+                                        <option value="Brazo">Brazo</option>
+                                        <option value="Antebrazo">Antebrazo</option>
+                                        <option value="Muñeca">Muñeca</option>
+                                        <option value="Mano/Dedos">Mano / Dedos</option>
+                                        <option value="Hombro">Hombro</option>
+                                        <option value="Pecho">Pecho</option>
+                                        <option value="Espalda">Espalda</option>
+                                        <option value="Costillas">Costillas</option>
+                                        <option value="Cuello">Cuello</option>
+                                        <option value="Pierna/Muslo">Pierna / Muslo</option>
+                                        <option value="Gemelo">Gemelo</option>
+                                        <option value="Tobillo/Pie">Tobillo / Pie</option>
+                                        <option value="Otra">Otra</option>
+                                        <option value="No lo tengo claro">No lo tengo claro</option>
+                                    </select>
+                                    <div class="form-field-other" id="otra-zona-tatuaje">
+                                        <input type="text" class="form-input" placeholder="Indica la zona" name="zona_otra">
+                                    </div>
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label" for="idea-tatuaje">Idea y estilo</label>
+                                    <textarea class="form-textarea" id="idea-tatuaje" name="idea" placeholder="Describe tu idea: diseño, estilo, tamaño, referencias..." rows="4"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Piercing fields -->
+                            <div id="fields-piercing" style="display:none">
+                                <div class="form-field">
+                                    <label class="form-label" for="zona-piercing">Zona del cuerpo</label>
+                                    <select class="form-select" id="zona-piercing" name="zona_piercing">
+                                        <option value="" disabled selected>Selecciona una zona</option>
+                                        <option value="Lóbulo">Lóbulo</option>
+                                        <option value="Hélix">Hélix</option>
+                                        <option value="Tragus">Tragus</option>
+                                        <option value="Conch">Conch</option>
+                                        <option value="Daith">Daith</option>
+                                        <option value="Industrial">Industrial</option>
+                                        <option value="Septum">Septum</option>
+                                        <option value="Nostril (nariz)">Nostril (nariz)</option>
+                                        <option value="Labio">Labio</option>
+                                        <option value="Ceja">Ceja</option>
+                                        <option value="Lengua">Lengua</option>
+                                        <option value="Ombligo">Ombligo</option>
+                                        <option value="Pezón">Pezón</option>
+                                        <option value="Otra">Otra</option>
+                                        <option value="No lo tengo claro">No lo tengo claro</option>
+                                    </select>
+                                    <div class="form-field-other" id="otra-zona-piercing">
+                                        <input type="text" class="form-input" placeholder="Indica la zona" name="zona_piercing_otra">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-nav">
+                                <button type="button" class="form-btn-back" data-back>Atrás</button>
+                                <button type="button" class="form-btn-next" data-next disabled>Siguiente</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Contact info -->
+                        <div class="form-step" data-form-step="3">
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label class="form-label" for="form-nombre">Nombre</label>
+                                    <input type="text" class="form-input" id="form-nombre" name="nombre" required placeholder="Tu nombre">
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label" for="form-email">Correo electrónico</label>
+                                    <input type="email" class="form-input" id="form-email" name="email" required placeholder="tu@email.com">
+                                    <span class="form-error" id="error-email">Introduce un email válido (ej: tu@email.com)</span>
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label class="form-label" for="form-telefono">Teléfono</label>
+                                <input type="tel" class="form-input" id="form-telefono" name="telefono" required placeholder="600 000 000">
+                                <span class="form-error" id="error-telefono">Introduce un teléfono válido (mín. 9 dígitos)</span>
+                            </div>
+
+                            <label class="form-checkbox">
+                                <input type="checkbox" id="form-privacy" name="privacy" required>
+                                <span class="form-checkbox-label">Acepto la <a href="#" target="_blank">política de privacidad</a> y el tratamiento de mis datos para gestionar esta consulta.</span>
+                            </label>
+
+                            <div class="form-nav">
+                                <button type="button" class="form-btn-back" data-back>Atrás</button>
+                                <button type="submit" class="form-btn-submit" disabled>Enviar mi consulta</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="form-success" id="form-success">
+                        <div class="form-success-icon">✅</div>
+                        <h3>¡Consulta enviada!</h3>
+                        <p>Te responderemos lo antes posible a tu correo electrónico.</p>
+                    </div>
                 </div>
             </section>
 
@@ -3980,7 +4112,7 @@
                         </div>
                         <span class="social-icon-name">Instagram</span>
                     </a>
-                    <a href="mailto:info@kaostattoo.es" target="_blank" class="social-icon-link" aria-label="Email">
+                    <a href="mailto:kaostattooalc@gmail.com" target="_blank" class="social-icon-link" aria-label="Email">
                         <div class="social-icon-wrapper">
                             <img src="images/logotipos_contacts/mail.webp" alt="Email">
                         </div>
@@ -4004,8 +4136,8 @@
 
         <div id="blog" class="page">
             <section class="fineline-hero">
-                <video class="hero-video" autoplay muted loop playsinline preload="none">
-                    <source src="videos/headers/BLOG.mp4" type="video/mp4">
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/BLOG.webp" data-lazy-video>
+                    <source data-src="videos/headers/BLOG.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -4040,7 +4172,7 @@
                     <a href="https://instagram.com/kaos.tattoostudio" target="_blank" class="footer-social-link">
                         <img src="images/logotipos_contacts/instagram_bw.webp" alt="Instagram" class="footer-social-icon">
                     </a>
-                    <a href="mailto:info@kaostattoo.es" target="_blank" class="footer-social-link">
+                    <a href="mailto:kaostattooalc@gmail.com" target="_blank" class="footer-social-link">
                         <img src="images/logotipos_contacts/mail_bw.webp" alt="Email" class="footer-social-icon">
                     </a>
                     <a href="https://facebook.com/KaosTattoo" target="_blank" class="footer-social-link">
@@ -4225,7 +4357,272 @@
     })();
     </script>
 
-    <script async src="https://www.tiktok.com/embed.js"></script>
+    <script>
+    (function() {
+        var form = document.getElementById('contacto-form');
+        if (!form) return;
+
+        // Reset form on load to clear cached data
+        form.reset();
+
+        var currentStep = 1;
+        var selectedType = '';
+        var steps = form.querySelectorAll('.form-step');
+        var progressSteps = document.querySelectorAll('.form-progress-step');
+        var successEl = document.getElementById('form-success');
+
+        // --- Validation helpers ---
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email);
+        }
+
+        function isValidPhone(phone) {
+            var cleaned = phone.replace(/[\s\-().]/g, '');
+            // International format: +XX... with at least 9 digits after code
+            if (/^\+\d{1,4}\d{9,}$/.test(cleaned)) return true;
+            // Spanish mobile: starts with 6 or 7, 9 digits total
+            if (/^[67]\d{8}$/.test(cleaned)) return true;
+            // Spanish landline: starts with 9, 9 digits total
+            if (/^9\d{8}$/.test(cleaned)) return true;
+            return false;
+        }
+
+        function showError(id, show) {
+            var el = document.getElementById(id);
+            if (el) el.classList.toggle('visible', show);
+        }
+
+        function setInvalid(inputEl, invalid) {
+            inputEl.classList.toggle('invalid', invalid);
+        }
+
+        // Step navigation
+        function goToStep(n) {
+            currentStep = n;
+            steps.forEach(function(s) { s.classList.remove('active'); });
+            progressSteps.forEach(function(p, i) {
+                p.classList.toggle('active', i < n);
+            });
+            var target = form.querySelector('[data-form-step="' + n + '"]');
+            if (target) target.classList.add('active');
+        }
+
+        // Step 1: Type selection
+        var typeBtns = form.querySelectorAll('.form-type-btn');
+        typeBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                typeBtns.forEach(function(b) { b.classList.remove('selected'); });
+                btn.classList.add('selected');
+                selectedType = btn.getAttribute('data-type');
+
+                document.getElementById('fields-tatuaje').style.display = selectedType === 'tatuaje' ? 'block' : 'none';
+                document.getElementById('fields-piercing').style.display = selectedType === 'piercing' ? 'block' : 'none';
+
+                setTimeout(function() { goToStep(2); validateStep2(); }, 250);
+            });
+        });
+
+        // "Otra" zone field toggle
+        var zonaTatuaje = document.getElementById('zona-tatuaje');
+        var zonaPiercing = document.getElementById('zona-piercing');
+        var otraTatuaje = document.getElementById('otra-zona-tatuaje');
+        var otraPiercing = document.getElementById('otra-zona-piercing');
+
+        zonaTatuaje.addEventListener('change', function() {
+            otraTatuaje.classList.toggle('visible', this.value === 'Otra');
+            validateStep2();
+        });
+        zonaPiercing.addEventListener('change', function() {
+            otraPiercing.classList.toggle('visible', this.value === 'Otra');
+            validateStep2();
+        });
+
+        function validateStep2() {
+            var nextBtn = form.querySelector('[data-form-step="2"] [data-next]');
+            var valid = false;
+            if (selectedType === 'tatuaje') {
+                valid = zonaTatuaje.value !== '';
+            } else if (selectedType === 'piercing') {
+                valid = zonaPiercing.value !== '';
+            }
+            nextBtn.disabled = !valid;
+        }
+
+        document.getElementById('idea-tatuaje').addEventListener('input', validateStep2);
+
+        // Step 3 validation with real checks
+        var emailInput = document.getElementById('form-email');
+        var phoneInput = document.getElementById('form-telefono');
+        var nombreInput = document.getElementById('form-nombre');
+        var privacyInput = document.getElementById('form-privacy');
+
+        function validateStep3() {
+            var nombre = nombreInput.value.trim();
+            var email = emailInput.value.trim();
+            var telefono = phoneInput.value.trim();
+            var privacy = privacyInput.checked;
+
+            var emailOk = email === '' || isValidEmail(email);
+            var phoneOk = telefono === '' || isValidPhone(telefono);
+
+            setInvalid(emailInput, email !== '' && !emailOk);
+            showError('error-email', email !== '' && !emailOk);
+
+            setInvalid(phoneInput, telefono !== '' && !phoneOk);
+            showError('error-telefono', telefono !== '' && !phoneOk);
+
+            var submitBtn = form.querySelector('.form-btn-submit');
+            submitBtn.disabled = !(nombre && isValidEmail(email) && isValidPhone(telefono) && privacy);
+        }
+
+        ['input', 'change'].forEach(function(evt) {
+            nombreInput.addEventListener(evt, validateStep3);
+            emailInput.addEventListener(evt, validateStep3);
+            phoneInput.addEventListener(evt, validateStep3);
+            privacyInput.addEventListener(evt, validateStep3);
+        });
+
+        // Back buttons
+        form.querySelectorAll('[data-back]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                goToStep(currentStep - 1);
+            });
+        });
+
+        // Next button (step 2 -> step 3)
+        form.querySelector('[data-next]').addEventListener('click', function() {
+            goToStep(3);
+            validateStep3();
+        });
+
+        // Submit via FormSubmit
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var nombre = nombreInput.value.trim();
+            var email = emailInput.value.trim();
+            var telefono = phoneInput.value.trim();
+            var tipo = selectedType.charAt(0).toUpperCase() + selectedType.slice(1);
+            var zona = '';
+            var idea = '';
+
+            if (selectedType === 'tatuaje') {
+                zona = zonaTatuaje.value;
+                if (zona === 'Otra') zona = otraTatuaje.querySelector('input').value || 'Otra';
+                idea = document.getElementById('idea-tatuaje').value.trim();
+            } else {
+                zona = zonaPiercing.value;
+                if (zona === 'Otra') zona = otraPiercing.querySelector('input').value || 'Otra';
+            }
+
+            // Final validation guard
+            if (!isValidEmail(email) || !isValidPhone(telefono) || !nombre || !privacyInput.checked) return;
+
+            var submitBtn = form.querySelector('.form-btn-submit');
+            submitBtn.disabled = true;
+            submitBtn.classList.add('sending');
+            submitBtn.textContent = 'Enviando...';
+
+            var formData = new FormData();
+            formData.append('_captcha', 'false');
+            formData.append('_template', 'table');
+            formData.append('_subject', 'Nueva consulta de ' + tipo + ' - ' + nombre);
+            formData.append('Tipo', tipo);
+            formData.append('Zona', zona);
+            if (idea) formData.append('Idea / Estilo', idea);
+            formData.append('Nombre', nombre);
+            formData.append('Email', email);
+            formData.append('Teléfono', telefono);
+
+            fetch('https://formsubmit.co/ajax/kaostattooalc@gmail.com', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.success) {
+                    form.style.display = 'none';
+                    document.querySelector('.form-progress').style.display = 'none';
+                    successEl.classList.add('visible');
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('sending');
+                    submitBtn.textContent = 'Enviar mi consulta';
+                    alert('Error al enviar. Inténtalo de nuevo.');
+                }
+            })
+            .catch(function() {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('sending');
+                submitBtn.textContent = 'Enviar mi consulta';
+                alert('Error de conexión. Inténtalo de nuevo.');
+            });
+        });
+    })();
+    </script>
+
+    <script>
+    (function() {
+        // Lazy-load videos: load src and play when near viewport, pause when leaving
+        var videoObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                var video = entry.target;
+                if (entry.isIntersecting) {
+                    // Load source if not yet loaded
+                    var source = video.querySelector('source[data-src]');
+                    if (source) {
+                        source.src = source.getAttribute('data-src');
+                        source.removeAttribute('data-src');
+                        video.load();
+                    }
+                    video.play().catch(function() {});
+                } else {
+                    if (!video.paused) video.pause();
+                }
+            });
+        }, { rootMargin: '200px' });
+
+        document.querySelectorAll('[data-lazy-video]').forEach(function(v) {
+            videoObserver.observe(v);
+        });
+
+        // Lazy-load iframes: load src when near viewport
+        var iframeObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var iframe = entry.target;
+                    var src = iframe.getAttribute('data-src');
+                    if (src) {
+                        iframe.src = src;
+                        iframe.removeAttribute('data-src');
+                    }
+                    iframeObserver.unobserve(iframe);
+                }
+            });
+        }, { rootMargin: '300px' });
+
+        document.querySelectorAll('[data-lazy-iframe]').forEach(function(f) {
+            iframeObserver.observe(f);
+        });
+
+        // Lazy-load TikTok: load embed.js only when section is near
+        var tiktokSection = document.querySelector('[data-lazy-tiktok]');
+        if (tiktokSection) {
+            var tiktokLoaded = false;
+            var tiktokObserver = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting && !tiktokLoaded) {
+                    tiktokLoaded = true;
+                    var s = document.createElement('script');
+                    s.src = 'https://www.tiktok.com/embed.js';
+                    s.async = true;
+                    document.body.appendChild(s);
+                    tiktokObserver.unobserve(tiktokSection);
+                }
+            }, { rootMargin: '400px' });
+            tiktokObserver.observe(tiktokSection);
+        }
+    })();
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -136,6 +136,15 @@
 .home-about-content {
     max-width: 800px;
     margin: 0 auto;
+    text-align: center;
+}
+
+.home-about-content p {
+    text-align: left;
+}
+
+.home-about-content .btn {
+    margin-top: 2rem;
 }
 
 #home h1,

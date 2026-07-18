@@ -597,18 +597,8 @@ document.addEventListener('DOMContentLoaded', function() {
         restoreScrollPosition(currentPageId);
     };
 
-    // Hide overlay when page loads
-    window.addEventListener('load', () => {
-        setTimeout(hideLoadingOverlay, 300);
-    });
-
-    // Fallback: hide overlay after max 5 seconds even if load event doesn't fire
-    setTimeout(() => {
-        if (document.body.classList.contains('is-loading')) {
-            console.warn('Loading timeout reached, forcing overlay hide');
-            hideLoadingOverlay();
-        }
-    }, 5000);
+    // Hide overlay after a short fixed duration (not dependent on page load)
+    setTimeout(hideLoadingOverlay, 1200);
     window.addEventListener('beforeunload', () => saveScrollPosition(currentPageId));
     window.addEventListener('scroll', () => {
         clearTimeout(scrollSaveTimer);

@@ -49,13 +49,13 @@
 
 /* Video position adjustments for services pages */
 #tatuajes .tattoo-hero .hero-video {
-    transform: translate(-50%, -40%) translateY(var(--hero-parallax, 0px)) scale(1.08);
+    object-position: center center;
 }
 
 #piercings .tattoo-hero .hero-video,
 #walkins .tattoo-hero .hero-video,
 #dibujos-cuadros .tattoo-hero .hero-video {
-    transform: translate(-50%, -35%) translateY(var(--hero-parallax, 0px)) scale(1.08);
+    object-position: center center;
 }
 
 .tattoo-hero {
@@ -600,8 +600,8 @@
 .tattoo-intro-overlay {
     position: absolute;
     inset: 0;
-    background: url('../../images/logo_perro-nobackground.png') center/contain no-repeat;
-    opacity: 0.03;
+    background: url('../../images/logo_perro-nobackground.webp') center/contain no-repeat;
+    opacity: 0.08;
     pointer-events: none;
 }
 
@@ -984,8 +984,8 @@
 .piercing-intro-overlay {
     position: absolute;
     inset: 0;
-    background: url('../../images/logo_perro-nobackground.png') center/contain no-repeat;
-    opacity: 0.03;
+    background: url('../../images/logo_perro-nobackground.webp') center/contain no-repeat;
+    opacity: 0.08;
     pointer-events: none;
 }
 
@@ -1120,8 +1120,8 @@
 .walkins-intro-overlay {
     position: absolute;
     inset: 0;
-    background: url('../../images/logo_perro-nobackground.png') center/contain no-repeat;
-    opacity: 0.03;
+    background: url('../../images/logo_perro-nobackground.webp') center/contain no-repeat;
+    opacity: 0.08;
     pointer-events: none;
 }
 
@@ -1225,8 +1225,8 @@
 .dibujos-intro-overlay {
     position: absolute;
     inset: 0;
-    background: url('../../images/logo_perro-nobackground.png') center/contain no-repeat;
-    opacity: 0.03;
+    background: url('../../images/logo_perro-nobackground.webp') center/contain no-repeat;
+    opacity: 0.08;
     pointer-events: none;
 }
 

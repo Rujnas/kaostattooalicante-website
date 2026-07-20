@@ -10,8 +10,9 @@
 }
 
 .hero {
-    height: 100vh;
-    min-height: 600px;
+    height: 36vw;
+    max-height: 700px;
+    min-height: 300px;
 }
 
 .team-hero {
@@ -26,18 +27,13 @@
 
 .hero-video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%) translateY(var(--hero-parallax, 0px)) scale(1.08);
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    object-position: center center;
     z-index: 0;
     filter: none;
-    will-change: transform;
-    transition: transform 0.15s ease-out;
 }
 
 
@@ -49,7 +45,7 @@
     bottom: 0;
     background: linear-gradient(135deg, rgba(10, 10, 10, 0.4), rgba(26, 26, 26, 0.5));
     z-index: 1;
-    backdrop-filter: blur(2px);
+    backdrop-filter: none;
 }
 
 .hero-content {
@@ -159,9 +155,8 @@
 
 @media (max-width: 992px) {
     .hero {
-        min-height: 65vh;
-        height: auto;
-        padding: 1rem 0;
+        height: 40vw;
+        min-height: 280px;
     }
 
     .team-hero,
@@ -183,8 +178,8 @@
 
 @media (max-width: 768px) {
     .hero {
-        min-height: 55vh;
-        padding: 0.5rem 0;
+        height: 48vw;
+        min-height: 260px;
     }
 
     .team-hero,
@@ -229,8 +224,8 @@
 
 @media (max-width: 576px) {
     .hero {
-        min-height: 50vh;
-        padding: 0.25rem 0;
+        height: 52vw;
+        min-height: 220px;
     }
 
     .hero-title {

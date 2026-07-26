@@ -1392,7 +1392,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 3rem;
-    max-width: 900px;
+    max-width: 1100px;
     position: relative;
     z-index: 1;
 }
@@ -1500,6 +1500,56 @@
     }
 }
 
+/* Comic speech bubble tooltip */
+.social-tooltip {
+    position: absolute;
+    bottom: calc(100% + 18px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.85);
+    background: #f5f0e8;
+    color: #1a1a1a;
+    font-size: 0.82rem;
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-style: italic;
+    line-height: 1.4;
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(212, 165, 116, 0.15);
+    width: 200px;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+}
+
+.social-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: var(--accent-color);
+}
+
+.social-tooltip::before {
+    content: '';
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #f5f0e8;
+    z-index: 1;
+}
+
+.social-icon-link:hover .social-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
 @media (max-width: 768px) {
     .contacto-social {
         min-height: 50vh;
@@ -1521,6 +1571,10 @@
     }
     
     .social-icon-name {
+        display: none;
+    }
+
+    .social-tooltip {
         display: none;
     }
 }

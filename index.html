@@ -3664,13 +3664,6 @@
                 </div>
             </section>
 
-            <section class="tattoo-cta">
-                <a href="https://wa.me/34618710976" target="_blank" class="btn btn-primary btn-book-now">
-                    <img src="images/logotipos_contacts/whatsapp.webp" alt="WhatsApp" class="btn-icon">
-                    Pide cita para tu tatuaje
-                </a>
-            </section>
-
             <section class="tattoo-info-split">
                 <div class="tattoo-info-left">
                     <h2>Cómo curar tu Tattoo</h2>
@@ -3768,13 +3761,6 @@
                     <h2>¿Te gustaría hacerte un piercing?</h2>
                     <p>En la realización de los piercing usamos, como material principal en las joyas de primera puesta, acero quirúrgico y titanio grado implante. Este tipo de metal es biocompatible, por lo que el cuerpo lo asimila mejor, favoreciendo la cicatrización en menos tiempo y evitando posibles rechazo del cuerpo. También estamos encantados de hacerte un seguimiento de tu perforación para una buena curación y cicatrización del mismo.</p>
                 </div>
-            </section>
-
-            <section class="piercing-cta">
-                <a href="https://wa.me/34618710976" target="_blank" class="btn btn-primary btn-book-now">
-                    <img src="images/logotipos_contacts/whatsapp.webp" alt="WhatsApp" class="btn-icon">
-                    Pide cita para tu piercing
-                </a>
             </section>
 
             <section class="piercing-info-split">
@@ -4565,6 +4551,12 @@
             .then(function(res) { return res.json(); })
             .then(function(data) {
                 if (data.success) {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        event: 'form_submitted',
+                        form_name: 'contact_page',
+                        service_type: selectedType
+                    });
                     form.style.display = 'none';
                     document.querySelector('.form-progress').style.display = 'none';
                     successEl.classList.add('visible');

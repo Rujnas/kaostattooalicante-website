@@ -689,6 +689,34 @@ document.addEventListener('DOMContentLoaded', function() {
         if (targetPageId === BLOG_PAGE_ID) {
             ensureBlogFeedLoaded();
         }
+
+        // Inject "CUÉNTANOS TU IDEA" CTA on style and service pages
+        const ctaPages = [
+            'fineline', 'anime', 'blackwork', 'cartoon', 'geometrico',
+            'japones', 'lettering', 'microrealismo', 'realismo', 'tradicional',
+            'tatuajes', 'piercings', 'walkins', 'dibujos-cuadros'
+        ];
+        let ctaEl = document.getElementById('dynamic-cta');
+        if (!ctaEl) {
+            ctaEl = document.createElement('section');
+            ctaEl.id = 'dynamic-cta';
+            ctaEl.className = 'tattoo-cta';
+            const link = document.createElement('a');
+            link.href = '#';
+            link.setAttribute('data-page', 'contacto');
+            link.className = 'btn btn-primary btn-book-now';
+            link.textContent = 'CUÉNTANOS TU IDEA';
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.hash = 'contacto';
+            });
+            ctaEl.appendChild(link);
+        }
+        if (ctaPages.includes(targetPageId)) {
+            targetPageElement.appendChild(ctaEl);
+        } else if (ctaEl.parentNode) {
+            ctaEl.parentNode.removeChild(ctaEl);
+        }
         
         if (shouldScrollTop) {
             window.scrollTo(0, 0);

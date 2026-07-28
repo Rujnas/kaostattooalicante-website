@@ -1,6 +1,7 @@
 # Force HTTPS and canonical domain (no www)
 # Redirect kaostattoo.es (all variants) to kaostattooalicante.es
 RewriteEngine On
+RewriteBase /
 
 # Redirect kaostattoo.es (with or without www, http or https) to canonical
 RewriteCond %{HTTP_HOST} ^(www\.)?kaostattoo\.es$ [NC]

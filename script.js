@@ -109,14 +109,82 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
-    const normalizeHash = (hashValue = window.location.hash) => {
-        const raw = hashValue || '';
-        return raw.replace('#', '');
+    // --- Clean URL routing (History API) ---
+    const STYLE_PAGES = new Set([
+        'fineline', 'realismo', 'tradicional', 'anime', 'blackwork',
+        'cartoon', 'geometrico', 'japones', 'lettering', 'microrealismo'
+    ]);
+
+    const PORTFOLIO_PARENT = {
+        'portfolio-tailor': '/equipo/',
+        'portfolio-carrie': '/equipo/',
+        'portfolio-greka': '/anilladora/'
     };
 
-    const getPageIdFromHash = (hashValue = window.location.hash) => {
-        const normalized = normalizeHash(hashValue);
-        return normalized === '' ? 'home' : normalized;
+    const PATH_TO_PAGE = {
+        '/': 'home',
+        '/equipo/': 'tatuadores',
+        '/anilladora/': 'anilladora',
+        '/tatuajes/': 'tatuajes',
+        '/piercings/': 'piercings',
+        '/walkins/': 'walkins',
+        '/dibujos-cuadros/': 'dibujos-cuadros',
+        '/contacto/': 'contacto',
+        '/blog/': 'blog'
+    };
+
+    const PAGE_TO_PATH = {};
+    Object.entries(PATH_TO_PAGE).forEach(([path, pageId]) => { PAGE_TO_PATH[pageId] = path; });
+    STYLE_PAGES.forEach(s => { PAGE_TO_PATH[s] = '/estilos/#' + s; });
+    Object.keys(PORTFOLIO_PARENT).forEach(p => { PAGE_TO_PATH[p] = PORTFOLIO_PARENT[p] + '#' + p; });
+
+    const normalizePath = (p) => {
+        if (!p || p === '/') return '/';
+        return p.endsWith('/') ? p : p + '/';
+    };
+
+    const getPathForPage = (pageId) => PAGE_TO_PATH[pageId] || '/';
+
+    const getPageFromCurrentUrl = () => {
+        const pathname = normalizePath(window.location.pathname);
+        const hash = (window.location.hash || '').replace('#', '');
+
+        if (pathname === '/estilos/') {
+            return (hash && STYLE_PAGES.has(hash)) ? hash : 'fineline';
+        }
+        if (pathname === '/equipo/' && hash && PORTFOLIO_PARENT['portfolio-' + hash.replace('portfolio-', '')]) {
+            const candidate = hash.startsWith('portfolio-') ? hash : 'portfolio-' + hash;
+            if (PORTFOLIO_PARENT[candidate] === '/equipo/') return candidate;
+        }
+        if (pathname === '/anilladora/' && hash === 'portfolio-greka') {
+            return 'portfolio-greka';
+        }
+        return PATH_TO_PAGE[pathname] || 'home';
+    };
+
+    // Migrate old hash-based URLs (e.g. /#contacto -> /contacto/)
+    const migrateOldHashUrl = () => {
+        const pathname = normalizePath(window.location.pathname);
+        if (pathname !== '/') return null;
+        const hash = (window.location.hash || '').replace('#', '');
+        if (!hash || hash === 'home') return null;
+        const newPath = getPathForPage(hash);
+        if (newPath && newPath !== '/') {
+            history.replaceState(null, '', newPath);
+            return hash;
+        }
+        return null;
+    };
+
+    const navigateTo = (pageId, { replace = false, scrollTop = true } = {}) => {
+        const path = getPathForPage(pageId);
+        if (replace) {
+            history.replaceState({ pageId }, '', path);
+        } else {
+            history.pushState({ pageId }, '', path);
+        }
+        showPage(pageId, { shouldScrollTop: scrollTop });
+        window.dispatchEvent(new CustomEvent('pagechange', { detail: { pageId } }));
     };
 
     const getScrollKey = (pageId) => `${SCROLL_KEY_PREFIX}${pageId}`;
@@ -586,7 +654,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.setItem(getScrollKey(pageId), window.scrollY.toString());
     };
 
-    let currentPageId = getPageIdFromHash();
+    let currentPageId = 'home';
     let scrollSaveTimer = null;
 
     const hideLoadingOverlay = () => {
@@ -644,17 +712,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const logoHandler = function(e) {
             e.preventDefault();
             e.stopPropagation();
-            window.location.hash = 'home';
+            navigateTo('home');
         };
         logoLink.addEventListener('click', logoHandler);
         logoLink.addEventListener('touchend', logoHandler, { passive: false });
     }
     
-    // Function to show page based on hash with optional scroll control
-    function showPageFromHash({ shouldScrollTop = true } = {}) {
-        const hash = window.location.hash.substring(1) || 'home';
-        let targetPageId = hash;
-        let targetPageElement = document.getElementById(hash);
+    // Show a page by its internal ID
+    function showPage(targetPageId, { shouldScrollTop = true } = {}) {
+        let targetPageElement = document.getElementById(targetPageId);
 
         if (!targetPageElement) {
             targetPageId = 'home';
@@ -702,13 +768,13 @@ document.addEventListener('DOMContentLoaded', function() {
             ctaEl.id = 'dynamic-cta';
             ctaEl.className = 'tattoo-cta';
             const link = document.createElement('a');
-            link.href = '#';
+            link.href = '/contacto/';
             link.setAttribute('data-page', 'contacto');
             link.className = 'btn btn-primary btn-book-now';
             link.textContent = 'CUÉNTANOS TU IDEA';
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                window.location.hash = 'contacto';
+                navigateTo('contacto');
             });
             ctaEl.appendChild(link);
         }
@@ -723,11 +789,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initial page load should preserve scroll position
-    showPageFromHash({ shouldScrollTop: false });
+    // Initial page load: migrate old hash URLs, then show the right page
+    const migratedPage = migrateOldHashUrl();
+    currentPageId = migratedPage || getPageFromCurrentUrl();
+    showPage(currentPageId, { shouldScrollTop: false });
     
-    // Listen for hash changes (navigate to sections)
-    window.addEventListener('hashchange', () => showPageFromHash({ shouldScrollTop: true }));
+    // Browser back/forward navigation
+    window.addEventListener('popstate', () => {
+        const pageId = getPageFromCurrentUrl();
+        showPage(pageId, { shouldScrollTop: true });
+        window.dispatchEvent(new CustomEvent('pagechange', { detail: { pageId } }));
+    });
 
     // Parallax scrolling effect (exclude home-gallery background)
     // Disabled on mobile devices for better performance and compatibility
@@ -796,6 +868,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Team profile modal
     const openTeamModal = ({ name, specialty, description, image, portfolio }) => {
+        const portfolioPageId = portfolio ? portfolio.replace('#', '') : '';
+        const portfolioHref = portfolioPageId ? getPathForPage(portfolioPageId) : '';
         const overlay = document.createElement('div');
         overlay.className = 'team-modal';
         overlay.innerHTML = `
@@ -812,7 +886,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h2 class="team-modal-name">${name || ''}</h2>
                         <p class="team-modal-description">${description || ''}</p>
                         <div class="team-modal-actions">
-                            ${portfolio ? `<a href="${portfolio}" class="btn btn-primary team-modal-portfolio-btn" data-page="${portfolio.replace('#', '')}">Ver Portfolio</a>` : ''}
+                            ${portfolioPageId ? `<a href="${portfolioHref}" class="btn btn-primary team-modal-portfolio-btn" data-portfolio-page="${portfolioPageId}">Ver Portfolio</a>` : ''}
                             <button class="btn btn-secondary team-modal-close-btn" type="button">Cerrar</button>
                         </div>
                     </div>
@@ -837,7 +911,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         closeBtn && closeBtn.addEventListener('click', close);
         closeCta && closeCta.addEventListener('click', close);
-        portfolioBtn && portfolioBtn.addEventListener('click', close);
+        if (portfolioBtn) {
+            portfolioBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                close();
+                navigateTo(portfolioBtn.dataset.portfolioPage);
+            });
+        }
         overlay.addEventListener('click', (event) => {
             if (event.target === overlay) close();
         });
@@ -1069,7 +1149,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const handleNavClick = (linkElement, event) => {
         event.preventDefault();
         const targetPage = linkElement.getAttribute('data-page');
-        window.location.hash = targetPage;
+        navigateTo(targetPage);
         if (isMobileViewport()) {
             closeMobileMenu();
         }
@@ -1092,7 +1172,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             e.stopPropagation();
             const targetPage = this.getAttribute('data-page');
-            window.location.hash = targetPage;
+            navigateTo(targetPage);
         };
         link.addEventListener('click', categoryHandler);
         link.addEventListener('touchend', categoryHandler, { passive: false });
@@ -1124,7 +1204,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 submenuItems.forEach(item => {
                     const li = document.createElement('li');
                     const link = document.createElement('a');
-                    link.href = '#';
+                    link.href = getPathForPage(item.dataset.page);
                     link.dataset.page = item.dataset.page;
                     link.textContent = item.textContent.trim();
                     const linkHandler = (evt) => {

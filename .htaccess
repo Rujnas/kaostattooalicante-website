@@ -14,3 +14,9 @@ RewriteRule ^(.*)$ https://kaostattooalicante.es/$1 [R=301,L]
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_HOST} ^kaostattooalicante\.es$ [NC]
 RewriteRule ^(.*)$ https://kaostattooalicante.es/$1 [R=301,L]
+
+# Clean URL routing - serve index.html for all SPA routes
+# Skip existing files and directories (images, css, js, fonts, videos, etc.)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(equipo|anilladora|estilos|tatuajes|piercings|walkins|dibujos-cuadros|contacto|blog)/?$ /index.html [L]

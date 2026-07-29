@@ -1,0 +1,55 @@
+/* Internationalization - language toggle via html[lang] */
+
+/* Hide the inactive language */
+html[lang="en"] [lang="es"],
+html[lang="es"] [lang="en"] {
+    display: none !important;
+}
+
+/* Language switcher in navbar */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-left: 0.5rem;
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.lang-switcher a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.4rem 0.5rem;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.lang-switcher a:hover {
+    color: var(--text-light);
+}
+
+.lang-switcher a.active {
+    color: var(--accent-color);
+    pointer-events: none;
+}
+
+.lang-switcher .lang-sep {
+    color: var(--text-muted);
+    opacity: 0.4;
+    user-select: none;
+}
+
+@media (max-width: 768px) {
+    .lang-switcher {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        margin: 0;
+        font-size: 0.8rem;
+    }
+}

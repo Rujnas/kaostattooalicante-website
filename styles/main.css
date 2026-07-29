@@ -19,6 +19,9 @@
 @import 'sections/piercings.css';
 @import 'sections/walkins.css';
 
+/* Internationalization */
+@import 'i18n.css';
+
 /* Utilities & Effects */
 @import 'animations.css';
 @import 'utilities.css';

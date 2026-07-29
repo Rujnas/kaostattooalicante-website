@@ -13,7 +13,13 @@ if ($decoded !== '/' && file_exists($file) && !is_dir($file)) {
 $spaRoutes = ['equipo','anilladora','estilos','tatuajes','piercings','walkins','dibujos-cuadros','contacto','blog'];
 $cleanUri = trim($uri, '/');
 
+// Spanish routes
 if ($cleanUri === '' || in_array($cleanUri, $spaRoutes)) {
+    include __DIR__ . '/index.html';
+    exit;
+}
+// English routes: /en and /en/<route>
+if ($cleanUri === 'en' || preg_match('#^en/('.implode('|', $spaRoutes).')$#', $cleanUri)) {
     include __DIR__ . '/index.html';
     exit;
 }

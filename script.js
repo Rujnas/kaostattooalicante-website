@@ -143,10 +143,105 @@ document.addEventListener('DOMContentLoaded', function() {
         return p.endsWith('/') ? p : p + '/';
     };
 
-    const getPathForPage = (pageId) => PAGE_TO_PATH[pageId] || '/';
+    // --- Language management ---
+    const getLangFromUrl = () => {
+        const p = window.location.pathname;
+        return (p === '/en' || p.startsWith('/en/')) ? 'en' : 'es';
+    };
+
+    const stripLangPrefix = (pathname) => {
+        if (pathname === '/en' || pathname === '/en/') return '/';
+        if (pathname.startsWith('/en/')) return pathname.substring(3);
+        return pathname;
+    };
+
+    const currentLang = () => document.documentElement.lang || 'es';
+
+    const setLang = (lang) => {
+        document.documentElement.lang = lang;
+        // Update lang switcher active states
+        document.querySelectorAll('.lang-switcher a').forEach(a => {
+            a.classList.toggle('active', a.dataset.lang === lang);
+        });
+        // Swap translatable attributes (placeholders, data-question, etc.)
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            if (lang === 'en') {
+                if (!el.dataset.originalPlaceholder) el.dataset.originalPlaceholder = el.placeholder;
+                el.placeholder = el.dataset.i18nPlaceholder;
+            } else {
+                if (el.dataset.originalPlaceholder) el.placeholder = el.dataset.originalPlaceholder;
+            }
+        });
+        document.querySelectorAll('[data-i18n-value]').forEach(el => {
+            if (lang === 'en') {
+                if (!el.dataset.originalValue) el.dataset.originalValue = el.value;
+                el.value = el.dataset.i18nValue;
+            } else {
+                if (el.dataset.originalValue) el.value = el.dataset.originalValue;
+            }
+        });
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+            if (lang === 'en') {
+                if (!el.dataset.originalTitle) el.dataset.originalTitle = el.title;
+                el.title = el.dataset.i18nTitle;
+            } else {
+                if (el.dataset.originalTitle) el.title = el.dataset.originalTitle;
+            }
+        });
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+            if (lang === 'en') {
+                if (!el.dataset.originalAriaLabel) el.dataset.originalAriaLabel = el.getAttribute('aria-label');
+                el.setAttribute('aria-label', el.dataset.i18nAriaLabel);
+            } else {
+                if (el.dataset.originalAriaLabel) el.setAttribute('aria-label', el.dataset.originalAriaLabel);
+            }
+        });
+        // Swap select option text for i18n
+        document.querySelectorAll('[data-i18n-select]').forEach(select => {
+            select.querySelectorAll('option').forEach(opt => {
+                if (lang === 'en' && opt.dataset.en) {
+                    if (!opt.dataset.originalText) opt.dataset.originalText = opt.textContent;
+                    opt.textContent = opt.dataset.en;
+                } else if (lang !== 'en' && opt.dataset.originalText) {
+                    opt.textContent = opt.dataset.originalText;
+                }
+            });
+        });
+        // Swap FAQ data-question/data-answer for the expanded panel
+        document.querySelectorAll('.faq-item').forEach(btn => {
+            if (lang === 'en') {
+                if (btn.dataset.questionEn) {
+                    if (!btn.dataset.questionEs) btn.dataset.questionEs = btn.dataset.question;
+                    btn.dataset.question = btn.dataset.questionEn;
+                }
+                if (btn.dataset.answerEn) {
+                    if (!btn.dataset.answerEs) btn.dataset.answerEs = btn.dataset.answer;
+                    btn.dataset.answer = btn.dataset.answerEn;
+                }
+            } else {
+                if (btn.dataset.questionEs) btn.dataset.question = btn.dataset.questionEs;
+                if (btn.dataset.answerEs) btn.dataset.answer = btn.dataset.answerEs;
+            }
+        });
+    };
+
+    const langPrefix = () => currentLang() === 'en' ? '/en' : '';
+
+    const getPathForPage = (pageId) => {
+        const base = PAGE_TO_PATH[pageId] || '/';
+        const prefix = langPrefix();
+        if (!prefix) return base;
+        // For hash-based paths like /estilos/#fineline
+        const hashIdx = base.indexOf('#');
+        if (hashIdx !== -1) {
+            return prefix + base.substring(0, hashIdx) + base.substring(hashIdx);
+        }
+        return prefix + base;
+    };
 
     const getPageFromCurrentUrl = () => {
-        const pathname = normalizePath(window.location.pathname);
+        const rawPathname = normalizePath(window.location.pathname);
+        const pathname = normalizePath(stripLangPrefix(rawPathname));
         const hash = (window.location.hash || '').replace('#', '');
 
         if (pathname === '/estilos/') {
@@ -164,12 +259,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Migrate old hash-based URLs (e.g. /#contacto -> /contacto/)
     const migrateOldHashUrl = () => {
-        const pathname = normalizePath(window.location.pathname);
+        const rawPathname = normalizePath(window.location.pathname);
+        const pathname = normalizePath(stripLangPrefix(rawPathname));
         if (pathname !== '/') return null;
         const hash = (window.location.hash || '').replace('#', '');
         if (!hash || hash === 'home') return null;
-        const newPath = getPathForPage(hash);
-        if (newPath && newPath !== '/') {
+        // Temporarily clear lang prefix to get base path, then re-add
+        const savedLang = currentLang();
+        document.documentElement.lang = 'es';
+        const basePath = (PAGE_TO_PATH[hash] && PAGE_TO_PATH[hash] !== '/') ? PAGE_TO_PATH[hash] : null;
+        document.documentElement.lang = savedLang;
+        if (basePath) {
+            const newPath = langPrefix() + basePath;
             history.replaceState(null, '', newPath);
             return hash;
         }
@@ -185,6 +286,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         showPage(pageId, { shouldScrollTop: scrollTop });
         window.dispatchEvent(new CustomEvent('pagechange', { detail: { pageId } }));
+    };
+
+    const switchLanguage = (targetLang) => {
+        if (targetLang === currentLang()) return;
+        const pageId = getPageFromCurrentUrl();
+        setLang(targetLang);
+        const newPath = getPathForPage(pageId);
+        history.pushState({ pageId }, '', newPath);
+        // Update all nav link hrefs to reflect new language
+        document.querySelectorAll('a[data-page]').forEach(a => {
+            a.href = getPathForPage(a.dataset.page);
+        });
     };
 
     const getScrollKey = (pageId) => `${SCROLL_KEY_PREFIX}${pageId}`;
@@ -768,15 +881,26 @@ document.addEventListener('DOMContentLoaded', function() {
             ctaEl.id = 'dynamic-cta';
             ctaEl.className = 'tattoo-cta';
             const link = document.createElement('a');
-            link.href = '/contacto/';
+            link.href = getPathForPage('contacto');
             link.setAttribute('data-page', 'contacto');
             link.className = 'btn btn-primary btn-book-now';
-            link.textContent = 'CUÉNTANOS TU IDEA';
+            const esSpan = document.createElement('span');
+            esSpan.setAttribute('lang', 'es');
+            esSpan.textContent = 'CUÉNTANOS TU IDEA';
+            const enSpan = document.createElement('span');
+            enSpan.setAttribute('lang', 'en');
+            enSpan.textContent = 'TELL US YOUR IDEA';
+            link.appendChild(esSpan);
+            link.appendChild(enSpan);
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 navigateTo('contacto');
             });
             ctaEl.appendChild(link);
+        } else {
+            // Update href for current language
+            const ctaLink = ctaEl.querySelector('a[data-page]');
+            if (ctaLink) ctaLink.href = getPathForPage('contacto');
         }
         if (ctaPages.includes(targetPageId)) {
             targetPageElement.appendChild(ctaEl);
@@ -789,13 +913,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initial page load: migrate old hash URLs, then show the right page
+    // Initial page load: detect language, migrate old hash URLs, then show the right page
+    setLang(getLangFromUrl());
     const migratedPage = migrateOldHashUrl();
     currentPageId = migratedPage || getPageFromCurrentUrl();
     showPage(currentPageId, { shouldScrollTop: false });
+
+    // Language switcher click handler
+    document.querySelectorAll('.lang-switcher a[data-lang]').forEach(a => {
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchLanguage(a.dataset.lang);
+        });
+    });
     
     // Browser back/forward navigation
     window.addEventListener('popstate', () => {
+        setLang(getLangFromUrl());
         const pageId = getPageFromCurrentUrl();
         showPage(pageId, { shouldScrollTop: true });
         window.dispatchEvent(new CustomEvent('pagechange', { detail: { pageId } }));
@@ -886,8 +1020,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h2 class="team-modal-name">${name || ''}</h2>
                         <p class="team-modal-description">${description || ''}</p>
                         <div class="team-modal-actions">
-                            ${portfolioPageId ? `<a href="${portfolioHref}" class="btn btn-primary team-modal-portfolio-btn" data-portfolio-page="${portfolioPageId}">Ver Portfolio</a>` : ''}
-                            <button class="btn btn-secondary team-modal-close-btn" type="button">Cerrar</button>
+                            ${portfolioPageId ? `<a href="${portfolioHref}" class="btn btn-primary team-modal-portfolio-btn" data-portfolio-page="${portfolioPageId}"><span lang="es">Ver Portfolio</span><span lang="en">View Portfolio</span></a>` : ''}
+                            <button class="btn btn-secondary team-modal-close-btn" type="button"><span lang="es">Cerrar</span><span lang="en">Close</span></button>
                         </div>
                     </div>
                 </div>
@@ -936,10 +1070,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const handleClick = (event) => {
             event.preventDefault();
             event.stopPropagation();
+            const lang = document.documentElement.lang;
+            const specialty = (lang === 'en' && card.dataset.memberSpecialtyEn) ? card.dataset.memberSpecialtyEn : card.dataset.memberSpecialty;
+            const description = (lang === 'en' && card.dataset.memberDescriptionEn) ? card.dataset.memberDescriptionEn : card.dataset.memberDescription;
             openTeamModal({
                 name: card.dataset.memberName,
-                specialty: card.dataset.memberSpecialty,
-                description: card.dataset.memberDescription,
+                specialty: specialty,
+                description: description,
                 image: card.dataset.memberImage,
                 portfolio: card.dataset.memberPortfolio
             });

@@ -156,6 +156,13 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const currentLang = () => document.documentElement.lang || 'es';
+    const t = (es, en) => currentLang() === 'en' ? en : es;
+    // Extract only the visible text for the active language from an element with bilingual spans
+    const visibleText = (el) => {
+        const lang = currentLang();
+        const span = el.querySelector(`[lang="${lang}"]`);
+        return span ? span.textContent.trim() : el.textContent.trim();
+    };
 
     const setLang = (lang) => {
         document.documentElement.lang = lang;
@@ -314,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!dateValue) return '';
         const date = new Date(dateValue);
         if (Number.isNaN(date.getTime())) return '';
-        return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: 'numeric' });
+        return date.toLocaleDateString(currentLang() === 'en' ? 'en-US' : 'es-ES', { year: 'numeric', month: 'short', day: 'numeric' });
     };
 
     const stripHtmlToText = (value) => {
@@ -477,13 +484,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const overlay = document.createElement('div');
         overlay.className = 'blog-modal';
         overlay.innerHTML = `
-            <div class="blog-modal-content" role="dialog" aria-modal="true" aria-label="${(title || 'Artículo').replace(/"/g, '&quot;')}">
-                <button class="blog-modal-close" type="button" aria-label="Cerrar">&times;</button>
+            <div class="blog-modal-content" role="dialog" aria-modal="true" aria-label="${(title || t('Artículo', 'Article')).replace(/"/g, '&quot;')}">
+                <button class="blog-modal-close" type="button" aria-label="${t('Cerrar', 'Close')}">&times;</button>
                 <div class="blog-modal-header">
                     <h2 class="blog-modal-title">${title || ''}</h2>
                     <div class="blog-modal-meta">
                         <span class="blog-modal-date">${formatBlogDate(pubDate)}</span>
-                        <a class="blog-modal-medium" href="${link || '#'}" target="_blank" rel="noopener">Leer en Medium</a>
+                        <a class="blog-modal-medium" href="${link || '#'}" target="_blank" rel="noopener">${t('Leer en Medium', 'Read on Medium')}</a>
                     </div>
                 </div>
                 <div class="blog-modal-article"></div>
@@ -536,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const img = document.createElement('img');
                 img.src = imageUrl;
-                img.alt = title ? `Imagen de ${title}` : 'Imagen del artículo';
+                img.alt = title ? `${t('Imagen de', 'Image of')} ${title}` : t('Imagen del artículo', 'Article image');
                 img.loading = 'lazy';
                 img.decoding = 'async';
                 cover.appendChild(img);
@@ -605,7 +612,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const sliced = (items || []).slice(0, BLOG_MAX_ITEMS);
         if (sliced.length === 0) {
-            statusEl.textContent = 'No hay publicaciones disponibles ahora mismo.';
+            statusEl.textContent = t('No hay publicaciones disponibles ahora mismo.', 'No posts available right now.');
             return;
         }
 
@@ -649,7 +656,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (imageUrl) {
                 const img = document.createElement('img');
                 img.src = imageUrl;
-                img.alt = item.title || 'Publicación de Medium';
+                img.alt = item.title || t('Publicación de Medium', 'Medium post');
                 img.loading = 'lazy';
                 media.appendChild(img);
             }
@@ -678,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const cta = document.createElement('a');
             cta.className = 'blog-card-cta';
-            cta.textContent = 'Leer en Medium';
+            cta.textContent = t('Leer en Medium', 'Read on Medium');
             cta.href = item.link;
             cta.target = '_blank';
             cta.rel = 'noopener';
@@ -709,7 +716,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (!media.querySelector('img')) {
                             const img = document.createElement('img');
                             img.src = fetchedUrl;
-                            img.alt = item.title || 'Publicación de Medium';
+                            img.alt = item.title || t('Publicación de Medium', 'Medium post');
                             img.loading = 'lazy';
                             media.appendChild(img);
                         }
@@ -739,7 +746,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        statusEl.textContent = 'Cargando publicaciones...';
+        statusEl.textContent = t('Cargando publicaciones...', 'Loading posts...');
         gridEl.innerHTML = '';
 
         try {
@@ -749,7 +756,7 @@ document.addEventListener('DOMContentLoaded', function() {
             scrollRevealTargetsByPage.delete(BLOG_PAGE_ID);
             resetScrollRevealForPage(BLOG_PAGE_ID);
         } catch (error) {
-            statusEl.textContent = 'No se pudieron cargar las publicaciones. Puedes verlas directamente en Medium.';
+            statusEl.textContent = t('No se pudieron cargar las publicaciones. Puedes verlas directamente en Medium.', 'Could not load posts. You can view them directly on Medium.');
             gridEl.innerHTML = '';
         }
     };
@@ -1008,12 +1015,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const overlay = document.createElement('div');
         overlay.className = 'team-modal';
         overlay.innerHTML = `
-            <div class="team-modal-content" role="dialog" aria-modal="true" aria-label="${(name || 'Miembro del equipo').replace(/"/g, '&quot;')}">
-                <button class="team-modal-close" type="button" aria-label="Cerrar">&times;</button>
+            <div class="team-modal-content" role="dialog" aria-modal="true" aria-label="${(name || t('Miembro del equipo', 'Team member')).replace(/"/g, '&quot;')}">
+                <button class="team-modal-close" type="button" aria-label="${t('Cerrar', 'Close')}">&times;</button>
                 <div class="team-modal-body">
                     <div class="team-modal-media">
                         <div class="team-modal-photo">
-                            <img src="${image || ''}" alt="${name ? `Retrato de ${name}` : 'Miembro del equipo'}" class="${name === 'Tailor' ? 'tailor-modal-img' : ''}" loading="lazy" decoding="async">
+                            <img src="${image || ''}" alt="${name ? `${t('Retrato de', 'Portrait of')} ${name}` : t('Miembro del equipo', 'Team member')}" class="${name === 'Tailor' ? 'tailor-modal-img' : ''}" loading="lazy" decoding="async">
                         </div>
                     </div>
                     <div class="team-modal-info">
@@ -1094,8 +1101,8 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.className = 'image-lightbox';
         overlay.innerHTML = `
             <div class="image-lightbox-content">
-                <button class="image-lightbox-close" type="button" aria-label="Cerrar">&times;</button>
-                <img src="${imageSrc}" alt="${title || 'Imagen'}">
+                <button class="image-lightbox-close" type="button" aria-label="${t('Cerrar', 'Close')}">&times;</button>
+                <img src="${imageSrc}" alt="${title || t('Imagen', 'Image')}">
                 ${title ? `<p class="image-lightbox-title">${title}</p>` : ''}
             </div>
         `;
@@ -1151,7 +1158,7 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.className = 'faq-modal';
         overlay.innerHTML = `
             <div class="faq-modal-content" role="dialog" aria-modal="true">
-                <button class="faq-modal-close" type="button" aria-label="Cerrar">&times;</button>
+                <button class="faq-modal-close" type="button" aria-label="${t('Cerrar', 'Close')}">&times;</button>
                 <h3 class="faq-modal-question">${question || ''}</h3>
                 <p class="faq-modal-answer">${answer || ''}</p>
             </div>
@@ -1332,19 +1339,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     navMenu.classList.remove('styles-submenu-scroll');
                 }
 
-                const isStylesSubmenu = this.textContent.trim().toLowerCase() === 'estilos';
+                const toggleText = visibleText(this).toLowerCase();
+                const isStylesSubmenu = toggleText === 'estilos' || toggleText === 'styles';
                 if (isStylesSubmenu && navMenu) {
                     navMenu.classList.add('styles-submenu-scroll');
                 }
 
-                mobileSubmenuTitle.textContent = this.textContent.trim();
+                mobileSubmenuTitle.textContent = visibleText(this);
                 mobileSubmenuList.innerHTML = '';
                 submenuItems.forEach(item => {
                     const li = document.createElement('li');
                     const link = document.createElement('a');
                     link.href = getPathForPage(item.dataset.page);
                     link.dataset.page = item.dataset.page;
-                    link.textContent = item.textContent.trim();
+                    link.textContent = visibleText(item);
                     const linkHandler = (evt) => {
                         evt.preventDefault();
                         evt.stopPropagation();

@@ -915,17 +915,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initial page load: detect language, migrate old hash URLs, then show the right page
     setLang(getLangFromUrl());
-    const migratedPage = migrateOldHashUrl();
-    currentPageId = migratedPage || getPageFromCurrentUrl();
-    showPage(currentPageId, { shouldScrollTop: false });
 
-    // Language switcher click handler
+    // Language switcher click handler (registered early, before showPage)
     document.querySelectorAll('.lang-switcher a[data-lang]').forEach(a => {
         a.addEventListener('click', (e) => {
             e.preventDefault();
             switchLanguage(a.dataset.lang);
         });
     });
+
+    const migratedPage = migrateOldHashUrl();
+    currentPageId = migratedPage || getPageFromCurrentUrl();
+    showPage(currentPageId, { shouldScrollTop: false });
     
     // Browser back/forward navigation
     window.addEventListener('popstate', () => {

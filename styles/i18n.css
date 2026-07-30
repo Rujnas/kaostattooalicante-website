@@ -43,6 +43,21 @@ html[lang="es"] [lang="en"] {
     user-select: none;
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+    .lang-switcher {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        font-size: 0.75rem;
+    }
+
+    .nav-menu {
+        padding-right: 5rem !important;
+    }
+}
+
 @media (max-width: 768px) {
     .sidebar-header {
         flex: 1;

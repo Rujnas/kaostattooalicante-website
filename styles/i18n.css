@@ -44,12 +44,18 @@ html[lang="es"] [lang="en"] {
 }
 
 @media (max-width: 768px) {
+    .sidebar-header {
+        flex: 1;
+    }
+
     .lang-switcher {
-        position: absolute;
-        top: 50%;
-        right: 1rem;
-        transform: translateY(-50%);
+        position: static;
+        transform: none;
         margin: 0;
         font-size: 0.8rem;
+    }
+
+    .mobile-controls {
+        margin-left: 0 !important;
     }
 }

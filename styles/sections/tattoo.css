@@ -586,6 +586,28 @@
     }
 }
 
+/* Page Heading (H1 strip between hero and content) */
+.page-heading {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.98), rgba(20, 20, 20, 0.95));
+    text-align: center;
+    padding: 2rem 1.5rem;
+}
+
+.page-heading h1 {
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 400;
+    color: var(--accent-color);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow:
+        0 0 10px rgba(212, 165, 116, 0.6),
+        0 0 20px rgba(212, 165, 116, 0.4),
+        0 0 30px rgba(212, 165, 116, 0.2);
+    animation: neonTextGlow 4s ease-in-out infinite;
+}
+
 /* Tattoo Intro Section */
 .tattoo-intro {
     position: relative;

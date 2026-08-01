@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const isHomePage = pageId === 'home';
                 const isPortfolioPage = pageId.startsWith('portfolio-');
-                const isMobileViewport = window.innerWidth <= 768;
+                const isMobileViewport = window.innerWidth <= 1024;
                 const shouldAccelerate = isMobileViewport && (isHomePage || isPortfolioPage);
                 const delayFactor = shouldAccelerate ? 0.55 : 1;
                 const rawDelay = (baseDelay + index * step) * delayFactor;
@@ -1209,7 +1209,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileSubmenuTitle = mobileSubmenuWrapper ? mobileSubmenuWrapper.querySelector('.mobile-submenu-title') : null;
     const mobileSubmenuBack = mobileSubmenuWrapper ? mobileSubmenuWrapper.querySelector('.mobile-submenu-back') : null;
 
-    const isMobileViewport = () => window.innerWidth <= 768;
+    const isMobileViewport = () => window.innerWidth <= 1024;
 
     const closeMobileMenu = () => {
         if (!mobileMenuToggle || !navMenu) return;

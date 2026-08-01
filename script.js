@@ -785,6 +785,10 @@ document.addEventListener('DOMContentLoaded', function() {
         restoreScrollPosition(currentPageId);
     };
 
+    // Auto-update copyright year
+    const footerYear = document.getElementById('footer-year');
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
+
     // Hide overlay after a short fixed duration (not dependent on page load)
     setTimeout(hideLoadingOverlay, 1200);
     window.addEventListener('beforeunload', () => saveScrollPosition(currentPageId));

@@ -10,7 +10,7 @@ if ($decoded !== '/' && file_exists($file) && !is_dir($file)) {
 }
 
 // SPA routes - serve index.html
-$spaRoutes = ['equipo','anilladora','estilos','tatuajes','piercings','walkins','dibujos-cuadros','contacto','blog'];
+$spaRoutes = ['equipo','anilladora','estilos','tatuajes','piercings','dibujos-cuadros','contacto','blog'];
 $cleanUri = trim($uri, '/');
 
 // Spanish routes

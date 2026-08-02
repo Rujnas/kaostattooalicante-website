@@ -20,8 +20,8 @@ RewriteRule ^(.*)$ https://kaostattooalicante.es/$1 [R=301,L]
 # Skip existing files and directories (images, css, js, fonts, videos, etc.)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(equipo|anilladora|estilos|tatuajes|piercings|walkins|dibujos-cuadros|contacto|blog)/?$ /index.html [L]
+RewriteRule ^(equipo|anilladora|estilos|tatuajes|piercings|dibujos-cuadros|contacto|blog)/?$ /index.html [L]
 
 # English version: /en/ and /en/<route>/
 RewriteRule ^en/?$ /index.html [L]
-RewriteRule ^en/(equipo|anilladora|estilos|tatuajes|piercings|walkins|dibujos-cuadros|contacto|blog)/?$ /index.html [L]
+RewriteRule ^en/(equipo|anilladora|estilos|tatuajes|piercings|dibujos-cuadros|contacto|blog)/?$ /index.html [L]

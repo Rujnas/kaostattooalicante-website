@@ -127,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
         '/anilladora/': 'anilladora',
         '/tatuajes/': 'tatuajes',
         '/piercings/': 'piercings',
-        '/walkins/': 'walkins',
         '/dibujos-cuadros/': 'dibujos-cuadros',
         '/contacto/': 'contacto',
         '/blog/': 'blog'
@@ -884,7 +883,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const ctaPages = [
             'fineline', 'anime', 'blackwork', 'cartoon', 'geometrico',
             'japones', 'lettering', 'microrealismo', 'realismo', 'tradicional',
-            'tatuajes', 'piercings', 'walkins', 'dibujos-cuadros'
+            'tatuajes', 'piercings', 'dibujos-cuadros'
         ];
         let ctaEl = document.getElementById('dynamic-cta');
         if (!ctaEl) {

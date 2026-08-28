@@ -16,15 +16,23 @@ RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_HOST} ^kaostattooalicante\.es$ [NC]
 RewriteRule ^(.*)$ https://kaostattooalicante.es/$1 [R=301,L]
 
+# Redirect old English URLs (Spanish slugs) to the translated ones (301)
+RewriteRule ^en/equipo/?$ /en/team/ [R=301,L]
+RewriteRule ^en/anilladora/?$ /en/piercer/ [R=301,L]
+RewriteRule ^en/estilos/?$ /en/styles/ [R=301,L]
+RewriteRule ^en/tatuajes/?$ /en/tattoos/ [R=301,L]
+RewriteRule ^en/dibujos-cuadros/?$ /en/art/ [R=301,L]
+RewriteRule ^en/contacto/?$ /en/contact/ [R=301,L]
+
 # Clean URL routing - serve index.php (per-page SEO) for all SPA routes
 # Skip existing files and directories (images, css, js, fonts, videos, etc.)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(equipo|anilladora|estilos|tatuajes|piercings|dibujos-cuadros|contacto|blog)/?$ /index.php [L]
 
-# English version: /en/ and /en/<route>/
+# English version: /en/ and /en/<translated-route>/
 RewriteRule ^en/?$ /index.php [L]
-RewriteRule ^en/(equipo|anilladora|estilos|tatuajes|piercings|dibujos-cuadros|contacto|blog)/?$ /index.php [L]
+RewriteRule ^en/(team|piercer|styles|tattoos|piercings|art|contact|blog)/?$ /index.php [L]
 
 # Home page ("/") served through index.php too
 DirectoryIndex index.php

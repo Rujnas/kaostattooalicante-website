@@ -115,27 +115,36 @@ document.addEventListener('DOMContentLoaded', function() {
         'cartoon', 'geometrico', 'japones', 'lettering', 'microrealismo'
     ]);
 
-    const PORTFOLIO_PARENT = {
-        'portfolio-tailor': '/equipo/',
-        'portfolio-carrie': '/equipo/',
-        'portfolio-greka': '/anilladora/'
+    // Portfolio sub-pages map to a parent PAGE (lang-aware slug resolved later)
+    const PORTFOLIO_PARENT_PAGE = {
+        'portfolio-tailor': 'tatuadores',
+        'portfolio-carrie': 'tatuadores',
+        'portfolio-greka': 'anilladora'
     };
 
-    const PATH_TO_PAGE = {
-        '/': 'home',
-        '/equipo/': 'tatuadores',
-        '/anilladora/': 'anilladora',
-        '/tatuajes/': 'tatuajes',
-        '/piercings/': 'piercings',
-        '/dibujos-cuadros/': 'dibujos-cuadros',
-        '/contacto/': 'contacto',
-        '/blog/': 'blog'
+    // Per-page URL slug by language (segment only, no slashes; '' = home).
+    // 'estilos' is the landing slug shared by all STYLE_PAGES.
+    const SLUGS = {
+        home:              { es: '',                 en: '' },
+        tatuadores:        { es: 'equipo',           en: 'team' },
+        anilladora:        { es: 'anilladora',       en: 'piercer' },
+        tatuajes:          { es: 'tatuajes',         en: 'tattoos' },
+        piercings:         { es: 'piercings',        en: 'piercings' },
+        'dibujos-cuadros': { es: 'dibujos-cuadros',  en: 'art' },
+        contacto:          { es: 'contacto',         en: 'contact' },
+        blog:              { es: 'blog',             en: 'blog' },
+        estilos:           { es: 'estilos',          en: 'styles' }
     };
 
-    const PAGE_TO_PATH = {};
-    Object.entries(PATH_TO_PAGE).forEach(([path, pageId]) => { PAGE_TO_PATH[pageId] = path; });
-    STYLE_PAGES.forEach(s => { PAGE_TO_PATH[s] = '/estilos/#' + s; });
-    Object.keys(PORTFOLIO_PARENT).forEach(p => { PAGE_TO_PATH[p] = PORTFOLIO_PARENT[p] + '#' + p; });
+    // path (without /en prefix) -> pageId, per language
+    const PATH_TO_PAGE_BY_LANG = { es: {}, en: {} };
+    ['es', 'en'].forEach(lang => {
+        Object.entries(SLUGS).forEach(([pageId, slugs]) => {
+            if (pageId === 'estilos') return; // handled specially (hash-based)
+            const seg = slugs[lang];
+            PATH_TO_PAGE_BY_LANG[lang]['/' + (seg ? seg + '/' : '')] = pageId;
+        });
+    });
 
     const normalizePath = (p) => {
         if (!p || p === '/') return '/';
@@ -233,54 +242,70 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const langPrefix = () => currentLang() === 'en' ? '/en' : '';
 
-    const getPathForPage = (pageId) => {
-        const base = PAGE_TO_PATH[pageId] || '/';
-        const prefix = langPrefix();
-        if (!prefix) return base;
-        // For hash-based paths like /estilos/#fineline
-        const hashIdx = base.indexOf('#');
-        if (hashIdx !== -1) {
-            return prefix + base.substring(0, hashIdx) + base.substring(hashIdx);
+    // Build an absolute-ish path for a page in a specific language
+    const pathForPageLang = (pageId, lang) => {
+        const prefix = lang === 'en' ? '/en' : '';
+        const build = (seg, hash) => {
+            const base = '/' + (seg ? seg + '/' : '');
+            return prefix + base + (hash ? '#' + hash : '');
+        };
+        if (STYLE_PAGES.has(pageId)) {
+            return build(SLUGS.estilos[lang], pageId);
         }
-        return prefix + base;
+        if (PORTFOLIO_PARENT_PAGE[pageId]) {
+            const parent = PORTFOLIO_PARENT_PAGE[pageId];
+            return build(SLUGS[parent][lang], pageId);
+        }
+        const slugs = SLUGS[pageId];
+        return build(slugs ? slugs[lang] : '', null);
     };
 
+    const getPathForPage = (pageId) => pathForPageLang(pageId, currentLang());
+
     const getPageFromCurrentUrl = () => {
+        const lang = getLangFromUrl();
         const rawPathname = normalizePath(window.location.pathname);
         const pathname = normalizePath(stripLangPrefix(rawPathname));
         const hash = (window.location.hash || '').replace('#', '');
 
-        if (pathname === '/estilos/') {
+        const estilosPath = '/' + SLUGS.estilos[lang] + '/';
+        const equipoPath = '/' + SLUGS.tatuadores[lang] + '/';
+        const anilladoraPath = '/' + SLUGS.anilladora[lang] + '/';
+
+        if (pathname === estilosPath) {
             return (hash && STYLE_PAGES.has(hash)) ? hash : 'fineline';
         }
-        if (pathname === '/equipo/' && hash && PORTFOLIO_PARENT['portfolio-' + hash.replace('portfolio-', '')]) {
+        if (pathname === equipoPath && hash) {
             const candidate = hash.startsWith('portfolio-') ? hash : 'portfolio-' + hash;
-            if (PORTFOLIO_PARENT[candidate] === '/equipo/') return candidate;
+            if (PORTFOLIO_PARENT_PAGE[candidate] === 'tatuadores') return candidate;
         }
-        if (pathname === '/anilladora/' && hash === 'portfolio-greka') {
+        if (pathname === anilladoraPath && hash === 'portfolio-greka') {
             return 'portfolio-greka';
         }
-        return PATH_TO_PAGE[pathname] || 'home';
+        return PATH_TO_PAGE_BY_LANG[lang][pathname] || 'home';
     };
 
     // Migrate old hash-based URLs (e.g. /#contacto -> /contacto/)
     const migrateOldHashUrl = () => {
+        const lang = getLangFromUrl();
         const rawPathname = normalizePath(window.location.pathname);
         const pathname = normalizePath(stripLangPrefix(rawPathname));
         if (pathname !== '/') return null;
         const hash = (window.location.hash || '').replace('#', '');
         if (!hash || hash === 'home') return null;
-        // Temporarily clear lang prefix to get base path, then re-add
-        const savedLang = currentLang();
-        document.documentElement.lang = 'es';
-        const basePath = (PAGE_TO_PATH[hash] && PAGE_TO_PATH[hash] !== '/') ? PAGE_TO_PATH[hash] : null;
-        document.documentElement.lang = savedLang;
-        if (basePath) {
-            const newPath = langPrefix() + basePath;
-            history.replaceState(null, '', newPath);
-            return hash;
-        }
-        return null;
+        // Only migrate hashes that map to a real page (top-level, style or portfolio)
+        const known = (SLUGS[hash] && hash !== 'home') || STYLE_PAGES.has(hash) || PORTFOLIO_PARENT_PAGE[hash];
+        if (!known) return null;
+        const newPath = pathForPageLang(hash, lang);
+        history.replaceState(null, '', newPath);
+        return hash;
+    };
+
+    // Update all nav link hrefs to the current language
+    const updateNavHrefs = () => {
+        document.querySelectorAll('a[data-page]').forEach(a => {
+            a.href = getPathForPage(a.dataset.page);
+        });
     };
 
     const navigateTo = (pageId, { replace = false, scrollTop = true } = {}) => {
@@ -301,9 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const newPath = getPathForPage(pageId);
         history.pushState({ pageId }, '', newPath);
         // Update all nav link hrefs to reflect new language
-        document.querySelectorAll('a[data-page]').forEach(a => {
-            a.href = getPathForPage(a.dataset.page);
-        });
+        updateNavHrefs();
     };
 
     const getScrollKey = (pageId) => `${SCROLL_KEY_PREFIX}${pageId}`;
@@ -925,6 +948,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initial page load: detect language, migrate old hash URLs, then show the right page
     setLang(getLangFromUrl());
+    updateNavHrefs();
 
     // Language switcher click handler (registered early, before showPage)
     document.querySelectorAll('.lang-switcher a[data-lang]').forEach(a => {

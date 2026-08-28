@@ -21,37 +21,33 @@ if ($path === '/en/' || strpos($path, '/en/') === 0) {
     if ($path[0] !== '/') { $path = '/' . $path; }
 }
 
-// Path (without lang) -> internal page id
-$PATH_TO_PAGE = [
-    '/'                => 'home',
-    '/equipo/'         => 'tatuadores',
-    '/anilladora/'     => 'anilladora',
-    '/tatuajes/'       => 'tatuajes',
-    '/piercings/'      => 'piercings',
-    '/dibujos-cuadros/'=> 'dibujos-cuadros',
-    '/contacto/'       => 'contacto',
-    '/blog/'           => 'blog',
-    '/estilos/'        => 'fineline',
+// Per-page URL slug by language (segment only; '' = home).
+// 'fineline' is the /estilos/ (styles) landing page id.
+$SLUGS = [
+    'home'            => ['es' => '',                'en' => ''],
+    'tatuadores'      => ['es' => 'equipo',          'en' => 'team'],
+    'anilladora'      => ['es' => 'anilladora',      'en' => 'piercer'],
+    'tatuajes'        => ['es' => 'tatuajes',        'en' => 'tattoos'],
+    'piercings'       => ['es' => 'piercings',       'en' => 'piercings'],
+    'dibujos-cuadros' => ['es' => 'dibujos-cuadros', 'en' => 'art'],
+    'contacto'        => ['es' => 'contacto',        'en' => 'contact'],
+    'blog'            => ['es' => 'blog',            'en' => 'blog'],
+    'fineline'        => ['es' => 'estilos',         'en' => 'styles'],
 ];
-$pageId = $PATH_TO_PAGE[$path] ?? 'home';
 
-// Page id -> URL slug (used to build canonical / hreflang / og:url)
-$PAGE_TO_SLUG = [
-    'home'            => '',
-    'tatuadores'      => 'equipo',
-    'anilladora'      => 'anilladora',
-    'tatuajes'        => 'tatuajes',
-    'piercings'       => 'piercings',
-    'dibujos-cuadros' => 'dibujos-cuadros',
-    'contacto'        => 'contacto',
-    'blog'            => 'blog',
-    'fineline'        => 'estilos',
-];
-$slug = $PAGE_TO_SLUG[$pageId] ?? '';
+// Resolve the current path (already without /en prefix) to a page id
+$pageId = 'home';
+foreach ($SLUGS as $pid => $slugs) {
+    $seg = $slugs[$lang];
+    $candidate = '/' . ($seg !== '' ? $seg . '/' : '');
+    if ($candidate === $path) { $pageId = $pid; break; }
+}
 
-// Absolute URLs for this page in each language
-$esUrl = $BASE . '/' . ($slug ? $slug . '/' : '');
-$enUrl = $BASE . '/en/' . ($slug ? $slug . '/' : '');
+// Absolute URLs for this page in each language (for canonical / hreflang)
+$segEs = $SLUGS[$pageId]['es'];
+$segEn = $SLUGS[$pageId]['en'];
+$esUrl = $BASE . '/' . ($segEs !== '' ? $segEs . '/' : '');
+$enUrl = $BASE . '/en/' . ($segEn !== '' ? $segEn . '/' : '');
 $canonical = ($lang === 'en') ? $enUrl : $esUrl;
 
 // Per-page SEO copy (es / en). Description ~150-160 chars.
@@ -307,9 +303,7 @@ function pageActive($id, $current) {
                 </div>
             </section>
 
-            <section class="page-heading">
-                <h1><span lang="es">Estudio de tatuajes y piercings en Alicante</span><span lang="en">Tattoo and piercing studio in Alicante</span></h1>
-            </section>
+            <h1 class="visually-hidden"><span lang="es">Estudio de tatuajes y piercings en Alicante</span><span lang="en">Tattoo and piercing studio in Alicante</span></h1>
 
             <section class="home-about">
                 <video class="home-about-video" muted loop playsinline preload="none" poster="images/posters/music_video.webp" data-lazy-video>

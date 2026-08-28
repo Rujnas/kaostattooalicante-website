@@ -20,13 +20,13 @@
   <url>
     <loc>https://kaostattooalicante.es/equipo/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/equipo/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/equipo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/team/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/equipo/"/>
   </url>
   <url>
-    <loc>https://kaostattooalicante.es/en/equipo/</loc>
+    <loc>https://kaostattooalicante.es/en/team/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/equipo/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/equipo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/team/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/equipo/"/>
   </url>
 
@@ -34,13 +34,13 @@
   <url>
     <loc>https://kaostattooalicante.es/anilladora/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/anilladora/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/anilladora/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/piercer/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/anilladora/"/>
   </url>
   <url>
-    <loc>https://kaostattooalicante.es/en/anilladora/</loc>
+    <loc>https://kaostattooalicante.es/en/piercer/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/anilladora/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/anilladora/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/piercer/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/anilladora/"/>
   </url>
 
@@ -48,13 +48,13 @@
   <url>
     <loc>https://kaostattooalicante.es/tatuajes/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/tatuajes/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/tatuajes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/tattoos/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/tatuajes/"/>
   </url>
   <url>
-    <loc>https://kaostattooalicante.es/en/tatuajes/</loc>
+    <loc>https://kaostattooalicante.es/en/tattoos/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/tatuajes/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/tatuajes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/tattoos/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/tatuajes/"/>
   </url>
 
@@ -72,17 +72,17 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/piercings/"/>
   </url>
 
-  <!-- Dibujos y cuadros / Drawings and paintings -->
+  <!-- Dibujos y cuadros / Art -->
   <url>
     <loc>https://kaostattooalicante.es/dibujos-cuadros/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/dibujos-cuadros/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/dibujos-cuadros/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/art/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/dibujos-cuadros/"/>
   </url>
   <url>
-    <loc>https://kaostattooalicante.es/en/dibujos-cuadros/</loc>
+    <loc>https://kaostattooalicante.es/en/art/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/dibujos-cuadros/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/dibujos-cuadros/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/art/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/dibujos-cuadros/"/>
   </url>
 
@@ -90,13 +90,13 @@
   <url>
     <loc>https://kaostattooalicante.es/contacto/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/contacto/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/contacto/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/contact/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/contacto/"/>
   </url>
   <url>
-    <loc>https://kaostattooalicante.es/en/contacto/</loc>
+    <loc>https://kaostattooalicante.es/en/contact/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/contacto/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/contacto/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/contact/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/contacto/"/>
   </url>
 
@@ -104,13 +104,13 @@
   <url>
     <loc>https://kaostattooalicante.es/estilos/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/estilos/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/estilos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/styles/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/estilos/"/>
   </url>
   <url>
-    <loc>https://kaostattooalicante.es/en/estilos/</loc>
+    <loc>https://kaostattooalicante.es/en/styles/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/estilos/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/estilos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/styles/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/estilos/"/>
   </url>
 

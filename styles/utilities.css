@@ -192,6 +192,21 @@
 .visible { visibility: visible; }
 .invisible { visibility: hidden; }
 
+/* Visually hidden: removed from view but kept in the DOM/accessibility tree
+   (read by screen readers and search engines). Not display:none. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 /* Responsive Utilities */
 @media (min-width: 640px) {
     .sm\:block { display: block; }

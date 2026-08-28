@@ -384,6 +384,10 @@
     font-size: 0.9rem;
 }
 
+.form-dropzone-text--mobile {
+    display: none;
+}
+
 .form-dropzone-text strong {
     color: var(--accent-color);
 }
@@ -477,6 +481,27 @@
     .form-row {
         grid-template-columns: 1fr;
     }
+
+    .form-dropzone-text--desktop {
+        display: none;
+    }
+
+    .form-dropzone-text--mobile {
+        display: block;
+    }
+
+    .form-dropzone {
+        padding: 1.5rem 1rem;
+    }
+
+    .form-preview-remove {
+        opacity: 1;
+    }
+
+    .form-preview-item {
+        width: 72px;
+        height: 72px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -495,5 +520,10 @@
 
     .form-type-icon {
         font-size: 2rem;
+    }
+
+    .form-preview-item {
+        width: 64px;
+        height: 64px;
     }
 }

@@ -1,5 +1,131 @@
+<?php
+// ---------------------------------------------------------------------------
+// Server-side SEO: resolve page + language from the URL and expose per-page
+// metadata (title, description, canonical, hreflang) before any HTML is sent.
+// The SPA in script.js still runs and re-applies everything on the client;
+// this block only guarantees the served HTML is correct for crawlers/scrapers.
+// ---------------------------------------------------------------------------
+$BASE = 'https://kaostattooalicante.es';
+
+// Raw path without query string (the URL #hash never reaches the server)
+$path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+$path = '/' . trim(urldecode($path), '/');
+if ($path !== '/') { $path .= '/'; }
+
+// Language detection + strip the /en prefix
+$lang = 'es';
+if ($path === '/en/' || strpos($path, '/en/') === 0) {
+    $lang = 'en';
+    $path = substr($path, 3);            // drop "/en"
+    if ($path === '' || $path === false) { $path = '/'; }
+    if ($path[0] !== '/') { $path = '/' . $path; }
+}
+
+// Path (without lang) -> internal page id
+$PATH_TO_PAGE = [
+    '/'                => 'home',
+    '/equipo/'         => 'tatuadores',
+    '/anilladora/'     => 'anilladora',
+    '/tatuajes/'       => 'tatuajes',
+    '/piercings/'      => 'piercings',
+    '/dibujos-cuadros/'=> 'dibujos-cuadros',
+    '/contacto/'       => 'contacto',
+    '/blog/'           => 'blog',
+    '/estilos/'        => 'fineline',
+];
+$pageId = $PATH_TO_PAGE[$path] ?? 'home';
+
+// Page id -> URL slug (used to build canonical / hreflang / og:url)
+$PAGE_TO_SLUG = [
+    'home'            => '',
+    'tatuadores'      => 'equipo',
+    'anilladora'      => 'anilladora',
+    'tatuajes'        => 'tatuajes',
+    'piercings'       => 'piercings',
+    'dibujos-cuadros' => 'dibujos-cuadros',
+    'contacto'        => 'contacto',
+    'blog'            => 'blog',
+    'fineline'        => 'estilos',
+];
+$slug = $PAGE_TO_SLUG[$pageId] ?? '';
+
+// Absolute URLs for this page in each language
+$esUrl = $BASE . '/' . ($slug ? $slug . '/' : '');
+$enUrl = $BASE . '/en/' . ($slug ? $slug . '/' : '');
+$canonical = ($lang === 'en') ? $enUrl : $esUrl;
+
+// Per-page SEO copy (es / en). Description ~150-160 chars.
+$SEO = [
+    'home' => [
+        'es' => ['title' => 'Kaos Tattoo | Tatuajes y Piercings en Alicante',
+                 'desc'  => 'Estudio de tatuajes y piercings en Alicante. Equipo profesional especializado en múltiples estilos. Cuéntanos tu idea y te asesoramos.'],
+        'en' => ['title' => 'Kaos Tattoo | Tattoo & Piercing Studio in Alicante',
+                 'desc'  => 'Tattoo and piercing studio in Alicante. Professional team specialised in many styles. Tell us your idea and we will guide you.'],
+    ],
+    'tatuajes' => [
+        'es' => ['title' => 'Tatuajes en Alicante | Kaos Tattoo',
+                 'desc'  => 'Estilos, artistas, proceso y cuidados de tatuaje en Kaos Tattoo Alicante. Diseño personalizado y asesoramiento en cada proyecto.'],
+        'en' => ['title' => 'Tattoos in Alicante | Kaos Tattoo',
+                 'desc'  => "Kaos Tattoo's artists, styles, process and tattoo aftercare in Alicante. Custom design and guidance for every project."],
+    ],
+    'piercings' => [
+        'es' => ['title' => 'Piercings en Alicante | Kaos Tattoo',
+                 'desc'  => 'Piercings profesionales en Alicante con material de calidad e higiene certificada. Asesoramiento, colocación y cuidados en Kaos Tattoo.'],
+        'en' => ['title' => 'Piercings in Alicante | Kaos Tattoo',
+                 'desc'  => 'Professional piercings in Alicante with quality jewellery and certified hygiene. Advice, placement and aftercare at Kaos Tattoo.'],
+    ],
+    'tatuadores' => [
+        'es' => ['title' => 'Equipo de tatuadores en Alicante | Kaos Tattoo',
+                 'desc'  => 'Conoce al equipo de tatuadores de Kaos Tattoo en Alicante: Tailor, Carrie y más artistas especializados en distintos estilos.'],
+        'en' => ['title' => 'Our tattoo team in Alicante | Kaos Tattoo',
+                 'desc'  => 'Meet the Kaos Tattoo tattoo artists in Alicante: Tailor, Carrie and more, each specialised in different styles.'],
+    ],
+    'anilladora' => [
+        'es' => ['title' => 'Anilladora profesional en Alicante | Kaos Tattoo',
+                 'desc'  => 'La Greka, anilladora profesional en Kaos Tattoo Alicante. Piercings seguros con asesoramiento personalizado y máxima higiene.'],
+        'en' => ['title' => 'Professional piercer in Alicante | Kaos Tattoo',
+                 'desc'  => 'La Greka, professional piercer at Kaos Tattoo Alicante. Safe piercings with personalised advice and the highest hygiene standards.'],
+    ],
+    'dibujos-cuadros' => [
+        'es' => ['title' => 'Dibujos y cuadros personalizados | Kaos Tattoo Alicante',
+                 'desc'  => 'Cuadros y dibujos hechos a mano por Kike en Kaos Tattoo Alicante. Piezas únicas y encargos personalizados, incluidos retratos de mascotas.'],
+        'en' => ['title' => 'Custom drawings and paintings | Kaos Tattoo Alicante',
+                 'desc'  => 'Handmade paintings and drawings by Kike at Kaos Tattoo Alicante. Unique pieces and custom commissions, including pet portraits.'],
+    ],
+    'contacto' => [
+        'es' => ['title' => 'Contacto | Kaos Tattoo Alicante',
+                 'desc'  => 'Contacta con Kaos Tattoo en Alicante. Cuéntanos tu idea de tatuaje o piercing y te responderemos lo antes posible.'],
+        'en' => ['title' => 'Contact | Kaos Tattoo Alicante',
+                 'desc'  => 'Get in touch with Kaos Tattoo in Alicante. Tell us your tattoo or piercing idea and we will get back to you as soon as possible.'],
+    ],
+    'blog' => [
+        'es' => ['title' => 'Blog | Kaos Tattoo Alicante',
+                 'desc'  => 'Novedades, consejos y últimas publicaciones de Kaos Tattoo, estudio de tatuajes y piercings en Alicante.'],
+        'en' => ['title' => 'Blog | Kaos Tattoo Alicante',
+                 'desc'  => 'News, tips and the latest posts from Kaos Tattoo, a tattoo and piercing studio in Alicante.'],
+    ],
+    'fineline' => [
+        'es' => ['title' => 'Estilos de tatuaje | Kaos Tattoo Alicante',
+                 'desc'  => 'Descubre los estilos de tatuaje de Kaos Tattoo Alicante: fine line, realismo, japonés, blackwork, lettering y muchos más.'],
+        'en' => ['title' => 'Tattoo styles | Kaos Tattoo Alicante',
+                 'desc'  => 'Discover the tattoo styles at Kaos Tattoo Alicante: fine line, realism, Japanese, blackwork, lettering and many more.'],
+    ],
+];
+
+$meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
+$title  = $meta['title'];
+$desc   = $meta['desc'];
+$htmlLang = $lang;
+$ogLocale = ($lang === 'en') ? 'en_US' : 'es_ES';
+$ogImage  = $BASE . '/images/logo_perro-nobackground.webp';
+
+// Helper: emit " active" for the page div that matches the current URL
+function pageActive($id, $current) {
+    return $id === $current ? ' active' : '';
+}
+?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?php echo $htmlLang; ?>">
 <head>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -21,23 +147,29 @@
     <meta charset="UTF-8">
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaos Tattoo | Tatuajes y Piercings en Alicante</title>
-    <meta name="description" content="Kaos Tattoo - Estudio de tatuajes y piercings en Alicante. Equipo profesional especializado en diversos estilos.">
-    <link rel="canonical" href="https://kaostattooalicante.es/">
-    
+    <title><?php echo htmlspecialchars($title, ENT_QUOTES); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($desc, ENT_QUOTES); ?>">
+    <link rel="canonical" href="<?php echo $canonical; ?>">
+
+    <!-- Language alternates -->
+    <link rel="alternate" hreflang="es" href="<?php echo $esUrl; ?>">
+    <link rel="alternate" hreflang="en" href="<?php echo $enUrl; ?>">
+    <link rel="alternate" hreflang="x-default" href="<?php echo $esUrl; ?>">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kaostattooalicante.es/">
-    <meta property="og:title" content="Kaos Tattoo | Tatuajes y Piercings en Alicante">
-    <meta property="og:description" content="Kaos Tattoo - Estudio de tatuajes y piercings en Alicante. Equipo profesional especializado en diversos estilos.">
-    <meta property="og:image" content="https://kaostattooalicante.es/images/logo_perro-nobackground.webp">
-    
+    <meta property="og:locale" content="<?php echo $ogLocale; ?>">
+    <meta property="og:url" content="<?php echo $canonical; ?>">
+    <meta property="og:title" content="<?php echo htmlspecialchars($title, ENT_QUOTES); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($desc, ENT_QUOTES); ?>">
+    <meta property="og:image" content="<?php echo $ogImage; ?>">
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://kaostattooalicante.es/">
-    <meta name="twitter:title" content="Kaos Tattoo | Tatuajes y Piercings en Alicante">
-    <meta name="twitter:description" content="Kaos Tattoo - Estudio de tatuajes y piercings en Alicante. Equipo profesional especializado en diversos estilos.">
-    <meta name="twitter:image" content="https://kaostattooalicante.es/images/logo_perro-nobackground.webp">
+    <meta name="twitter:url" content="<?php echo $canonical; ?>">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($title, ENT_QUOTES); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($desc, ENT_QUOTES); ?>">
+    <meta name="twitter:image" content="<?php echo $ogImage; ?>">
     
     <!-- Structured Data for Google -->
     <script type="application/ld+json">
@@ -165,7 +297,7 @@
     </nav>
 
     <main class="main-content">
-        <div id="home" class="page active">
+        <div id="home" class="page<?php echo pageActive('home', $pageId); ?>">
             <section class="hero">
                 <video class="hero-video" autoplay muted loop playsinline poster="images/posters/KAOS_logo_video.webp">
                     <source src="videos/Kaos Tattoo portada.mp4" type="video/mp4">
@@ -173,6 +305,10 @@
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
                 </div>
+            </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estudio de tatuajes y piercings en Alicante</span><span lang="en">Tattoo and piercing studio in Alicante</span></h1>
             </section>
 
             <section class="home-about">
@@ -259,7 +395,7 @@
             </section>
         </div>
 
-        <div id="tatuadores" class="page">
+        <div id="tatuadores" class="page<?php echo pageActive('tatuadores', $pageId); ?>">
             <section class="team-hero">
                 <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/tatuadores_video.webp" data-lazy-video>
                     <source data-src="videos/tatuadores_video.mp4" type="video/mp4">
@@ -911,7 +1047,7 @@
             </div>
         </div>
 
-        <div id="anilladora" class="page">
+        <div id="anilladora" class="page<?php echo pageActive('anilladora', $pageId); ?>">
             <section class="team-hero">
                 <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/anilladora_video.webp" data-lazy-video>
                     <source data-src="videos/anilladora_video.mp4" type="video/mp4">
@@ -958,7 +1094,7 @@
             </div>
         </div>
 
-        <div id="fineline" class="page">
+        <div id="fineline" class="page<?php echo pageActive('fineline', $pageId); ?>">
             <section class="fineline-hero">
                 <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/FINELINE.webp" data-lazy-video>
                     <source data-src="videos/headers/FINELINE.mp4" type="video/mp4">
@@ -2087,7 +2223,7 @@
 
         </div>
 
-        <div id="tatuajes" class="page">
+        <div id="tatuajes" class="page<?php echo pageActive('tatuajes', $pageId); ?>">
             <section class="tattoo-hero">
                 <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/TATUAJES.webp" data-lazy-video>
                     <source data-src="videos/headers/TATUAJES.mp4" type="video/mp4">
@@ -2189,7 +2325,7 @@
             </section>
         </div>
 
-        <div id="piercings" class="page">
+        <div id="piercings" class="page<?php echo pageActive('piercings', $pageId); ?>">
             <section class="tattoo-hero piercings-hero">
                 <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/PIERCINGS.webp" data-lazy-video>
                     <source data-src="videos/headers/PIERCINGS.mp4" type="video/mp4">
@@ -2284,7 +2420,7 @@
             </section>
         </div>
 
-        <div id="dibujos-cuadros" class="page">
+        <div id="dibujos-cuadros" class="page<?php echo pageActive('dibujos-cuadros', $pageId); ?>">
             <section class="tattoo-hero dibujos-hero">
                 <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/DIBUJOSYCUADROS2.webp" data-lazy-video>
                     <source data-src="videos/headers/DIBUJOSYCUADROS2.mp4" type="video/mp4">
@@ -2292,6 +2428,10 @@
                 <div class="hero-overlay"></div>
                 <div class="dibujos-cuadros-hero-content hero-content">
                 </div>
+            </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Dibujos y cuadros personalizados en Alicante</span><span lang="en">Custom drawings and paintings in Alicante</span></h1>
             </section>
 
             <section class="dibujos-intro">
@@ -2351,7 +2491,7 @@
 
         </div>
 
-        <div id="contacto" class="page">
+        <div id="contacto" class="page<?php echo pageActive('contacto', $pageId); ?>">
             <section class="tattoo-hero contacto-hero">
                 <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/gracias_video.webp" data-lazy-video>
                     <source data-src="videos/gracias_video.mp4" type="video/mp4">
@@ -2359,6 +2499,10 @@
                 <div class="hero-overlay"></div>
                 <div class="contacto-hero-content hero-content">
                 </div>
+            </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Contacto - Kaos Tattoo Alicante</span><span lang="en">Contact - Kaos Tattoo Alicante</span></h1>
             </section>
 
             <section class="contacto-form-section">
@@ -2567,7 +2711,7 @@
             </section>
         </div>
 
-        <div id="blog" class="page">
+        <div id="blog" class="page<?php echo pageActive('blog', $pageId); ?>">
             <section class="fineline-hero">
                 <video class="hero-video" muted loop playsinline preload="none" poster="images/posters/headers/BLOG.webp" data-lazy-video>
                     <source data-src="videos/headers/BLOG.mp4" type="video/mp4">
@@ -2575,6 +2719,9 @@
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
                 </div>
+            </section>
+            <section class="page-heading">
+                <h1><span lang="es">Blog de Kaos Tattoo Alicante</span><span lang="en">Kaos Tattoo Alicante Blog</span></h1>
             </section>
             <div class="page-content">
                 <p class="blog-subtitle"><span lang="es">Últimas publicaciones de Kaos Tattoo.</span><span lang="en">Latest posts from Kaos Tattoo.</span></p>

@@ -15,12 +15,12 @@ $cleanUri = trim($uri, '/');
 
 // Spanish routes
 if ($cleanUri === '' || in_array($cleanUri, $spaRoutes)) {
-    include __DIR__ . '/index.html';
+    include __DIR__ . '/index.php';
     exit;
 }
 // English routes: /en and /en/<route>
 if ($cleanUri === 'en' || preg_match('#^en/('.implode('|', $spaRoutes).')$#', $cleanUri)) {
-    include __DIR__ . '/index.html';
+    include __DIR__ . '/index.php';
     exit;
 }
 

@@ -16,12 +16,15 @@ RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_HOST} ^kaostattooalicante\.es$ [NC]
 RewriteRule ^(.*)$ https://kaostattooalicante.es/$1 [R=301,L]
 
-# Clean URL routing - serve index.html for all SPA routes
+# Clean URL routing - serve index.php (per-page SEO) for all SPA routes
 # Skip existing files and directories (images, css, js, fonts, videos, etc.)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(equipo|anilladora|estilos|tatuajes|piercings|dibujos-cuadros|contacto|blog)/?$ /index.html [L]
+RewriteRule ^(equipo|anilladora|estilos|tatuajes|piercings|dibujos-cuadros|contacto|blog)/?$ /index.php [L]
 
 # English version: /en/ and /en/<route>/
-RewriteRule ^en/?$ /index.html [L]
-RewriteRule ^en/(equipo|anilladora|estilos|tatuajes|piercings|dibujos-cuadros|contacto|blog)/?$ /index.html [L]
+RewriteRule ^en/?$ /index.php [L]
+RewriteRule ^en/(equipo|anilladora|estilos|tatuajes|piercings|dibujos-cuadros|contacto|blog)/?$ /index.php [L]
+
+# Home page ("/") served through index.php too
+DirectoryIndex index.php

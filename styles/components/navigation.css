@@ -181,7 +181,7 @@
     text-transform: uppercase;
     font-weight: 400;
     text-decoration: none;
-    cursor: url('../images/cursor-tattoo-needle-dark.svg') 4 12, pointer;
+    cursor: url('../../images/cursor-tattoo-needle-dark.svg') 4 12, pointer;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     transition: color 0.3s ease;

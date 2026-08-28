@@ -811,8 +811,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const footerYear = document.getElementById('footer-year');
     if (footerYear) footerYear.textContent = new Date().getFullYear();
 
-    // Hide overlay after a short fixed duration (not dependent on page load)
-    setTimeout(hideLoadingOverlay, 1200);
+    // Intro overlay: show once per session, then skip it on later loads
+    if (document.documentElement.classList.contains('intro-seen')) {
+        hideLoadingOverlay();
+    } else {
+        try { sessionStorage.setItem('kaosIntroShown', '1'); } catch (e) {}
+        setTimeout(hideLoadingOverlay, 900);
+    }
     window.addEventListener('beforeunload', () => saveScrollPosition(currentPageId));
     window.addEventListener('scroll', () => {
         clearTimeout(scrollSaveTimer);
@@ -888,13 +893,9 @@ document.addEventListener('DOMContentLoaded', function() {
             item.classList.remove('active');
         });
 
-        // Load videos in the active page (for preload="none" videos)
-        const pageVideos = targetPageElement.querySelectorAll('video[preload="none"]');
-        pageVideos.forEach(video => {
-            if (video.readyState === 0) {
-                video.load();
-            }
-        });
+        // Videos load lazily via IntersectionObserver (see bottom of file):
+        // the active page's on-screen hero triggers it; below-the-fold videos
+        // wait until they approach the viewport. No bulk .load() here.
 
         resetScrollRevealForPage(targetPageId);
 

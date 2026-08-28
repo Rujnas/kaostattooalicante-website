@@ -143,6 +143,8 @@ function pageActive($id, $current) {
     <meta charset="UTF-8">
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Skip the intro overlay if already shown this session (avoids flash) -->
+    <script>try{if(sessionStorage.getItem('kaosIntroShown')){document.documentElement.classList.add('intro-seen');}}catch(e){}</script>
     <title><?php echo htmlspecialchars($title, ENT_QUOTES); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($desc, ENT_QUOTES); ?>">
     <link rel="canonical" href="<?php echo $canonical; ?>">
@@ -296,7 +298,10 @@ function pageActive($id, $current) {
         <div id="home" class="page<?php echo pageActive('home', $pageId); ?>">
             <section class="hero">
                 <video class="hero-video" autoplay muted loop playsinline poster="images/posters/KAOS_logo_video.webp">
-                    <source src="videos/Kaos Tattoo portada.mp4" type="video/mp4">
+                    <source src="videos/kaos-portada-mobile.webm" type="video/webm" media="(max-width: 768px)">
+                    <source src="videos/kaos-portada-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
+                    <source src="videos/kaos-portada.webm" type="video/webm">
+                    <source src="videos/kaos-portada.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -3303,11 +3308,13 @@ function pageActive($id, $current) {
             entries.forEach(function(entry) {
                 var video = entry.target;
                 if (entry.isIntersecting) {
-                    // Load source if not yet loaded
-                    var source = video.querySelector('source[data-src]');
-                    if (source) {
-                        source.src = source.getAttribute('data-src');
-                        source.removeAttribute('data-src');
+                    // Load all sources (webm/mp4, mobile/desktop) if not yet loaded
+                    var sources = video.querySelectorAll('source[data-src]');
+                    if (sources.length) {
+                        sources.forEach(function(s) {
+                            s.src = s.getAttribute('data-src');
+                            s.removeAttribute('data-src');
+                        });
                         video.load();
                     }
                     video.play().catch(function() {});
@@ -3315,7 +3322,7 @@ function pageActive($id, $current) {
                     if (!video.paused) video.pause();
                 }
             });
-        }, { rootMargin: '200px' });
+        }, { rootMargin: '0px' });
 
         document.querySelectorAll('[data-lazy-video]').forEach(function(v) {
             videoObserver.observe(v);

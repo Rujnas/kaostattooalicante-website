@@ -91,6 +91,11 @@ body.is-loading {
     visibility: hidden;
 }
 
+/* Intro already shown this session: skip overlay entirely (no flash) */
+html.intro-seen .loading-overlay {
+    display: none;
+}
+
 .loading-content {
     text-align: center;
     color: var(--accent-light);

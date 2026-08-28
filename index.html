@@ -2372,10 +2372,16 @@
                         <div class="form-progress-step" data-step="3"></div>
                     </div>
 
-                    <form id="contacto-form" novalidate autocomplete="off">
+                    <form id="contacto-form" novalidate>
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_subject" value="Nueva consulta desde la web">
+                        <!-- Honeypot anti-spam: hidden from humans, bots fill it -->
+                        <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;width:0;overflow:hidden">
+                            <label for="_hp_website">Website</label>
+                            <input type="text" id="_hp_website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        <input type="hidden" name="_form_loaded_at" value="">
                         <!-- Step 1: Type -->
                         <div class="form-step active" data-form-step="1">
                             <div class="form-type-grid">
@@ -2451,6 +2457,21 @@
                                 </div>
                             </div>
 
+                            <!-- Image upload (shared for tattoo & piercing) -->
+                            <div class="form-field form-upload-field" id="form-upload-field" style="display:none">
+                                <label class="form-label"><span lang="es">Imágenes de referencia <span class="form-label-optional">(opcional)</span></span><span lang="en">Reference images <span class="form-label-optional">(optional)</span></span></label>
+                                <p class="form-upload-hint"><span lang="es">Capturas de pantalla, ideas, bocetos... todo lo que nos ayude a entender tu idea.</span><span lang="en">Screenshots, ideas, sketches... anything that helps us understand your idea.</span></p>
+                                <div class="form-dropzone" id="form-dropzone">
+                                    <input type="file" id="form-file-input" multiple accept="image/*" class="form-file-hidden">
+                                    <div class="form-dropzone-content">
+                                        <svg class="form-dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                        <span class="form-dropzone-text"><span lang="es">Arrastra imágenes aquí o <strong>haz clic para seleccionar</strong></span><span lang="en">Drag images here or <strong>click to select</strong></span></span>
+                                        <span class="form-dropzone-formats"><span lang="es">JPG, PNG, WebP — máx. 5 MB por imagen, hasta 4 imágenes</span><span lang="en">JPG, PNG, WebP — max 5 MB per image, up to 4 images</span></span>
+                                    </div>
+                                </div>
+                                <div class="form-previews" id="form-previews"></div>
+                            </div>
+
                             <div class="form-nav">
                                 <button type="button" class="form-btn-back" data-back><span lang="es">Atrás</span><span lang="en">Back</span></button>
                                 <button type="button" class="form-btn-next" data-next disabled><span lang="es">Siguiente</span><span lang="en">Next</span></button>
@@ -2462,17 +2483,17 @@
                             <div class="form-row">
                                 <div class="form-field">
                                     <label class="form-label" for="form-nombre"><span lang="es">Nombre</span><span lang="en">Name</span></label>
-                                    <input type="text" class="form-input" id="form-nombre" name="nombre" required placeholder="Tu nombre" data-i18n-placeholder="Your name">
+                                    <input type="text" class="form-input" id="form-nombre" name="nombre" required placeholder="Tu nombre" data-i18n-placeholder="Your name" autocomplete="name">
                                 </div>
                                 <div class="form-field">
                                     <label class="form-label" for="form-email"><span lang="es">Correo electrónico</span><span lang="en">Email</span></label>
-                                    <input type="email" class="form-input" id="form-email" name="email" required placeholder="tu@email.com" data-i18n-placeholder="you@email.com">
+                                    <input type="email" class="form-input" id="form-email" name="email" required placeholder="tu@email.com" data-i18n-placeholder="you@email.com" autocomplete="email">
                                     <span class="form-error" id="error-email"><span lang="es">Introduce un email válido (ej: tu@email.com)</span><span lang="en">Enter a valid email (e.g. you@email.com)</span></span>
                                 </div>
                             </div>
                             <div class="form-field">
                                 <label class="form-label" for="form-telefono"><span lang="es">Teléfono</span><span lang="en">Phone</span></label>
-                                <input type="tel" class="form-input" id="form-telefono" name="telefono" required placeholder="600 000 000">
+                                <input type="tel" class="form-input" id="form-telefono" name="telefono" required placeholder="600 000 000" autocomplete="tel">
                                 <span class="form-error" id="error-telefono"><span lang="es">Introduce un teléfono válido (mín. 9 dígitos)</span><span lang="en">Enter a valid phone number (min. 9 digits)</span></span>
                             </div>
 
@@ -2654,6 +2675,12 @@
     </div>
 
     <script>
+    function getLang() {
+        return (document.documentElement.lang || 'es').substring(0, 2);
+    }
+    </script>
+
+    <script>
     (function() {
         var waBtn = document.getElementById('whatsapp-float-btn');
         var waChat = document.getElementById('whatsapp-chat');
@@ -2667,10 +2694,6 @@
         var btnShown = false;
         var widgetEventFired = false;
         var deeplinkEventFired = false;
-
-        function getLang() {
-            return (document.documentElement.lang || 'es').substring(0, 2);
-        }
 
         function isContactPage() {
             var pathname = window.location.pathname.replace(/\/+$/, '');
@@ -2779,12 +2802,6 @@
     </script>
 
     <script>
-    function getLang() {
-        return (document.documentElement.lang || 'es').substring(0, 2);
-    }
-    </script>
-
-    <script>
     (function() {
         var form = document.getElementById('contacto-form');
         if (!form) return;
@@ -2792,6 +2809,12 @@
         // Reset form on load to clear cached data
         form.reset();
 
+        // Anti-spam: record load timestamp for minimum fill-time check
+        var formLoadedAt = Date.now();
+        var loadedAtField = form.querySelector('[name="_form_loaded_at"]');
+        if (loadedAtField) loadedAtField.value = String(formLoadedAt);
+
+        var isSubmitting = false;
         var currentStep = 1;
         var selectedType = '';
         var steps = form.querySelectorAll('.form-step');
@@ -2844,6 +2867,7 @@
 
                 document.getElementById('fields-tatuaje').style.display = selectedType === 'tatuaje' ? 'block' : 'none';
                 document.getElementById('fields-piercing').style.display = selectedType === 'piercing' ? 'block' : 'none';
+                document.getElementById('form-upload-field').style.display = 'block';
 
                 setTimeout(function() { goToStep(2); validateStep2(); }, 250);
             });
@@ -2922,9 +2946,128 @@
             validateStep3();
         });
 
+        // --- Image upload logic ---
+        var MAX_FILES = 4;
+        var MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+        var ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+        var uploadedFiles = [];
+        var dropzone = document.getElementById('form-dropzone');
+        var fileInput = document.getElementById('form-file-input');
+        var previewsContainer = document.getElementById('form-previews');
+
+        function clearUploadError() {
+            var existing = document.querySelector('.form-upload-error');
+            if (existing) existing.remove();
+        }
+
+        function showUploadError(msgEs, msgEn) {
+            clearUploadError();
+            var el = document.createElement('p');
+            el.className = 'form-upload-error';
+            el.innerHTML = '<span lang="es">' + msgEs + '</span><span lang="en">' + msgEn + '</span>';
+            dropzone.parentNode.insertBefore(el, previewsContainer);
+        }
+
+        function renderPreviews() {
+            previewsContainer.innerHTML = '';
+            uploadedFiles.forEach(function(file, idx) {
+                var item = document.createElement('div');
+                item.className = 'form-preview-item';
+
+                var img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.alt = file.name;
+
+                var removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.className = 'form-preview-remove';
+                removeBtn.innerHTML = '&times;';
+                removeBtn.setAttribute('aria-label', getLang() === 'en' ? 'Remove image' : 'Eliminar imagen');
+                removeBtn.addEventListener('click', function() {
+                    uploadedFiles.splice(idx, 1);
+                    renderPreviews();
+                    clearUploadError();
+                });
+
+                item.appendChild(img);
+                item.appendChild(removeBtn);
+                previewsContainer.appendChild(item);
+            });
+        }
+
+        function handleFiles(files) {
+            clearUploadError();
+            var fileList = Array.from(files);
+
+            for (var i = 0; i < fileList.length; i++) {
+                if (uploadedFiles.length >= MAX_FILES) {
+                    showUploadError(
+                        'Máximo ' + MAX_FILES + ' imágenes permitidas.',
+                        'Maximum ' + MAX_FILES + ' images allowed.'
+                    );
+                    break;
+                }
+                var f = fileList[i];
+                if (ALLOWED_TYPES.indexOf(f.type) === -1) {
+                    showUploadError(
+                        'Formato no permitido: ' + f.name + '. Usa JPG, PNG o WebP.',
+                        'Format not allowed: ' + f.name + '. Use JPG, PNG or WebP.'
+                    );
+                    continue;
+                }
+                if (f.size > MAX_FILE_SIZE) {
+                    showUploadError(
+                        f.name + ' supera los 5 MB.',
+                        f.name + ' exceeds 5 MB.'
+                    );
+                    continue;
+                }
+                uploadedFiles.push(f);
+            }
+            renderPreviews();
+            // Reset native input so the same file can be re-selected
+            fileInput.value = '';
+        }
+
+        fileInput.addEventListener('change', function() {
+            handleFiles(this.files);
+        });
+
+        // Drag & drop
+        ['dragenter', 'dragover'].forEach(function(evt) {
+            dropzone.addEventListener(evt, function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropzone.classList.add('dragover');
+            });
+        });
+        ['dragleave', 'drop'].forEach(function(evt) {
+            dropzone.addEventListener(evt, function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropzone.classList.remove('dragover');
+            });
+        });
+        dropzone.addEventListener('drop', function(e) {
+            if (e.dataTransfer && e.dataTransfer.files) {
+                handleFiles(e.dataTransfer.files);
+            }
+        });
+
+        // Helper to restore submit button text with bilingual spans
+        function resetSubmitBtn(submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('sending');
+            submitBtn.innerHTML = '<span lang="es">Enviar mi consulta</span><span lang="en">Send my enquiry</span>';
+            isSubmitting = false;
+        }
+
         // Submit via FormSubmit
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // Prevent double submission
+            if (isSubmitting) return;
 
             var nombre = nombreInput.value.trim();
             var email = emailInput.value.trim();
@@ -2945,10 +3088,16 @@
             // Final validation guard
             if (!isValidEmail(email) || !isValidPhone(telefono) || !nombre || !privacyInput.checked) return;
 
+            // Anti-spam: reject if honeypot is filled or form was submitted too fast (< 3s)
+            var honeypot = form.querySelector('[name="website"]');
+            if (honeypot && honeypot.value) return;
+            if (Date.now() - formLoadedAt < 3000) return;
+
+            isSubmitting = true;
             var submitBtn = form.querySelector('.form-btn-submit');
             submitBtn.disabled = true;
             submitBtn.classList.add('sending');
-            submitBtn.textContent = 'Enviando...';
+            submitBtn.textContent = getLang() === 'en' ? 'Sending...' : 'Enviando...';
 
             var formData = new FormData();
             formData.append('_captcha', 'false');
@@ -2960,6 +3109,9 @@
             formData.append('Nombre', nombre);
             formData.append('Email', email);
             formData.append('Teléfono', telefono);
+            uploadedFiles.forEach(function(file) {
+                formData.append('attachment', file, file.name);
+            });
 
             fetch('https://formsubmit.co/ajax/kaostattooalc@gmail.com', {
                 method: 'POST',
@@ -2968,28 +3120,35 @@
             .then(function(res) { return res.json(); })
             .then(function(data) {
                 if (data.success) {
-                    window.dataLayer = window.dataLayer || [];
-                    window.dataLayer.push({
-                        event: 'form_submitted',
-                        form_name: 'contact_page',
-                        service_type: selectedType,
-                        page_language: getLang()
-                    });
+                    // Show success UI first (protected from dataLayer errors)
                     form.style.display = 'none';
                     document.querySelector('.form-progress').style.display = 'none';
                     successEl.classList.add('visible');
+                    // dataLayer.push with all form data, protected with try/catch
+                    try {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            event: 'form_submitted',
+                            tipo: tipo,
+                            zona: zona,
+                            idea_estilo: idea,
+                            nombre: nombre,
+                            email: email,
+                            telefono: telefono,
+                            privacidad_aceptada: true,
+                            idioma: getLang()
+                        });
+                    } catch (e) {
+                        // dataLayer failure must not affect confirmation
+                    }
                 } else {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('sending');
-                    submitBtn.textContent = 'Enviar mi consulta';
-                    alert('Error al enviar. Inténtalo de nuevo.');
+                    resetSubmitBtn(submitBtn);
+                    alert(getLang() === 'en' ? 'Error sending. Please try again.' : 'Error al enviar. Inténtalo de nuevo.');
                 }
             })
             .catch(function() {
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('sending');
-                submitBtn.textContent = 'Enviar mi consulta';
-                alert('Error de conexión. Inténtalo de nuevo.');
+                resetSubmitBtn(submitBtn);
+                alert(getLang() === 'en' ? 'Connection error. Please try again.' : 'Error de conexión. Inténtalo de nuevo.');
             });
         });
     })();

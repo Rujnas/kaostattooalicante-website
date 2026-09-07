@@ -458,8 +458,21 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    /* Contact header: much shorter on mobile so the H1 and the two form
+       options appear sooner. The height matches the video's own aspect ratio
+       (1080x608), so the full clip is shown without cropping any part of it. */
+    .contacto-hero {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 1080 / 608;
+    }
+
+    .contacto-hero .hero-video {
+        height: 100%;
+    }
+
     .contacto-form-section {
-        padding: 3rem 1.25rem;
+        padding: 2rem 1.25rem;
     }
 
     .contacto-form-title {

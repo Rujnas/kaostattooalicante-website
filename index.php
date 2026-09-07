@@ -260,9 +260,6 @@ function pageActive($id, $current) {
             <li>
                 <a href="/blog/" class="nav-link" data-page="blog">Blog</a>
             </li>
-            <li>
-                <a href="/contacto/" class="nav-link" data-page="contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
-            </li>
             <li class="nav-cta-item">
                 <a href="/contacto/" class="nav-link nav-cta" data-page="contacto"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
             </li>
@@ -308,16 +305,14 @@ function pageActive($id, $current) {
                 </div>
             </section>
 
-            <h1 class="visually-hidden"><span lang="es">Estudio de tatuajes y piercings en Alicante</span><span lang="en">Tattoo and piercing studio in Alicante</span></h1>
-
             <section class="home-about">
                 <video class="home-about-video" muted loop playsinline preload="none" poster="images/posters/music_video.webp" data-lazy-video>
                     <source data-src="videos/music_video.MP4" type="video/mp4">
                 </video>
                 <div class="home-about-overlay"></div>
                 <div class="home-about-content">
-                    <h2><span lang="es">Estudio de Tatuajes en Alicante</span><span lang="en">Tattoo Studio in Alicante</span></h2>
-                    <p><span lang="es">Todo lo que suceda en este estudio de tatuajes en Alicante, se queda en este estudio. No somos Las Vegas pero haremos que te lo pases igual de bien. Nuestro proposito de vida es ayudar a que te sientas mas agusto que en tu casa. Somos gente maja, aunque te hagamos daño. En Kaos Tattoo nos gusta dar la tabarra solo para que quieras repetir y vuelvas a vernos. Si estás leyendo esto es por algo: sonríe y dejate llevar.</span><span lang="en">What happens in this tattoo studio in Alicante, stays in this studio. We're not Las Vegas, but we'll make sure you have just as good a time. Our life purpose is to help you feel more at home than at your own place. We're friendly people, even if we cause you a little pain. At Kaos Tattoo we love to chat just so you'll want to come back and see us again. If you're reading this, it's for a reason: smile and let yourself go.</span></p>
+                    <h1><span lang="es">Estudio de Tatuajes en Alicante</span><span lang="en">Tattoo Studio in Alicante</span></h1>
+                    <p><span lang="es">Todo lo que suceda en este estudio de tatuajes en Alicante, se queda en este estudio. No somos Las Vegas pero haremos que te lo pases igual de bien. Nuestro propósito de vida es ayudar a que te sientas más a gusto que en tu casa. Somos gente maja, aunque te hagamos daño. En Kaos Tattoo nos gusta dar la tabarra solo para que quieras repetir y vuelvas a vernos. Si estás leyendo esto es por algo: sonríe y déjate llevar.</span><span lang="en">What happens in this tattoo studio in Alicante, stays in this studio. We're not Las Vegas, but we'll make sure you have just as good a time. Our life purpose is to help you feel more at home than at your own place. We're friendly people, even if we cause you a little pain. At Kaos Tattoo we love to chat just so you'll want to come back and see us again. If you're reading this, it's for a reason: smile and let yourself go.</span></p>
                     <a href="/contacto/" data-page="contacto" class="btn btn-primary btn-book-now" data-scroll-reveal><span lang="es">CUÉNTANOS TU IDEA</span><span lang="en">TELL US YOUR IDEA</span></a>
                 </div>
             </section>
@@ -2500,13 +2495,9 @@ function pageActive($id, $current) {
                 </div>
             </section>
 
-            <section class="page-heading">
-                <h1><span lang="es">Contacto - Kaos Tattoo Alicante</span><span lang="en">Contact - Kaos Tattoo Alicante</span></h1>
-            </section>
-
             <section class="contacto-form-section">
                 <div class="contacto-form-container">
-                    <h2 class="contacto-form-title"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></h2>
+                    <h1 class="contacto-form-title"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></h1>
                     <p class="contacto-form-subtitle"><span lang="es">Te responderemos lo antes posible</span><span lang="en">We'll get back to you as soon as possible</span></p>
 
                     <div class="form-progress">
@@ -2669,42 +2660,42 @@ function pageActive($id, $current) {
                             <img src="images/logotipos_contacts/whatsapp.webp" alt="WhatsApp">
                         </div>
                         <span class="social-icon-name">WhatsApp</span>
-                        <div class="social-tooltip"><span lang="es">Preguntas rápidas o seguimiento de una conversación ya iniciada.</span><span lang="en">Quick questions or follow-up on an existing conversation.</span></div>
+                        <div class="social-tooltip"><span lang="es">¡Preguntas rápidas o seguimiento de una conversación ya iniciada!</span><span lang="en">Quick questions or follow-up on an existing conversation!</span></div>
                     </a>
                     <a href="tel:+34618710976" class="social-icon-link" aria-label="Teléfono">
                         <div class="social-icon-wrapper">
                             <img src="images/logotipos_contacts/phone.svg" alt="Teléfono">
                         </div>
                         <span class="social-icon-name"><span lang="es">Teléfono</span><span lang="en">Phone</span></span>
-                        <div class="social-tooltip"><span lang="es">Consultas que necesiten respuesta dentro del horario del estudio.</span><span lang="en">Enquiries that need a response during studio hours.</span></div>
+                        <div class="social-tooltip"><span lang="es">¡Consultas que necesiten respuesta dentro del horario del estudio!</span><span lang="en">Enquiries that need a response during studio hours!</span></div>
                     </a>
                     <a href="https://instagram.com/kaos.tattoostudio" target="_blank" class="social-icon-link" aria-label="Instagram">
                         <div class="social-icon-wrapper">
                             <img src="images/logotipos_contacts/instagram.webp" alt="Instagram">
                         </div>
                         <span class="social-icon-name">Instagram</span>
-                        <div class="social-tooltip"><span lang="es">Mira nuestros trabajos y novedades. Para consultas, usa otro canal.</span><span lang="en">Check out our work and news. For enquiries, use another channel.</span></div>
+                        <div class="social-tooltip"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
                     </a>
                     <a href="mailto:kaostattooalc@gmail.com" target="_blank" class="social-icon-link" aria-label="Email">
                         <div class="social-icon-wrapper">
                             <img src="images/logotipos_contacts/mail.webp" alt="Email">
                         </div>
                         <span class="social-icon-name">Mail</span>
-                        <div class="social-tooltip"><span lang="es">Documentación, colaboraciones o consultas sin urgencia.</span><span lang="en">Documentation, collaborations or non-urgent enquiries.</span></div>
+                        <div class="social-tooltip"><span lang="es">¡Documentación, colaboraciones o consultas sin urgencia!</span><span lang="en">Documentation, collaborations or non-urgent enquiries!</span></div>
                     </a>
                     <a href="https://facebook.com/KaosTattoo" target="_blank" class="social-icon-link" aria-label="Facebook">
                         <div class="social-icon-wrapper">
                             <img src="images/logotipos_contacts/facebook.webp" alt="Facebook">
                         </div>
                         <span class="social-icon-name">Facebook</span>
-                        <div class="social-tooltip"><span lang="es">Mira nuestros trabajos y novedades. Para consultas, usa otro canal.</span><span lang="en">Check out our work and news. For enquiries, use another channel.</span></div>
+                        <div class="social-tooltip"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
                     </a>
                     <a href="https://www.tiktok.com/@kaos.tattoo.alicante" target="_blank" class="social-icon-link" aria-label="TikTok">
                         <div class="social-icon-wrapper">
                             <img src="images/logotipos_contacts/tik-tok.webp" alt="TikTok">
                         </div>
                         <span class="social-icon-name">TikTok</span>
-                        <div class="social-tooltip"><span lang="es">Mira nuestros trabajos y novedades. Para consultas, usa otro canal.</span><span lang="en">Check out our work and news. For enquiries, use another channel.</span></div>
+                        <div class="social-tooltip"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
                     </a>
                 </div>
             </section>
@@ -2789,7 +2780,9 @@ function pageActive($id, $current) {
     .whatsapp-chat-body{padding:20px 16px;background:#E5DDD5}
     .whatsapp-chat-bubble{background:#fff;padding:12px 16px;border-radius:0 12px 12px 12px;font-size:14px;line-height:1.5;color:#333;box-shadow:0 1px 2px rgba(0,0,0,.1);max-width:90%}
     .whatsapp-chat-footer{display:flex;align-items:flex-end;gap:8px;padding:12px;background:#f0f0f0}
-    .whatsapp-chat-input{flex:1;border:none;border-radius:20px;padding:10px 16px;font-size:14px;font-family:inherit;resize:none;outline:none;background:#fff;max-height:100px;line-height:1.4}
+    .whatsapp-chat-input{flex:1;border:2px solid transparent;border-radius:20px;padding:10px 16px;font-size:14px;font-family:inherit;resize:none;outline:none;background:#fff;max-height:100px;line-height:1.4}
+    .whatsapp-chat-input.input-error{border-color:#e74c3c;animation:waShake .3s ease}
+    @keyframes waShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
     .whatsapp-chat-send{width:44px;height:44px;background:#25D366;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;flex-shrink:0;transition:background .2s ease}
     .whatsapp-chat-send:hover{background:#128C7E}
     @media(max-width:768px){.whatsapp-container{bottom:25px;right:25px}.whatsapp-float{width:65px;height:65px}.whatsapp-float img{width:38px;height:38px}.whatsapp-chat{width:calc(100vw - 50px);right:0;bottom:80px}}
@@ -2850,19 +2843,36 @@ function pageActive($id, $current) {
             return hash === 'contacto';
         }
 
-        function showButton() {
-            if (btnShown) return;
+        // The floating button is hidden on the contacto page (WhatsApp is
+        // already listed among the contact options there) and shown elsewhere
+        // once "earned" (after the reveal timer).
+        function refreshButton() {
+            var visible = btnShown && !isContactPage();
+            if (visible) {
+                waBtn.style.display = 'flex';
+                waBtn.classList.add('is-visible');
+            } else {
+                waBtn.classList.remove('is-visible');
+                waBtn.style.display = 'none';
+                // Close the chat if it was open
+                if (waChat.style.display === 'block') {
+                    waChat.classList.remove('is-open');
+                    waChat.style.display = 'none';
+                }
+            }
+        }
+
+        function earnButton() {
             btnShown = true;
             if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-            waBtn.style.display = 'flex';
-            waBtn.classList.add('is-visible');
+            refreshButton();
         }
 
         function startTimer() {
-            if (btnShown || timerInterval) return;
+            if (btnShown || timerInterval || isContactPage()) return;
             timerInterval = setInterval(function() {
                 elapsed += 250;
-                if (elapsed >= DELAY_MS) showButton();
+                if (elapsed >= DELAY_MS) earnButton();
             }, 250);
         }
 
@@ -2870,12 +2880,8 @@ function pageActive($id, $current) {
             if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
         }
 
-        // Contacto page: show immediately; otherwise start active timer
-        if (isContactPage()) {
-            showButton();
-        } else {
-            startTimer();
-        }
+        // Start the reveal timer only when NOT on the contacto page
+        startTimer();
 
         // Pause/resume timer when tab visibility changes
         document.addEventListener('visibilitychange', function() {
@@ -2887,13 +2893,13 @@ function pageActive($id, $current) {
             }
         });
 
-        // Show immediately if user navigates to contacto
-        window.addEventListener('pagechange', function() {
-            if (isContactPage()) showButton();
-        });
-        window.addEventListener('popstate', function() {
-            if (isContactPage()) showButton();
-        });
+        // On SPA navigation: hide on contacto, (re)show/earn elsewhere
+        function onNav() {
+            refreshButton();
+            startTimer();
+        }
+        window.addEventListener('pagechange', onNav);
+        window.addEventListener('popstate', onNav);
 
         // Toggle chat widget
         waBtn.addEventListener('click', function() {
@@ -2923,13 +2929,20 @@ function pageActive($id, $current) {
         });
 
         waSend.addEventListener('click', function() {
+            var message = waInput.value.trim();
+            // Require a written message before opening WhatsApp or registering
+            if (!message) {
+                waInput.classList.remove('input-error');
+                // reflow so the shake animation retriggers
+                void waInput.offsetWidth;
+                waInput.classList.add('input-error');
+                waInput.focus();
+                return;
+            }
             if (deeplinkEventFired) return;
             deeplinkEventFired = true;
-            var message = waInput.value.trim();
-            var url = message
-                ? 'https://wa.me/' + waPhone + '?text=' + encodeURIComponent(message)
-                : 'https://wa.me/' + waPhone;
-            // GTM: deeplink opened
+            var url = 'https://wa.me/' + waPhone + '?text=' + encodeURIComponent(message);
+            // GTM: deeplink opened (preserved signal, no personal data)
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'whatsapp_deeplink',
@@ -2937,6 +2950,11 @@ function pageActive($id, $current) {
                 page_language: getLang()
             });
             window.open(url, '_blank');
+        });
+
+        // Clear the error state as soon as the user starts typing
+        waInput.addEventListener('input', function() {
+            if (waInput.value.trim()) waInput.classList.remove('input-error');
         });
 
         waInput.addEventListener('keydown', function(e) {

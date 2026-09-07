@@ -156,6 +156,7 @@
     font-family: 'Space Grotesk', 'Arial', sans-serif;
 }
 
+.home-about h1,
 .home-about h2,
 .home-gallery-title,
 .home-cta h2 {
@@ -443,6 +444,7 @@
     }
 
     .home-cta h2,
+    .home-about h1,
     .home-about h2,
     .home-gallery-title {
         font-size: 2rem;

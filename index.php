@@ -2235,86 +2235,240 @@ function pageActive($id, $current) {
                 <div class="tattoo-intro-overlay"></div>
                 <div class="tattoo-intro-content">
                     <h2><span lang="es">¿Te gustaría hacerte un tattoo?</span><span lang="en">Thinking about getting a tattoo?</span></h2>
-                    <p><span lang="es">Si estás pensando en hacerte un tatuaje y no sabes por dónde empezar, nosotros podemos ayudarte. En nuestro estudio de tatuajes en Alicante te acompañamos durante todo el proceso, diseñando y aconsejando de manera personalizada.</span><span lang="en">If you're thinking about getting a tattoo and don't know where to start, we can help. At our tattoo studio in Alicante we guide you through the whole process, designing and advising in a personalised way.</span></p>
+                    <p><span lang="es">Hay quien llega con el diseño clarísimo y quien solo tiene una imagen, una historia o una sensación dando vueltas en la cabeza. Las dos cosas nos sirven.</span><span lang="en">Some people arrive with a crystal-clear design and others just have an image, a story or a feeling going round their head. Both work for us.</span></p>
+                    <p><span lang="es">En Kaos Tattoo escuchamos lo que quieres contar, tiramos del hilo contigo y le damos forma sin cargarnos lo que hacía especial tu idea. Tú pones la esencia; nosotros, ocho años de experiencia para convertirla en un tatuaje sólido, bien ejecutado y pensado para seguir funcionando cuando pase el tiempo.</span><span lang="en">At Kaos Tattoo we listen to what you want to say, pull the thread with you and shape it without ruining what made your idea special. You bring the essence; we bring eight years of experience to turn it into a solid, well-executed tattoo, made to keep working as time goes by.</span></p>
+                    <p><span lang="es">La meta es sencilla: que salgas pensando «esto es exactamente lo que quería, pero incluso mejor de lo que imaginaba».</span><span lang="en">The goal is simple: that you leave thinking "this is exactly what I wanted, but even better than I imagined".</span></p>
+                    <a class="btn btn-primary" href="/contacto/?tipo=tatuaje" data-page="contacto" data-tipo="tatuaje"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
                 </div>
             </section>
 
-            <section class="tattoo-info-split">
-                <div class="tattoo-info-left">
-                    <h2><span lang="es">Cómo curar tu Tattoo</span><span lang="en">Tattoo Aftercare</span></h2>
-                    <div class="tattoo-care-images">
-                        <div class="care-image-card" data-image="images/COMO CURAR TATTOO O PIERCING/TATTOESP.webp" data-title="Cuidados del tatuaje (Español)">
-                            <img src="images/COMO CURAR TATTOO O PIERCING/TATTOESP.webp" alt="Cuidados del tatuaje en español">
-                            <span class="care-image-label"><span lang="es">Español</span><span lang="en">Spanish</span></span>
-                            <span class="tap-hint" aria-hidden="true">👆</span>
-                        </div>
-                        <div class="care-image-card" data-image="images/COMO CURAR TATTOO O PIERCING/tattooeng.webp" data-title="Tattoo Aftercare (English)">
-                            <img src="images/COMO CURAR TATTOO O PIERCING/tattooeng.webp" alt="Tattoo aftercare in English">
-                            <span class="care-image-label">English</span>
-                            <span class="tap-hint" aria-hidden="true">👆</span>
-                        </div>
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">Tu idea no sale de una plantilla</span><span lang="en">Your idea doesn't come from a template</span></h2>
+                    <p><span lang="es">Todos nuestros tatuajes se trabajan de forma personalizada. Si vienes con una referencia de internet, no la calcamos: la adaptamos a ti, a la zona y al tamaño para que el resultado tenga identidad propia y funcione bien sobre la piel.</span><span lang="en">All our tattoos are worked on in a personalised way. If you come with a reference from the internet, we don't trace it: we adapt it to you, to the area and the size so the result has its own identity and works well on the skin.</span></p>
+                    <p><span lang="es">También puedes elegir uno de los diseños disponibles de nuestros artistas, hacerte un flash o plantearnos un cover-up. En los covers preferimos ver el tatuaje anterior en persona: así podemos decirte con honestidad qué se puede hacer y qué opción va a darte un mejor resultado.</span><span lang="en">You can also choose one of our artists' available designs, get a flash or ask us about a cover-up. For cover-ups we prefer to see the previous tattoo in person: that way we can honestly tell you what can be done and which option will give you the best result.</span></p>
+                </div>
+            </section>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner">
+                    <h2 class="tattoo-section-title"><span lang="es">¿Qué estilo buscas?</span><span lang="en">What style are you after?</span></h2>
+                    <p class="tattoo-section-lead"><span lang="es">Trabajamos proyectos de muchos estilos, aunque estos son algunos de los que más nos piden en el estudio:</span><span lang="en">We work on projects in many styles, though these are some of the most requested at the studio:</span></p>
+                    <div class="tattoo-styles-grid">
+                        <article class="tattoo-style-card">
+                            <h3><span lang="es">Fineline</span><span lang="en">Fineline</span></h3>
+                            <p><span lang="es">Líneas finas, limpias y delicadas. Aquí no se trata solo de hacerlas pequeñas, sino de hacerlas bien para que el tatuaje conserve su fuerza con el tiempo.</span><span lang="en">Thin, clean and delicate lines. It's not just about making them small, but about doing them well so the tattoo keeps its strength over time.</span></p>
+                            <a class="tattoo-inline-link" href="/estilos/#fineline" data-page="fineline"><span lang="es">Ver tatuajes fine line</span><span lang="en">See fine line tattoos</span></a>
+                        </article>
+                        <article class="tattoo-style-card">
+                            <h3><span lang="es">Realismo y microrealismo</span><span lang="en">Realism and micro-realism</span></h3>
+                            <p><span lang="es">Retratos, objetos y escenas trabajados con profundidad y detalle, tanto en formatos grandes como en composiciones más pequeñas.</span><span lang="en">Portraits, objects and scenes worked with depth and detail, both in large formats and smaller compositions.</span></p>
+                            <a class="tattoo-inline-link" href="/estilos/#realismo" data-page="realismo"><span lang="es">Ver tatuajes de realismo</span><span lang="en">See realism tattoos</span></a>
+                            <a class="tattoo-inline-link" href="/estilos/#microrealismo" data-page="microrealismo"><span lang="es">Ver microrealismo</span><span lang="en">See micro-realism</span></a>
+                        </article>
+                        <article class="tattoo-style-card">
+                            <h3><span lang="es">Tradicional y old school</span><span lang="en">Traditional and old school</span></h3>
+                            <p><span lang="es">Líneas firmes, composiciones directas y diseños con mucha personalidad, en negro o a color.</span><span lang="en">Firm lines, direct compositions and designs with plenty of personality, in black or colour.</span></p>
+                            <a class="tattoo-inline-link" href="/estilos/#tradicional" data-page="tradicional"><span lang="es">Ver tatuajes tradicionales</span><span lang="en">See traditional tattoos</span></a>
+                        </article>
+                        <article class="tattoo-style-card">
+                            <h3><span lang="es">Y bastante más</span><span lang="en">And plenty more</span></h3>
+                            <p><span lang="es">Blackwork, anime, geométrico, japonés, lettering, cartoon… Si no sabes cómo se llama tu estilo, mándanos la idea y nosotros le ponemos nombre.</span><span lang="en">Blackwork, anime, geometric, Japanese, lettering, cartoon… If you don't know what your style is called, send us the idea and we'll name it for you.</span></p>
+                            <a class="tattoo-inline-link" href="/estilos/" data-page="fineline"><span lang="es">Ver todos los estilos</span><span lang="en">See all styles</span></a>
+                        </article>
+                    </div>
+                    <p class="tattoo-section-note"><span lang="es">Valoramos cada proyecto por separado. Lo único que no tatuamos son ideas que hagan apología del odio, la violencia o ideologías que no queremos llevar ni en la piel ni en el estudio.</span><span lang="en">We assess each project individually. The only thing we won't tattoo are ideas that promote hate, violence or ideologies we don't want on our skin or in the studio.</span></p>
+                </div>
+            </section>
+
+            <section class="tattoo-section">
+                <div class="tattoo-section-inner">
+                    <h2 class="tattoo-section-title"><span lang="es">Nuestro tatuador: sin piloto automático</span><span lang="en">Our tattoo artist: no autopilot</span></h2>
+                    <article class="tattoo-artist-card">
+                        <h3>Tailor</h3>
+                        <p><span lang="es">Polivalente por naturaleza y bastante obsesivo con estudiar cada proyecto antes de empezar. Sus puntos fuertes son el fine line, el realismo, el microrealismo y el old school, aunque se mueve con soltura entre estilos muy distintos.</span><span lang="en">Versatile by nature and rather obsessive about studying every project before starting. His strong points are fine line, realism, micro-realism and old school, though he moves easily between very different styles.</span></p>
+                        <a class="tattoo-inline-link" href="/equipo/#portfolio-tailor" data-page="portfolio-tailor"><span lang="es">Ver el portfolio de Tailor</span><span lang="en">See Tailor's portfolio</span></a>
+                    </article>
+                    <p class="tattoo-section-note"><span lang="es">No tienes que elegir estilo ni tenerlo todo resuelto antes de escribirnos. Cuéntanos qué quieres hacerte y te orientamos hacia lo que mejor encaje con tu proyecto.</span><span lang="en">You don't have to pick a style or have everything figured out before writing to us. Tell us what you want and we'll guide you towards what best fits your project.</span></p>
+                </div>
+            </section>
+
+            <section class="tattoo-process has-tattoo-bg">
+                <div class="process-container">
+                    <h2 class="process-title"><span lang="es">De la idea a la piel, sin dramas</span><span lang="en">From idea to skin, no drama</span></h2>
+                    <ol class="tattoo-steps">
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">1</span>
+                            <h3><span lang="es">Cuéntanos lo que tienes en mente</span><span lang="en">Tell us what you have in mind</span></h3>
+                            <p><span lang="es">Dinos la zona, el tamaño aproximado y todo lo que ya sepas sobre la idea. Puedes añadir referencias, pero no necesitas llegar con el diseño resuelto, elegir tatuador ni proponer una fecha.</span><span lang="en">Tell us the area, the approximate size and everything you already know about the idea. You can add references, but you don't need to arrive with the design resolved, choose an artist or propose a date.</span></p>
+                        </li>
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">2</span>
+                            <h3><span lang="es">Le damos forma contigo</span><span lang="en">We shape it with you</span></h3>
+                            <p><span lang="es">Revisamos la propuesta, resolvemos dudas y te recomendamos el estilo y los ajustes que puedan mejorar la colocación o el resultado final.</span><span lang="en">We review the proposal, answer your questions and recommend the style and adjustments that can improve the placement or final result.</span></p>
+                        </li>
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">3</span>
+                            <h3><span lang="es">Cerramos precio y fecha</span><span lang="en">We settle price and date</span></h3>
+                            <p><span lang="es">Cuando el proyecto está claro, te damos una orientación de precio y buscamos una cita. La reserva se confirma con una señal que se descuenta íntegramente del total.</span><span lang="en">When the project is clear, we give you a price guide and find an appointment. The booking is confirmed with a deposit that is fully deducted from the total.</span></p>
+                        </li>
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">4</span>
+                            <h3><span lang="es">Preparamos el diseño</span><span lang="en">We prepare the design</span></h3>
+                            <p><span lang="es">Con la cita reservada, trabajamos la propuesta y te enseñamos el resultado unos días antes de la sesión. Si algún detalle necesita un ajuste, lo hablamos antes de tatuar.</span><span lang="en">With the appointment booked, we work on the proposal and show you the result a few days before the session. If any detail needs adjusting, we talk it over before tattooing.</span></p>
+                        </li>
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">5</span>
+                            <h3><span lang="es">Revisamos antes de empezar</span><span lang="en">We check before starting</span></h3>
+                            <p><span lang="es">Ya en el estudio comprobamos contigo diseño, tamaño y colocación. Solo empezamos cuando todo está claro y te sientes a gusto con la decisión.</span><span lang="en">Once at the studio we check design, size and placement with you. We only start when everything is clear and you feel comfortable with the decision.</span></p>
+                        </li>
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">6</span>
+                            <h3><span lang="es">Seguimos ahí cuando sales</span><span lang="en">We're still there when you leave</span></h3>
+                            <p><span lang="es">Te llevas los cuidados por escrito y puedes consultarnos por teléfono o WhatsApp durante toda la curación. Cuando haya cicatrizado, lo revisamos y hacemos un pequeño retoque sin coste si realmente lo necesita.</span><span lang="en">You take the aftercare in writing and can reach us by phone or WhatsApp throughout the healing. Once healed, we review it and do a small touch-up at no cost if it really needs it.</span></p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">¿Cuánto cuesta un tatuaje?</span><span lang="en">How much does a tattoo cost?</span></h2>
+                    <p><span lang="es">Un tatuaje no se cobra al peso. El precio cambia según el tamaño, la zona, el estilo, el detalle y las horas de trabajo. Por eso preferimos ver primero tu idea y darte una cifra que tenga sentido, no soltarte un precio al azar.</span><span lang="en">A tattoo isn't charged by weight. The price changes depending on size, area, style, detail and hours of work. That's why we prefer to see your idea first and give you a figure that makes sense, rather than throwing out a random price.</span></p>
+                    <ul class="tattoo-check-list">
+                        <li><span lang="es">El precio mínimo de un tatuaje es de 50&nbsp;€.</span><span lang="en">The minimum price for a tattoo is €50.</span></li>
+                        <li><span lang="es">Una sesión de unas cuatro o cinco horas suele estar entre 260&nbsp;€ y 300&nbsp;€.</span><span lang="en">A session of about four or five hours is usually between €260 and €300.</span></li>
+                        <li><span lang="es">El diseño y los ajustes necesarios están incluidos en el precio acordado.</span><span lang="en">The design and any necessary adjustments are included in the agreed price.</span></li>
+                    </ul>
+                    <p><span lang="es">Para bloquear la fecha pedimos una señal, que después se resta del total. Puedes entregarla en efectivo, por Bizum o mediante un enlace de pago con tarjeta.</span><span lang="en">To lock in the date we ask for a deposit, which is then subtracted from the total. You can pay it in cash, by Bizum or through a card payment link.</span></p>
+                </div>
+            </section>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">Antes de venir: come, duerme y no hagas inventos</span><span lang="en">Before you come: eat, sleep and don't improvise</span></h2>
+                    <ul class="tattoo-check-list">
+                        <li><span lang="es">Ven descansado, aseado y habiendo comido.</span><span lang="en">Come well-rested, clean and having eaten.</span></li>
+                        <li><span lang="es">Hidrátate bien durante las horas previas.</span><span lang="en">Stay well hydrated in the hours beforehand.</span></li>
+                        <li><span lang="es">Evita el alcohol y las drogas durante las 24 horas anteriores.</span><span lang="en">Avoid alcohol and drugs during the 24 hours before.</span></li>
+                        <li><span lang="es">Lleva ropa cómoda que permita acceder fácilmente a la zona.</span><span lang="en">Wear comfortable clothing that gives easy access to the area.</span></li>
+                        <li><span lang="es">Si estás pensando en utilizar crema anestésica, no te la apliques por tu cuenta antes de venir.</span><span lang="en">If you're thinking of using numbing cream, don't apply it on your own before coming.</span></li>
+                    </ul>
+                    <p><span lang="es">Puedes venir acompañado siempre que haya espacio y no interfiera con el trabajo, la higiene o la comodidad durante la sesión.</span><span lang="en">You can bring someone as long as there's space and it doesn't interfere with the work, hygiene or comfort during the session.</span></p>
+                </div>
+            </section>
+
+            <aside class="inline-cta has-tattoo-bg" aria-label="Contacto para tatuajes">
+                <p><span lang="es">¿Ya estás visualizando el resultado? Nosotros también queremos verlo.</span><span lang="en">Already picturing the result? We want to see it too.</span></p>
+                <a class="btn btn-primary" href="/contacto/?tipo=tatuaje" data-page="contacto" data-tipo="tatuaje"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
+            </aside>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">Durante tu sesión</span><span lang="en">During your session</span></h2>
+                    <p><span lang="es">Antes de tocar una aguja repasamos contigo el diseño, el tamaño y la colocación. Ese es el momento de resolver la última duda o mover un detalle: preferimos dedicarle cinco minutos más a la decisión que muchos años a pensar «lo habría puesto un poco más arriba».</span><span lang="en">Before touching a needle we go over the design, size and placement with you. That's the moment to settle the last doubt or move a detail: we'd rather spend five more minutes on the decision than many years thinking "I'd have put it a bit higher".</span></p>
+                    <p><span lang="es">Preparamos y protegemos el puesto para cada persona, desinfectamos las superficies y utilizamos agujas y cartuchos estériles y de un solo uso, que se abren delante de ti. También trabajamos con tintas y materiales profesionales que cumplen la normativa europea vigente. Tú puedes centrarte en el tatuaje; del resto nos ocupamos nosotros.</span><span lang="en">We set up and protect the station for each person, disinfect surfaces and use sterile, single-use needles and cartridges that are opened in front of you. We also work with professional inks and materials that comply with current European regulations. You can focus on the tattoo; we take care of the rest.</span></p>
+                    <p><span lang="es">Si vienes de fuera, podemos organizar el proyecto en inglés antes de que llegues a Alicante y seguir en contacto por WhatsApp cuando hayas vuelto a casa.</span><span lang="en">If you're coming from abroad, we can organise the project in English before you arrive in Alicante and stay in touch by WhatsApp once you're back home.</span></p>
+                </div>
+            </section>
+
+            <aside class="reviews-block has-tattoo-bg" aria-label="Reseñas">
+                <div class="tattoo-section-inner">
+                    <h2 class="tattoo-section-title"><span lang="es">Más de 200 reseñas nos avalan</span><span lang="en">Over 200 reviews back us up</span></h2>
+                    <p><span lang="es">La mejor forma de saber cómo se vive Kaos Tattoo es escuchar a quienes ya han pasado por el estudio. Más de 200 reseñas en Google respaldan nuestro trabajo y la manera en la que acompañamos cada tatuaje de principio a fin.</span><span lang="en">The best way to know what Kaos Tattoo feels like is to listen to those who've already been to the studio. Over 200 Google reviews back our work and the way we accompany every tattoo from start to finish.</span></p>
+                    <a class="reviews-link" href="https://www.google.com/searchviewer/10?svid=CAwSHRIbCgNwdnESFENnMHZaeTh4TVhCM01YaGlkREV3GAo" target="_blank" rel="noopener noreferrer"><span lang="es">Leer reseñas en Google</span><span lang="en">Read reviews on Google</span></a>
+                </div>
+            </aside>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">Cómo cuidar tu tatuaje</span><span lang="en">How to care for your tattoo</span></h2>
+                    <h3 class="tattoo-subheading"><span lang="es">Cura tradicional</span><span lang="en">Traditional healing</span></h3>
+                    <ol class="tattoo-care-steps">
+                        <li><span lang="es"><strong>Retira el papel film dos horas después de hacerte el tatuaje y no vuelvas a taparlo.</strong> Si hemos utilizado otro tipo de protector, sigue el tiempo concreto que te indiquemos antes de salir del estudio.</span><span lang="en"><strong>Remove the cling film two hours after getting the tattoo and don't cover it again.</strong> If we've used another type of protector, follow the specific time we tell you before leaving the studio.</span></li>
+                        <li><span lang="es"><strong>Lávalo con agua y jabón neutro</strong>, siempre con las manos limpias y sin frotar la zona.</span><span lang="en"><strong>Wash it with water and neutral soap</strong>, always with clean hands and without rubbing the area.</span></li>
+                        <li><span lang="es"><strong>Sécalo con papel de cocina y toques suaves.</strong> No arrastres el papel sobre la piel y deja después el tatuaje al aire.</span><span lang="en"><strong>Dry it with kitchen paper and gentle dabs.</strong> Don't drag the paper over the skin and then leave the tattoo to air.</span></li>
+                        <li><span lang="es"><strong>Repite el lavado tres veces al día</strong>, siempre con agua y jabón neutro.</span><span lang="en"><strong>Repeat the wash three times a day</strong>, always with water and neutral soap.</span></li>
+                        <li><span lang="es"><strong>Empieza a utilizar crema específica para tatuajes a partir del tercer día.</strong> Aplica poca cantidad y extiéndela en una capa muy fina.</span><span lang="en"><strong>Start using tattoo-specific cream from the third day.</strong> Apply a small amount and spread it in a very thin layer.</span></li>
+                        <li><span lang="es"><strong>No rasques ni arranques las costras.</strong> Evita el sol y no te bañes en playas o piscinas mientras el tatuaje se cura.</span><span lang="en"><strong>Don't scratch or pick the scabs.</strong> Avoid the sun and don't swim in the sea or pools while the tattoo heals.</span></li>
+                        <li><span lang="es"><strong>No hagas deporte durante la primera semana</strong>, especialmente si provoca sudor, roce o presión sobre la zona tatuada.</span><span lang="en"><strong>Don't do sport during the first week</strong>, especially if it causes sweat, friction or pressure on the tattooed area.</span></li>
+                        <li><span lang="es"><strong>Pregúntanos ante cualquier duda.</strong> Puedes escribirnos o llamarnos durante todo el proceso de curación.</span><span lang="en"><strong>Ask us if you have any doubts.</strong> You can message or call us throughout the healing process.</span></li>
+                    </ol>
+                    <h3 class="tattoo-subheading"><span lang="es">¿Te tatúas en verano?</span><span lang="en">Getting tattooed in summer?</span></h3>
+                    <p><span lang="es">Para algunos tatuajes contamos con un producto de curación resistente al agua que ayuda a proteger la zona y hace más sencillos los cuidados de los primeros días. El día de la sesión te explicaremos si es adecuado para tu tatuaje y cómo debes cuidarlo.</span><span lang="en">For some tattoos we have a water-resistant healing product that helps protect the area and makes the first days' care easier. On the day of the session we'll explain whether it's suitable for your tattoo and how to look after it.</span></p>
+                    <p><span lang="es">En cualquier caso, tendrás que evitar el sol directo mientras la piel se recupera.</span><span lang="en">In any case, you'll need to avoid direct sun while the skin recovers.</span></p>
+                </div>
+            </section>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner">
+                    <h2 class="tattoo-section-title"><span lang="es">Preguntas frecuentes sobre tatuajes</span><span lang="en">Frequently asked questions about tattoos</span></h2>
+                    <div class="faq-accordion">
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Duele mucho hacerse un tatuaje?</span><span lang="en">Does getting a tattoo hurt a lot?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">El dolor depende de la zona, el tamaño y la tolerancia de cada persona. Suele sentirse como una molestia continua y soportable. Si es lo que más te preocupa, cuéntanoslo antes de la sesión y te orientamos sin hacerte el valiente.</span><span lang="en">Pain depends on the area, the size and each person's tolerance. It usually feels like a continuous, bearable discomfort. If it's your main worry, tell us before the session and we'll guide you without making you play the hero.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Cuánto se tarda?</span><span lang="en">How long does it take?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Depende del tamaño, el detalle, el estilo y la zona. Cuando veamos tu idea podremos darte una estimación realista. Como referencia, una sesión completa suele durar entre cuatro y cinco horas.</span><span lang="en">It depends on the size, detail, style and area. Once we see your idea we can give you a realistic estimate. As a reference, a full session usually lasts between four and five hours.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Necesito cita previa?</span><span lang="en">Do I need an appointment?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Sí para los proyectos que necesitan diseño y preparación. También podemos aceptar tatuajes sencillos sin cita cuando hay disponibilidad, pero escribirnos antes te ahorra un paseo en balde.</span><span lang="en">Yes for projects that need design and preparation. We can also take simple tattoos without an appointment when there's availability, but writing first saves you a wasted trip.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Copiáis diseños de internet?</span><span lang="en">Do you copy designs from the internet?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Podemos utilizar una imagen como referencia, pero la adaptamos para crear algo propio y que funcione bien en tu cuerpo. También puedes elegir un diseño disponible de nuestros artistas.</span><span lang="en">We can use an image as a reference, but we adapt it to create something original that works well on your body. You can also choose an available design from our artists.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Cuándo veré el diseño?</span><span lang="en">When will I see the design?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Preparamos el diseño después de reservar la cita y normalmente lo enseñamos unos días antes de tatuar. Si hay que ajustar algún detalle, lo hablamos antes de empezar.</span><span lang="en">We prepare the design after booking the appointment and usually show it a few days before tattooing. If any detail needs adjusting, we discuss it before starting.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Qué es normal durante los primeros días?</span><span lang="en">What's normal during the first few days?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Puede haber algo de enrojecimiento, sensibilidad, calor o ligera inflamación. En algunos tatuajes también aparece costra: déjala tranquila y no la arranques.</span><span lang="en">There may be some redness, sensitivity, warmth or slight swelling. Some tattoos also form scabs: leave them alone and don't pick them.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Cuándo debería pedir ayuda?</span><span lang="en">When should I seek help?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Un dolor intenso o que empeora, pus, fiebre, mal olor o un enrojecimiento que se extiende no forman parte de la evolución habitual. Escríbenos para contarnos qué ocurre y busca atención sanitaria si los síntomas son importantes o empeoran.</span><span lang="en">Intense or worsening pain, pus, fever, bad smell or spreading redness are not part of the usual progression. Message us to tell us what's happening and seek medical attention if the symptoms are serious or worsen.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Puedo utilizar crema anestésica?</span><span lang="en">Can I use numbing cream?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Si te preocupa el dolor, cuéntanoslo antes de la cita. No te apliques ninguna crema anestésica por tu cuenta: el producto, la cantidad, el tiempo y la zona importan. Te ayudaremos a plantear la sesión para que estés lo más cómodo posible y, si quieres valorar un anestésico, consúltalo antes con un médico o farmacéutico.</span><span lang="en">If pain worries you, tell us before the appointment. Don't apply any numbing cream on your own: the product, amount, timing and area all matter. We'll help you plan the session so you're as comfortable as possible and, if you want to consider a numbing agent, check first with a doctor or pharmacist.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Cuánto tarda en curarse?</span><span lang="en">How long does it take to heal?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">La curación superficial suele durar entre dos y tres semanas. La piel puede necesitar entre cuatro y seis semanas para completar el proceso.</span><span lang="en">Surface healing usually takes two to three weeks. The skin may need four to six weeks to complete the process.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Me puedo tatuar en verano?</span><span lang="en">Can I get tattooed in summer?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Sí. Tatuarte en verano no es un problema si puedes cuidar bien la zona durante la curación. Tendrás que evitar el sol directo, el sudor excesivo y el roce sobre el tatuaje. Si sigues la cura tradicional, también deberás esperar a que haya cicatrizado antes de bañarte en el mar o la piscina.</span><span lang="en">Yes. Getting tattooed in summer isn't a problem if you can care for the area well during healing. You'll need to avoid direct sun, excessive sweat and friction on the tattoo. If you follow traditional healing, you'll also need to wait until it has healed before swimming in the sea or pool.</span></p><p><span lang="es">Para algunos tatuajes contamos con un producto de curación resistente al agua que puede hacer más cómodos los primeros días. El día de la sesión te explicaremos si es adecuado para tu caso y qué pautas debes seguir. Eso sí: sea cual sea el método de curación, el sol directo sigue quedándose fuera del plan.</span><span lang="en">For some tattoos we have a water-resistant healing product that can make the first days more comfortable. On the day of the session we'll explain whether it suits your case and what guidelines to follow. That said: whatever the healing method, direct sun stays out of the plan.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Me puedo tatuar si tengo lunares?</span><span lang="en">Can I get tattooed if I have moles?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Sí, pero no tatuamos directamente sobre ellos. Adaptamos el diseño para respetarlos y permitir que puedan seguir controlándose.</span><span lang="en">Yes, but we don't tattoo directly over them. We adapt the design to respect them and allow them to keep being monitored.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Puedo tatuarme durante el embarazo o la lactancia?</span><span lang="en">Can I get tattooed during pregnancy or breastfeeding?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">No recomendamos tatuarse durante el embarazo. Durante la lactancia valoramos cada caso antes de aceptar la reserva.</span><span lang="en">We don't recommend getting tattooed during pregnancy. During breastfeeding we assess each case before accepting the booking.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Puede tatuarse una persona menor de edad?</span><span lang="en">Can a minor get tattooed?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Debe venir presencialmente con su padre, madre o tutor legal y traer la documentación de ambos. El equipo valorará también el proyecto, la zona y si resulta adecuado hacerlo.</span><span lang="en">They must come in person with their parent or legal guardian and bring both parties' ID. The team will also assess the project, the area and whether it's appropriate to do it.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Están incluidos los retoques?</span><span lang="en">Are touch-ups included?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Cuando el tatuaje haya curado, lo revisamos. Si realmente necesita un pequeño retoque, lo hacemos sin coste adicional.</span><span lang="en">Once the tattoo has healed, we review it. If it really needs a small touch-up, we do it at no extra cost.</span></p></div>
+                        </details>
                     </div>
                 </div>
-                <div class="tattoo-info-right">
-                    <h2><span lang="es">Preguntas Frecuentes</span><span lang="en">FAQ</span></h2>
-                    <div class="faq-list">
-                        <button class="faq-item" type="button" data-question="¿Duele mucho hacerse un tatuaje?" data-question-en="Does getting a tattoo hurt a lot?" data-answer="El dolor es subjetivo y depende de la zona, el tamaño del tatuaje y la tolerancia de cada persona. Normalmente se percibe como una molestia continua, totalmente soportable." data-answer-en="Pain is subjective and depends on the area, the size of the tattoo and each person's tolerance. It's usually felt as a continuous discomfort, totally bearable.">
-                            <span><span lang="es">¿Duele mucho hacerse un tatuaje?</span><span lang="en">Does getting a tattoo hurt a lot?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Qué recomendaciones hay para que la sesión sea lo más cómoda posible?" data-question-en="What tips are there for the most comfortable session?" data-answer="Ven descansado, aseado, bien hidratado y habiendo comido. Evita alcohol y drogas al menos 24 horas antes y utiliza ropa cómoda que facilite el acceso a la zona a tatuar." data-answer-en="Come well-rested, clean, well-hydrated and having eaten. Avoid alcohol and drugs at least 24 hours before and wear comfortable clothing that gives easy access to the area being tattooed.">
-                            <span><span lang="es">¿Qué recomendaciones hay para la sesión?</span><span lang="en">Any tips for the session?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Qué síntomas son normales después de un tatuaje?" data-question-en="What symptoms are normal after a tattoo?" data-answer="Enrojecimiento, ligera inflamación, sensación de calor y sensibilidad en la zona durante los primeros días son normales y forman parte del proceso de curación. En tatuajes más agresivos es normal que salga costra y NO hay que quitársela." data-answer-en="Redness, slight swelling, warmth and sensitivity in the area during the first few days are normal and part of the healing process. With more aggressive tattoos it's normal for scabs to form — do NOT pick them off.">
-                            <span><span lang="es">¿Qué síntomas son normales después?</span><span lang="en">What symptoms are normal afterwards?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Puedo ir acompañado?" data-question-en="Can I bring someone with me?" data-answer="Sí, siempre que el espacio lo permita y que no interfiera con el trabajo, la higiene o la comodidad del tatuador y del cliente." data-answer-en="Yes, as long as space allows and it doesn't interfere with the work, hygiene or comfort of the artist and client.">
-                            <span><span lang="es">¿Puedo ir acompañado?</span><span lang="en">Can I bring someone with me?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Cómo sé si mi tatuaje está infectado?" data-question-en="How do I know if my tattoo is infected?" data-answer="Dolor intenso y persistente, pus, fiebre, granitos, mal olor o un enrojecimiento que se extiende no son normales. En ese caso, recomendamos avisarnos." data-answer-en="Intense and persistent pain, pus, fever, spots, bad smell or redness that spreads are not normal. In that case, we recommend letting us know.">
-                            <span><span lang="es">¿Cómo sé si mi tatuaje está infectado?</span><span lang="en">How do I know if my tattoo is infected?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Por qué se infecta un tatuaje?" data-question-en="Why does a tattoo get infected?" data-answer="Un tatuaje puede infectarse cuando bacterias u otros microorganismos entran en la piel durante o después del proceso. Las causas más habituales son una higiene inadecuada, no seguir correctamente los cuidados posteriores, tocar el tatuaje con las manos sucias o exponerlo demasiado pronto a agua, sudor, sol o rozaduras. También puede influir rascarse, arrancar costras o usar cremas no recomendadas. El contacto con animales hace que pueda infectarse con facilidad." data-answer-en="A tattoo can get infected when bacteria or other microorganisms enter the skin during or after the process. The most common causes are inadequate hygiene, not following aftercare instructions correctly, touching the tattoo with dirty hands or exposing it too soon to water, sweat, sun or friction. Scratching, picking scabs or using non-recommended creams can also contribute. Contact with animals can easily cause infection.">
-                            <span><span lang="es">¿Por qué se infecta un tatuaje?</span><span lang="en">Why does a tattoo get infected?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Se puede aplicar crema anestésica antes de tatuarse?" data-question-en="Can numbing cream be applied before tattooing?" data-answer="Solo bajo consulta previa. Debe valorarse la zona y el tipo de tatuaje que se realice. Aún así, usamos cremas anestésicas con orientación previa." data-answer-en="Only after prior consultation. The area and type of tattoo must be assessed. Even so, we use numbing creams with prior guidance.">
-                            <span><span lang="es">¿Se puede aplicar crema anestésica?</span><span lang="en">Can numbing cream be applied?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Cuánto tarda en curarse un tatuaje?" data-question-en="How long does a tattoo take to heal?" data-answer="La curación superficial suele durar entre 2 y 3 semanas. La curación completa de la piel puede tardar entre 4 y 6 semanas." data-answer-en="Surface healing usually takes 2 to 3 weeks. Complete skin healing can take 4 to 6 weeks.">
-                            <span><span lang="es">¿Cuánto tarda en curarse un tatuaje?</span><span lang="en">How long does a tattoo take to heal?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Me puedo tatuar en verano?" data-question-en="Can I get tattooed in summer?" data-answer="Sí, pero requiere cuidados extra: evitar el sol directo, piscinas y mar durante la curación, y proteger bien el tatuaje. Nosotros tenemos material específico que ayuda a tapar el tatuaje del sol y otros factores para una buena curación." data-answer-en="Yes, but it requires extra care: avoid direct sun, pools and the sea during healing, and protect the tattoo well. We have specific materials to help cover the tattoo from sun and other factors for proper healing.">
-                            <span><span lang="es">¿Me puedo tatuar en verano?</span><span lang="en">Can I get tattooed in summer?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Me puedo tatuar si tengo lunares?" data-question-en="Can I get tattooed if I have moles?" data-answer="Sí, pero nunca se tatúan los lunares directamente. El diseño se adapta para respetarlos y permitir su control médico." data-answer-en="Yes, but moles are never tattooed directly. The design is adapted to respect them and allow medical monitoring.">
-                            <span><span lang="es">¿Me puedo tatuar si tengo lunares?</span><span lang="en">Can I get tattooed if I have moles?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Me puedo tatuar si estoy embarazada o en periodo de lactancia?" data-question-en="Can I get tattooed if I'm pregnant or breastfeeding?" data-answer="No recomendamos tatuarse durante el embarazo. En periodo de lactancia se estudia cada caso de forma individual y siempre con asesoramiento previo." data-answer-en="We don't recommend getting tattooed during pregnancy. During breastfeeding, each case is assessed individually and always with prior advice.">
-                            <span><span lang="es">¿Embarazo o lactancia?</span><span lang="en">Pregnancy or breastfeeding?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Puedo donar sangre si llevo tatuajes?" data-question-en="Can I donate blood if I have tattoos?" data-answer="Sí, pero normalmente es necesario esperar un periodo mínimo (habitualmente 4 meses) desde el último tatuaje, según la normativa vigente." data-answer-en="Yes, but you normally need to wait a minimum period (usually 4 months) since the last tattoo, according to current regulations.">
-                            <span><span lang="es">¿Puedo donar sangre si llevo tatuajes?</span><span lang="en">Can I donate blood if I have tattoos?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Puedo hacer deporte después de tatuarme?" data-question-en="Can I exercise after getting tattooed?" data-answer="Se recomienda evitar deporte intenso durante los primeros días, especialmente si hay sudor, roce o contacto directo con la zona tatuada." data-answer-en="It's recommended to avoid intense exercise during the first few days, especially if there's sweat, friction or direct contact with the tattooed area.">
-                            <span><span lang="es">¿Puedo hacer deporte después?</span><span lang="en">Can I exercise afterwards?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Necesito cita previa?" data-question-en="Do I need an appointment?" data-answer="Trabajamos con cita previa en caso de tatuajes que requieran una preparación extensa, para poder ofrecer una atención personalizada y dedicar el tiempo necesario a cada trabajo. También aceptamos walk-ins en el caso de tatuajes que no requieran mucho tiempo de preparación." data-answer-en="We work by appointment for tattoos that require extensive preparation, to offer personalised attention and dedicate the necessary time to each piece. We also accept walk-ins for tattoos that don't require much preparation time.">
-                            <span><span lang="es">¿Necesito cita previa?</span><span lang="en">Do I need an appointment?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                    </div>
+            </section>
+
+            <section class="final-cta has-tattoo-bg">
+                <div class="tattoo-section-inner">
+                    <h2 class="tattoo-section-title"><span lang="es">Vale, ¿qué tienes en mente?</span><span lang="en">Alright, what do you have in mind?</span></h2>
+                    <p><span lang="es">Una idea cerrada, tres capturas de pantalla o una explicación que todavía no sabes muy bien cómo contar. Mándanos lo que tengas y empezamos desde ahí.</span><span lang="en">A finished idea, three screenshots or an explanation you're not quite sure how to put into words. Send us whatever you have and we'll start from there.</span></p>
+                    <a class="btn btn-primary" href="/contacto/?tipo=tatuaje" data-page="contacto" data-tipo="tatuaje"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
                 </div>
             </section>
         </div>
@@ -3037,6 +3191,34 @@ function pageActive($id, $current) {
                 setTimeout(function() { goToStep(2); validateStep2(); }, 250);
             });
         });
+
+        // Preselect the type when arriving from a CTA (?tipo=... or stored intent)
+        function getPreselectTipo() {
+            try {
+                var t = new URLSearchParams(window.location.search).get('tipo');
+                if (t) return t;
+            } catch (e) {}
+            try { return sessionStorage.getItem('kaosTipo'); } catch (e) { return null; }
+        }
+        function applyPreselectType() {
+            if (selectedType) return; // don't override an active choice
+            var t = getPreselectTipo();
+            if (t !== 'tatuaje' && t !== 'piercing') return;
+            try { sessionStorage.removeItem('kaosTipo'); } catch (e) {}
+            var btn = form.querySelector('.form-type-btn[data-type="' + t + '"]');
+            if (btn) btn.click();
+        }
+        // Store the intent before SPA navigation runs (capture phase)
+        document.addEventListener('click', function(e) {
+            var link = e.target.closest && e.target.closest('a[data-tipo]');
+            if (link) {
+                try { sessionStorage.setItem('kaosTipo', link.getAttribute('data-tipo')); } catch (err) {}
+            }
+        }, true);
+        window.addEventListener('pagechange', function(e) {
+            if (e.detail && e.detail.pageId === 'contacto') applyPreselectType();
+        });
+        applyPreselectType();
 
         // "Otra" zone field toggle
         var zonaTatuaje = document.getElementById('zona-tatuaje');

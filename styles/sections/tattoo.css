@@ -200,6 +200,11 @@
     font-weight: 500;
     letter-spacing: 2px;
     position: relative;
+    text-shadow:
+        0 0 10px rgba(212, 165, 116, 0.6),
+        0 0 20px rgba(212, 165, 116, 0.4),
+        0 0 30px rgba(212, 165, 116, 0.2);
+    animation: neonTextGlow 4s ease-in-out infinite;
 }
 
 .process-title::after {
@@ -624,9 +629,14 @@
 
 .tattoo-intro-content h2 {
     font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-    color: var(--text-light);
+    color: var(--accent-light);
     margin-bottom: 1.5rem;
     font-weight: 400;
+    text-shadow:
+        0 0 10px rgba(212, 165, 116, 0.6),
+        0 0 20px rgba(212, 165, 116, 0.4),
+        0 0 30px rgba(212, 165, 116, 0.2);
+    animation: neonTextGlow 4s ease-in-out infinite;
 }
 
 .tattoo-intro-content p {
@@ -929,6 +939,516 @@
     text-align: center;
     color: var(--accent-light);
     font-size: 1.1rem;
+}
+
+/* =====================================================
+   TATTOO PAGE — NEW CONTENT SECTIONS
+   ===================================================== */
+.tattoo-section {
+    position: relative;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(12, 12, 12, 0.96), rgba(20, 20, 20, 0.94));
+}
+
+.tattoo-section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.tattoo-section-title {
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    color: var(--accent-light);
+    text-align: center;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 1.75rem;
+    text-shadow:
+        0 0 10px rgba(212, 165, 116, 0.6),
+        0 0 20px rgba(212, 165, 116, 0.4),
+        0 0 30px rgba(212, 165, 116, 0.2);
+    animation: neonTextGlow 4s ease-in-out infinite;
+}
+
+.tattoo-section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: var(--accent-color);
+    margin: 1rem auto 0;
+}
+
+.tattoo-section-lead {
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+}
+
+.tattoo-section-note {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-top: 2rem;
+    text-align: center;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Prose (text-heavy sections: paragraphs, lists) */
+.tattoo-prose p {
+    color: var(--text-gray);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+}
+
+.tattoo-prose p:last-child {
+    margin-bottom: 0;
+}
+
+/* Style cards grid */
+.tattoo-styles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.tattoo-style-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.85), rgba(42, 42, 42, 0.8));
+    border: 1px solid rgba(212, 165, 116, 0.25);
+    border-radius: 14px;
+    padding: 1.75rem;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tattoo-style-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('../../images/logo_perro-nobackground.webp') center/contain no-repeat;
+    opacity: 0.07;
+    pointer-events: none;
+}
+
+.tattoo-style-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-light);
+    box-shadow: 0 12px 30px rgba(212, 165, 116, 0.18);
+}
+
+.tattoo-style-card h3 {
+    color: var(--accent-color);
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.tattoo-style-card p {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Inline links */
+.tattoo-inline-link {
+    display: inline-block;
+    color: var(--accent-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(212, 165, 116, 0.4);
+    padding-bottom: 2px;
+    margin-right: 1.25rem;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.tattoo-inline-link::after {
+    content: ' \2192';
+}
+
+.tattoo-inline-link:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Artist card — Tailor's photo darkened as background */
+.tattoo-artist-card {
+    position: relative;
+    background:
+        linear-gradient(rgba(10, 10, 10, 0.72), rgba(10, 10, 10, 0.82)),
+        url('../../images/tailor.webp') center 20% / cover;
+    border: 1px solid rgba(212, 165, 116, 0.35);
+    border-radius: 16px;
+    padding: 2.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tattoo-artist-card h3 {
+    color: var(--accent-color);
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.tattoo-artist-card p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+/* Process steps (6-step ordered list) */
+.tattoo-steps {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    counter-reset: none;
+}
+
+.tattoo-step {
+    position: relative;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.6), rgba(42, 42, 42, 0.6));
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    border-radius: 15px;
+    padding: 2.5rem 1.5rem 1.75rem;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tattoo-step::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('../../images/logo_perro-nobackground.webp') center/contain no-repeat;
+    opacity: 0.07;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.tattoo-step:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 25px rgba(212, 165, 116, 0.2);
+}
+
+.tattoo-step-number {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: var(--accent-color);
+    color: #0a0a0a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.tattoo-step h3 {
+    color: var(--accent-color);
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.tattoo-step p {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Bulleted / checklist */
+.tattoo-check-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+}
+
+.tattoo-check-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+.tattoo-check-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* Numbered care steps */
+.tattoo-care-steps {
+    list-style: none;
+    counter-reset: care;
+    padding: 0;
+    margin: 0 0 2rem;
+}
+
+.tattoo-care-steps li {
+    counter-increment: care;
+    position: relative;
+    padding-left: 3rem;
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+}
+
+.tattoo-care-steps li::before {
+    content: counter(care);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background: var(--accent-color);
+    color: #0a0a0a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.tattoo-care-steps li strong {
+    color: var(--text-light);
+}
+
+.tattoo-subheading {
+    color: var(--accent-light);
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 2rem 0 1.25rem;
+}
+
+/* Inline CTA band */
+.inline-cta,
+.final-cta {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(26, 26, 26, 0.92));
+    border-top: 1px solid rgba(212, 165, 116, 0.3);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+}
+
+.inline-cta p,
+.final-cta p {
+    color: var(--text-gray);
+    font-size: 1.2rem;
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto 1.75rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+}
+
+/* Reviews block */
+.reviews-block {
+    display: block;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(26, 26, 26, 0.9));
+    text-align: center;
+}
+
+.reviews-block p {
+    color: var(--text-gray);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.reviews-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--accent-light);
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-shadow:
+        0 0 10px rgba(212, 165, 116, 0.6),
+        0 0 20px rgba(212, 165, 116, 0.4),
+        0 0 30px rgba(212, 165, 116, 0.2);
+    animation: neonTextGlow 4s ease-in-out infinite;
+    transition: color 0.3s ease;
+}
+
+.reviews-link::after {
+    content: ' \2192';
+}
+
+.reviews-link:hover {
+    color: var(--accent-color);
+}
+
+/* FAQ accordion (native details/summary) */
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.faq-details {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.85));
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.faq-details summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.15rem 1.6rem;
+    cursor: pointer;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    list-style: none;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.faq-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-details summary::after {
+    content: '+';
+    color: var(--accent-light);
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.faq-details[open] summary::after {
+    content: '\2212';
+}
+
+.faq-details summary:hover {
+    background: linear-gradient(135deg, rgba(42, 42, 42, 0.95), rgba(26, 26, 26, 0.95));
+}
+
+.faq-details-body {
+    padding: 0 1.6rem 1.4rem;
+}
+
+.faq-details-body p {
+    color: var(--text-gray);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+}
+
+.faq-details-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* Shared textured background (same as the piercing aftercare section).
+   Applied to every section from "Tu idea..." downward, except the artist one. */
+.has-tattoo-bg {
+    position: relative;
+    background: #0a0a0a;
+}
+
+.has-tattoo-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80') center/cover;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.has-tattoo-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(26, 26, 26, 0.9));
+    z-index: 1;
+    pointer-events: none;
+}
+
+.has-tattoo-bg > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive — new tattoo sections */
+@media (max-width: 900px) {
+    .tattoo-styles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tattoo-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .tattoo-section,
+    .reviews-block {
+        padding: 3rem 1.25rem;
+    }
+
+    .tattoo-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .tattoo-artist-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .tattoo-prose p,
+    .tattoo-check-list li,
+    .tattoo-care-steps li {
+        font-size: 1.05rem;
+    }
+
+    .inline-cta,
+    .final-cta {
+        padding: 2.5rem 1.25rem;
+    }
 }
 
 /* Responsive */

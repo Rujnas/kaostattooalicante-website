@@ -2492,78 +2492,265 @@ function pageActive($id, $current) {
                 <div class="piercing-intro-content">
                     <p class="piercing-intro-tagline"><span lang="es">QUE DUELA ES RELATIVO, QUE FAVOREZCA ES UN HECHO</span><span lang="en">PAIN IS RELATIVE, LOOKING GREAT IS A FACT</span></p>
                     <h2><span lang="es">¿Te gustaría hacerte un piercing?</span><span lang="en">Thinking about getting a piercing?</span></h2>
-                    <p><span lang="es">En la realización de los piercing usamos, como material principal en las joyas de primera puesta, acero quirúrgico y titanio grado implante. Este tipo de metal es biocompatible, por lo que el cuerpo lo asimila mejor, favoreciendo la cicatrización en menos tiempo y evitando posibles rechazo del cuerpo. También estamos encantados de hacerte un seguimiento de tu perforación para una buena curación y cicatrización del mismo.</span><span lang="en">For our piercings we use surgical steel and implant-grade titanium as the main materials for initial jewellery. These metals are biocompatible, so your body adapts better, promoting faster healing and avoiding possible rejection. We're also happy to follow up on your piercing to ensure proper healing and scarring.</span></p>
+                    <p><span lang="es">Puede que sepas exactamente qué piercing quieres o que solo tengas clara la zona. Da igual: La Greka te ayudará a encontrar una colocación y una joya que encajen contigo y, lo más importante, con tu anatomía.</span><span lang="en">You may know exactly which piercing you want or just have the area in mind. Either way: La Greka will help you find a placement and a piece of jewellery that suit you and, most importantly, your anatomy.</span></p>
+                    <p><span lang="es">Antes de perforar miramos, preguntamos y te explicamos lo que vamos a hacer. Nada de elegir una pieza bonita, pinchar y hasta luego. Queremos que salgas con un piercing que te favorezca y sabiendo cómo cuidarlo desde el primer día.</span><span lang="en">Before piercing we look, ask questions and explain what we're going to do. No picking a pretty piece, piercing and goodbye. We want you to leave with a piercing that flatters you and knowing how to care for it from day one.</span></p>
+                    <a class="btn btn-primary" href="/contacto/?tipo=piercing" data-page="contacto" data-tipo="piercing"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
                 </div>
             </section>
 
-            <section class="piercing-info-split">
-                <div class="piercing-info-left">
-                    <h2><span lang="es">Cómo cuidar tu Piercing</span><span lang="en">Piercing Aftercare</span></h2>
-                    <div class="piercing-care-images">
-                        <div class="care-image-card" data-image="images/COMO CURAR TATTOO O PIERCING/PIERCINGESP.webp" data-title="Cuidados del piercing (Español)">
-                            <img src="images/COMO CURAR TATTOO O PIERCING/PIERCINGESP.webp" alt="Cuidados del piercing en español">
-                            <span class="care-image-label"><span lang="es">Español</span><span lang="en">Spanish</span></span>
-                            <span class="tap-hint" aria-hidden="true">👆</span>
-                        </div>
-                        <div class="care-image-card" data-image="images/COMO CURAR TATTOO O PIERCING/piercingseng.webp" data-title="Piercing Aftercare (English)">
-                            <img src="images/COMO CURAR TATTOO O PIERCING/piercingseng.webp" alt="Piercing aftercare in English">
-                            <span class="care-image-label">English</span>
-                            <span class="tap-hint" aria-hidden="true">👆</span>
-                        </div>
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner">
+                    <h2 class="tattoo-section-title"><span lang="es">¿Dónde te lo quieres hacer?</span><span lang="en">Where do you want it?</span></h2>
+                    <p class="tattoo-section-lead"><span lang="es">Trabajamos piercings en distintas zonas del cuerpo. La lista es larga; la decisión final siempre depende de que la colocación resulte adecuada para tu anatomía.</span><span lang="en">We do piercings on different parts of the body. The list is long; the final decision always depends on whether the placement is suitable for your anatomy.</span></p>
+                    <div class="tattoo-styles-grid">
+                        <article class="tattoo-style-card">
+                            <h3><span lang="es">Oreja</span><span lang="en">Ear</span></h3>
+                            <p><span lang="es">Lóbulo, upper lobe, transverse lobe, helix, flat, rook, daith, conch, tragus, anti-tragus, snug e industrial.</span><span lang="en">Lobe, upper lobe, transverse lobe, helix, flat, rook, daith, conch, tragus, anti-tragus, snug and industrial.</span></p>
+                        </article>
+                        <article class="tattoo-style-card">
+                            <h3><span lang="es">Nariz, ceja y rostro</span><span lang="en">Nose, eyebrow and face</span></h3>
+                            <p><span lang="es">Nostril, high nostril, double nostril, paired nostril, septum, bridge y eyebrow.</span><span lang="en">Nostril, high nostril, double nostril, paired nostril, septum, bridge and eyebrow.</span></p>
+                        </article>
+                        <article class="tattoo-style-card">
+                            <h3><span lang="es">Labios y boca</span><span lang="en">Lips and mouth</span></h3>
+                            <p><span lang="es">Labret, vertical labret, Ashley, jestrum, medusa o philtrum, Monroe, Madonna, dahlia, snake bites, spider bites, shark bites, canine bites, angel fangs, cyber bites, dolphin bites, tongue, venom y snake eyes.</span><span lang="en">Labret, vertical labret, Ashley, jestrum, medusa or philtrum, Monroe, Madonna, dahlia, snake bites, spider bites, shark bites, canine bites, angel fangs, cyber bites, dolphin bites, tongue, venom and snake eyes.</span></p>
+                        </article>
+                        <article class="tattoo-style-card">
+                            <h3><span lang="es">Cuerpo</span><span lang="en">Body</span></h3>
+                            <p><span lang="es">Nipple horizontal o vertical, navel, floating navel, inverse o reverse navel, double navel y surface.</span><span lang="en">Horizontal or vertical nipple, navel, floating navel, inverse or reverse navel, double navel and surface.</span></p>
+                        </article>
+                    </div>
+                    <p class="tattoo-section-note"><span lang="es">No realizamos perforaciones genitales ni piercings a bebés o menores de 14 años. Entre los 14 y los 17, la persona debe venir con su padre, madre o tutor legal y presentar la documentación de ambos.</span><span lang="en">We do not perform genital piercings or piercings on babies or under-14s. Between 14 and 17, the person must come with a parent or legal guardian and present both parties' ID.</span></p>
+                </div>
+            </section>
+
+            <section class="tattoo-section">
+                <div class="tattoo-section-inner">
+                    <h2 class="tattoo-section-title"><span lang="es">La Greka: buen pulso y mejor rollo</span><span lang="en">La Greka: steady hands and great vibes</span></h2>
+                    <article class="piercing-artist-card">
+                        <h3>La Greka</h3>
+                        <p><span lang="es">La Greka lleva alrededor de cinco años dedicada al piercing. Se formó directamente con un profesional con más de veinte años de trayectoria y sigue actualizándose para no quedarse quieta mientras el oficio avanza.</span><span lang="en">La Greka has been dedicated to piercing for around five years. She trained directly under a professional with over twenty years of experience and keeps updating her skills so she doesn't stand still while the craft moves forward.</span></p>
+                        <p><span lang="es">Está especializada en piercings de oreja y ombligo, y presta mucha atención a la anatomía, la colocación y la joya inicial. Quienes se ponen en sus manos suelen recordar también el trato y el humor: la aguja dura un momento; el buen ambiente ayuda bastante más.</span><span lang="en">She specialises in ear and navel piercings and pays close attention to anatomy, placement and the initial jewellery. Those who put themselves in her hands also tend to remember the care and the humour: the needle lasts a moment; the good vibes help a lot more.</span></p>
+                        <a class="tattoo-inline-link" href="/anilladora/#portfolio-greka" data-page="portfolio-greka"><span lang="es">Ver los trabajos de La Greka</span><span lang="en">See La Greka's work</span></a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">Tu anatomía manda</span><span lang="en">Your anatomy calls the shots</span></h2>
+                    <p><span lang="es">Una foto de Pinterest puede quedar increíble en otra persona y no tener sentido en tu oreja, tu ombligo o tu nariz. Antes de hacer nada revisamos la forma y el tejido de la zona para comprobar si esa colocación puede funcionar contigo.</span><span lang="en">A Pinterest photo can look amazing on someone else and make no sense on your ear, navel or nose. Before doing anything we check the shape and tissue of the area to see whether that placement can work for you.</span></p>
+                    <p><span lang="es">Si no es adecuada, te explicaremos por qué y buscaremos una alternativa. Y si no hay una opción que nos convenza, preferimos decirte que no. Hacer un piercing porque sí es rápido; hacerlo con criterio es otra historia.</span><span lang="en">If it's not suitable, we'll explain why and look for an alternative. And if there's no option we're convinced by, we'd rather say no. Doing a piercing just because is quick; doing it with good judgement is another story.</span></p>
+                </div>
+            </section>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">La primera joya no se elige solo porque sea bonita</span><span lang="en">The first jewellery isn't chosen just because it's pretty</span></h2>
+                    <p><span lang="es">La pieza inicial tiene que encajar con la zona, dejar espacio para la evolución de la perforación y estar preparada para una primera puesta. Por eso, al hacer el piercing solo utilizamos joyería del estudio: sabemos qué material es, de dónde viene y cómo se ha preparado.</span><span lang="en">The initial piece must fit the area, leave room for the piercing to evolve and be ready for a first wear. That's why we only use studio jewellery when performing the piercing: we know what material it is, where it comes from and how it was prepared.</span></p>
+                    <ul class="tattoo-check-list">
+                        <li><span lang="es">La joya inicial está incluida en el precio.</span><span lang="en">The initial jewellery is included in the price.</span></li>
+                        <li><span lang="es">Puedes elegir acero quirúrgico esterilizado o titanio de grado implante.</span><span lang="en">You can choose sterilised surgical steel or implant-grade titanium.</span></li>
+                        <li><span lang="es">La opción de titanio tiene un suplemento de 7&nbsp;€.</span><span lang="en">The titanium option has a supplement of €7.</span></li>
+                        <li><span lang="es">Te ayudamos a escoger una pieza adecuada para el piercing y para tu anatomía.</span><span lang="en">We help you choose a piece suited to the piercing and your anatomy.</span></li>
+                    </ul>
+                    <p><span lang="es">Para un cambio posterior puedes traer una joya propia. La revisaremos antes para comprobar si el material, el tamaño y la forma son adecuados.</span><span lang="en">For a later change you can bring your own jewellery. We'll check it first to confirm the material, size and shape are suitable.</span></p>
+                </div>
+            </section>
+
+            <aside class="inline-cta has-tattoo-bg" aria-label="Contacto para piercing">
+                <p><span lang="es">¿Ya tienes clara la zona? El nombre raro del piercing lo ponemos nosotros.</span><span lang="en">Already sure about the area? We'll handle the fancy piercing name.</span></p>
+                <a class="btn btn-primary" href="/contacto/?tipo=piercing" data-page="contacto" data-tipo="piercing"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
+            </aside>
+
+            <section class="tattoo-process has-tattoo-bg">
+                <div class="process-container">
+                    <h2 class="process-title"><span lang="es">Así funciona hacerse un piercing en Kaos Tattoo</span><span lang="en">How getting a piercing works at Kaos Tattoo</span></h2>
+                    <ol class="tattoo-steps">
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">1</span>
+                            <h3><span lang="es">Cuéntanos qué zona tienes en mente</span><span lang="en">Tell us what area you have in mind</span></h3>
+                            <p><span lang="es">Abre el formulario con Piercing ya seleccionado. Si no conoces el nombre exacto o dudas entre varias opciones, explícanos dónde te gustaría llevarlo.</span><span lang="en">Open the form with Piercing already selected. If you don't know the exact name or are torn between options, just tell us where you'd like it.</span></p>
+                        </li>
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">2</span>
+                            <h3><span lang="es">Te orientamos antes de venir</span><span lang="en">We guide you before you come</span></h3>
+                            <p><span lang="es">Resolvemos las primeras dudas sobre la colocación, la joya y el material. Si vas a viajar a Alicante, podemos organizarlo contigo en inglés antes de que llegues.</span><span lang="en">We answer your first questions about placement, jewellery and material. If you're travelling to Alicante, we can organise it with you in English before you arrive.</span></p>
+                        </li>
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">3</span>
+                            <h3><span lang="es">Reserva o pásate por el estudio</span><span lang="en">Book or drop by the studio</span></h3>
+                            <p><span lang="es">Trabajamos con cita y también atendemos sin ella cuando hay disponibilidad. Si reservas, la visita queda cerrada cuando recibes nuestra confirmación.</span><span lang="en">We work with appointments and also take walk-ins when there's availability. If you book, the visit is confirmed when you receive our confirmation.</span></p>
+                        </li>
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">4</span>
+                            <h3><span lang="es">Valoramos la anatomía</span><span lang="en">We assess your anatomy</span></h3>
+                            <p><span lang="es">Ya en el estudio, La Greka revisa la zona y confirma la colocación. Si hace falta cambiar el planteamiento, te explica las alternativas antes de empezar.</span><span lang="en">Once at the studio, La Greka checks the area and confirms the placement. If the approach needs changing, she explains the alternatives before starting.</span></p>
+                        </li>
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">5</span>
+                            <h3><span lang="es">Elegimos la pieza y perforamos</span><span lang="en">We choose the piece and pierce</span></h3>
+                            <p><span lang="es">Revisamos contigo la posición y la joya inicial, resolvemos las últimas dudas y preparamos el material. Solo entonces toca aguja.</span><span lang="en">We go over the position and the initial jewellery with you, answer the last questions and prepare the material. Only then does the needle come out.</span></p>
+                        </li>
+                        <li class="tattoo-step">
+                            <span class="tattoo-step-number">6</span>
+                            <h3><span lang="es">Te llevas cuidados y seguimiento</span><span lang="en">You leave with aftercare and follow-up</span></h3>
+                            <p><span lang="es">Al terminar te explicamos los cuidados y te damos un pequeño kit con las instrucciones y una muestra de suero fisiológico. También recomendamos una revisión aproximadamente un mes después.</span><span lang="en">When we're done we explain the aftercare and give you a small kit with instructions and a saline solution sample. We also recommend a check-up roughly a month later.</span></p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">Precios claros antes de perforar</span><span lang="en">Clear prices before piercing</span></h2>
+                    <p><span lang="es">El precio depende de la zona y de la joya elegida. Si hay alguna particularidad, te la explicamos antes de hacer nada.</span><span lang="en">The price depends on the area and the chosen jewellery. If there's anything unusual, we'll explain it before doing anything.</span></p>
+                    <ul class="tattoo-check-list">
+                        <li><span lang="es">Piercings de oreja y nostril: desde 20&nbsp;€ el primero.</span><span lang="en">Ear and nostril piercings: from €20 for the first.</span></li>
+                        <li><span lang="es">Piercings adicionales en la misma visita: desde 15&nbsp;€ cada uno.</span><span lang="en">Additional piercings in the same visit: from €15 each.</span></li>
+                        <li><span lang="es">Otras zonas: hasta 30&nbsp;€, según la perforación.</span><span lang="en">Other areas: up to €30, depending on the piercing.</span></li>
+                        <li><span lang="es">Snake eyes: 40&nbsp;€.</span><span lang="en">Snake eyes: €40.</span></li>
+                        <li><span lang="es">Titanio de grado implante: suplemento de 7&nbsp;€.</span><span lang="en">Implant-grade titanium: €7 supplement.</span></li>
+                    </ul>
+                    <p><span lang="es">La joya inicial está incluida. Puedes reservar para asegurar una hora o venir sin cita; en ese caso te atenderemos por orden de llegada y según la disponibilidad de La Greka.</span><span lang="en">The initial jewellery is included. You can book to secure a time or come without an appointment; in that case we'll serve you on a first-come basis depending on La Greka's availability.</span></p>
+                </div>
+            </section>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">Durante tu piercing</span><span lang="en">During your piercing</span></h2>
+                    <p><span lang="es">Antes de empezar comprobamos de nuevo la zona, marcamos la colocación y la revisamos contigo. No hay prisa por llegar a la aguja: primero tienes que entender qué vamos a hacer y verte bien con la posición.</span><span lang="en">Before starting we check the area again, mark the placement and go over it with you. There's no rush to get to the needle: first you need to understand what we're going to do and feel good about the position.</span></p>
+                    <p><span lang="es">Preparamos y desinfectamos el puesto para cada persona y utilizamos agujas y material estéril y de un solo uso. La joya inicial también se esteriliza antes de colocarla. Tú solo tienes que respirar; La Greka se encarga del resto.</span><span lang="en">We prepare and disinfect the station for each person and use sterile, single-use needles and materials. The initial jewellery is also sterilised before placement. You just need to breathe; La Greka takes care of the rest.</span></p>
+                </div>
+            </section>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">Sales con un piercing. No te dejamos a tu suerte.</span><span lang="en">You leave with a piercing. We don't leave you on your own.</span></h2>
+                    <p><span lang="es">Puedes escribirnos o llamarnos durante toda la cicatrización, mandarnos una foto si algo te genera dudas o pasar por el estudio para que lo revisemos. Aproximadamente al mes recomendamos comprobar cómo evoluciona y, cuando llegue el momento, también podemos ayudarte con el cambio de joya o cualquier ajuste.</span><span lang="en">You can message or call us throughout the healing process, send us a photo if something worries you or stop by the studio for us to check it. Around the one-month mark we recommend checking how it's evolving and, when the time comes, we can also help with the jewellery change or any adjustment.</span></p>
+                    <p><span lang="es">Si después de la cita vuelves a tu país, el seguimiento puede continuar por WhatsApp o llamada. La distancia no cura el piercing, pero tampoco nos impide echarle un ojo.</span><span lang="en">If you head back to your country after the appointment, follow-up can continue via WhatsApp or phone. Distance doesn't heal the piercing, but it doesn't stop us keeping an eye on it either.</span></p>
+                </div>
+            </section>
+
+            <aside class="reviews-block has-tattoo-bg" aria-label="Reseñas">
+                <div class="tattoo-section-inner">
+                    <h2 class="tattoo-section-title"><span lang="es">Más de 200 reseñas nos avalan</span><span lang="en">Over 200 reviews back us up</span></h2>
+                    <p><span lang="es">No lo decimos solo nosotros. Más de 200 reseñas en Google respaldan el trabajo de Kaos Tattoo y una forma de atender que busca que quieras volver, aunque sepamos que la primera visita llevaba aguja.</span><span lang="en">We're not the only ones saying it. Over 200 Google reviews back Kaos Tattoo's work and a way of caring that makes you want to come back, even though we know the first visit involved a needle.</span></p>
+                    <a class="reviews-link" href="https://www.google.com/searchviewer/10?svid=CAwSHRIbCgNwdnESFENnMHZaeTh4TVhCM01YaGlkREV3GAo" target="_blank" rel="noopener noreferrer"><span lang="es">Leer reseñas en Google</span><span lang="en">Read reviews on Google</span></a>
+                </div>
+            </aside>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner tattoo-prose">
+                    <h2 class="tattoo-section-title"><span lang="es">Cómo cuidar tu piercing</span><span lang="en">How to care for your piercing</span></h2>
+                    <ol class="tattoo-care-steps">
+                        <li><span lang="es"><strong>Lávate siempre las manos antes de tocar la zona.</strong> Limpia el piercing dos veces al día: por la mañana y por la noche.</span><span lang="en"><strong>Always wash your hands before touching the area.</strong> Clean the piercing twice a day: morning and evening.</span></li>
+                        <li><span lang="es"><strong>Lava primero con agua y jabón neutro.</strong> Después utiliza clorhexidina al 1&nbsp;% o suero fisiológico, según la indicación de La Greka. No utilices los dos productos a la vez.</span><span lang="en"><strong>Wash first with water and neutral soap.</strong> Then use 1% chlorhexidine or saline solution, as indicated by La Greka. Don't use both products at the same time.</span></li>
+                        <li><span lang="es"><strong>Seca bien la zona con gasas estériles</strong>, con cuidado y sin arrastrar la gasa sobre la perforación.</span><span lang="en"><strong>Dry the area well with sterile gauze</strong>, carefully and without dragging the gauze over the piercing.</span></li>
+                        <li><span lang="es"><strong>Durante las dos primeras semanas, no muevas ni toques la joya salvo durante la limpieza</strong> y siempre con las manos limpias.</span><span lang="en"><strong>During the first two weeks, don't move or touch the jewellery except during cleaning</strong> and always with clean hands.</span></li>
+                        <li><span lang="es"><strong>Evita la presión y los golpes</strong> sobre la zona perforada.</span><span lang="en"><strong>Avoid pressure and knocks</strong> on the pierced area.</span></li>
+                        <li><span lang="es"><strong>No utilices otros productos</strong> distintos del suero fisiológico o la clorhexidina indicada.</span><span lang="en"><strong>Don't use other products</strong> apart from saline solution or the indicated chlorhexidine.</span></li>
+                        <li><span lang="es"><strong>Evita playas, piscinas y deporte durante las dos primeras semanas.</strong> Reduce también la humedad, el sudor y el roce sobre la zona.</span><span lang="en"><strong>Avoid beaches, pools and sport during the first two weeks.</strong> Also reduce moisture, sweat and friction on the area.</span></li>
+                        <li><span lang="es"><strong>No cambies la pieza sin una revisión profesional previa.</strong> Que parezca curado por fuera no significa que haya terminado de cicatrizar por dentro.</span><span lang="en"><strong>Don't change the piece without a prior professional check.</strong> Looking healed on the outside doesn't mean it's finished healing on the inside.</span></li>
+                        <li><span lang="es"><strong>Pregúntanos ante cualquier duda.</strong> Puedes escribirnos, llamarnos o venir al estudio para que revisemos cómo evoluciona.</span><span lang="en"><strong>Ask us if you have any doubts.</strong> You can message us, call us or visit the studio so we can check how it's evolving.</span></li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="tattoo-section has-tattoo-bg">
+                <div class="tattoo-section-inner">
+                    <h2 class="tattoo-section-title"><span lang="es">Preguntas frecuentes sobre piercing</span><span lang="en">Frequently asked questions about piercings</span></h2>
+                    <div class="faq-accordion">
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Duele mucho hacerse un piercing?</span><span lang="en">Does getting a piercing hurt a lot?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">La sensación es rápida y puntual. Depende de la zona y de la sensibilidad de cada persona, pero normalmente dura solo unos segundos. La Greka te explica cada paso antes de empezar para que no haya sustos de última hora.</span><span lang="en">The sensation is quick and brief. It depends on the area and each person's sensitivity, but it usually only lasts a few seconds. La Greka explains every step before starting so there are no last-minute surprises.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Qué material utilizáis para la joya inicial?</span><span lang="en">What material do you use for the initial jewellery?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Puedes elegir entre acero quirúrgico esterilizado y titanio de grado implante. La pieza está incluida y la opción de titanio tiene un suplemento de 7&nbsp;€.</span><span lang="en">You can choose between sterilised surgical steel and implant-grade titanium. The piece is included and the titanium option has a supplement of €7.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Puedo traer mi propia joya?</span><span lang="en">Can I bring my own jewellery?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">No para una primera puesta. Cuando el piercing haya cicatrizado, podemos revisar una pieza que traigas y decirte si resulta adecuada para el cambio.</span><span lang="en">Not for an initial piercing. Once the piercing has healed, we can check a piece you bring and tell you if it's suitable for the change.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Qué pasa si mi anatomía no permite el piercing que quiero?</span><span lang="en">What if my anatomy doesn't allow the piercing I want?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Te explicaremos el motivo y buscaremos otra colocación. Si no hay una alternativa que consideremos adecuada, preferimos no hacer la perforación.</span><span lang="en">We'll explain the reason and look for another placement. If there's no alternative we consider suitable, we'd rather not do the piercing.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Cuánto tarda en curarse un piercing?</span><span lang="en">How long does a piercing take to heal?</span></summary>
+                            <div class="faq-details-body">
+                                <p><span lang="es">Que parezca curado por fuera no significa que lo esté por dentro. Estos tiempos son orientativos y pueden cambiar según la zona y cada persona.</span><span lang="en">Looking healed on the outside doesn't mean it is on the inside. These times are approximate and can vary depending on the area and each person.</span></p>
+                                <div class="piercing-heal-table-wrap">
+                                    <table class="piercing-heal-table">
+                                        <thead>
+                                            <tr>
+                                                <th><span lang="es">Zona</span><span lang="en">Area</span></th>
+                                                <th><span lang="es">Curación inicial</span><span lang="en">Initial healing</span></th>
+                                                <th><span lang="es">Cicatrización completa</span><span lang="en">Full scarring</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td><span lang="es">Lóbulo</span><span lang="en">Lobe</span></td><td>6–8 <span lang="es">semanas</span><span lang="en">weeks</span></td><td>3 <span lang="es">meses</span><span lang="en">months</span></td></tr>
+                                            <tr><td><span lang="es">Helix o tragus</span><span lang="en">Helix or tragus</span></td><td>3–4 <span lang="es">meses</span><span lang="en">months</span></td><td>6–9 <span lang="es">meses</span><span lang="en">months</span></td></tr>
+                                            <tr><td><span lang="es">Conch, rook o daith</span><span lang="en">Conch, rook or daith</span></td><td>4–6 <span lang="es">meses</span><span lang="en">months</span></td><td>9–12 <span lang="es">meses</span><span lang="en">months</span></td></tr>
+                                            <tr><td>Industrial</td><td>6–8 <span lang="es">meses</span><span lang="en">months</span></td><td>12–18 <span lang="es">meses</span><span lang="en">months</span></td></tr>
+                                            <tr><td><span lang="es">Nariz</span><span lang="en">Nose</span></td><td>2–3 <span lang="es">meses</span><span lang="en">months</span></td><td>4–6 <span lang="es">meses</span><span lang="en">months</span></td></tr>
+                                            <tr><td>Septum</td><td>6–8 <span lang="es">semanas</span><span lang="en">weeks</span></td><td>3–4 <span lang="es">meses</span><span lang="en">months</span></td></tr>
+                                            <tr><td><span lang="es">Labio o medusa</span><span lang="en">Lip or medusa</span></td><td>6–8 <span lang="es">semanas</span><span lang="en">weeks</span></td><td>3–4 <span lang="es">meses</span><span lang="en">months</span></td></tr>
+                                            <tr><td><span lang="es">Lengua</span><span lang="en">Tongue</span></td><td>2–4 <span lang="es">semanas</span><span lang="en">weeks</span></td><td>6–8 <span lang="es">semanas</span><span lang="en">weeks</span></td></tr>
+                                            <tr><td><span lang="es">Pezón</span><span lang="en">Nipple</span></td><td>4–6 <span lang="es">meses</span><span lang="en">months</span></td><td>9–12 <span lang="es">meses</span><span lang="en">months</span></td></tr>
+                                            <tr><td><span lang="es">Ombligo</span><span lang="en">Navel</span></td><td>6–9 <span lang="es">meses</span><span lang="en">months</span></td><td>12 <span lang="es">meses</span><span lang="en">months</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Qué debo tener en cuenta antes de hacérmelo?</span><span lang="en">What should I keep in mind before getting it?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Ven descansado, aseado, bien hidratado y habiendo comido. Evita el alcohol y las drogas antes de la perforación y cuéntanos cualquier condición médica relevante.</span><span lang="en">Come well-rested, clean, well-hydrated and having eaten. Avoid alcohol and drugs before the piercing and tell us about any relevant medical condition.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Qué síntomas son normales al principio?</span><span lang="en">What symptoms are normal at the start?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Puede haber algo de enrojecimiento, inflamación, picor, sensibilidad, calor o secreción transparente durante los primeros días. Si algo te genera dudas, escríbenos o ven al estudio para que podamos verlo.</span><span lang="en">There may be some redness, swelling, itching, sensitivity, warmth or clear discharge during the first few days. If anything worries you, message us or visit the studio so we can take a look.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Cuándo debería pedir ayuda?</span><span lang="en">When should I seek help?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Un dolor intenso, pus espeso o amarillento, mal olor, fiebre, una inflamación exagerada o una joya que se está incrustando necesitan atención. No retires la pieza por tu cuenta: contacta con nosotros y busca atención sanitaria si los síntomas son importantes o empeoran.</span><span lang="en">Intense pain, thick or yellowish pus, bad smell, fever, excessive swelling or jewellery embedding need attention. Don't remove the piece yourself: contact us and seek medical attention if the symptoms are serious or worsen.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Puedo bañarme en playas o piscinas?</span><span lang="en">Can I swim at the beach or pool?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Evítalo durante las dos primeras semanas y hasta que La Greka confirme que la evolución permite hacerlo.</span><span lang="en">Avoid it during the first two weeks and until La Greka confirms the progress allows it.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Puedo hacer deporte después?</span><span lang="en">Can I exercise afterwards?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Evita el deporte durante las dos primeras semanas, sobre todo si implica sudor, golpes, presión o roce sobre la zona.</span><span lang="en">Avoid sport during the first two weeks, especially if it involves sweat, knocks, pressure or friction on the area.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Cuándo puedo cambiar la joya?</span><span lang="en">When can I change the jewellery?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">No la cambies solo porque el piercing parezca curado por fuera. Pide una revisión para comprobar la cicatrización y elegir una pieza adecuada.</span><span lang="en">Don't change it just because the piercing looks healed on the outside. Ask for a check-up to verify healing and choose a suitable piece.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Necesito cita previa?</span><span lang="en">Do I need an appointment?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">No es obligatorio. Trabajamos con cita y también atendemos sin ella cuando hay disponibilidad. Si reservas, espera nuestra confirmación; si vienes directamente, te atenderemos por orden de llegada.</span><span lang="en">It's not mandatory. We work with appointments and also take walk-ins when there's availability. If you book, wait for our confirmation; if you come directly, we'll serve you on a first-come basis.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Hacéis revisiones después?</span><span lang="en">Do you do follow-up check-ups?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">Sí. Recomendamos una revisión aproximadamente un mes después y también podemos ayudarte con cambios de joyería o ajustes. Escríbenos, llámanos o pásate por el estudio.</span><span lang="en">Yes. We recommend a check-up roughly a month later and can also help with jewellery changes or adjustments. Message us, call us or stop by the studio.</span></p></div>
+                        </details>
+                        <details class="faq-details">
+                            <summary><span lang="es">¿Puede hacerse un piercing una persona menor de edad?</span><span lang="en">Can a minor get a piercing?</span></summary>
+                            <div class="faq-details-body"><p><span lang="es">No realizamos piercings a bebés ni a menores de 14 años. Entre los 14 y los 17, la persona debe acudir con su padre, madre o tutor legal y presentar la documentación de ambos. La Greka valorará también la zona y si resulta apropiado hacerlo.</span><span lang="en">We don't do piercings on babies or under-14s. Between 14 and 17, the person must come with a parent or legal guardian and present both parties' ID. La Greka will also assess the area and whether it's appropriate to do it.</span></p></div>
+                        </details>
                     </div>
                 </div>
-                <div class="piercing-info-right">
-                    <h2><span lang="es">Preguntas Frecuentes</span><span lang="en">FAQ</span></h2>
-                    <div class="faq-list">
-                        <button class="faq-item" type="button" data-question="¿Duele mucho hacerse un piercing?" data-answer="La sensación es rápida y puntual. El dolor depende de la zona y de la sensibilidad de cada persona, pero suele ser leve y dura solo unos segundos." data-question-en="Does getting a piercing hurt a lot?" data-answer-en="The sensation is quick and brief. Pain depends on the area and each person's sensitivity, but it's usually mild and only lasts a few seconds.">
-                            <span><span lang="es">¿Duele mucho hacerse un piercing?</span><span lang="en">Does getting a piercing hurt a lot?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Es seguro hacerse un piercing?" data-answer="Sí, siempre que se realice en un estudio profesional, con material estéril y siguiendo los protocolos de higiene y seguridad adecuados." data-question-en="Is it safe to get a piercing?" data-answer-en="Yes, as long as it's done in a professional studio, with sterile materials and following proper hygiene and safety protocols.">
-                            <span><span lang="es">¿Es seguro hacerse un piercing?</span><span lang="en">Is it safe to get a piercing?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Qué material usáis para hacer los piercings?" data-answer="Trabajamos con joyería de titanio de grado implante, acero quirúrgico o materiales biocompatibles, seguros para el cuerpo y adecuados para primeras puestas." data-question-en="What materials do you use for piercings?" data-answer-en="We work with implant-grade titanium jewellery, surgical steel or biocompatible materials, safe for the body and suitable for initial piercings.">
-                            <span><span lang="es">¿Qué material usáis para los piercings?</span><span lang="en">What materials do you use for piercings?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Cuánto tarda en curarse un piercing?" data-answer="Una cosa es que cure y otra que cicatrice, por eso es recomendable un seguimiento del anillador para cada perforación. Aunque externamente parezca curado, el interior necesita más tiempo. Tiempos aproximados: Lóbulo 6-8 semanas (cicatrización 3 meses), Hélix/Tragus 3-4 meses (cicatrización 6-9 meses), Conch/Rook/Daith 4-6 meses (cicatrización 9-12 meses), Industrial 6-8 meses (cicatrización 12-18 meses), Nariz 2-3 meses (cicatrización 4-6 meses), Septum 6-8 semanas (cicatrización 3-4 meses), Labio/Medusa 6-8 semanas (cicatrización 3-4 meses), Lengua 2-4 semanas (cicatrización 6-8 semanas), Pezón 4-6 meses (cicatrización 9-12 meses), Ombligo 6-9 meses (cicatrización 12 meses)." data-question-en="How long does a piercing take to heal?" data-answer-en="One thing is healing and another is scarring, which is why follow-up with the piercer is recommended for each piercing. Even if it looks healed on the outside, the inside needs more time. Approximate times: Lobe 6-8 weeks (scarring 3 months), Helix/Tragus 3-4 months (scarring 6-9 months), Conch/Rook/Daith 4-6 months (scarring 9-12 months), Industrial 6-8 months (scarring 12-18 months), Nose 2-3 months (scarring 4-6 months), Septum 6-8 weeks (scarring 3-4 months), Lip/Medusa 6-8 weeks (scarring 3-4 months), Tongue 2-4 weeks (scarring 6-8 weeks), Nipple 4-6 months (scarring 9-12 months), Navel 6-9 months (scarring 12 months).">
-                            <span><span lang="es">¿Cuánto tarda en curarse un piercing?</span><span lang="en">How long does a piercing take to heal?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Cómo debo cuidarme el piercing después de la perforación?" data-answer="Es fundamental mantener la zona limpia, realizar curas mañanas y noches con suero fisiológico o clorhexidina indicada por el anillador (ambas juntas no) durante dos semanas. Secar bien con gasas estériles, evitar tocarlo o moverlo con las manos sucias y no cambiar la joya antes de tiempo. Evitar presión en la zona, golpes y exceso de humedad o sudor." data-question-en="How should I care for my piercing after the procedure?" data-answer-en="It's essential to keep the area clean, clean it morning and evening with saline solution or chlorhexidine as indicated by the piercer (not both together) for two weeks. Dry well with sterile gauze, avoid touching or moving it with dirty hands and don't change the jewellery too early. Avoid pressure on the area, knocks and excess moisture or sweat.">
-                            <span><span lang="es">¿Cómo debo cuidarme el piercing?</span><span lang="en">How should I care for my piercing?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Debo tener en cuenta algo antes de hacerme el piercing?" data-answer="Ven descansado, aseado, bien hidratado y habiendo comido. Evita alcohol y drogas antes de la perforación y coméntanos cualquier condición médica relevante." data-question-en="Is there anything I should know before getting a piercing?" data-answer-en="Come well-rested, clean, well-hydrated and having eaten. Avoid alcohol and drugs before the piercing and tell us about any relevant medical conditions.">
-                            <span><span lang="es">¿Qué debo tener en cuenta antes?</span><span lang="en">What should I know beforehand?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Qué pasa si se me infecta el piercing?" data-answer="Debe tratarse cuanto antes. No retires la joya sin indicación profesional y consulta con nosotros si aparecen síntomas graves como dolor intenso, grano rojizo en la perforación, inflamación exagerada, pus amarillento o si el piercing se está incrustando en la perforación." data-question-en="What happens if my piercing gets infected?" data-answer-en="It should be treated as soon as possible. Don't remove the jewellery without professional guidance and consult us if serious symptoms appear such as intense pain, reddish bumps on the piercing, excessive swelling, yellowish pus or if the piercing is embedding into the skin.">
-                            <span><span lang="es">¿Qué pasa si se me infecta?</span><span lang="en">What if it gets infected?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Cómo sé que mi piercing está infectado o curado?" data-answer="Dolor intenso, pus espeso, mal olor o fiebre indican posible infección. Se considera curado cuando no hay dolor, inflamación ni secreciones." data-question-en="How do I know if my piercing is infected or healed?" data-answer-en="Intense pain, thick pus, bad smell or fever indicate possible infection. It's considered healed when there's no pain, swelling or discharge.">
-                            <span><span lang="es">¿Cómo sé si está infectado o curado?</span><span lang="en">How do I know if it's infected or healed?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Qué síntomas son normales después de una perforación?" data-answer="Enrojecimiento leve, inflamación, picor y secreción transparente son normales al inicio. Sensibilidad, palpitación y calor en la zona durante los primeros días forman parte del proceso normal." data-question-en="What symptoms are normal after a piercing?" data-answer-en="Mild redness, swelling, itching and clear discharge are normal at the start. Sensitivity, throbbing and warmth in the area during the first days are part of the normal process.">
-                            <span><span lang="es">¿Qué síntomas son normales después?</span><span lang="en">What symptoms are normal afterwards?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Puedo bañarme en piscinas o playas después de hacérmelo?" data-answer="No se recomienda durante el periodo de curación inicial, ya que aumenta el riesgo de infección." data-question-en="Can I swim in pools or at the beach after getting it?" data-answer-en="It's not recommended during the initial healing period, as it increases the risk of infection.">
-                            <span><span lang="es">¿Puedo bañarme en piscinas o playas?</span><span lang="en">Can I swim in pools or at the beach?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Puedo hacer deporte después del piercing?" data-answer="Es aconsejable evitar deporte intenso los primeros días, especialmente si hay sudor, golpes o fricción en la zona perforada." data-question-en="Can I exercise after getting a piercing?" data-answer-en="It's advisable to avoid intense exercise during the first few days, especially if there's sweat, knocks or friction on the pierced area.">
-                            <span><span lang="es">¿Puedo hacer deporte después?</span><span lang="en">Can I exercise afterwards?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <button class="faq-item" type="button" data-question="¿Necesito cita previa?" data-answer="Trabajamos tanto con cita previa como sin cita previa, siempre teniendo en cuenta el horario del estudio y de la anilladora. Se atiende por orden de llegada en caso de no tener cita previa." data-question-en="Do I need an appointment?" data-answer-en="We work both with and without appointments, always considering the studio and piercer's schedule. Walk-ins are served on a first-come, first-served basis.">
-                            <span><span lang="es">¿Necesito cita previa?</span><span lang="en">Do I need an appointment?</span></span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                    </div>
+            </section>
+
+            <section class="final-cta has-tattoo-bg">
+                <div class="tattoo-section-inner">
+                    <h2 class="tattoo-section-title"><span lang="es">¿Aguja? Sí. Decisiones a ciegas, no.</span><span lang="en">Needle? Yes. Blind decisions? No.</span></h2>
+                    <p><span lang="es">Cuéntanos la zona que tienes en mente y La Greka te ayudará a elegir una colocación y una joya que tengan sentido para ti.</span><span lang="en">Tell us the area you have in mind and La Greka will help you choose a placement and a piece of jewellery that make sense for you.</span></p>
+                    <a class="btn btn-primary" href="/contacto/?tipo=piercing" data-page="contacto" data-tipo="piercing"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
                 </div>
             </section>
         </div>

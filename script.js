@@ -907,7 +907,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const ctaPages = [
             'fineline', 'anime', 'blackwork', 'cartoon', 'geometrico',
             'japones', 'lettering', 'microrealismo', 'realismo', 'tradicional',
-            'piercings', 'dibujos-cuadros'
+            'dibujos-cuadros'
         ];
         let ctaEl = document.getElementById('dynamic-cta');
         if (!ctaEl) {

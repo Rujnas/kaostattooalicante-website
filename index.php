@@ -72,9 +72,9 @@ $SEO = [
     ],
     'tatuadores' => [
         'es' => ['title' => 'Equipo de tatuadores en Alicante | Kaos Tattoo',
-                 'desc'  => 'Conoce al equipo de tatuadores de Kaos Tattoo en Alicante: Tailor, Carrie y más artistas especializados en distintos estilos.'],
+                 'desc'  => 'Conoce a Tailor, tatuador y responsable de Kaos Tattoo en Alicante. Especializado en tradicional, color, realismo y línea fina.'],
         'en' => ['title' => 'Our tattoo team in Alicante | Kaos Tattoo',
-                 'desc'  => 'Meet the Kaos Tattoo tattoo artists in Alicante: Tailor, Carrie and more, each specialised in different styles.'],
+                 'desc'  => 'Meet Tailor, tattoo artist and studio manager at Kaos Tattoo in Alicante. Specialised in traditional, colour, realism and fine line.'],
     ],
     'anilladora' => [
         'es' => ['title' => 'Anilladora profesional en Alicante | Kaos Tattoo',
@@ -127,7 +127,6 @@ $STYLE_PAGES = ['fineline','realismo','tradicional','anime','blackwork',
                 'cartoon','geometrico','japones','lettering','microrealismo'];
 $PORTFOLIO_PARENT = [
     'portfolio-tailor' => 'tatuadores',
-    'portfolio-carrie' => 'tatuadores',
     'portfolio-greka'  => 'anilladora',
 ];
 
@@ -437,7 +436,10 @@ function pageUrl($pageId, $qs = '') {
             </section>
 
             <div class="page-content">
-                <div class="team-masonry simple-grid">
+                <div class="team-masonry simple-grid single-column with-side-logos">
+                    <div class="team-logo-divider left">
+                        <img src="images/logo_perro-nobackground.webp" alt="Kaos Tattoo Dog Logo" class="team-logo-neon">
+                    </div>
                     <div class="team-profile-card"
                          data-member-name="Tailor"
                          data-member-specialty="Tradicional · Color · Responsable del estudio"
@@ -459,29 +461,8 @@ function pageUrl($pageId, $qs = '') {
                         </div>
                         <a href="<?php echo pageUrl('portfolio-tailor'); ?>" class="btn btn-primary btn-portfolio" data-page="portfolio-tailor"><span lang="es">Ver Portfolio</span><span lang="en">View Portfolio</span></a>
                     </div>
-                    <div class="team-logo-divider">
+                    <div class="team-logo-divider right">
                         <img src="images/logo_perro-nobackground.webp" alt="Kaos Tattoo Dog Logo" class="team-logo-neon">
-                    </div>
-                    <div class="team-profile-card"
-                         data-member-name="Carrie"
-                         data-member-specialty="Anime · Ornamental · Línea fina"
-                         data-member-specialty-en="Anime · Ornamental · Fine line"
-                         data-member-description="Carrie, alias Da.Needed, es tatuadora desde hace 7 años y forma parte de Kaos Tattoo desde hace año y medio. Su estilo destaca por el anime, el ornamental, la línea fina y el blackwork, adaptando cada diseño a los intereses del cliente sin perder su identidad artística. Su trato cercano y calmado hace que quienes se tatúan con ella se sientan tranquilos y cómodos durante todo el proceso."
-                         data-member-description-en="Carrie, a.k.a. Da.Needed, has been tattooing for 7 years and has been part of Kaos Tattoo for a year and a half. Her style stands out for anime, ornamental, fine line and blackwork, adapting each design to the client's interests without losing her artistic identity. Her warm and calm manner makes those who get tattooed by her feel relaxed and comfortable throughout the process."
-                         data-member-image="images/carrie1.webp"
-                         data-member-portfolio="#portfolio-carrie">
-                        <div class="team-member">
-                            <img loading="lazy" src="images/carrie1.webp" alt="Carrie" class="member-image">
-                            <span class="tap-hint" aria-hidden="true">👆</span>
-                            <div class="artist-overlay">
-                                <h3>Carrie</h3>
-                                <p class="artist-tagline">Anime · Ornamental</p>
-                                <button class="team-card-cta" type="button">
-                                    <span><span lang="es">Conocer más</span><span lang="en">Learn more</span></span>
-                                </button>
-                            </div>
-                        </div>
-                        <a href="<?php echo pageUrl('portfolio-carrie'); ?>" class="btn btn-primary btn-portfolio" data-page="portfolio-carrie"><span lang="es">Ver Portfolio</span><span lang="en">View Portfolio</span></a>
                     </div>
                 </div>
             </div>
@@ -629,245 +610,6 @@ function pageUrl($pageId, $qs = '') {
                         <div class="masonry-item" data-scroll-reveal>
                             <div class="image-container">
                                 <img loading="lazy" src="images/STYLES/Geometrico/IMG_8365.webp" alt="Tatuaje Tailor 27">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="portfolio-carrie" class="page portfolio-section">
-            <div class="page-content portfolio-page">
-                <div class="portfolio-header" data-scroll-reveal>
-                    <h1><span lang="es">Portfolio de Carrie</span><span lang="en">Carrie's Portfolio</span></h1>
-                    <p class="portfolio-intro"><span lang="es">Selección de tatuajes de Carrie.</span><span lang="en">A selection of tattoos by Carrie.</span></p>
-                </div>
-                <div class="portfolio-gallery-wrap fineline-gallery">
-                    <div class="portfolio-bg-overlay"></div>
-                                        <div class="gallery-masonry">
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000125914.webp" alt="Tatuaje Carrie 1">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000128301.webp" alt="Tatuaje Carrie 2">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000132578.webp" alt="Tatuaje Carrie 3">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000133078.webp" alt="Tatuaje Carrie 4">
-                            </div>
-                        </div>
-                        <div class="masonry-item wide" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000134271.webp" alt="Tatuaje Carrie 5">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000135526.webp" alt="Tatuaje Carrie 6">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000138485.webp" alt="Tatuaje Carrie 7">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000138616.webp" alt="Tatuaje Carrie 8">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000141700.webp" alt="Tatuaje Carrie 9">
-                            </div>
-                        </div>
-                        <div class="masonry-item wide" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000142394.webp" alt="Tatuaje Carrie 10">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000142395.webp" alt="Tatuaje Carrie 11">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000142396.webp" alt="Tatuaje Carrie 12">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000143095.webp" alt="Tatuaje Carrie 13">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000143097.webp" alt="Tatuaje Carrie 14">
-                            </div>
-                        </div>
-                        <div class="masonry-item wide" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000143145.webp" alt="Tatuaje Carrie 15">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000144779.webp" alt="Tatuaje Carrie 16">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000144780.webp" alt="Tatuaje Carrie 17">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000144961.webp" alt="Tatuaje Carrie 18">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000144963.webp" alt="Tatuaje Carrie 19">
-                            </div>
-                        </div>
-                        <div class="masonry-item wide" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000144971.webp" alt="Tatuaje Carrie 20">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000144972.webp" alt="Tatuaje Carrie 21">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000144973.webp" alt="Tatuaje Carrie 22">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000150349.webp" alt="Tatuaje Carrie 23">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000150350.webp" alt="Tatuaje Carrie 24">
-                            </div>
-                        </div>
-                        <div class="masonry-item wide" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000151756.webp" alt="Tatuaje Carrie 25">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000152037.webp" alt="Tatuaje Carrie 26">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000154550.webp" alt="Tatuaje Carrie 27">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000156984.webp" alt="Tatuaje Carrie 28">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000160820.webp" alt="Tatuaje Carrie 29">
-                            </div>
-                        </div>
-                        <div class="masonry-item wide" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000160821.webp" alt="Tatuaje Carrie 30">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000161250.webp" alt="Tatuaje Carrie 31">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000162317.webp" alt="Tatuaje Carrie 32">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000165356.webp" alt="Tatuaje Carrie 33">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000166391.webp" alt="Tatuaje Carrie 34">
-                            </div>
-                        </div>
-                        <div class="masonry-item wide" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000167698.webp" alt="Tatuaje Carrie 35">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000168515.webp" alt="Tatuaje Carrie 36">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000168517.webp" alt="Tatuaje Carrie 37">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000168566.webp" alt="Tatuaje Carrie 38">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000168567.webp" alt="Tatuaje Carrie 39">
-                            </div>
-                        </div>
-                        <div class="masonry-item wide" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000168568.webp" alt="Tatuaje Carrie 40">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000168570.webp" alt="Tatuaje Carrie 41">
-                            </div>
-                        </div>
-                        <div class="masonry-item tall" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000168571.webp" alt="Tatuaje Carrie 42">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000171844.webp" alt="Tatuaje Carrie 43">
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000172868.webp" alt="Tatuaje Carrie 44">
-                            </div>
-                        </div>
-                        <div class="masonry-item wide" data-scroll-reveal>
-                            <div class="image-container">
-                                <img loading="lazy" src="images/Portfolio Carrie/1000173514.webp" alt="Tatuaje Carrie 45">
                             </div>
                         </div>
                     </div>

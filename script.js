@@ -42,10 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
             { selector: '.page-content > *:not(.portfolio-gallery-wrap)', baseDelay: 0, step: 70 },
             { selector: '.portfolio-gallery .gallery-item, .portfolio-gallery-wrap .masonry-item', baseDelay: 180, step: 50 }
         ],
-        'portfolio-carrie': [
-            { selector: '.page-content > *:not(.portfolio-gallery-wrap)', baseDelay: 0, step: 70 },
-            { selector: '.portfolio-gallery .gallery-item, .portfolio-gallery-wrap .masonry-item', baseDelay: 180, step: 50 }
-        ],
         'portfolio-greka': [
             { selector: '.page-content > *:not(.portfolio-gallery-wrap)', baseDelay: 0, step: 70 },
             { selector: '.portfolio-gallery .gallery-item, .portfolio-gallery-wrap .masonry-item', baseDelay: 180, step: 50 }
@@ -118,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Portfolio sub-pages map to a parent PAGE (lang-aware slug resolved later)
     const PORTFOLIO_PARENT_PAGE = {
         'portfolio-tailor': 'tatuadores',
-        'portfolio-carrie': 'tatuadores',
         'portfolio-greka': 'anilladora'
     };
 

@@ -119,6 +119,38 @@ $ogImage  = $BASE . '/images/logo_perro-nobackground.webp';
 function pageActive($id, $current) {
     return $id === $current ? ' active' : '';
 }
+
+// Helper: build a language-aware internal path for a given page id.
+// Mirrors the JS getPathForPage() so the server-rendered HTML already
+// contains the correct href for the current language (no JS needed).
+$STYLE_PAGES = ['fineline','realismo','tradicional','anime','blackwork',
+                'cartoon','geometrico','japones','lettering','microrealismo'];
+$PORTFOLIO_PARENT = [
+    'portfolio-tailor' => 'tatuadores',
+    'portfolio-carrie' => 'tatuadores',
+    'portfolio-greka'  => 'anilladora',
+];
+
+function pageUrl($pageId, $qs = '') {
+    global $lang, $SLUGS, $STYLE_PAGES, $PORTFOLIO_PARENT;
+    $prefix = ($lang === 'en') ? '/en' : '';
+
+    // Style sub-pages → /estilos/#style  or  /en/styles/#style
+    if (in_array($pageId, $STYLE_PAGES)) {
+        $seg = $SLUGS['fineline'][$lang]; // 'estilos' / 'styles'
+        return $prefix . '/' . $seg . '/' . $qs . '#' . $pageId;
+    }
+    // Portfolio sub-pages → /equipo/#portfolio-x  or  /en/team/#portfolio-x
+    if (isset($PORTFOLIO_PARENT[$pageId])) {
+        $parent = $PORTFOLIO_PARENT[$pageId];
+        $seg = $SLUGS[$parent][$lang];
+        return $prefix . '/' . $seg . '/' . $qs . '#' . $pageId;
+    }
+    // Regular pages
+    $seg = isset($SLUGS[$pageId]) ? $SLUGS[$pageId][$lang] : '';
+    $base = '/' . ($seg !== '' ? $seg . '/' : '');
+    return $prefix . $base . $qs;
+}
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $htmlLang; ?>">
@@ -230,38 +262,38 @@ function pageActive($id, $current) {
             <li class="has-dropdown">
                 <a href="#" class="nav-link dropdown-toggle"><span lang="es">Equipo</span><span lang="en">Team</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/equipo/" data-page="tatuadores"><span lang="es">Tatuadores</span><span lang="en">Tattoo Artists</span></a></li>
-                    <li><a href="/anilladora/" data-page="anilladora"><span lang="es">Anilladora</span><span lang="en">Piercer</span></a></li>
+                    <li><a href="<?php echo pageUrl('tatuadores'); ?>" data-page="tatuadores"><span lang="es">Tatuadores</span><span lang="en">Tattoo Artists</span></a></li>
+                    <li><a href="<?php echo pageUrl('anilladora'); ?>" data-page="anilladora"><span lang="es">Anilladora</span><span lang="en">Piercer</span></a></li>
                 </ul>
             </li>
             <li class="has-dropdown">
                 <a href="#" class="nav-link dropdown-toggle"><span lang="es">Estilos</span><span lang="en">Styles</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/estilos/#fineline" data-page="fineline">Fineline</a></li>
-                    <li><a href="/estilos/#realismo" data-page="realismo"><span lang="es">Realismo</span><span lang="en">Realism</span></a></li>
-                    <li><a href="/estilos/#tradicional" data-page="tradicional"><span lang="es">Tradicional</span><span lang="en">Traditional</span></a></li>
-                    <li><a href="/estilos/#anime" data-page="anime">Anime</a></li>
-                    <li><a href="/estilos/#blackwork" data-page="blackwork">Blackwork</a></li>
-                    <li><a href="/estilos/#cartoon" data-page="cartoon">Cartoon</a></li>
-                    <li><a href="/estilos/#geometrico" data-page="geometrico"><span lang="es">Geométrico</span><span lang="en">Geometric</span></a></li>
-                    <li><a href="/estilos/#japones" data-page="japones"><span lang="es">Japones</span><span lang="en">Japanese</span></a></li>
-                    <li><a href="/estilos/#lettering" data-page="lettering">Lettering</a></li>
-                    <li><a href="/estilos/#microrealismo" data-page="microrealismo"><span lang="es">Microrealismo</span><span lang="en">Micro-realism</span></a></li>
+                    <li><a href="<?php echo pageUrl('fineline'); ?>" data-page="fineline">Fineline</a></li>
+                    <li><a href="<?php echo pageUrl('realismo'); ?>" data-page="realismo"><span lang="es">Realismo</span><span lang="en">Realism</span></a></li>
+                    <li><a href="<?php echo pageUrl('tradicional'); ?>" data-page="tradicional"><span lang="es">Tradicional</span><span lang="en">Traditional</span></a></li>
+                    <li><a href="<?php echo pageUrl('anime'); ?>" data-page="anime">Anime</a></li>
+                    <li><a href="<?php echo pageUrl('blackwork'); ?>" data-page="blackwork">Blackwork</a></li>
+                    <li><a href="<?php echo pageUrl('cartoon'); ?>" data-page="cartoon">Cartoon</a></li>
+                    <li><a href="<?php echo pageUrl('geometrico'); ?>" data-page="geometrico"><span lang="es">Geométrico</span><span lang="en">Geometric</span></a></li>
+                    <li><a href="<?php echo pageUrl('japones'); ?>" data-page="japones"><span lang="es">Japones</span><span lang="en">Japanese</span></a></li>
+                    <li><a href="<?php echo pageUrl('lettering'); ?>" data-page="lettering">Lettering</a></li>
+                    <li><a href="<?php echo pageUrl('microrealismo'); ?>" data-page="microrealismo"><span lang="es">Microrealismo</span><span lang="en">Micro-realism</span></a></li>
                 </ul>
             </li>
             <li class="has-dropdown">
                 <a href="#" class="nav-link dropdown-toggle"><span lang="es">Servicios</span><span lang="en">Services</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/tatuajes/" data-page="tatuajes"><span lang="es">Tatuajes</span><span lang="en">Tattoos</span></a></li>
-                    <li><a href="/piercings/" data-page="piercings">Piercings</a></li>
-                    <li><a href="/dibujos-cuadros/" data-page="dibujos-cuadros"><span lang="es">Dibujos y Cuadros</span><span lang="en">Drawings & Paintings</span></a></li>
+                    <li><a href="<?php echo pageUrl('tatuajes'); ?>" data-page="tatuajes"><span lang="es">Tatuajes</span><span lang="en">Tattoos</span></a></li>
+                    <li><a href="<?php echo pageUrl('piercings'); ?>" data-page="piercings">Piercings</a></li>
+                    <li><a href="<?php echo pageUrl('dibujos-cuadros'); ?>" data-page="dibujos-cuadros"><span lang="es">Dibujos y Cuadros</span><span lang="en">Drawings & Paintings</span></a></li>
                 </ul>
             </li>
             <li>
-                <a href="/blog/" class="nav-link" data-page="blog">Blog</a>
+                <a href="<?php echo pageUrl('blog'); ?>" class="nav-link" data-page="blog">Blog</a>
             </li>
             <li class="nav-cta-item">
-                <a href="/contacto/" class="nav-link nav-cta" data-page="contacto"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
+                <a href="<?php echo pageUrl('contacto'); ?>" class="nav-link nav-cta" data-page="contacto"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
             </li>
             <li class="mobile-submenu-wrapper" aria-hidden="true">
                 <button class="mobile-submenu-back" type="button" aria-label="Volver al menú principal" data-i18n-aria-label="Back to main menu">
@@ -313,7 +345,7 @@ function pageActive($id, $current) {
                 <div class="home-about-content">
                     <h1><span lang="es">Estudio de Tatuajes en Alicante</span><span lang="en">Tattoo Studio in Alicante</span></h1>
                     <p><span lang="es">Todo lo que suceda en este estudio de tatuajes en Alicante, se queda en este estudio. No somos Las Vegas pero haremos que te lo pases igual de bien. Nuestro propósito de vida es ayudar a que te sientas más a gusto que en tu casa. Somos gente maja, aunque te hagamos daño. En Kaos Tattoo nos gusta dar la tabarra solo para que quieras repetir y vuelvas a vernos. Si estás leyendo esto es por algo: sonríe y déjate llevar.</span><span lang="en">What happens in this tattoo studio in Alicante, stays in this studio. We're not Las Vegas, but we'll make sure you have just as good a time. Our life purpose is to help you feel more at home than at your own place. We're friendly people, even if we cause you a little pain. At Kaos Tattoo we love to chat just so you'll want to come back and see us again. If you're reading this, it's for a reason: smile and let yourself go.</span></p>
-                    <a href="/contacto/" data-page="contacto" class="btn btn-primary btn-book-now" data-scroll-reveal><span lang="es">CUÉNTANOS TU IDEA</span><span lang="en">TELL US YOUR IDEA</span></a>
+                    <a href="<?php echo pageUrl('contacto'); ?>" data-page="contacto" class="btn btn-primary btn-book-now" data-scroll-reveal><span lang="es">CUÉNTANOS TU IDEA</span><span lang="en">TELL US YOUR IDEA</span></a>
                 </div>
             </section>
 
@@ -330,21 +362,21 @@ function pageActive($id, $current) {
                         <img loading="lazy" src="images/STYLES/Realismo/261F6A08-94D1-4490-90D7-27AFEC46B4E2 2.webp" alt="Tattoo work 1">
                         <div class="category-overlay">
                             <h3><span lang="es">Tatuajes</span><span lang="en">Tattoos</span></h3>
-                            <a href="/tatuajes/" data-page="tatuajes" class="category-link"><span lang="es">Ver más</span><span lang="en">See more</span></a>
+                            <a href="<?php echo pageUrl('tatuajes'); ?>" data-page="tatuajes" class="category-link"><span lang="es">Ver más</span><span lang="en">See more</span></a>
                         </div>
                     </div>
                     <div class="home-gallery-item">
                         <img loading="lazy" src="images/STYLES/Piercings/IMG_3415 2.webp" alt="Tattoo work 5">
                         <div class="category-overlay">
                             <h3>Piercings</h3>
-                            <a href="/piercings/" data-page="piercings" class="category-link"><span lang="es">Ver más</span><span lang="en">See more</span></a>
+                            <a href="<?php echo pageUrl('piercings'); ?>" data-page="piercings" class="category-link"><span lang="es">Ver más</span><span lang="en">See more</span></a>
                         </div>
                     </div>
                     <div class="home-gallery-item">
                         <img loading="lazy" src="images/el_boss21.webp" alt="Tattoo work 6">
                         <div class="category-overlay">
                             <h3><span lang="es">Dibujos y Cuadros</span><span lang="en">Drawings & Paintings</span></h3>
-                            <a href="/dibujos-cuadros/" data-page="dibujos-cuadros" class="category-link"><span lang="es">Ver más</span><span lang="en">See more</span></a>
+                            <a href="<?php echo pageUrl('dibujos-cuadros'); ?>" data-page="dibujos-cuadros" class="category-link"><span lang="es">Ver más</span><span lang="en">See more</span></a>
                         </div>
                     </div>
                 </div>
@@ -359,16 +391,17 @@ function pageActive($id, $current) {
                     <div class="cta-left">
                         <h2><span lang="es">¡VEN A VISITARNOS!</span><span lang="en">COME VISIT US!</span></h2>
                         <p><span lang="es">¿Quieres preguntarnos algo?</span><span lang="en">Want to ask us something?</span></p>
-                        <a href="/contacto/" data-page="contacto" class="btn btn-primary btn-book-now"><span lang="es">¡CONTACTA AHORA!</span><span lang="en">CONTACT US NOW!</span></a>
+                        <a href="<?php echo pageUrl('contacto'); ?>" data-page="contacto" class="btn btn-primary btn-book-now"><span lang="es">¡CONTACTA AHORA!</span><span lang="en">CONTACT US NOW!</span></a>
                     </div>
                     <div class="cta-right">
-                        <iframe 
+                        <iframe
+                            title="Ubicación de Kaos Tattoo Alicante"
                             data-lazy-iframe
                             data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.7481267873!2d-0.4735056846816652!3d38.345995979654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6236a3b4c5c5c5%3A0x4b5c5c5c5c5c5c5c!2sPintor%20Vel%C3%A1zquez%2017%2C%2003004%20Alicante%2C%20Spain!5e0!3m2!1sen!2ses!4v1234567890"
-                            width="100%" 
-                            height="300" 
-                            style="border:0; border-radius: 8px; aspect-ratio: 16/9; background: #1a1a1a;" 
-                            allowfullscreen="" 
+                            width="100%"
+                            height="300"
+                            style="border:0; border-radius: 8px; aspect-ratio: 16/9; background: #1a1a1a;"
+                            allowfullscreen=""
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
@@ -424,7 +457,7 @@ function pageActive($id, $current) {
                                 </button>
                             </div>
                         </div>
-                        <a href="/equipo/#portfolio-tailor" class="btn btn-primary btn-portfolio" data-page="portfolio-tailor"><span lang="es">Ver Portfolio</span><span lang="en">View Portfolio</span></a>
+                        <a href="<?php echo pageUrl('portfolio-tailor'); ?>" class="btn btn-primary btn-portfolio" data-page="portfolio-tailor"><span lang="es">Ver Portfolio</span><span lang="en">View Portfolio</span></a>
                     </div>
                     <div class="team-logo-divider">
                         <img src="images/logo_perro-nobackground.webp" alt="Kaos Tattoo Dog Logo" class="team-logo-neon">
@@ -448,7 +481,7 @@ function pageActive($id, $current) {
                                 </button>
                             </div>
                         </div>
-                        <a href="/equipo/#portfolio-carrie" class="btn btn-primary btn-portfolio" data-page="portfolio-carrie"><span lang="es">Ver Portfolio</span><span lang="en">View Portfolio</span></a>
+                        <a href="<?php echo pageUrl('portfolio-carrie'); ?>" class="btn btn-primary btn-portfolio" data-page="portfolio-carrie"><span lang="es">Ver Portfolio</span><span lang="en">View Portfolio</span></a>
                     </div>
                 </div>
             </div>
@@ -1079,7 +1112,7 @@ function pageActive($id, $current) {
                                 </button>
                             </div>
                         </div>
-                        <a href="/anilladora/#portfolio-greka" class="btn btn-primary btn-portfolio" data-page="portfolio-greka"><span lang="es">Ver Portfolio</span><span lang="en">View Portfolio</span></a>
+                        <a href="<?php echo pageUrl('portfolio-greka'); ?>" class="btn btn-primary btn-portfolio" data-page="portfolio-greka"><span lang="es">Ver Portfolio</span><span lang="en">View Portfolio</span></a>
                     </div>
                     <div class="team-logo-divider right">
                         <img src="images/logo_perro-nobackground.webp" alt="Kaos Tattoo Dog Logo" class="team-logo-neon">
@@ -2238,7 +2271,7 @@ function pageActive($id, $current) {
                     <p><span lang="es">Hay quien llega con el diseño clarísimo y quien solo tiene una imagen, una historia o una sensación dando vueltas en la cabeza. Las dos cosas nos sirven.</span><span lang="en">Some people arrive with a crystal-clear design and others just have an image, a story or a feeling going round their head. Both work for us.</span></p>
                     <p><span lang="es">En Kaos Tattoo escuchamos lo que quieres contar, tiramos del hilo contigo y le damos forma sin cargarnos lo que hacía especial tu idea. Tú pones la esencia; nosotros, ocho años de experiencia para convertirla en un tatuaje sólido, bien ejecutado y pensado para seguir funcionando cuando pase el tiempo.</span><span lang="en">At Kaos Tattoo we listen to what you want to say, pull the thread with you and shape it without ruining what made your idea special. You bring the essence; we bring eight years of experience to turn it into a solid, well-executed tattoo, made to keep working as time goes by.</span></p>
                     <p><span lang="es">La meta es sencilla: que salgas pensando «esto es exactamente lo que quería, pero incluso mejor de lo que imaginaba».</span><span lang="en">The goal is simple: that you leave thinking "this is exactly what I wanted, but even better than I imagined".</span></p>
-                    <a class="btn btn-primary" href="/contacto/?tipo=tatuaje" data-page="contacto" data-tipo="tatuaje"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
+                    <a class="btn btn-primary" href="<?php echo pageUrl('contacto', '?tipo=tatuaje'); ?>" data-page="contacto" data-tipo="tatuaje"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
                 </div>
             </section>
 
@@ -2258,23 +2291,23 @@ function pageActive($id, $current) {
                         <article class="tattoo-style-card">
                             <h3><span lang="es">Fineline</span><span lang="en">Fineline</span></h3>
                             <p><span lang="es">Líneas finas, limpias y delicadas. Aquí no se trata solo de hacerlas pequeñas, sino de hacerlas bien para que el tatuaje conserve su fuerza con el tiempo.</span><span lang="en">Thin, clean and delicate lines. It's not just about making them small, but about doing them well so the tattoo keeps its strength over time.</span></p>
-                            <a class="tattoo-inline-link" href="/estilos/#fineline" data-page="fineline"><span lang="es">Ver tatuajes fine line</span><span lang="en">See fine line tattoos</span></a>
+                            <a class="tattoo-inline-link" href="<?php echo pageUrl('fineline'); ?>" data-page="fineline"><span lang="es">Ver tatuajes fine line</span><span lang="en">See fine line tattoos</span></a>
                         </article>
                         <article class="tattoo-style-card">
                             <h3><span lang="es">Realismo y microrealismo</span><span lang="en">Realism and micro-realism</span></h3>
                             <p><span lang="es">Retratos, objetos y escenas trabajados con profundidad y detalle, tanto en formatos grandes como en composiciones más pequeñas.</span><span lang="en">Portraits, objects and scenes worked with depth and detail, both in large formats and smaller compositions.</span></p>
-                            <a class="tattoo-inline-link" href="/estilos/#realismo" data-page="realismo"><span lang="es">Ver tatuajes de realismo</span><span lang="en">See realism tattoos</span></a>
-                            <a class="tattoo-inline-link" href="/estilos/#microrealismo" data-page="microrealismo"><span lang="es">Ver microrealismo</span><span lang="en">See micro-realism</span></a>
+                            <a class="tattoo-inline-link" href="<?php echo pageUrl('realismo'); ?>" data-page="realismo"><span lang="es">Ver tatuajes de realismo</span><span lang="en">See realism tattoos</span></a>
+                            <a class="tattoo-inline-link" href="<?php echo pageUrl('microrealismo'); ?>" data-page="microrealismo"><span lang="es">Ver microrealismo</span><span lang="en">See micro-realism</span></a>
                         </article>
                         <article class="tattoo-style-card">
                             <h3><span lang="es">Tradicional y old school</span><span lang="en">Traditional and old school</span></h3>
                             <p><span lang="es">Líneas firmes, composiciones directas y diseños con mucha personalidad, en negro o a color.</span><span lang="en">Firm lines, direct compositions and designs with plenty of personality, in black or colour.</span></p>
-                            <a class="tattoo-inline-link" href="/estilos/#tradicional" data-page="tradicional"><span lang="es">Ver tatuajes tradicionales</span><span lang="en">See traditional tattoos</span></a>
+                            <a class="tattoo-inline-link" href="<?php echo pageUrl('tradicional'); ?>" data-page="tradicional"><span lang="es">Ver tatuajes tradicionales</span><span lang="en">See traditional tattoos</span></a>
                         </article>
                         <article class="tattoo-style-card">
                             <h3><span lang="es">Y bastante más</span><span lang="en">And plenty more</span></h3>
                             <p><span lang="es">Blackwork, anime, geométrico, japonés, lettering, cartoon… Si no sabes cómo se llama tu estilo, mándanos la idea y nosotros le ponemos nombre.</span><span lang="en">Blackwork, anime, geometric, Japanese, lettering, cartoon… If you don't know what your style is called, send us the idea and we'll name it for you.</span></p>
-                            <a class="tattoo-inline-link" href="/estilos/" data-page="fineline"><span lang="es">Ver todos los estilos</span><span lang="en">See all styles</span></a>
+                            <a class="tattoo-inline-link" href="<?php echo pageUrl('fineline'); ?>" data-page="fineline"><span lang="es">Ver todos los estilos</span><span lang="en">See all styles</span></a>
                         </article>
                     </div>
                     <p class="tattoo-section-note"><span lang="es">Valoramos cada proyecto por separado. Lo único que no tatuamos son ideas que hagan apología del odio, la violencia o ideologías que no queremos llevar ni en la piel ni en el estudio.</span><span lang="en">We assess each project individually. The only thing we won't tattoo are ideas that promote hate, violence or ideologies we don't want on our skin or in the studio.</span></p>
@@ -2287,7 +2320,7 @@ function pageActive($id, $current) {
                     <article class="tattoo-artist-card">
                         <h3>Tailor</h3>
                         <p><span lang="es">Polivalente por naturaleza y bastante obsesivo con estudiar cada proyecto antes de empezar. Sus puntos fuertes son el fine line, el realismo, el microrealismo y el old school, aunque se mueve con soltura entre estilos muy distintos.</span><span lang="en">Versatile by nature and rather obsessive about studying every project before starting. His strong points are fine line, realism, micro-realism and old school, though he moves easily between very different styles.</span></p>
-                        <a class="tattoo-inline-link" href="/equipo/#portfolio-tailor" data-page="portfolio-tailor"><span lang="es">Ver el portfolio de Tailor</span><span lang="en">See Tailor's portfolio</span></a>
+                        <a class="tattoo-inline-link" href="<?php echo pageUrl('portfolio-tailor'); ?>" data-page="portfolio-tailor"><span lang="es">Ver el portfolio de Tailor</span><span lang="en">See Tailor's portfolio</span></a>
                     </article>
                     <p class="tattoo-section-note"><span lang="es">No tienes que elegir estilo ni tenerlo todo resuelto antes de escribirnos. Cuéntanos qué quieres hacerte y te orientamos hacia lo que mejor encaje con tu proyecto.</span><span lang="en">You don't have to pick a style or have everything figured out before writing to us. Tell us what you want and we'll guide you towards what best fits your project.</span></p>
                 </div>
@@ -2360,7 +2393,7 @@ function pageActive($id, $current) {
 
             <aside class="inline-cta has-tattoo-bg" aria-label="Contacto para tatuajes">
                 <p><span lang="es">¿Ya estás visualizando el resultado? Nosotros también queremos verlo.</span><span lang="en">Already picturing the result? We want to see it too.</span></p>
-                <a class="btn btn-primary" href="/contacto/?tipo=tatuaje" data-page="contacto" data-tipo="tatuaje"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
+                <a class="btn btn-primary" href="<?php echo pageUrl('contacto', '?tipo=tatuaje'); ?>" data-page="contacto" data-tipo="tatuaje"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
             </aside>
 
             <section class="tattoo-section has-tattoo-bg">
@@ -2468,7 +2501,7 @@ function pageActive($id, $current) {
                 <div class="tattoo-section-inner">
                     <h2 class="tattoo-section-title"><span lang="es">Vale, ¿qué tienes en mente?</span><span lang="en">Alright, what do you have in mind?</span></h2>
                     <p><span lang="es">Una idea cerrada, tres capturas de pantalla o una explicación que todavía no sabes muy bien cómo contar. Mándanos lo que tengas y empezamos desde ahí.</span><span lang="en">A finished idea, three screenshots or an explanation you're not quite sure how to put into words. Send us whatever you have and we'll start from there.</span></p>
-                    <a class="btn btn-primary" href="/contacto/?tipo=tatuaje" data-page="contacto" data-tipo="tatuaje"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
+                    <a class="btn btn-primary" href="<?php echo pageUrl('contacto', '?tipo=tatuaje'); ?>" data-page="contacto" data-tipo="tatuaje"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
                 </div>
             </section>
         </div>
@@ -2494,7 +2527,7 @@ function pageActive($id, $current) {
                     <h2><span lang="es">¿Te gustaría hacerte un piercing?</span><span lang="en">Thinking about getting a piercing?</span></h2>
                     <p><span lang="es">Puede que sepas exactamente qué piercing quieres o que solo tengas clara la zona. Da igual: La Greka te ayudará a encontrar una colocación y una joya que encajen contigo y, lo más importante, con tu anatomía.</span><span lang="en">You may know exactly which piercing you want or just have the area in mind. Either way: La Greka will help you find a placement and a piece of jewellery that suit you and, most importantly, your anatomy.</span></p>
                     <p><span lang="es">Antes de perforar miramos, preguntamos y te explicamos lo que vamos a hacer. Nada de elegir una pieza bonita, pinchar y hasta luego. Queremos que salgas con un piercing que te favorezca y sabiendo cómo cuidarlo desde el primer día.</span><span lang="en">Before piercing we look, ask questions and explain what we're going to do. No picking a pretty piece, piercing and goodbye. We want you to leave with a piercing that flatters you and knowing how to care for it from day one.</span></p>
-                    <a class="btn btn-primary" href="/contacto/?tipo=piercing" data-page="contacto" data-tipo="piercing"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
+                    <a class="btn btn-primary" href="<?php echo pageUrl('contacto', '?tipo=piercing'); ?>" data-page="contacto" data-tipo="piercing"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
                 </div>
             </section>
 
@@ -2531,7 +2564,7 @@ function pageActive($id, $current) {
                         <h3>La Greka</h3>
                         <p><span lang="es">La Greka lleva alrededor de cinco años dedicada al piercing. Se formó directamente con un profesional con más de veinte años de trayectoria y sigue actualizándose para no quedarse quieta mientras el oficio avanza.</span><span lang="en">La Greka has been dedicated to piercing for around five years. She trained directly under a professional with over twenty years of experience and keeps updating her skills so she doesn't stand still while the craft moves forward.</span></p>
                         <p><span lang="es">Está especializada en piercings de oreja y ombligo, y presta mucha atención a la anatomía, la colocación y la joya inicial. Quienes se ponen en sus manos suelen recordar también el trato y el humor: la aguja dura un momento; el buen ambiente ayuda bastante más.</span><span lang="en">She specialises in ear and navel piercings and pays close attention to anatomy, placement and the initial jewellery. Those who put themselves in her hands also tend to remember the care and the humour: the needle lasts a moment; the good vibes help a lot more.</span></p>
-                        <a class="tattoo-inline-link" href="/anilladora/#portfolio-greka" data-page="portfolio-greka"><span lang="es">Ver los trabajos de La Greka</span><span lang="en">See La Greka's work</span></a>
+                        <a class="tattoo-inline-link" href="<?php echo pageUrl('portfolio-greka'); ?>" data-page="portfolio-greka"><span lang="es">Ver los trabajos de La Greka</span><span lang="en">See La Greka's work</span></a>
                     </article>
                 </div>
             </section>
@@ -2560,7 +2593,7 @@ function pageActive($id, $current) {
 
             <aside class="inline-cta has-tattoo-bg" aria-label="Contacto para piercing">
                 <p><span lang="es">¿Ya tienes clara la zona? El nombre raro del piercing lo ponemos nosotros.</span><span lang="en">Already sure about the area? We'll handle the fancy piercing name.</span></p>
-                <a class="btn btn-primary" href="/contacto/?tipo=piercing" data-page="contacto" data-tipo="piercing"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
+                <a class="btn btn-primary" href="<?php echo pageUrl('contacto', '?tipo=piercing'); ?>" data-page="contacto" data-tipo="piercing"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
             </aside>
 
             <section class="tattoo-process has-tattoo-bg">
@@ -2750,7 +2783,7 @@ function pageActive($id, $current) {
                 <div class="tattoo-section-inner">
                     <h2 class="tattoo-section-title"><span lang="es">¿Aguja? Sí. Decisiones a ciegas, no.</span><span lang="en">Needle? Yes. Blind decisions? No.</span></h2>
                     <p><span lang="es">Cuéntanos la zona que tienes en mente y La Greka te ayudará a elegir una colocación y una joya que tengan sentido para ti.</span><span lang="en">Tell us the area you have in mind and La Greka will help you choose a placement and a piece of jewellery that make sense for you.</span></p>
-                    <a class="btn btn-primary" href="/contacto/?tipo=piercing" data-page="contacto" data-tipo="piercing"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
+                    <a class="btn btn-primary" href="<?php echo pageUrl('contacto', '?tipo=piercing'); ?>" data-page="contacto" data-tipo="piercing"><span lang="es">Cuéntanos tu idea</span><span lang="en">Tell us your idea</span></a>
                 </div>
             </section>
         </div>
@@ -3093,7 +3126,7 @@ function pageActive($id, $current) {
                     <a href="https://www.tiktok.com/@kaos.tattoo.alicante" target="_blank" class="footer-social-link">
                         <img src="images/logotipos_contacts/tik-tok_bw.webp" alt="TikTok" class="footer-social-icon">
                     </a>
-                    <a href="/contacto/" class="footer-social-link footer-contact-link" data-page="contacto">
+                    <a href="<?php echo pageUrl('contacto'); ?>" class="footer-social-link footer-contact-link" data-page="contacto">
                         <span lang="es">Contacto</span><span lang="en">Contact</span>
                     </a>
                 </div>

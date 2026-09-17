@@ -304,7 +304,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update all nav link hrefs to the current language
     const updateNavHrefs = () => {
         document.querySelectorAll('a[data-page]').forEach(a => {
-            a.href = getPathForPage(a.dataset.page);
+            const qs = a.dataset.tipo ? '?tipo=' + a.dataset.tipo : '';
+            a.href = getPathForPage(a.dataset.page) + qs;
         });
     };
 

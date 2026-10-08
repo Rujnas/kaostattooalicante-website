@@ -129,6 +129,10 @@ $SEO = [
     ],
 ];
 
+// Asset cache-busting version: bump when script.js or styles change so
+// browsers (and LiteSpeed) refetch them instead of serving stale copies.
+$ASSET_VER = '20261008';
+
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
 $title  = $meta['title'];
 $desc   = $meta['desc'];
@@ -289,7 +293,7 @@ function pageUrl($pageId, $qs = '') {
     <link rel="preload" href="fonts/CormorantGaramond/CormorantGaramond-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/CormorantGaramond/CormorantGaramond-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css?v=<?php echo $ASSET_VER; ?>">
     <link rel="icon" type="image/png" href="images/logo_perro-nobackground.webp">
 </head>
 <body class="is-loading">
@@ -4146,6 +4150,6 @@ function pageUrl($pageId, $qs = '') {
         }
     })();
     </script>
-    <script src="script.js"></script>
+    <script src="script.js?v=<?php echo $ASSET_VER; ?>"></script>
 </body>
 </html>

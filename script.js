@@ -128,7 +128,10 @@ document.addEventListener('DOMContentLoaded', function() {
         'dibujos-cuadros': { es: 'dibujos-cuadros',  en: 'art' },
         contacto:          { es: 'contacto',         en: 'contact' },
         blog:              { es: 'blog',             en: 'blog' },
-        estilos:           { es: 'estilos',          en: 'styles' }
+        estilos:           { es: 'estilos',          en: 'styles' },
+        privacidad:        { es: 'politica-de-privacidad', en: 'privacy-policy' },
+        cookies:           { es: 'politica-de-cookies',    en: 'cookie-policy' },
+        'aviso-legal':     { es: 'aviso-legal',           en: 'legal-notice' }
     };
 
     // path (without /en prefix) -> pageId, per language
@@ -792,7 +795,12 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.setItem(getScrollKey(pageId), window.scrollY.toString());
     };
 
-    let currentPageId = 'home';
+    // Resolve the initial page from the URL BEFORE any scroll restore runs,
+    // otherwise restoreScrollPosition() would apply the scroll saved for
+    // 'home' (e.g. bottom of the page where the footer links are) to the
+    // currently loading page (legal pages, etc.).
+    const migratedPage = migrateOldHashUrl();
+    let currentPageId = migratedPage || getPageFromCurrentUrl();
     let scrollSaveTimer = null;
 
     const hideLoadingOverlay = () => {
@@ -955,8 +963,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const migratedPage = migrateOldHashUrl();
-    currentPageId = migratedPage || getPageFromCurrentUrl();
+    // Initial page already resolved above (before scroll restore);
+    // just activate it here without scrolling to top.
     showPage(currentPageId, { shouldScrollTop: false });
     
     // Browser back/forward navigation
@@ -1579,5 +1587,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
         renderGallery();
     });
+
+    // --- Cookie consent banner (RGPD / LSSI-CE) ---
+    const cookieBanner = document.getElementById('cookie-banner');
+    if (cookieBanner && window.kaosConsent) {
+        const showBanner = () => cookieBanner.classList.add('is-visible');
+        const hideBanner = () => cookieBanner.classList.remove('is-visible');
+
+        const acceptBtn = document.getElementById('cookie-accept');
+        const rejectBtn = document.getElementById('cookie-reject');
+
+        if (acceptBtn) {
+            acceptBtn.addEventListener('click', () => {
+                window.kaosConsent.set('accepted');
+                hideBanner();
+                if (typeof window.kaosLoadAnalytics === 'function') {
+                    window.kaosLoadAnalytics();
+                }
+                window.kaosConsent.fireAccepted();
+            });
+        }
+
+        if (rejectBtn) {
+            rejectBtn.addEventListener('click', () => {
+                window.kaosConsent.set('rejected');
+                hideBanner();
+            });
+        }
+
+        // Show the banner on first visit (no decision stored yet)
+        if (window.kaosConsent.get() !== 'accepted' && window.kaosConsent.get() !== 'rejected') {
+            showBanner();
+        }
+
+        // "Change my cookie preferences" button on the cookie policy page
+        document.querySelectorAll('[data-open-cookie-settings]').forEach(btn => {
+            btn.addEventListener('click', showBanner);
+        });
+    }
 
 });

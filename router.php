@@ -10,8 +10,10 @@ if ($decoded !== '/' && file_exists($file) && !is_dir($file)) {
 }
 
 // SPA routes - serve index.php (per-page SEO)
-$spaRoutesEs = ['equipo','anilladora','estilos','tatuajes','piercings','dibujos-cuadros','contacto','blog'];
-$spaRoutesEn = ['team','piercer','styles','tattoos','piercings','art','contact','blog'];
+$spaRoutesEs = ['equipo','anilladora','estilos','tatuajes','piercings','dibujos-cuadros','contacto','blog',
+                'politica-de-privacidad','politica-de-cookies','aviso-legal'];
+$spaRoutesEn = ['team','piercer','styles','tattoos','piercings','art','contact','blog',
+                'privacy-policy','cookie-policy','legal-notice'];
 $cleanUri = trim($uri, '/');
 
 // Redirect old English URLs (Spanish slugs) to the translated ones (301)

@@ -28,11 +28,11 @@ RewriteRule ^en/contacto/?$ /en/contact/ [R=301,L]
 # Skip existing files and directories (images, css, js, fonts, videos, etc.)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(equipo|anilladora|estilos|tatuajes|piercings|dibujos-cuadros|contacto|blog)/?$ /index.php [L]
+RewriteRule ^(equipo|anilladora|estilos|tatuajes|piercings|dibujos-cuadros|contacto|blog|politica-de-privacidad|politica-de-cookies|aviso-legal)/?$ /index.php [L]
 
 # English version: /en/ and /en/<translated-route>/
 RewriteRule ^en/?$ /index.php [L]
-RewriteRule ^en/(team|piercer|styles|tattoos|piercings|art|contact|blog)/?$ /index.php [L]
+RewriteRule ^en/(team|piercer|styles|tattoos|piercings|art|contact|blog|privacy-policy|cookie-policy|legal-notice)/?$ /index.php [L]
 
 # Home page ("/") served through index.php too
 DirectoryIndex index.php

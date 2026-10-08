@@ -1,0 +1,115 @@
+/* Cookie consent banner (RGPD / LSSI) */
+
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 12000;
+    background: rgba(10, 10, 10, 0.97);
+    border-top: 1px solid rgba(212, 165, 116, 0.35);
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
+    padding: 1.1rem 1.5rem;
+    transform: translateY(110%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.cookie-banner.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.cookie-banner-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.cookie-banner-text {
+    flex: 1 1 420px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.cookie-banner-text a {
+    color: var(--accent-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.cookie-banner-text a:hover {
+    color: var(--accent-color);
+}
+
+.cookie-banner-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.cookie-banner-btn {
+    padding: 0.6rem 1.4rem;
+    font-family: 'Space Grotesk', 'Arial', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid var(--accent-color);
+}
+
+.cookie-banner-btn--accept {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.cookie-banner-btn--accept:hover {
+    background: var(--accent-light);
+    border-color: var(--accent-light);
+}
+
+.cookie-banner-btn--reject {
+    background: transparent;
+    color: var(--accent-color);
+}
+
+.cookie-banner-btn--reject:hover {
+    background: rgba(212, 165, 116, 0.15);
+}
+
+@media (max-width: 768px) {
+    .cookie-banner {
+        padding: 1rem 1rem 1.4rem;
+        padding-bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .cookie-banner-inner {
+        flex-direction: column;
+        gap: 0.9rem;
+        align-items: stretch;
+    }
+
+    .cookie-banner-text {
+        flex-basis: auto;
+    }
+
+    .cookie-banner-actions {
+        justify-content: space-between;
+    }
+
+    .cookie-banner-btn {
+        flex: 1;
+        padding: 0.7rem 0.5rem;
+    }
+}

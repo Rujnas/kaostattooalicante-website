@@ -128,4 +128,46 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/blog/"/>
   </url>
 
+  <!-- Política de Privacidad / Privacy Policy -->
+  <url>
+    <loc>https://kaostattooalicante.es/politica-de-privacidad/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/politica-de-privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/politica-de-privacidad/"/>
+  </url>
+  <url>
+    <loc>https://kaostattooalicante.es/en/privacy-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/politica-de-privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/politica-de-privacidad/"/>
+  </url>
+
+  <!-- Política de Cookies / Cookie Policy -->
+  <url>
+    <loc>https://kaostattooalicante.es/politica-de-cookies/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/politica-de-cookies/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/cookie-policy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/politica-de-cookies/"/>
+  </url>
+  <url>
+    <loc>https://kaostattooalicante.es/en/cookie-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/politica-de-cookies/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/cookie-policy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/politica-de-cookies/"/>
+  </url>
+
+  <!-- Aviso Legal / Legal Notice -->
+  <url>
+    <loc>https://kaostattooalicante.es/aviso-legal/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/aviso-legal/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/legal-notice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/aviso-legal/"/>
+  </url>
+  <url>
+    <loc>https://kaostattooalicante.es/en/legal-notice/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kaostattooalicante.es/aviso-legal/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaostattooalicante.es/en/legal-notice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaostattooalicante.es/aviso-legal/"/>
+  </url>
+
 </urlset>

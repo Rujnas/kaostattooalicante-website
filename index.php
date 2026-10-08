@@ -33,6 +33,9 @@ $SLUGS = [
     'contacto'        => ['es' => 'contacto',        'en' => 'contact'],
     'blog'            => ['es' => 'blog',            'en' => 'blog'],
     'fineline'        => ['es' => 'estilos',         'en' => 'styles'],
+    'privacidad'      => ['es' => 'politica-de-privacidad', 'en' => 'privacy-policy'],
+    'cookies'         => ['es' => 'politica-de-cookies',    'en' => 'cookie-policy'],
+    'aviso-legal'     => ['es' => 'aviso-legal',           'en' => 'legal-notice'],
 ];
 
 // Resolve the current path (already without /en prefix) to a page id
@@ -106,6 +109,24 @@ $SEO = [
         'en' => ['title' => 'Tattoo styles | Kaos Tattoo Alicante',
                  'desc'  => 'Discover the tattoo styles at Kaos Tattoo Alicante: fine line, realism, Japanese, blackwork, lettering and many more.'],
     ],
+    'privacidad' => [
+        'es' => ['title' => 'Política de Privacidad | Kaos Tattoo Alicante',
+                 'desc'  => 'Política de Privacidad de Kaos Tattoo Alicante: cómo recogemos y tratamos tus datos personales según el RGPD y la LOPDGDD.'],
+        'en' => ['title' => 'Privacy Policy | Kaos Tattoo Alicante',
+                 'desc'  => 'Privacy Policy of Kaos Tattoo Alicante: how we collect and process your personal data under the GDPR and Spanish law.'],
+    ],
+    'cookies' => [
+        'es' => ['title' => 'Política de Cookies | Kaos Tattoo Alicante',
+                 'desc'  => 'Política de Cookies de Kaos Tattoo Alicante: qué cookies usamos, con qué finalidad y cómo puedes aceptarlas, rechazarlas o borrarlas.'],
+        'en' => ['title' => 'Cookie Policy | Kaos Tattoo Alicante',
+                 'desc'  => 'Cookie Policy of Kaos Tattoo Alicante: which cookies we use, why, and how you can accept, reject or delete them.'],
+    ],
+    'aviso-legal' => [
+        'es' => ['title' => 'Aviso Legal | Kaos Tattoo Alicante',
+                 'desc'  => 'Aviso Legal de Kaos Tattoo Alicante: condiciones de uso del sitio web, propiedad intelectual y responsabilidades.'],
+        'en' => ['title' => 'Legal Notice | Kaos Tattoo Alicante',
+                 'desc'  => 'Legal Notice of Kaos Tattoo Alicante: website terms of use, intellectual property and liability.'],
+    ],
 ];
 
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
@@ -154,21 +175,55 @@ function pageUrl($pageId, $qs = '') {
 <!DOCTYPE html>
 <html lang="<?php echo $htmlLang; ?>">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-W7X5FVW3');</script>
-    <!-- End Google Tag Manager -->
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LDEKEJD75"></script>
+    <!-- Cookie consent: Google Tag Manager + Google Analytics are only loaded
+         after the user accepts cookies (RGPD / LSSI-CE). See script.js banner. -->
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0LDEKEJD75');
+    window.kaosLoadAnalytics = function() {
+        if (window.__kaosAnalyticsLoaded) return;
+        window.__kaosAnalyticsLoaded = true;
+        // Google Tag Manager
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-W7X5FVW3');
+        // Google tag (gtag.js)
+        var ga = document.createElement('script');
+        ga.async = true;
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-0LDEKEJD75';
+        document.head.appendChild(ga);
+        gtag('js', new Date());
+        gtag('config', 'G-0LDEKEJD75');
+    };
+    (function() {
+        var KEY = 'kaos-consent';
+        window.kaosConsent = {
+            get: function() {
+                try { return localStorage.getItem(KEY); } catch (e) { return null; }
+            },
+            set: function(value) {
+                try { localStorage.setItem(KEY, value); } catch (e) {}
+            },
+            acceptCallbacks: [],
+            onAccept: function(cb) {
+                if (window.kaosConsent.get() === 'accepted') { cb(); return; }
+                window.kaosConsent.acceptCallbacks.push(cb);
+            },
+            fireAccepted: function() {
+                // Do not drain the list: the user can change their mind
+                // (reject first, accept later) and callbacks must run again.
+                window.kaosConsent.acceptCallbacks.forEach(function(cb) {
+                    try { cb(); } catch (e) {}
+                });
+            }
+        };
+        // Load analytics immediately for returning visitors who already accepted
+        if (window.kaosConsent.get() === 'accepted') {
+            window.kaosLoadAnalytics();
+        }
+    })();
     </script>
 
     <meta charset="UTF-8">
@@ -238,11 +293,7 @@ function pageUrl($pageId, $qs = '') {
     <link rel="icon" type="image/png" href="images/logo_perro-nobackground.webp">
 </head>
 <body class="is-loading">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7X5FVW3"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    
+
     <div class="loading-overlay" aria-live="polite" aria-label="Cargando Kaos Tattoo">
         <div class="loading-content">
             <div class="loading-logo-wrapper">
@@ -2750,7 +2801,7 @@ function pageUrl($pageId, $qs = '') {
 
                             <label class="form-checkbox">
                                 <input type="checkbox" id="form-privacy" name="privacy" required>
-                                <span class="form-checkbox-label"><span lang="es">Acepto la <a href="#" target="_blank">política de privacidad</a> y el tratamiento de mis datos para gestionar esta consulta.</span><span lang="en">I accept the <a href="#" target="_blank">privacy policy</a> and the processing of my data to manage this enquiry.</span></span>
+                                <span class="form-checkbox-label"><span lang="es">Acepto la <a href="<?php echo pageUrl('privacidad'); ?>" target="_blank" rel="noopener">política de privacidad</a> y el tratamiento de mis datos para gestionar esta consulta.</span><span lang="en">I accept the <a href="<?php echo pageUrl('privacidad'); ?>" target="_blank" rel="noopener">privacy policy</a> and the processing of my data to manage this enquiry.</span></span>
                             </label>
 
                             <div class="form-nav">
@@ -2838,6 +2889,533 @@ function pageUrl($pageId, $qs = '') {
             </div>
         </div>
 
+        <!-- ====== Página legal: Política de Privacidad ====== -->
+        <div id="privacidad" class="page<?php echo pageActive('privacidad', $pageId); ?>">
+            <section class="page-heading">
+                <h1><span lang="es">Política de Privacidad</span><span lang="en">Privacy Policy</span></h1>
+            </section>
+            <div class="page-content legal-content">
+                <p class="legal-updated"><span lang="es">Última actualización: 8 de octubre de 2026</span><span lang="en">Last updated: 8 October 2026</span></p>
+
+                <div lang="es">
+                    <p><strong>Kaos Tattoo</strong> (en adelante, <strong>«el Titular»</strong>) te informa sobre su Política de Privacidad respecto del tratamiento y protección de los datos de carácter personal de los usuarios y clientes que puedan ser recabados por la navegación o contratación de servicios a través del sitio web <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a> (en adelante, <strong>«el sitio web»</strong>).</p>
+                    <p>El Titular garantiza el cumplimiento de la normativa vigente en materia de protección de datos personales, reflejada en la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y de Garantía de Derechos Digitales (LOPD GDD), así como en el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales (RGPD).</p>
+                    <p>El uso del sitio web implica la aceptación de esta Política de Privacidad, así como las condiciones incluidas en el <a href="<?php echo pageUrl('aviso-legal'); ?>" data-page="aviso-legal">Aviso Legal</a>.</p>
+
+                    <h2>1. Identidad del responsable</h2>
+                    <ul class="legal-meta">
+                        <li><strong>Titular:</strong> Kaos Tattoo</li>
+                        <li><strong>Domicilio:</strong> C/ Pintor Velazquez, 17 &middot; 03004 Alicante (España)</li>
+                        <li><strong>Correo electrónico:</strong> <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a></li>
+                        <li><strong>Teléfono:</strong> <a href="tel:+34618710976">+34 618 710 976</a></li>
+                        <li><strong>Sitio web:</strong> <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a></li>
+                    </ul>
+
+                    <h2>2. Principios aplicados en el tratamiento de datos</h2>
+                    <p>En el tratamiento de tus datos personales, el Titular aplicará los siguientes principios, conforme a las exigencias del RGPD:</p>
+                    <ul>
+                        <li><strong>Principio de licitud, lealtad y transparencia:</strong> el Titular requerirá el consentimiento para el tratamiento de tus datos personales para uno o varios fines específicos sobre los que te informará previamente con absoluta transparencia.</li>
+                        <li><strong>Principio de minimización de datos:</strong> el Titular solicitará solo los datos estrictamente necesarios para el fin o los fines que los solicita.</li>
+                        <li><strong>Principio de limitación del plazo de conservación:</strong> los datos se mantendrán durante el tiempo estrictamente necesario para el fin o los fines del tratamiento.</li>
+                        <li><strong>Principio de integridad y confidencialidad:</strong> tus datos serán tratados de tal manera que su seguridad, confidencialidad e integridad esté garantizada. El Titular toma las precauciones necesarias para evitar el acceso no autorizado o uso indebido de los datos de sus usuarios por parte de terceros.</li>
+                    </ul>
+
+                    <h2>3. Obtención de datos personales</h2>
+                    <p>Para navegar por el sitio web no es necesario que facilites ningún dato personal. Los casos en los que sí proporcionas datos personales son los siguientes:</p>
+                    <ul>
+                        <li>Al contactar a través del formulario de contacto de la página de contacto.</li>
+                        <li>Al enviar un correo electrónico a la dirección <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a>.</li>
+                        <li>Al navegar por el sitio web con las cookies de análisis o de terceros activadas (consulta la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Política de Cookies</a>).</li>
+                    </ul>
+
+                    <h2>4. Finalidad del tratamiento de datos personales</h2>
+                    <h3>Formulario de contacto</h3>
+                    <p>El Titular solicita los siguientes datos personales: nombre, dirección de correo electrónico, número de teléfono, tipo de proyecto (tatuaje o piercing), zona del cuerpo, una breve descripción de tu idea o estilo y, opcionalmente, imágenes de referencia del proyecto. La finalidad de este tratamiento es <strong>responder a tus consultas, asesorarte sobre tu proyecto, elaborar presupuestos y gestionar la reserva de citas</strong>.</p>
+                    <p>Al enviar el formulario, la información se transmite mediante el servicio FormSubmit (formsubmit.co), que la remite por correo electrónico al Titular. El envío incluye además un mecanismo antispam que no afecta a tus datos.</p>
+                    <h3>Navegación</h3>
+                    <p>El Titular recoge otros datos no identificativos que se obtienen mediante el uso de cookies que se descargan en tu dispositivo cuando navegas por el sitio web, cuyas características y finalidad están detalladas en la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Política de Cookies</a>.</p>
+                    <h3>Redes sociales</h3>
+                    <p>El Titular tiene presencia en redes sociales (Instagram, Facebook, TikTok y WhatsApp). Si te haces seguidor o contactas a través de las redes sociales, el tratamiento de los datos personales se regirá por este apartado, así como por aquellas condiciones de uso, políticas de privacidad y normativas de acceso que pertenezcan a la red social que proceda en cada caso y que hayas aceptado previamente. El Titular tratará tus datos con la finalidad de administrar correctamente su presencia en la red social e informarte de sus actividades, productos o servicios. En ningún caso utilizará los perfiles de seguidores para enviar publicidad de manera individual.</p>
+
+                    <h2>5. Legitimación</h2>
+                    <p>La base legal para el tratamiento de tus datos es el <strong>consentimiento</strong> (art. 6.1.a del RGPD), que otorgas al marcar la casilla de aceptación del formulario de contacto o al aceptar el banner de cookies.</p>
+
+                    <h2>6. Categorías de datos personales</h2>
+                    <ul>
+                        <li><strong>Datos identificativos:</strong> nombre, dirección de correo electrónico y número de teléfono.</li>
+                        <li><strong>Información sobre el proyecto consultado:</strong> tipo (tatuaje o piercing), zona del cuerpo, descripción de la idea o estilo e imágenes de referencia facilitadas voluntariamente.</li>
+                    </ul>
+
+                    <h2>7. Conservación de datos personales</h2>
+                    <p>Los datos personales que proporciones al Titular se conservarán mientras no solicites su supresión y, en todo caso, hasta que dejen de ser necesarios para atender tu consulta. Las cookies se conservarán según los plazos indicados en la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Política de Cookies</a>.</p>
+
+                    <h2>8. Destinatarios de datos personales</h2>
+                    <p>No se realizan cesiones de datos a terceros con fines propios de estos, salvo obligación legal. No obstante, determinados proveedores actúan como encargados del tratamiento o prestan servicios que implican el acceso a los datos:</p>
+                    <ul>
+                        <li><strong>FormSubmit</strong> (formsubmit.co): servicio que procesa el envío del formulario de contacto y lo remite por correo electrónico al Titular. Más información en su política de privacidad: <a href="https://formsubmit.co/privacy-policy" target="_blank" rel="noopener">formsubmit.co/privacy-policy</a>.</li>
+                        <li><strong>Google LLC:</strong> presta los servicios de medición Google Analytics, Google Tag Manager y el seguimiento de conversiones de Google Ads, con finalidad estadística y de análisis de la navegación. Puedes consultar la política de privacidad de Google en <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</li>
+                        <li><strong>TikTok:</strong> el sitio web incluye un widget incrustado del perfil de TikTok del Titular. Al cargarse, TikTok puede recoger datos conforme a su política de privacidad: <a href="https://www.tiktok.com/legal/page/row/privacy-policy" target="_blank" rel="noopener">tiktok.com/legal/page/row/privacy-policy</a>.</li>
+                        <li><strong>Hostinger International Ltd.:</strong> proveedor de alojamiento del sitio web. Más información en <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener">hostinger.com/privacy-policy</a>.</li>
+                    </ul>
+
+                    <h2>9. Navegación web</h2>
+                    <p>Al navegar por el sitio web se pueden recoger datos no identificativos que pueden incluir la dirección IP (anonimizada), un registro de cómo se utilizan los servicios y hábitos de navegación. El sitio web utiliza el servicio de analítica <strong>Google Analytics</strong>, que emplea cookies para analizar el uso que hacen los usuarios del sitio con fines estadísticos. Este servicio solo se activa tras aceptar el banner de cookies.</p>
+
+                    <h2>10. Tus derechos</h2>
+                    <p>Como usuario del sitio web, sobre tus datos personales tienes derecho a:</p>
+                    <ul>
+                        <li>Solicitar el <strong>acceso</strong> a los datos almacenados.</li>
+                        <li>Solicitar la <strong>rectificación</strong> o la <strong>cancelación</strong> (supresión).</li>
+                        <li>Solicitar la <strong>limitación</strong> de su tratamiento.</li>
+                        <li><strong>Oponerte</strong> al tratamiento.</li>
+                        <li>Solicitar la <strong>portabilidad</strong> de tus datos.</li>
+                    </ul>
+                    <p>El ejercicio de estos derechos es personal y debe ser ejercido directamente por el interesado. Para ejercitarlos, envía un correo electrónico a <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a> junto con una prueba válida en derecho (como una fotocopia del D.N.I. o equivalente).</p>
+                    <p>Tienes derecho a la tutela judicial efectiva y a presentar una reclamación ante la autoridad de control, en este caso la <strong>Agencia Española de Protección de Datos</strong> (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>), si consideras que el tratamiento de datos personales que te conciernen infringe el Reglamento.</p>
+
+                    <h2>11. Seguridad de los datos personales</h2>
+                    <p>Para proteger tus datos personales, el Titular toma todas las precauciones razonables y sigue las mejores prácticas de la industria para evitar su pérdida, mal uso, acceso indebido, divulgación, alteración o destrucción. El sitio web está alojado en los servidores de <strong>Hostinger International Ltd.</strong>, que aplica las medidas de seguridad necesarias para garantizar la protección de los datos.</p>
+
+                    <h2>12. Contenido de otros sitios web</h2>
+                    <p>Las páginas del sitio web pueden incluir contenido incrustado de otras webs (por ejemplo, el widget del perfil de TikTok). El contenido incrustado se comporta exactamente de la misma manera que si hubieras visitado la otra web: estos sitios pueden recopilar datos sobre ti, utilizar cookies, incrustar código de seguimiento adicional de terceros y supervisar tu interacción usando ese código, conforme a sus propias políticas de privacidad.</p>
+
+                    <h2>13. Exactitud y veracidad de los datos personales</h2>
+                    <p>Te comprometes a que los datos facilitados al Titular sean correctos, completos, exactos y vigentes, así como a mantenerlos debidamente actualizados. Como usuario del sitio web, eres el único responsable de la veracidad y corrección de los datos que remitas, exonerando al Titular de cualquier responsabilidad al respecto.</p>
+
+                    <h2>14. Aceptación y consentimiento</h2>
+                    <p>Como usuario del sitio web, declaras haber sido informado de las condiciones sobre protección de datos de carácter personal, y aceptas y consientes el tratamiento de los mismos por parte del Titular en la forma y para las finalidades indicadas en esta Política de Privacidad.</p>
+
+                    <h2>15. Revocabilidad</h2>
+                    <p>Para ejercitar tus derechos de acceso, rectificación, cancelación, portabilidad y oposición, envía un correo electrónico a <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a> junto con una prueba válida en derecho. Asimismo, puedes revocar en cualquier momento el consentimiento prestado para las cookies cambiando tus preferencias desde la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Política de Cookies</a> o borrando las cookies de tu navegador. El ejercicio de tus derechos no incluye ningún dato que el Titular esté obligado a conservar con fines administrativos, legales o de seguridad.</p>
+
+                    <h2>16. Cambios en la Política de Privacidad</h2>
+                    <p>El Titular se reserva el derecho a modificar la presente Política de Privacidad para adaptarla a novedades legislativas o jurisprudenciales, así como a prácticas de la industria. La política vigente será la publicada en el sitio web en cada momento.</p>
+                </div>
+
+                <div lang="en">
+                    <p class="legal-translation-note">This English version is provided for information purposes only. In the event of any discrepancy, the Spanish version shall prevail.</p>
+                    <p><strong>Kaos Tattoo</strong> (hereinafter, <strong>“the Owner”</strong>) informs you about its Privacy Policy regarding the processing and protection of the personal data of users and customers that may be collected while browsing or contracting services through the website <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a> (hereinafter, <strong>“the website”</strong>).</p>
+                    <p>The Owner guarantees compliance with the regulations in force on the protection of personal data, as set out in Spanish Organic Law 3/2018 of 5 December on Personal Data Protection and Guarantee of Digital Rights (LOPD GDD), and in Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data (GDPR).</p>
+                    <p>Use of the website implies acceptance of this Privacy Policy and the conditions included in the <a href="<?php echo pageUrl('aviso-legal'); ?>" data-page="aviso-legal">Legal Notice</a>.</p>
+
+                    <h2>1. Identity of the data controller</h2>
+                    <ul class="legal-meta">
+                        <li><strong>Owner:</strong> Kaos Tattoo</li>
+                        <li><strong>Address:</strong> C/ Pintor Velazquez 17 &middot; 03004 Alicante (Spain)</li>
+                        <li><strong>Email:</strong> <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a></li>
+                        <li><strong>Phone:</strong> <a href="tel:+34618710976">+34 618 710 976</a></li>
+                        <li><strong>Website:</strong> <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a></li>
+                    </ul>
+
+                    <h2>2. Principles applied to data processing</h2>
+                    <p>When processing your personal data, the Owner applies the following principles, in accordance with the GDPR:</p>
+                    <ul>
+                        <li><strong>Lawfulness, fairness and transparency:</strong> the Owner will require your consent for the processing of your personal data for one or more specific purposes, about which you will be informed in advance with full transparency.</li>
+                        <li><strong>Data minimisation:</strong> the Owner will only request the data strictly necessary for the purpose(s) for which they are requested.</li>
+                        <li><strong>Storage limitation:</strong> data will be kept for the time strictly necessary for the purpose(s) of the processing.</li>
+                        <li><strong>Integrity and confidentiality:</strong> your data will be processed in such a way that its security, confidentiality and integrity is guaranteed. The Owner takes the necessary precautions to prevent unauthorised access or misuse of users' data by third parties.</li>
+                    </ul>
+
+                    <h2>3. How personal data is collected</h2>
+                    <p>No personal data is required to browse the website. You provide personal data in the following cases:</p>
+                    <ul>
+                        <li>When contacting us through the contact form on the contact page.</li>
+                        <li>When sending an email to <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a>.</li>
+                        <li>When browsing the website with analytics or third-party cookies enabled (see the <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Cookie Policy</a>).</li>
+                    </ul>
+
+                    <h2>4. Purpose of the processing</h2>
+                    <h3>Contact form</h3>
+                    <p>The Owner requests the following personal data: name, email address, phone number, type of project (tattoo or piercing), body area, a short description of your idea or style and, optionally, reference images of the project. The purpose of this processing is <strong>to answer your enquiries, advise you on your project, prepare quotes and manage appointment bookings</strong>.</p>
+                    <p>When you submit the form, the information is transmitted through the FormSubmit service (formsubmit.co), which forwards it to the Owner by email. The submission also includes an anti-spam mechanism that does not affect your data.</p>
+                    <h3>Browsing</h3>
+                    <p>The Owner collects other non-identifying data obtained through cookies downloaded to your device while browsing the website, the characteristics and purpose of which are detailed in the <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Cookie Policy</a>.</p>
+                    <h3>Social media</h3>
+                    <p>The Owner has a presence on social media (Instagram, Facebook, TikTok and WhatsApp). If you follow or contact us through social media, the processing of personal data shall be governed by this section and by the terms of use, privacy policies and access rules of each social network that you have previously accepted. The Owner will process your data in order to properly manage its presence on the social network and inform you of its activities, products or services. In no case will follower profiles be used to send advertising individually.</p>
+
+                    <h2>5. Legal basis</h2>
+                    <p>The legal basis for the processing of your data is <strong>consent</strong> (Art. 6.1.a GDPR), given by ticking the acceptance checkbox in the contact form or by accepting the cookie banner.</p>
+
+                    <h2>6. Categories of personal data</h2>
+                    <ul>
+                        <li><strong>Identifying data:</strong> name, email address and phone number.</li>
+                        <li><strong>Information about the project:</strong> type (tattoo or piercing), body area, description of the idea or style and voluntarily provided reference images.</li>
+                    </ul>
+
+                    <h2>7. Data retention</h2>
+                    <p>The personal data you provide to the Owner will be kept unless you request its erasure and, in any case, until it is no longer necessary to answer your enquiry. Cookies will be kept for the periods stated in the <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Cookie Policy</a>.</p>
+
+                    <h2>8. Recipients of personal data</h2>
+                    <p>Your data will not be transferred to third parties for their own purposes, except where required by law. However, certain providers act as data processors or provide services involving access to the data:</p>
+                    <ul>
+                        <li><strong>FormSubmit</strong> (formsubmit.co): a service that processes the submission of the contact form and forwards it to the Owner by email. Further information in its privacy policy: <a href="https://formsubmit.co/privacy-policy" target="_blank" rel="noopener">formsubmit.co/privacy-policy</a>.</li>
+                        <li><strong>Google LLC:</strong> provides the measurement services Google Analytics, Google Tag Manager and Google Ads conversion tracking, for statistical and browsing analysis purposes. You can consult Google's privacy policy at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</li>
+                        <li><strong>TikTok:</strong> the website embeds a widget of the Owner's TikTok profile. When it loads, TikTok may collect data in accordance with its privacy policy: <a href="https://www.tiktok.com/legal/page/row/privacy-policy" target="_blank" rel="noopener">tiktok.com/legal/page/row/privacy-policy</a>.</li>
+                        <li><strong>Hostinger International Ltd.:</strong> the website hosting provider. Further information at <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener">hostinger.com/privacy-policy</a>.</li>
+                    </ul>
+
+                    <h2>9. Web browsing</h2>
+                    <p>While browsing the website, non-identifying data may be collected, which may include your (anonymised) IP address, a record of how the services are used and browsing habits. The website uses the <strong>Google Analytics</strong> analytics service, which employs cookies to analyse how users use the website for statistical purposes. This service is only activated after accepting the cookie banner.</p>
+
+                    <h2>10. Your rights</h2>
+                    <p>As a user of the website, regarding your personal data you have the right to:</p>
+                    <ul>
+                        <li>Request <strong>access</strong> to the stored data.</li>
+                        <li>Request <strong>rectification</strong> or <strong>erasure</strong>.</li>
+                        <li>Request <strong>restriction</strong> of processing.</li>
+                        <li><strong>Object</strong> to the processing.</li>
+                        <li>Request <strong>portability</strong> of your data.</li>
+                    </ul>
+                    <p>The exercise of these rights is personal and must be carried out directly by the data subject. To exercise them, send an email to <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a> together with valid proof of identity (such as a photocopy of your ID card or equivalent).</p>
+                    <p>You have the right to an effective judicial remedy and to lodge a complaint with the supervisory authority, in this case the <strong>Spanish Data Protection Agency</strong> (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>), if you consider that the processing of your personal data infringes the Regulation.</p>
+
+                    <h2>11. Security of personal data</h2>
+                    <p>To protect your personal data, the Owner takes all reasonable precautions and follows industry best practices to prevent its loss, misuse, unauthorised access, disclosure, alteration or destruction. The website is hosted on the servers of <strong>Hostinger International Ltd.</strong>, which applies the security measures necessary to guarantee the protection of the data.</p>
+
+                    <h2>12. Content from other websites</h2>
+                    <p>The pages of the website may include embedded content from other websites (for example, the TikTok profile widget). Embedded content behaves exactly as if you had visited the other website: these sites may collect data about you, use cookies, embed additional third-party tracking code and monitor your interaction using that code, in accordance with their own privacy policies.</p>
+
+                    <h2>13. Accuracy of personal data</h2>
+                    <p>You undertake to ensure that the data provided to the Owner is correct, complete, accurate and up to date, and to keep it duly updated. As a user of the website, you are solely responsible for the accuracy and correctness of the data you submit, releasing the Owner from any liability in this regard.</p>
+
+                    <h2>14. Acceptance and consent</h2>
+                    <p>As a user of the website, you declare that you have been informed of the conditions regarding the protection of personal data, and you accept and consent to its processing by the Owner in the manner and for the purposes set out in this Privacy Policy.</p>
+
+                    <h2>15. Revocability</h2>
+                    <p>To exercise your rights of access, rectification, erasure, portability and objection, send an email to <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a> together with valid proof of identity. You may also revoke at any time the consent given for cookies by changing your preferences from the <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Cookie Policy</a> or by deleting cookies from your browser. The exercise of your rights does not include any data that the Owner is obliged to keep for administrative, legal or security purposes.</p>
+
+                    <h2>16. Changes to this Privacy Policy</h2>
+                    <p>The Owner reserves the right to modify this Privacy Policy to adapt it to new legislation or case law, as well as industry practices. The policy in force shall be the one published on the website at any given time.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== Página legal: Política de Cookies ====== -->
+        <div id="cookies" class="page<?php echo pageActive('cookies', $pageId); ?>">
+            <section class="page-heading">
+                <h1><span lang="es">Política de Cookies</span><span lang="en">Cookie Policy</span></h1>
+            </section>
+            <div class="page-content legal-content">
+                <p class="legal-updated"><span lang="es">Última actualización: 8 de octubre de 2026</span><span lang="en">Last updated: 8 October 2026</span></p>
+
+                <div lang="es">
+                    <p>En cumplimiento de lo dispuesto en el art. 22 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), y en el Reglamento (UE) 2016/679 (RGPD), <strong>Kaos Tattoo</strong> te informa sobre el uso de cookies y mecanismos de almacenamiento similares en el sitio web <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a>.</p>
+
+                    <h2>1. ¿Qué son las cookies?</h2>
+                    <p>Una cookie es un pequeño archivo que se descarga en tu dispositivo al acceder a determinadas páginas web. Las cookies permiten, entre otras cosas, almacenar y recuperar información sobre tus hábitos de navegación o tu equipo y, según la información que contengan y la forma en que uses tu dispositivo, pueden utilizarse para reconocerte como usuario. Este sitio también utiliza mecanismos de almacenamiento del navegador (<em>localStorage</em> y <em>sessionStorage</em>), sujetos al mismo régimen que las cookies.</p>
+
+                    <h2>2. Cookies y almacenamiento que utiliza este sitio web</h2>
+                    <div class="legal-table-wrap">
+                        <table class="legal-table">
+                            <thead>
+                                <tr>
+                                    <th>Cookie / servicio</th>
+                                    <th>Categoría</th>
+                                    <th>Titular</th>
+                                    <th>Finalidad</th>
+                                    <th>Duración</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>kaos-scroll-*</td>
+                                    <td>Técnica</td>
+                                    <td>Kaos Tattoo</td>
+                                    <td>Restaurar la posición de desplazamiento de la página al volver a ella</td>
+                                    <td>Sesión</td>
+                                </tr>
+                                <tr>
+                                    <td>kaosIntroShown</td>
+                                    <td>Técnica</td>
+                                    <td>Kaos Tattoo</td>
+                                    <td>No repetir la animación de introducción durante la sesión</td>
+                                    <td>Sesión</td>
+                                </tr>
+                                <tr>
+                                    <td>kaosTipo</td>
+                                    <td>Técnica</td>
+                                    <td>Kaos Tattoo</td>
+                                    <td>Recordar el tipo de proyecto (tatuaje o piercing) elegido en el formulario</td>
+                                    <td>Sesión</td>
+                                </tr>
+                                <tr>
+                                    <td>kaos-medium-feed-v3<br>kaos-medium-og-image-v1</td>
+                                    <td>Técnica</td>
+                                    <td>Kaos Tattoo</td>
+                                    <td>Caché local de las publicaciones del blog</td>
+                                    <td>Se actualiza cada 30 min / 24 h</td>
+                                </tr>
+                                <tr>
+                                    <td>kaos-consent</td>
+                                    <td>Técnica</td>
+                                    <td>Kaos Tattoo</td>
+                                    <td>Recordar tu elección sobre las cookies de este sitio</td>
+                                    <td>Hasta que la borres</td>
+                                </tr>
+                                <tr>
+                                    <td>_ga, _ga_*</td>
+                                    <td>Análisis (terceros)</td>
+                                    <td>Google LLC</td>
+                                    <td>Google Analytics 4: recopilar estadísticas anónimas sobre el uso del sitio (páginas visitadas, duración de la visita, procedencia)</td>
+                                    <td>Hasta 24 meses</td>
+                                </tr>
+                                <tr>
+                                    <td>_gcl_au, IDE, test</td>
+                                    <td>Medición de conversiones (terceros)</td>
+                                    <td>Google LLC</td>
+                                    <td>Google Ads: medir si un clic en un anuncio deriva en el envío del formulario de contacto</td>
+                                    <td>90 días / hasta 13 meses</td>
+                                </tr>
+                                <tr>
+                                    <td>Google Tag Manager</td>
+                                    <td>Análisis (terceros)</td>
+                                    <td>Google LLC</td>
+                                    <td>Gestionar el despliegue de las etiquetas de medición (Google Analytics y Google Ads)</td>
+                                    <td>Solo se carga al aceptar</td>
+                                </tr>
+                                <tr>
+                                    <td>tt_*</td>
+                                    <td>Terceros</td>
+                                    <td>TikTok</td>
+                                    <td>Widget incrustado del perfil de TikTok: mostrar el contenido y mejorar el servicio de la plataforma</td>
+                                    <td>Según la política de TikTok</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Las cookies técnicas son necesarias para el funcionamiento del sitio web y no requieren consentimiento. Las cookies de análisis y de terceros <strong>solo se instalan si las aceptas</strong> mediante el banner de consentimiento.</p>
+
+                    <h2>3. Gestión del consentimiento</h2>
+                    <p>Al visitar el sitio web se muestra un banner informativo con dos opciones: <strong>«Aceptar»</strong> y <strong>«Rechazar»</strong>. Solo si pulsas «Aceptar» se instalarán las cookies de análisis y de terceros; si pulsas «Rechazar», no se instalará ninguna de ellas y el sitio funcionará con normalidad.</p>
+                    <p>Puedes cambiar tu decisión en cualquier momento desde el siguiente botón, que volverá a mostrar el banner de consentimiento:</p>
+                    <div class="legal-actions">
+                        <button type="button" class="legal-btn" data-open-cookie-settings><span lang="es">Cambiar mis preferencias de cookies</span><span lang="en">Change my cookie preferences</span></button>
+                    </div>
+
+                    <h2>4. Cómo deshabilitar o eliminar las cookies</h2>
+                    <p>Puedes permitir, bloquear o eliminar las cookies instaladas en tu equipo mediante la configuración de tu navegador:</p>
+                    <ul>
+                        <li><strong>Chrome:</strong> Configuración &rarr; Privacidad y seguridad &rarr; Cookies y otros datos de sitios.</li>
+                        <li><strong>Firefox:</strong> Ajustes &rarr; Privacidad y seguridad &rarr; Cookies y datos de sitios.</li>
+                        <li><strong>Edge:</strong> Configuración &rarr; Cookies y permisos del sitio.</li>
+                        <li><strong>Safari:</strong> Preferencias &rarr; Privacidad.</li>
+                    </ul>
+                    <p>También puedes navegar en modo privado o eliminar las cookies desde el historial de tu navegador. Ten en cuenta que, al eliminar las cookies de análisis, se te volverá a mostrar el banner de consentimiento la próxima vez que visites el sitio.</p>
+
+                    <h2>5. Titular y contacto</h2>
+                    <p>El titular de este sitio web es <strong>Kaos Tattoo</strong> (C/ Pintor Velazquez, 17 &middot; 03004 Alicante, España). Para cualquier consulta sobre esta política de cookies, escríbenos a <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a>. El tratamiento de datos personales se rige por la <a href="<?php echo pageUrl('privacidad'); ?>" data-page="privacidad">Política de Privacidad</a>.</p>
+                </div>
+
+                <div lang="en">
+                    <p class="legal-translation-note">This English version is provided for information purposes only. In the event of any discrepancy, the Spanish version shall prevail.</p>
+                    <p>In accordance with Article 22 of Spanish Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSI-CE), and Regulation (EU) 2016/679 (GDPR), <strong>Kaos Tattoo</strong> informs you about the use of cookies and similar storage mechanisms on the website <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a>.</p>
+
+                    <h2>1. What are cookies?</h2>
+                    <p>A cookie is a small file downloaded to your device when you access certain websites. Among other things, cookies allow websites to store and retrieve information about your browsing habits or your device and, depending on the information they contain and how you use your device, they can be used to recognise you as a user. This website also uses browser storage mechanisms (<em>localStorage</em> and <em>sessionStorage</em>), which are subject to the same rules as cookies.</p>
+
+                    <h2>2. Cookies and storage used by this website</h2>
+                    <div class="legal-table-wrap">
+                        <table class="legal-table">
+                            <thead>
+                                <tr>
+                                    <th>Cookie / service</th>
+                                    <th>Category</th>
+                                    <th>Owner</th>
+                                    <th>Purpose</th>
+                                    <th>Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>kaos-scroll-*</td>
+                                    <td>Technical</td>
+                                    <td>Kaos Tattoo</td>
+                                    <td>Restoring the scroll position of the page when you return to it</td>
+                                    <td>Session</td>
+                                </tr>
+                                <tr>
+                                    <td>kaosIntroShown</td>
+                                    <td>Technical</td>
+                                    <td>Kaos Tattoo</td>
+                                    <td>Not repeating the intro animation during the session</td>
+                                    <td>Session</td>
+                                </tr>
+                                <tr>
+                                    <td>kaosTipo</td>
+                                    <td>Technical</td>
+                                    <td>Kaos Tattoo</td>
+                                    <td>Remembering the project type (tattoo or piercing) chosen in the form</td>
+                                    <td>Session</td>
+                                </tr>
+                                <tr>
+                                    <td>kaos-medium-feed-v3<br>kaos-medium-og-image-v1</td>
+                                    <td>Technical</td>
+                                    <td>Kaos Tattoo</td>
+                                    <td>Local cache of blog posts</td>
+                                    <td>Refreshed every 30 min / 24 h</td>
+                                </tr>
+                                <tr>
+                                    <td>kaos-consent</td>
+                                    <td>Technical</td>
+                                    <td>Kaos Tattoo</td>
+                                    <td>Remembering your choice regarding cookies on this site</td>
+                                    <td>Until you delete it</td>
+                                </tr>
+                                <tr>
+                                    <td>_ga, _ga_*</td>
+                                    <td>Analytics (third party)</td>
+                                    <td>Google LLC</td>
+                                    <td>Google Analytics 4: collecting anonymous statistics about the use of the site (pages visited, visit duration, origin)</td>
+                                    <td>Up to 24 months</td>
+                                </tr>
+                                <tr>
+                                    <td>_gcl_au, IDE, test</td>
+                                    <td>Conversion measurement (third party)</td>
+                                    <td>Google LLC</td>
+                                    <td>Google Ads: measuring whether a click on an ad leads to the submission of the contact form</td>
+                                    <td>90 days / up to 13 months</td>
+                                </tr>
+                                <tr>
+                                    <td>Google Tag Manager</td>
+                                    <td>Analytics (third party)</td>
+                                    <td>Google LLC</td>
+                                    <td>Managing the deployment of measurement tags (Google Analytics and Google Ads)</td>
+                                    <td>Only loaded upon acceptance</td>
+                                </tr>
+                                <tr>
+                                    <td>tt_*</td>
+                                    <td>Third party</td>
+                                    <td>TikTok</td>
+                                    <td>Embedded TikTok profile widget: displaying content and improving the platform's service</td>
+                                    <td>According to TikTok's policy</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Technical cookies are necessary for the website to work and do not require consent. Analytics and third-party cookies are <strong>only installed if you accept them</strong> through the consent banner.</p>
+
+                    <h2>3. Managing your consent</h2>
+                    <p>When you visit the website, an informative banner is displayed with two options: <strong>“Accept”</strong> and <strong>“Reject”</strong>. Analytics and third-party cookies are only installed if you click “Accept”; if you click “Reject”, none of them will be installed and the site will work normally.</p>
+                    <p>You can change your decision at any time using the button below, which will display the consent banner again:</p>
+                    <div class="legal-actions">
+                        <button type="button" class="legal-btn" data-open-cookie-settings><span lang="es">Cambiar mis preferencias de cookies</span><span lang="en">Change my cookie preferences</span></button>
+                    </div>
+
+                    <h2>4. How to disable or delete cookies</h2>
+                    <p>You can allow, block or delete the cookies installed on your device through your browser settings:</p>
+                    <ul>
+                        <li><strong>Chrome:</strong> Settings &rarr; Privacy and security &rarr; Third-party cookies and site data.</li>
+                        <li><strong>Firefox:</strong> Settings &rarr; Privacy & Security &rarr; Cookies and Site Data.</li>
+                        <li><strong>Edge:</strong> Settings &rarr; Cookies and site permissions.</li>
+                        <li><strong>Safari:</strong> Preferences &rarr; Privacy.</li>
+                    </ul>
+                    <p>You can also browse in private mode or delete cookies from your browser history. Please note that when you delete analytics cookies, the consent banner will be shown again the next time you visit the site.</p>
+
+                    <h2>5. Owner and contact</h2>
+                    <p>The owner of this website is <strong>Kaos Tattoo</strong> (C/ Pintor Velazquez 17 &middot; 03004 Alicante, Spain). For any questions about this cookie policy, write to <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a>. The processing of personal data is governed by the <a href="<?php echo pageUrl('privacidad'); ?>" data-page="privacidad">Privacy Policy</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== Página legal: Aviso Legal ====== -->
+        <div id="aviso-legal" class="page<?php echo pageActive('aviso-legal', $pageId); ?>">
+            <section class="page-heading">
+                <h1><span lang="es">Aviso Legal</span><span lang="en">Legal Notice</span></h1>
+            </section>
+            <div class="page-content legal-content">
+                <p class="legal-updated"><span lang="es">Última actualización: 8 de octubre de 2026</span><span lang="en">Last updated: 8 October 2026</span></p>
+
+                <div lang="es">
+                    <h2>1. Identificación del titular</h2>
+                    <p>En cumplimiento de lo dispuesto en el art. 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), te informamos de los datos identificativos del titular de este sitio web:</p>
+                    <ul class="legal-meta">
+                        <li><strong>Titular:</strong> Kaos Tattoo</li>
+                        <li><strong>Domicilio:</strong> C/ Pintor Velazquez, 17 &middot; 03004 Alicante (España)</li>
+                        <li><strong>Correo electrónico:</strong> <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a></li>
+                        <li><strong>Teléfono:</strong> <a href="tel:+34618710976">+34 618 710 976</a></li>
+                        <li><strong>Sitio web:</strong> <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a></li>
+                    </ul>
+
+                    <h2>2. Objeto y aceptación</h2>
+                    <p>El presente Aviso Legal regula el acceso y uso del sitio web <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a>, así como de las páginas y servicios que ofrece. La utilización del sitio web atribuye la condición de usuario e implica la aceptación plena y sin reservas de todas las disposiciones incluidas en este Aviso Legal, en la versión publicada en el momento del acceso.</p>
+                    <p>El titular del sitio web puede modificar en cualquier momento la presentación, configuración y contenido del sitio, así como este Aviso Legal, sin necesidad de aviso previo.</p>
+
+                    <h2>3. Propiedad intelectual e industrial</h2>
+                    <p>Todos los contenidos del sitio web (incluidos, a título indicativo, textos, fotografías, imágenes de las obras y trabajos mostrados, diseños, logotipos, nombres comerciales, estructura, navegación y código fuente) son titularidad de <strong>Kaos Tattoo</strong> o de terceros que han autorizado su uso, y están protegidos por la normativa española e internacional de propiedad intelectual e industrial.</p>
+                    <p>Queda expresamente prohibida la reproducción, distribución, transformación, comunicación pública o cualquier otra forma de explotación de estos contenidos sin la autorización previa y expresa del titular. El acceso al sitio web no otorga al usuario ningún derecho sobre estos contenidos. Los usuarios pueden visualizar y descargar los contenidos exclusivamente para su uso personal y privado, quedando prohibida su utilización con fines comerciales.</p>
+
+                    <h2>4. Condiciones de uso</h2>
+                    <p>El usuario se obliga a hacer un uso diligente, correcto y lícito del sitio web, de acuerdo con la legislación vigente, la moral, las buenas costumbres y el orden público. En particular, el usuario se abstendrá de:</p>
+                    <ul>
+                        <li>Utilizar el sitio web con fines ilícitos, lesivos o contrarios a la buena fe.</li>
+                        <li>Introducir o difundir virus informáticos u otros sistemas susceptibles de provocar daños en el sitio web o en terceros.</li>
+                        <li>Acceder de forma no autorizada a los sistemas, ficheros o datos del sitio web.</li>
+                        <li>Suplantar la identidad de otros usuarios.</li>
+                    </ul>
+
+                    <h2>5. Responsabilidad</h2>
+                    <p>El titular del sitio web no será responsable de los daños y perjuicios de cualquier naturaleza que pudieran derivarse de interferencias, interrupciones, virus informáticos, averías telefónicas o desconexiones motivadas por causas ajenas al titular; de retrasos o bloqueos causados por deficiencias o sobrecargas en los sistemas o en los servicios indicados; o de las imposiciones de acceso de terceros a los sistemas ajenos al control del titular. Asimismo, el titular no se responsabiliza de los contenidos, productos o servicios de sitios de terceros enlazados o incrustados desde este sitio web.</p>
+
+                    <h2>6. Enlaces a sitios de terceros</h2>
+                    <p>El sitio web incluye enlaces a perfiles y sitios de terceros (redes sociales, servicios de mensajería y otros) que se ofrecen únicamente a título informativo. El titular no responde de los contenidos ni de las políticas de dichos sitios, ni garantiza la disponibilidad de los mismos. El uso de estos enlaces se realiza bajo la exclusiva responsabilidad del usuario.</p>
+
+                    <h2>7. Menores</h2>
+                    <p>Este sitio web no va dirigido a menores de 14 años, que deberán acceder a él acompañados o con el consentimiento de su padre, madre o tutor legal. Los servicios del estudio de tatuaje y piercings tienen restricciones de edad conforme a la normativa aplicable: no se realizan piercings a menores de 14 años y, entre los 14 y los 17 años, es necesaria la presencia del padre, madre o tutor legal con la documentación correspondiente. Para los tatuajes a menores de edad, el estudio exigirá la autorización de quien ostente la patria potestad, conforme a las condiciones publicadas en el sitio web.</p>
+
+                    <h2>8. Protección de datos</h2>
+                    <p>El tratamiento de los datos personales de los usuarios se rige por la <a href="<?php echo pageUrl('privacidad'); ?>" data-page="privacidad">Política de Privacidad</a> y la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Política de Cookies</a> de este sitio web, que forman parte inseparable del presente Aviso Legal.</p>
+
+                    <h2>9. Ley aplicable y jurisdicción</h2>
+                    <p>El presente Aviso Legal se rige por la legislación española. Para la resolución de cualquier controversia que pudiera derivarse del acceso o uso del sitio web, el usuario y el titular se someten a los juzgados y tribunales de la ciudad de Alicante, salvo que la normativa aplicable disponga otra cosa.</p>
+                </div>
+
+                <div lang="en">
+                    <p class="legal-translation-note">This English version is provided for information purposes only. In the event of any discrepancy, the Spanish version shall prevail.</p>
+                    <h2>1. Identification of the owner</h2>
+                    <p>In accordance with Article 10 of Spanish Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSI-CE), we hereby inform you of the identifying details of the owner of this website:</p>
+                    <ul class="legal-meta">
+                        <li><strong>Owner:</strong> Kaos Tattoo</li>
+                        <li><strong>Address:</strong> C/ Pintor Velazquez 17 &middot; 03004 Alicante (Spain)</li>
+                        <li><strong>Email:</strong> <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a></li>
+                        <li><strong>Phone:</strong> <a href="tel:+34618710976">+34 618 710 976</a></li>
+                        <li><strong>Website:</strong> <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a></li>
+                    </ul>
+
+                    <h2>2. Object and acceptance</h2>
+                    <p>This Legal Notice governs access to and use of the website <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a>, including its pages and services. Using the website grants you the status of user and implies full and unreserved acceptance of all provisions included in this Legal Notice, in the version published at the time of access.</p>
+                    <p>The owner of the website may at any time modify the presentation, configuration and content of the website, as well as this Legal Notice, without prior notice.</p>
+
+                    <h2>3. Intellectual and industrial property</h2>
+                    <p>All contents of the website (including, by way of example, texts, photographs, images of the works shown, designs, logos, trade names, structure, navigation and source code) are owned by <strong>Kaos Tattoo</strong> or by third parties who have authorised their use, and are protected by Spanish and international intellectual and industrial property law.</p>
+                    <p>The reproduction, distribution, transformation, public communication or any other form of exploitation of these contents without the prior, express authorisation of the owner is expressly prohibited. Access to the website does not grant the user any rights over these contents. Users may view and download the contents solely for personal and private use; commercial use is prohibited.</p>
+
+                    <h2>4. Conditions of use</h2>
+                    <p>The user undertakes to use the website diligently, correctly and lawfully, in accordance with current legislation, morality, good customs and public order. In particular, the user shall refrain from:</p>
+                    <ul>
+                        <li>Using the website for unlawful, harmful or bad-faith purposes.</li>
+                        <li>Introducing or spreading computer viruses or other systems likely to cause damage to the website or to third parties.</li>
+                        <li>Unauthorised access to the website's systems, files or data.</li>
+                        <li>Impersonating other users.</li>
+                    </ul>
+
+                    <h2>5. Liability</h2>
+                    <p>The owner of the website shall not be liable for any damages of any kind arising from interference, interruptions, computer viruses, telephone failures or disconnections caused by circumstances beyond the owner's control; delays or blockages caused by deficiencies or overloads in the systems or services; or third parties accessing systems beyond the owner's control. Likewise, the owner is not responsible for the content, products or services of third-party sites linked to or embedded in this website.</p>
+
+                    <h2>6. Links to third-party websites</h2>
+                    <p>The website includes links to third-party profiles and sites (social media, messaging services and others) offered for information purposes only. The owner is not responsible for the content or policies of those sites, nor does it guarantee their availability. The use of these links is the sole responsibility of the user.</p>
+
+                    <h2>7. Minors</h2>
+                    <p>This website is not aimed at children under 14, who must access it accompanied by or with the consent of a parent or legal guardian. The studio's tattoo and piercing services are subject to age restrictions under the applicable regulations: piercings are not performed on children under 14, and between the ages of 14 and 17, the presence of a parent or legal guardian with the corresponding documentation is required. For tattoos on minors, the studio will require authorisation from the person holding parental responsibility, in accordance with the conditions published on this website.</p>
+
+                    <h2>8. Data protection</h2>
+                    <p>The processing of users' personal data is governed by the <a href="<?php echo pageUrl('privacidad'); ?>" data-page="privacidad">Privacy Policy</a> and the <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Cookie Policy</a> of this website, which form an inseparable part of this Legal Notice.</p>
+
+                    <h2>9. Applicable law and jurisdiction</h2>
+                    <p>This Legal Notice is governed by Spanish law. For the resolution of any dispute arising from access to or use of the website, the user and the owner submit to the courts of the city of Alicante, unless the applicable legislation provides otherwise.</p>
+                </div>
+            </div>
+        </div>
+
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-powered">
@@ -2872,6 +3450,13 @@ function pageUrl($pageId, $qs = '') {
                         <span lang="es">Contacto</span><span lang="en">Contact</span>
                     </a>
                 </div>
+                <nav class="footer-legal" aria-label="Enlaces legales">
+                    <a href="<?php echo pageUrl('privacidad'); ?>" data-page="privacidad"><span lang="es">Política de Privacidad</span><span lang="en">Privacy Policy</span></a>
+                    <span class="footer-legal-sep">&middot;</span>
+                    <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies"><span lang="es">Política de Cookies</span><span lang="en">Cookie Policy</span></a>
+                    <span class="footer-legal-sep">&middot;</span>
+                    <a href="<?php echo pageUrl('aviso-legal'); ?>" data-page="aviso-legal"><span lang="es">Aviso Legal</span><span lang="en">Legal Notice</span></a>
+                </nav>
             </div>
         </footer>
     </main>
@@ -2928,6 +3513,24 @@ function pageUrl($pageId, $qs = '') {
         <button id="whatsapp-float-btn" class="whatsapp-float" style="display:none" aria-label="Contactar por WhatsApp">
             <img src="images/logotipos_contacts/whatsapp.webp" alt="WhatsApp">
         </button>
+    </div>
+
+    <!-- Cookie consent banner (RGPD / LSSI-CE) -->
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-modal="false" aria-live="polite" aria-label="Aviso de cookies">
+        <div class="cookie-banner-inner">
+            <p class="cookie-banner-text">
+                <span lang="es">Usamos cookies propias técnicas para el funcionamiento de la web y, <strong>solo si las aceptas</strong>, cookies de análisis y de medición de conversiones de Google y del widget de TikTok. Puedes aceptar, rechazar o cambiar tu decisión en cualquier momento en la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">política de cookies</a>.</span>
+                <span lang="en">We use our own technical cookies to run the website and, <strong>only if you accept</strong>, Google analytics and conversion measurement cookies and TikTok widget cookies. You can accept, reject or change your decision at any time in the <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">cookie policy</a>.</span>
+            </p>
+            <div class="cookie-banner-actions">
+                <button type="button" class="cookie-banner-btn cookie-banner-btn--accept" id="cookie-accept">
+                    <span lang="es">Aceptar</span><span lang="en">Accept</span>
+                </button>
+                <button type="button" class="cookie-banner-btn cookie-banner-btn--reject" id="cookie-reject">
+                    <span lang="es">Rechazar</span><span lang="en">Reject</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -3509,21 +4112,37 @@ function pageUrl($pageId, $qs = '') {
             iframeObserver.observe(f);
         });
 
-        // Lazy-load TikTok: load embed.js only when section is near
+        // Lazy-load TikTok: load embed.js only when section is near AND the
+        // user has accepted cookies (the widget sets third-party cookies).
         var tiktokSection = document.querySelector('[data-lazy-tiktok]');
         if (tiktokSection) {
             var tiktokLoaded = false;
+            var tiktokSeen = false;
+            var loadTikTok = function() {
+                if (tiktokLoaded || !tiktokSeen) return;
+                tiktokLoaded = true;
+                var s = document.createElement('script');
+                s.src = 'https://www.tiktok.com/embed.js';
+                s.async = true;
+                document.body.appendChild(s);
+                // Only stop observing once the script has actually loaded;
+                // killing the observer earlier would block the widget forever
+                // (e.g. consent given before ever scrolling to the section).
+                tiktokObserver.disconnect();
+            };
             var tiktokObserver = new IntersectionObserver(function(entries) {
-                if (entries[0].isIntersecting && !tiktokLoaded) {
-                    tiktokLoaded = true;
-                    var s = document.createElement('script');
-                    s.src = 'https://www.tiktok.com/embed.js';
-                    s.async = true;
-                    document.body.appendChild(s);
-                    tiktokObserver.unobserve(tiktokSection);
+                if (entries[0].isIntersecting) {
+                    tiktokSeen = true;
+                    if (window.kaosConsent.get() === 'accepted') {
+                        loadTikTok();
+                    }
                 }
             }, { rootMargin: '400px' });
             tiktokObserver.observe(tiktokSection);
+            // If consent was already given when reaching this point, load
+            // right away when the section has already been seen; otherwise
+            // the observer above stays alive and loads it when it appears.
+            window.kaosConsent.onAccept(loadTikTok);
         }
     })();
     </script>

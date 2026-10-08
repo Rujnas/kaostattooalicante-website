@@ -2902,14 +2902,16 @@ function pageUrl($pageId, $qs = '') {
                 <p class="legal-updated"><span lang="es">Última actualización: 8 de octubre de 2026</span><span lang="en">Last updated: 8 October 2026</span></p>
 
                 <div lang="es">
-                    <p><strong>Kaos Tattoo</strong> (en adelante, <strong>«el Titular»</strong>) te informa sobre su Política de Privacidad respecto del tratamiento y protección de los datos de carácter personal de los usuarios y clientes que puedan ser recabados por la navegación o contratación de servicios a través del sitio web <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a> (en adelante, <strong>«el sitio web»</strong>).</p>
+                    <p><strong>Enrique Sastre Guerrero</strong>, titular del nombre comercial <strong>Kaos Tattoo</strong> (en adelante, <strong>«el Titular»</strong>), te informa sobre su Política de Privacidad respecto del tratamiento y protección de los datos de carácter personal de los usuarios y clientes que puedan ser recabados por la navegación o contratación de servicios a través del sitio web <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a> (en adelante, <strong>«el sitio web»</strong>).</p>
                     <p>El Titular garantiza el cumplimiento de la normativa vigente en materia de protección de datos personales, reflejada en la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y de Garantía de Derechos Digitales (LOPD GDD), así como en el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales (RGPD).</p>
                     <p>El uso del sitio web implica la aceptación de esta Política de Privacidad, así como las condiciones incluidas en el <a href="<?php echo pageUrl('aviso-legal'); ?>" data-page="aviso-legal">Aviso Legal</a>.</p>
 
                     <h2>1. Identidad del responsable</h2>
                     <ul class="legal-meta">
-                        <li><strong>Titular:</strong> Kaos Tattoo</li>
-                        <li><strong>Domicilio:</strong> C/ Pintor Velazquez, 17 &middot; 03004 Alicante (España)</li>
+                        <li><strong>Titular:</strong> Enrique Sastre Guerrero</li>
+                        <li><strong>NIF:</strong> 51146894T</li>
+                        <li><strong>Nombre comercial:</strong> Kaos Tattoo</li>
+                        <li><strong>Domicilio:</strong> Pl. Santa Teresa, 6 &middot; 03004 Alicante (España)</li>
                         <li><strong>Correo electrónico:</strong> <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a></li>
                         <li><strong>Teléfono:</strong> <a href="tel:+34618710976">+34 618 710 976</a></li>
                         <li><strong>Sitio web:</strong> <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a></li>
@@ -2998,14 +3000,16 @@ function pageUrl($pageId, $qs = '') {
 
                 <div lang="en">
                     <p class="legal-translation-note">This English version is provided for information purposes only. In the event of any discrepancy, the Spanish version shall prevail.</p>
-                    <p><strong>Kaos Tattoo</strong> (hereinafter, <strong>“the Owner”</strong>) informs you about its Privacy Policy regarding the processing and protection of the personal data of users and customers that may be collected while browsing or contracting services through the website <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a> (hereinafter, <strong>“the website”</strong>).</p>
+                    <p><strong>Enrique Sastre Guerrero</strong>, owner of the trade name <strong>Kaos Tattoo</strong> (hereinafter, <strong>“the Owner”</strong>), informs you about its Privacy Policy regarding the processing and protection of the personal data of users and customers that may be collected while browsing or contracting services through the website <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a> (hereinafter, <strong>“the website”</strong>).</p>
                     <p>The Owner guarantees compliance with the regulations in force on the protection of personal data, as set out in Spanish Organic Law 3/2018 of 5 December on Personal Data Protection and Guarantee of Digital Rights (LOPD GDD), and in Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data (GDPR).</p>
                     <p>Use of the website implies acceptance of this Privacy Policy and the conditions included in the <a href="<?php echo pageUrl('aviso-legal'); ?>" data-page="aviso-legal">Legal Notice</a>.</p>
 
                     <h2>1. Identity of the data controller</h2>
                     <ul class="legal-meta">
-                        <li><strong>Owner:</strong> Kaos Tattoo</li>
-                        <li><strong>Address:</strong> C/ Pintor Velazquez 17 &middot; 03004 Alicante (Spain)</li>
+                        <li><strong>Owner:</strong> Enrique Sastre Guerrero</li>
+                        <li><strong>Tax ID (NIF):</strong> 51146894T</li>
+                        <li><strong>Trade name:</strong> Kaos Tattoo</li>
+                        <li><strong>Address:</strong> Pl. Santa Teresa 6 &middot; 03004 Alicante (Spain)</li>
                         <li><strong>Email:</strong> <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a></li>
                         <li><strong>Phone:</strong> <a href="tel:+34618710976">+34 618 710 976</a></li>
                         <li><strong>Website:</strong> <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a></li>
@@ -3103,7 +3107,7 @@ function pageUrl($pageId, $qs = '') {
                 <p class="legal-updated"><span lang="es">Última actualización: 8 de octubre de 2026</span><span lang="en">Last updated: 8 October 2026</span></p>
 
                 <div lang="es">
-                    <p>En cumplimiento de lo dispuesto en el art. 22 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), y en el Reglamento (UE) 2016/679 (RGPD), <strong>Kaos Tattoo</strong> te informa sobre el uso de cookies y mecanismos de almacenamiento similares en el sitio web <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a>.</p>
+                    <p>En cumplimiento de lo dispuesto en el art. 22 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), y en el Reglamento (UE) 2016/679 (RGPD), <strong>Enrique Sastre Guerrero</strong>, titular del nombre comercial <strong>Kaos Tattoo</strong>, te informa sobre el uso de cookies y mecanismos de almacenamiento similares en el sitio web <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a>.</p>
 
                     <h2>1. ¿Qué son las cookies?</h2>
                     <p>Una cookie es un pequeño archivo que se descarga en tu dispositivo al acceder a determinadas páginas web. Las cookies permiten, entre otras cosas, almacenar y recuperar información sobre tus hábitos de navegación o tu equipo y, según la información que contengan y la forma en que uses tu dispositivo, pueden utilizarse para reconocerte como usuario. Este sitio también utiliza mecanismos de almacenamiento del navegador (<em>localStorage</em> y <em>sessionStorage</em>), sujetos al mismo régimen que las cookies.</p>
@@ -3207,12 +3211,12 @@ function pageUrl($pageId, $qs = '') {
                     <p>También puedes navegar en modo privado o eliminar las cookies desde el historial de tu navegador. Ten en cuenta que, al eliminar las cookies de análisis, se te volverá a mostrar el banner de consentimiento la próxima vez que visites el sitio.</p>
 
                     <h2>5. Titular y contacto</h2>
-                    <p>El titular de este sitio web es <strong>Kaos Tattoo</strong> (C/ Pintor Velazquez, 17 &middot; 03004 Alicante, España). Para cualquier consulta sobre esta política de cookies, escríbenos a <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a>. El tratamiento de datos personales se rige por la <a href="<?php echo pageUrl('privacidad'); ?>" data-page="privacidad">Política de Privacidad</a>.</p>
+                    <p>El titular de este sitio web es <strong>Enrique Sastre Guerrero</strong> (NIF 51146894T), titular del nombre comercial <strong>Kaos Tattoo</strong>, con domicilio en Pl. Santa Teresa, 6 &middot; 03004 Alicante (España). Para cualquier consulta sobre esta política de cookies, escríbenos a <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a>. El tratamiento de datos personales se rige por la <a href="<?php echo pageUrl('privacidad'); ?>" data-page="privacidad">Política de Privacidad</a>.</p>
                 </div>
 
                 <div lang="en">
                     <p class="legal-translation-note">This English version is provided for information purposes only. In the event of any discrepancy, the Spanish version shall prevail.</p>
-                    <p>In accordance with Article 22 of Spanish Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSI-CE), and Regulation (EU) 2016/679 (GDPR), <strong>Kaos Tattoo</strong> informs you about the use of cookies and similar storage mechanisms on the website <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a>.</p>
+                    <p>In accordance with Article 22 of Spanish Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSI-CE), and Regulation (EU) 2016/679 (GDPR), <strong>Enrique Sastre Guerrero</strong>, owner of the trade name <strong>Kaos Tattoo</strong>, informs you about the use of cookies and similar storage mechanisms on the website <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a>.</p>
 
                     <h2>1. What are cookies?</h2>
                     <p>A cookie is a small file downloaded to your device when you access certain websites. Among other things, cookies allow websites to store and retrieve information about your browsing habits or your device and, depending on the information they contain and how you use your device, they can be used to recognise you as a user. This website also uses browser storage mechanisms (<em>localStorage</em> and <em>sessionStorage</em>), which are subject to the same rules as cookies.</p>
@@ -3316,7 +3320,7 @@ function pageUrl($pageId, $qs = '') {
                     <p>You can also browse in private mode or delete cookies from your browser history. Please note that when you delete analytics cookies, the consent banner will be shown again the next time you visit the site.</p>
 
                     <h2>5. Owner and contact</h2>
-                    <p>The owner of this website is <strong>Kaos Tattoo</strong> (C/ Pintor Velazquez 17 &middot; 03004 Alicante, Spain). For any questions about this cookie policy, write to <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a>. The processing of personal data is governed by the <a href="<?php echo pageUrl('privacidad'); ?>" data-page="privacidad">Privacy Policy</a>.</p>
+                    <p>The owner of this website is <strong>Enrique Sastre Guerrero</strong> (Tax ID 51146894T), owner of the trade name <strong>Kaos Tattoo</strong>, with address at Pl. Santa Teresa 6 &middot; 03004 Alicante (Spain). For any questions about this cookie policy, write to <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a>. The processing of personal data is governed by the <a href="<?php echo pageUrl('privacidad'); ?>" data-page="privacidad">Privacy Policy</a>.</p>
                 </div>
             </div>
         </div>
@@ -3333,8 +3337,10 @@ function pageUrl($pageId, $qs = '') {
                     <h2>1. Identificación del titular</h2>
                     <p>En cumplimiento de lo dispuesto en el art. 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), te informamos de los datos identificativos del titular de este sitio web:</p>
                     <ul class="legal-meta">
-                        <li><strong>Titular:</strong> Kaos Tattoo</li>
-                        <li><strong>Domicilio:</strong> C/ Pintor Velazquez, 17 &middot; 03004 Alicante (España)</li>
+                        <li><strong>Titular:</strong> Enrique Sastre Guerrero</li>
+                        <li><strong>NIF:</strong> 51146894T</li>
+                        <li><strong>Nombre comercial:</strong> Kaos Tattoo</li>
+                        <li><strong>Domicilio:</strong> Pl. Santa Teresa, 6 &middot; 03004 Alicante (España)</li>
                         <li><strong>Correo electrónico:</strong> <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a></li>
                         <li><strong>Teléfono:</strong> <a href="tel:+34618710976">+34 618 710 976</a></li>
                         <li><strong>Sitio web:</strong> <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a></li>
@@ -3378,8 +3384,10 @@ function pageUrl($pageId, $qs = '') {
                     <h2>1. Identification of the owner</h2>
                     <p>In accordance with Article 10 of Spanish Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSI-CE), we hereby inform you of the identifying details of the owner of this website:</p>
                     <ul class="legal-meta">
-                        <li><strong>Owner:</strong> Kaos Tattoo</li>
-                        <li><strong>Address:</strong> C/ Pintor Velazquez 17 &middot; 03004 Alicante (Spain)</li>
+                        <li><strong>Owner:</strong> Enrique Sastre Guerrero</li>
+                        <li><strong>Tax ID (NIF):</strong> 51146894T</li>
+                        <li><strong>Trade name:</strong> Kaos Tattoo</li>
+                        <li><strong>Address:</strong> Pl. Santa Teresa 6 &middot; 03004 Alicante (Spain)</li>
                         <li><strong>Email:</strong> <a href="mailto:kaostattooalc@gmail.com">kaostattooalc@gmail.com</a></li>
                         <li><strong>Phone:</strong> <a href="tel:+34618710976">+34 618 710 976</a></li>
                         <li><strong>Website:</strong> <a href="https://kaostattooalicante.es" target="_blank" rel="noopener">https://kaostattooalicante.es</a></li>

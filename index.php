@@ -2931,7 +2931,7 @@ function pageUrl($pageId, $qs = '') {
                     <h2>4. Finalidad del tratamiento de datos personales</h2>
                     <h3>Formulario de contacto</h3>
                     <p>El Titular solicita los siguientes datos personales: nombre, dirección de correo electrónico, número de teléfono, tipo de proyecto (tatuaje o piercing), zona del cuerpo, una breve descripción de tu idea o estilo y, opcionalmente, imágenes de referencia del proyecto. La finalidad de este tratamiento es <strong>responder a tus consultas, asesorarte sobre tu proyecto, elaborar presupuestos y gestionar la reserva de citas</strong>.</p>
-                    <p>Al enviar el formulario, la información se transmite mediante el servicio FormSubmit (formsubmit.co), que la remite por correo electrónico al Titular. El envío incluye además un mecanismo antispam que no afecta a tus datos.</p>
+                    <p>Al enviar el formulario, la información se transmite mediante el servicio FormSubmit (formsubmit.co), que la remite por correo electrónico a la dirección <strong>kaostattooalc@gmail.com</strong>. Además, la consulta se guarda en la <strong>base de datos del sitio web</strong>, alojada en los servidores del proveedor de alojamiento (Hostinger), para su gestión y seguimiento. El envío incluye también un mecanismo antispam que no afecta a tus datos.</p>
                     <h3>Navegación</h3>
                     <p>El Titular recoge otros datos no identificativos que se obtienen mediante el uso de cookies que se descargan en tu dispositivo cuando navegas por el sitio web, cuyas características y finalidad están detalladas en la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Política de Cookies</a>.</p>
                     <h3>Redes sociales</h3>
@@ -2947,7 +2947,7 @@ function pageUrl($pageId, $qs = '') {
                     </ul>
 
                     <h2>7. Conservación de datos personales</h2>
-                    <p>Los datos personales que proporciones al Titular se conservarán mientras no solicites su supresión y, en todo caso, hasta que dejen de ser necesarios para atender tu consulta. Las cookies se conservarán según los plazos indicados en la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Política de Cookies</a>.</p>
+                    <p>Las consultas recibidas se guardan en la base de datos del sitio web y en el buzón de correo electrónico del Titular (<strong>kaostattooalc@gmail.com</strong>), donde se conservan mientras no solicites su supresión y, en todo caso, hasta que dejen de ser necesarios para atender tu consulta. Las cookies se conservarán según los plazos indicados en la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Política de Cookies</a>.</p>
 
                     <h2>8. Destinatarios de datos personales</h2>
                     <p>No se realizan cesiones de datos a terceros con fines propios de estos, salvo obligación legal. No obstante, determinados proveedores actúan como encargados del tratamiento o prestan servicios que implican el acceso a los datos:</p>
@@ -2955,7 +2955,7 @@ function pageUrl($pageId, $qs = '') {
                         <li><strong>FormSubmit</strong> (formsubmit.co): servicio que procesa el envío del formulario de contacto y lo remite por correo electrónico al Titular. Más información en su política de privacidad: <a href="https://formsubmit.co/privacy-policy" target="_blank" rel="noopener">formsubmit.co/privacy-policy</a>.</li>
                         <li><strong>Google LLC:</strong> presta los servicios de medición Google Analytics, Google Tag Manager y el seguimiento de conversiones de Google Ads, con finalidad estadística y de análisis de la navegación. Puedes consultar la política de privacidad de Google en <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</li>
                         <li><strong>TikTok:</strong> el sitio web incluye un widget incrustado del perfil de TikTok del Titular. Al cargarse, TikTok puede recoger datos conforme a su política de privacidad: <a href="https://www.tiktok.com/legal/page/row/privacy-policy" target="_blank" rel="noopener">tiktok.com/legal/page/row/privacy-policy</a>.</li>
-                        <li><strong>Hostinger International Ltd.:</strong> proveedor de alojamiento del sitio web. Más información en <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener">hostinger.com/privacy-policy</a>.</li>
+                        <li><strong>Hostinger International Ltd.:</strong> proveedor de alojamiento del sitio web, que aloja también la base de datos donde se guardan las consultas. Más información en <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener">hostinger.com/privacy-policy</a>.</li>
                     </ul>
 
                     <h2>9. Navegación web</h2>
@@ -3027,7 +3027,7 @@ function pageUrl($pageId, $qs = '') {
                     <h2>4. Purpose of the processing</h2>
                     <h3>Contact form</h3>
                     <p>The Owner requests the following personal data: name, email address, phone number, type of project (tattoo or piercing), body area, a short description of your idea or style and, optionally, reference images of the project. The purpose of this processing is <strong>to answer your enquiries, advise you on your project, prepare quotes and manage appointment bookings</strong>.</p>
-                    <p>When you submit the form, the information is transmitted through the FormSubmit service (formsubmit.co), which forwards it to the Owner by email. The submission also includes an anti-spam mechanism that does not affect your data.</p>
+                    <p>When you submit the form, the information is transmitted through the FormSubmit service (formsubmit.co), which forwards it to the email address <strong>kaostattooalc@gmail.com</strong>. The enquiry is also stored in the <strong>website's database</strong>, hosted on the servers of the hosting provider (Hostinger), for management and follow-up purposes. The submission also includes an anti-spam mechanism that does not affect your data.</p>
                     <h3>Browsing</h3>
                     <p>The Owner collects other non-identifying data obtained through cookies downloaded to your device while browsing the website, the characteristics and purpose of which are detailed in the <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Cookie Policy</a>.</p>
                     <h3>Social media</h3>
@@ -3043,7 +3043,7 @@ function pageUrl($pageId, $qs = '') {
                     </ul>
 
                     <h2>7. Data retention</h2>
-                    <p>The personal data you provide to the Owner will be kept unless you request its erasure and, in any case, until it is no longer necessary to answer your enquiry. Cookies will be kept for the periods stated in the <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Cookie Policy</a>.</p>
+                    <p>Enquiries received are stored in the website's database and in the Owner's mailbox (<strong>kaostattooalc@gmail.com</strong>), where they are kept unless you request their erasure and, in any case, until they are no longer necessary to answer your enquiry. Cookies will be kept for the periods stated in the <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Cookie Policy</a>.</p>
 
                     <h2>8. Recipients of personal data</h2>
                     <p>Your data will not be transferred to third parties for their own purposes, except where required by law. However, certain providers act as data processors or provide services involving access to the data:</p>
@@ -3051,7 +3051,7 @@ function pageUrl($pageId, $qs = '') {
                         <li><strong>FormSubmit</strong> (formsubmit.co): a service that processes the submission of the contact form and forwards it to the Owner by email. Further information in its privacy policy: <a href="https://formsubmit.co/privacy-policy" target="_blank" rel="noopener">formsubmit.co/privacy-policy</a>.</li>
                         <li><strong>Google LLC:</strong> provides the measurement services Google Analytics, Google Tag Manager and Google Ads conversion tracking, for statistical and browsing analysis purposes. You can consult Google's privacy policy at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</li>
                         <li><strong>TikTok:</strong> the website embeds a widget of the Owner's TikTok profile. When it loads, TikTok may collect data in accordance with its privacy policy: <a href="https://www.tiktok.com/legal/page/row/privacy-policy" target="_blank" rel="noopener">tiktok.com/legal/page/row/privacy-policy</a>.</li>
-                        <li><strong>Hostinger International Ltd.:</strong> the website hosting provider. Further information at <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener">hostinger.com/privacy-policy</a>.</li>
+                        <li><strong>Hostinger International Ltd.:</strong> the website hosting provider, which also hosts the database where enquiries are stored. Further information at <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener">hostinger.com/privacy-policy</a>.</li>
                     </ul>
 
                     <h2>9. Web browsing</h2>

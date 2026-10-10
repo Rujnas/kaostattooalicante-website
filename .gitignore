@@ -1,0 +1,12 @@
+# Sensitive database credentials
+config.db.php
+
+# Customer uploaded files
+uploads/consultas/*
+!uploads/consultas/.gitkeep
+!uploads/consultas/.htaccess
+
+# OS / Editor temporary files
+.DS_Store
+Thumbs.db
+*.log

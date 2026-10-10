@@ -4034,14 +4034,18 @@ function pageUrl($pageId, $qs = '') {
             formData.append('Email', email);
             formData.append('Teléfono', telefono);
             uploadedFiles.forEach(function(file) {
-                formData.append('attachment', file, file.name);
+                formData.append('attachment[]', file, file.name);
             });
+            formData.append('idioma', getLang());
 
-            fetch('https://formsubmit.co/ajax/kaostattooalc@gmail.com', {
+            fetch('/guardar-consulta.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(function(res) { return res.json(); })
+            .then(function(res) {
+                if (!res.ok) throw new Error('Server returned ' + res.status);
+                return res.json();
+            })
             .then(function(data) {
                 if (data.success) {
                     // Show success UI first (protected from dataLayer errors)
@@ -4071,8 +4075,40 @@ function pageUrl($pageId, $qs = '') {
                 }
             })
             .catch(function() {
-                resetSubmitBtn(submitBtn);
-                alert(getLang() === 'en' ? 'Connection error. Please try again.' : 'Error de conexión. Inténtalo de nuevo.');
+                // Respaldo directo a FormSubmit en caso de fallo de conexión con el endpoint local
+                fetch('https://formsubmit.co/ajax/kaostattooalc@gmail.com', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    if (data.success) {
+                        form.style.display = 'none';
+                        document.querySelector('.form-progress').style.display = 'none';
+                        successEl.classList.add('visible');
+                        try {
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({
+                                event: 'form_submitted',
+                                tipo: tipo,
+                                zona: zona,
+                                idea_estilo: idea,
+                                nombre: nombre,
+                                email: email,
+                                telefono: telefono,
+                                privacidad_aceptada: true,
+                                idioma: getLang()
+                            });
+                        } catch (e) {}
+                    } else {
+                        resetSubmitBtn(submitBtn);
+                        alert(getLang() === 'en' ? 'Error sending. Please try again.' : 'Error al enviar. Inténtalo de nuevo.');
+                    }
+                })
+                .catch(function() {
+                    resetSubmitBtn(submitBtn);
+                    alert(getLang() === 'en' ? 'Connection error. Please try again.' : 'Error de conexión. Inténtalo de nuevo.');
+                });
             });
         });
     })();

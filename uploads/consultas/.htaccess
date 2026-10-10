@@ -1,0 +1,8 @@
+# Security hardening for uploads directory
+Options -ExecCGI -Indexes
+
+# Block script execution
+<FilesMatch "\.(php|php[0-9]|phtml|pl|py|jsp|asp|sh|cgi|phar)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>

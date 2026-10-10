@@ -2,67 +2,61 @@
 
 ## Servicio de envio
 
-El formulario de contacto (`id="contacto-form"` en `index.html`) no tiene backend propio.
-Se envia mediante **FormSubmit.co**, un servicio externo de terceros que recibe datos de
-formularios via HTTP y los reenvia como correo electronico.
+## Flujo y procesamiento
 
-- **Endpoint:** `https://formsubmit.co/ajax/kaostattooalc@gmail.com`
-- **Metodo:** `POST` (AJAX, `fetch` con `FormData`)
-- **Formato de respuesta:** JSON (`{ "success": true/false }`)
+El formulario de contacto (`id="contacto-form"` en `index.php`) se envía a un endpoint PHP propio (`/guardar-consulta.php`), el cual:
+1. Valida los datos y aplica filtros antispam (honeypot).
+2. Procesa y almacena las imágenes de referencia en el servidor (`uploads/consultas/`).
+3. Guarda la consulta en la base de datos MySQL de Hostinger (tabla `consultas`).
+4. Reenvía la consulta y los archivos adjuntos por correo electrónico a `kaostattooalc@gmail.com` vía **FormSubmit.co** (con fallback a `mail()` si fuese necesario).
 
-## Datos enviados
+- **Endpoint cliente:** `/guardar-consulta.php`
+- **Método:** `POST` (AJAX, `fetch` con `FormData`)
+- **Formato de respuesta:** JSON (`{ "success": true, "db_saved": bool, "email_sent": bool }`)
 
-Cada envio incluye los siguientes campos:
+## Datos enviados y guardados
 
-| Campo            | Descripcion                                      |
-|------------------|--------------------------------------------------|
-| `_captcha`       | `false` (captcha desactivado en FormSubmit)       |
-| `_template`      | `table` (formato del email recibido)              |
-| `_subject`       | `Nueva consulta de [Tipo] - [Nombre]`             |
-| `Tipo`           | Tatuaje o Piercing                                |
-| `Zona`           | Zona del cuerpo seleccionada                      |
-| `Idea / Estilo`  | Descripcion libre (solo para tatuajes)            |
-| `Nombre`         | Nombre del cliente                                |
-| `Email`          | Email del cliente                                 |
-| `Telefono`       | Telefono del cliente                              |
-
-## Correo destinatario
-
-- **Buzon:** `kaostattooalc@gmail.com`
-- **Propietario del buzon:** Kaos Tattoo (equipo del estudio)
-- **Quien revisa:** El equipo de Kaos Tattoo gestiona las consultas directamente desde ese buzon de Gmail.
+| Campo | Base de Datos | Descripción |
+|---|---|---|
+| `Tipo` | `tipo` | Tatuaje o Piercing (VARCHAR 50) |
+| `Zona` | `zona` | Zona del cuerpo seleccionada (VARCHAR 100) |
+| `Idea / Estilo` | `idea` | Descripción libre del proyecto (TEXT) |
+| `Nombre` | `nombre` | Nombre del cliente (VARCHAR 150) |
+| `Email` | `email` | Email del cliente (VARCHAR 150) |
+| `Teléfono` | `telefono` | Teléfono del cliente (VARCHAR 50) |
+| `attachment[]` | `imagenes` | Hasta 4 fotos guardadas en `uploads/consultas/` (rutas en JSON) |
+| `idioma` | `idioma` | Idioma de navegación (`es` o `en`) |
+| Consentimiento | `politica_aceptada` | `1` tras aceptar la política de privacidad (RGPD) |
+| IP | `ip` | Dirección IP del cliente para trazabilidad RGPD |
+| Fecha | `fecha` | Marca temporal automática (`CURRENT_TIMESTAMP`) |
 
 ## Almacenamiento de datos
 
-- **No existe base de datos ni CRM.** Los datos del formulario no se persisten en ningun sistema propio.
-- **FormSubmit.co** actua unicamente como intermediario de reenvio. Segun su politica, no almacena los datos de los envios de forma permanente.
-- **Gmail** es el unico lugar donde quedan registradas las consultas, en forma de correos recibidos en `kaostattooalc@gmail.com`.
-- **Acceso:** Solo quienes tengan credenciales de la cuenta de Gmail `kaostattooalc@gmail.com`.
-- **Retencion:** Los correos permanecen en Gmail indefinidamente salvo que se eliminen manualmente. No hay politica de purgado automatico configurada.
+- **Base de Datos MySQL:** Alojada en Hostinger (`u589481109_DatosForm`, tabla `consultas`). Configurada en `config.db.php` (ignorado en Git por seguridad).
+- **Archivos e imágenes:** Guardados físicamente en `uploads/consultas/` con nombres únicos aleatorios y protegidos contra ejecución de scripts mediante `.htaccess`.
+- **Buzón de correo:** `kaostattooalc@gmail.com` recibe copia por email vía FormSubmit con los archivos adjuntos y los enlaces web directos a las imágenes guardadas.
 
 ## Flujo completo
 
 ```
-Usuario rellena formulario
+Usuario rellena formulario y adjunta fotos (máx. 4, 5MB c/u)
         |
         v
-JavaScript valida campos (nombre, email, telefono, privacidad)
+JavaScript valida campos y privacidad
         |
         v
-fetch POST -> https://formsubmit.co/ajax/kaostattooalc@gmail.com
+fetch POST -> /guardar-consulta.php
+        |
+        +---> 1. Guarda imágenes físicas en uploads/consultas/
+        |
+        +---> 2. Inserta registro en MySQL (tabla 'consultas')
+        |
+        +---> 3. Reenvía a FormSubmit vía cURL con adjuntos y enlaces
+        |           |
+        |           v
+        |       Email llega a kaostattooalc@gmail.com
         |
         v
-FormSubmit.co reenvia los datos como email
-        |
-        v
-Email llega a kaostattooalc@gmail.com
-        |
-        v
-Equipo de Kaos Tattoo revisa y responde manualmente
+Respuesta JSON { success: true } -> Pantalla de éxito en web (+ dataLayer)
+(En caso de fallo de red en endpoint local, el frontend cuenta con fallback directo a FormSubmit)
 ```
-
-## Notas adicionales
-
-- No se usa captcha (`_captcha=false`). FormSubmit tiene su propio filtro anti-spam basico.
-- Al enviar correctamente, se dispara un evento de Google Tag Manager (`form_submitted`) con el tipo de servicio y el idioma de la pagina.
-- No hay confirmacion por email al usuario. La unica respuesta es el mensaje de exito en pantalla.

@@ -1286,6 +1286,30 @@
     font-style: italic;
 }
 
+.inline-cta .btn-primary,
+.final-cta .btn-primary,
+.tattoo-intro-content .btn-primary,
+.piercing-intro-content .btn-primary {
+    color: var(--primary-color);
+    background-color: var(--accent-color);
+}
+
+.inline-cta .btn-primary:hover,
+.inline-cta .btn-primary:focus,
+.inline-cta .btn-primary:focus-visible,
+.final-cta .btn-primary:hover,
+.final-cta .btn-primary:focus,
+.final-cta .btn-primary:focus-visible,
+.tattoo-intro-content .btn-primary:hover,
+.tattoo-intro-content .btn-primary:focus,
+.tattoo-intro-content .btn-primary:focus-visible,
+.piercing-intro-content .btn-primary:hover,
+.piercing-intro-content .btn-primary:focus,
+.piercing-intro-content .btn-primary:focus-visible {
+    color: var(--primary-color);
+    background-color: var(--accent-dark);
+}
+
 /* Reviews block */
 .reviews-block {
     display: block;

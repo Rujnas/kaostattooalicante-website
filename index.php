@@ -280,8 +280,8 @@ function pageUrl($pageId, $qs = '') {
         "openingHours": "Mo-Sa 11:00-14:00, Mo-Sa 16:30-20:00",
         "priceRange": "$$",
         "sameAs": [
-            "https://www.instagram.com/kaos_tattoo_alicante",
-            "https://www.tiktok.com/@kaos_tattoo_alicante"
+            "https://www.instagram.com/kaostattooalc/",
+            "https://www.tiktok.com/@kaostattooalc"
         ]
     }
     </script>
@@ -466,9 +466,9 @@ function pageUrl($pageId, $qs = '') {
                 <div class="home-tiktok-overlay"></div>
                 <div class="home-tiktok-content">
                     <div class="home-tiktok-widget" style="min-height: 400px;">
-                        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@kaos.tattoo.alicante" data-unique-id="kaos.tattoo.alicante" data-embed-type="creator" style="max-width: 605px; min-width: 325px;">
+                        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@kaostattooalc" data-unique-id="kaostattooalc" data-embed-type="creator" style="max-width: 605px; min-width: 325px;">
                             <section>
-                                <a target="_blank" href="https://www.tiktok.com/@kaos.tattoo.alicante?refer=creator_embed">@kaos.tattoo.alicante</a>
+                                <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@kaostattooalc?refer=creator_embed">@kaostattooalc</a>
                             </section>
                         </blockquote>
                     </div>
@@ -499,8 +499,8 @@ function pageUrl($pageId, $qs = '') {
                          data-member-name="Tailor"
                          data-member-specialty="Tradicional · Color · Responsable del estudio"
                          data-member-specialty-en="Traditional · Color · Studio Manager"
-                         data-member-description="Kike, a.k.a. Tailor, responsable del estudio. Con más de 7 años de experiencia como tatuador, especializado en tradicional y color, también destaca por su dominio del realismo, microrealismo y línea fina. Se adapta con precisión a cualquier idea del cliente. Fuera de la piel, su pasión es la pintura y el dibujo, creando arte a través de cuadros realistas o retratos con distintas técnicas artísticas como el óleo."
-                         data-member-description-en="Kike, a.k.a. Tailor, studio manager. With over 7 years of experience as a tattoo artist, specialising in traditional and colour, he also stands out for his mastery of realism, micro-realism and fine line. He adapts precisely to any client's idea. Outside of skin, his passion is painting and drawing, creating art through realistic paintings or portraits using various artistic techniques such as oil painting."
+                         data-member-description="Kike, a.k.a. Tailor, responsable del estudio. Con 8 años de experiencia como tatuador, especializado en tradicional y color, también destaca por su dominio del realismo, microrealismo y línea fina. Se adapta con precisión a cualquier idea del cliente. Fuera de la piel, su pasión es la pintura y el dibujo, creando arte a través de cuadros realistas o retratos con distintas técnicas artísticas como el óleo."
+                         data-member-description-en="Kike, a.k.a. Tailor, studio manager. With 8 years of experience as a tattoo artist, specialising in traditional and colour, he also stands out for his mastery of realism, micro-realism and fine line. He adapts precisely to any client's idea. Outside of skin, his passion is painting and drawing, creating art through realistic paintings or portraits using various artistic techniques such as oil painting."
                          data-member-image="images/tailor.webp"
                          data-member-portfolio="#portfolio-tailor">
                         <div class="team-member">
@@ -894,8 +894,8 @@ function pageUrl($pageId, $qs = '') {
                          data-member-name="La Greka"
                          data-member-specialty="Piercing · Marketing · Social Media"
                          data-member-specialty-en="Piercing · Marketing · Social Media"
-                         data-member-description="Laura, alias lagreka, con 4 años de experiencia como piercer. Destaca por su cercanía, rapidez y empatía, siempre adaptándose a las necesidades y anatomía de cada persona. Su servicio incluye un buen seguimiento para una buena cicatrización ante cualquier perforación. También lleva el marketing del estudio: atención al cliente, mantenimiento y organización del estudio, creación de contenido y redes sociales."
-                         data-member-description-en="Laura, a.k.a. La Greka, with 4 years of experience as a piercer. She stands out for her friendliness, speed and empathy, always adapting to each person's needs and anatomy. Her service includes thorough follow-up for proper healing after any piercing. She also handles the studio's marketing: customer service, studio maintenance and organisation, content creation and social media."
+                         data-member-description="Laura, alias lagreka, con alrededor de 5 años de experiencia como piercer. Destaca por su cercanía, rapidez y empatía, siempre adaptándose a las necesidades y anatomía de cada persona. Su servicio incluye un buen seguimiento para una buena cicatrización ante cualquier perforación. También lleva el marketing del estudio: atención al cliente, mantenimiento y organización del estudio, creación de contenido y redes sociales."
+                         data-member-description-en="Laura, a.k.a. La Greka, with around 5 years of experience as a piercer. She stands out for her friendliness, speed and empathy, always adapting to each person's needs and anatomy. Her service includes thorough follow-up for proper healing after any piercing. She also handles the studio's marketing: customer service, studio maintenance and organisation, content creation and social media."
                          data-member-image="images/lagreka1.webp"
                          data-member-portfolio="#portfolio-greka">
                         <div class="team-member">
@@ -2876,47 +2876,47 @@ function pageUrl($pageId, $qs = '') {
             <section class="contacto-social">
                 <h2 class="contacto-title"><span lang="es">Contacta con Kaos Tattoo en Alicante</span><span lang="en">Contact Kaos Tattoo in Alicante</span></h2>
                 <div class="contacto-social-grid">
-                    <a href="https://wa.me/34618710976" target="_blank" class="social-icon-link" aria-label="WhatsApp">
+                    <a href="https://wa.me/34618710976" target="_blank" rel="noopener noreferrer" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/whatsapp.webp" alt="WhatsApp">
+                            <img src="images/logotipos_contacts/whatsapp.webp" alt="" aria-hidden="true">
                         </div>
                         <span class="social-icon-name">WhatsApp</span>
-                        <div class="social-tooltip"><span lang="es">¡Preguntas rápidas o seguimiento de una conversación ya iniciada!</span><span lang="en">Quick questions or follow-up on an existing conversation!</span></div>
+                        <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Preguntas rápidas o seguimiento de una conversación ya iniciada!</span><span lang="en">Quick questions or follow-up on an existing conversation!</span></div>
                     </a>
-                    <a href="tel:+34618710976" class="social-icon-link" aria-label="Teléfono">
+                    <a href="tel:+34618710976" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/phone.svg" alt="Teléfono">
+                            <img src="images/logotipos_contacts/phone.svg" alt="" aria-hidden="true">
                         </div>
                         <span class="social-icon-name"><span lang="es">Teléfono</span><span lang="en">Phone</span></span>
-                        <div class="social-tooltip"><span lang="es">¡Consultas que necesiten respuesta dentro del horario del estudio!</span><span lang="en">Enquiries that need a response during studio hours!</span></div>
+                        <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Consultas que necesiten respuesta dentro del horario del estudio!</span><span lang="en">Enquiries that need a response during studio hours!</span></div>
                     </a>
-                    <a href="https://instagram.com/kaos.tattoostudio" target="_blank" class="social-icon-link" aria-label="Instagram">
+                    <a href="https://www.instagram.com/kaostattooalc/" target="_blank" rel="noopener noreferrer" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/instagram.webp" alt="Instagram">
+                            <img src="images/logotipos_contacts/instagram.webp" alt="" aria-hidden="true">
                         </div>
                         <span class="social-icon-name">Instagram</span>
-                        <div class="social-tooltip"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
+                        <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
                     </a>
-                    <a href="mailto:kaostattooalc@gmail.com" target="_blank" class="social-icon-link" aria-label="Email">
+                    <a href="mailto:kaostattooalc@gmail.com" target="_blank" rel="noopener noreferrer" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/mail.webp" alt="Email">
+                            <img src="images/logotipos_contacts/mail.webp" alt="" aria-hidden="true">
                         </div>
                         <span class="social-icon-name">Mail</span>
-                        <div class="social-tooltip"><span lang="es">¡Documentación, colaboraciones o consultas sin urgencia!</span><span lang="en">Documentation, collaborations or non-urgent enquiries!</span></div>
+                        <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Documentación, colaboraciones o consultas sin urgencia!</span><span lang="en">Documentation, collaborations or non-urgent enquiries!</span></div>
                     </a>
-                    <a href="https://facebook.com/KaosTattoo" target="_blank" class="social-icon-link" aria-label="Facebook">
+                    <a href="https://facebook.com/KaosTattoo" target="_blank" rel="noopener noreferrer" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/facebook.webp" alt="Facebook">
+                            <img src="images/logotipos_contacts/facebook.webp" alt="" aria-hidden="true">
                         </div>
                         <span class="social-icon-name">Facebook</span>
-                        <div class="social-tooltip"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
+                        <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
                     </a>
-                    <a href="https://www.tiktok.com/@kaos.tattoo.alicante" target="_blank" class="social-icon-link" aria-label="TikTok">
+                    <a href="https://www.tiktok.com/@kaostattooalc" target="_blank" rel="noopener noreferrer" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/tik-tok.webp" alt="TikTok">
+                            <img src="images/logotipos_contacts/tik-tok.webp" alt="" aria-hidden="true">
                         </div>
                         <span class="social-icon-name">TikTok</span>
-                        <div class="social-tooltip"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
+                        <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
                     </a>
                 </div>
             </section>
@@ -3493,19 +3493,19 @@ function pageUrl($pageId, $qs = '') {
                     <span class="footer-address">C/ Pintor Velazquez, 17, 03004 Alacant, Alicante, Spain &middot; <a href="tel:+34618710976">+34 618 710 976</a></span>
                 </p>
                 <div class="footer-social">
-                    <a href="https://wa.me/34618710976" target="_blank" class="footer-social-link">
+                    <a href="https://wa.me/34618710976" target="_blank" rel="noopener noreferrer" class="footer-social-link">
                         <img src="images/logotipos_contacts/whatsapp_bw.webp" alt="WhatsApp" class="footer-social-icon">
                     </a>
-                    <a href="https://instagram.com/kaos.tattoostudio" target="_blank" class="footer-social-link">
+                    <a href="https://www.instagram.com/kaostattooalc/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
                         <img src="images/logotipos_contacts/instagram_bw.webp" alt="Instagram" class="footer-social-icon">
                     </a>
-                    <a href="mailto:kaostattooalc@gmail.com" target="_blank" class="footer-social-link">
+                    <a href="mailto:kaostattooalc@gmail.com" target="_blank" rel="noopener noreferrer" class="footer-social-link">
                         <img src="images/logotipos_contacts/mail_bw.webp" alt="Email" class="footer-social-icon">
                     </a>
-                    <a href="https://facebook.com/KaosTattoo" target="_blank" class="footer-social-link">
+                    <a href="https://facebook.com/KaosTattoo" target="_blank" rel="noopener noreferrer" class="footer-social-link">
                         <img src="images/logotipos_contacts/facebook_bw.webp" alt="Facebook" class="footer-social-icon">
                     </a>
-                    <a href="https://www.tiktok.com/@kaos.tattoo.alicante" target="_blank" class="footer-social-link">
+                    <a href="https://www.tiktok.com/@kaostattooalc" target="_blank" rel="noopener noreferrer" class="footer-social-link">
                         <img src="images/logotipos_contacts/tik-tok_bw.webp" alt="TikTok" class="footer-social-icon">
                     </a>
                     <a href="<?php echo pageUrl('contacto'); ?>" class="footer-social-link footer-contact-link" data-page="contacto">

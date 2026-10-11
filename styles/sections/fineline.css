@@ -403,11 +403,15 @@
 
 .cta-buttons .btn-primary {
     background: var(--accent-color);
-    color: #fff;
+    color: var(--primary-color);
     border: none;
 }
 
-.cta-buttons .btn-primary:hover {
+.cta-buttons .btn-primary:hover,
+.cta-buttons .btn-primary:focus,
+.cta-buttons .btn-primary:focus-visible {
+    background: var(--accent-dark);
+    color: var(--primary-color);
     transform: translateY(-1px);
     box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
 }

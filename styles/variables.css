@@ -2,6 +2,7 @@
 :root {
     /* Colors */
     --primary-color: #0a0a0a;
+    --bg-dark: #0a0a0a;
     --secondary-color: #1a1a1a;
     --tertiary-color: #2a2a2a;
     --accent-color: #d4a574;

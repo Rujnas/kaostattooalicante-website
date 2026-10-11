@@ -397,7 +397,7 @@ function pageUrl($pageId, $qs = '') {
                 </video>
                 <div class="home-about-overlay"></div>
                 <div class="home-about-content">
-                    <h1><span lang="es">Estudio de Tatuajes en Alicante</span><span lang="en">Tattoo Studio in Alicante</span></h1>
+                    <h1><span lang="es">Estudio de tatuajes y piercing en Alicante</span><span lang="en">Tattoo and piercing studio in Alicante</span></h1>
                     <p><span lang="es">Todo lo que suceda en este estudio de tatuajes en Alicante, se queda en este estudio. No somos Las Vegas pero haremos que te lo pases igual de bien. Nuestro propósito de vida es ayudar a que te sientas más a gusto que en tu casa. Somos gente maja, aunque te hagamos daño. En Kaos Tattoo nos gusta dar la tabarra solo para que quieras repetir y vuelvas a vernos. Si estás leyendo esto es por algo: sonríe y déjate llevar.</span><span lang="en">What happens in this tattoo studio in Alicante, stays in this studio. We're not Las Vegas, but we'll make sure you have just as good a time. Our life purpose is to help you feel more at home than at your own place. We're friendly people, even if we cause you a little pain. At Kaos Tattoo we love to chat just so you'll want to come back and see us again. If you're reading this, it's for a reason: smile and let yourself go.</span></p>
                     <a href="<?php echo pageUrl('contacto'); ?>" data-page="contacto" class="btn btn-primary btn-book-now" data-scroll-reveal><span lang="es">CUÉNTANOS TU IDEA</span><span lang="en">TELL US YOUR IDEA</span></a>
                 </div>
@@ -882,7 +882,7 @@ function pageUrl($pageId, $qs = '') {
             </section>
 
             <section class="page-heading">
-                <h1><span lang="es">Conoce al equipo de Kaos Tattoo</span><span lang="en">Meet the Kaos Tattoo team</span></h1>
+                <h1><span lang="es">Piercer en Alicante: La Greka</span><span lang="en">Piercer in Alicante: La Greka</span></h1>
             </section>
 
             <div class="page-content">
@@ -927,6 +927,11 @@ function pageUrl($pageId, $qs = '') {
                 <div class="hero-content">
                 </div>
             </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estilos de tatuaje en Alicante<br><span class="page-heading-sub">Fineline</span></span><span lang="en">Tattoo styles in Alicante<br><span class="page-heading-sub">Fine Line</span></span></h1>
+            </section>
+
             <div class="style-description" data-aos="fade-up">
                 <p><span lang="es">Si buscas un tatuaje fino, elegante y con clase, el fineline es tu estilo. En Kaos Tattoo cuidamos cada línea al milímetro para que el resultado sea limpio, delicado y con personalidad propia. No se trata solo de hacer líneas finas, sino de hacerlas bien para que el tatuaje se mantenga bonito con el paso del tiempo.</span><span lang="en">If you're looking for a fine, elegant and classy tattoo, fineline is your style. At Kaos Tattoo we take care of every line down to the millimetre so the result is clean, delicate and full of personality. It's not just about making thin lines — it's about making them right so the tattoo stays beautiful over time.</span></p>
             </div>
@@ -1144,6 +1149,11 @@ function pageUrl($pageId, $qs = '') {
                 <div class="hero-content">
                 </div>
             </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estilos de tatuaje en Alicante<br><span class="page-heading-sub">Anime</span></span><span lang="en">Tattoo styles in Alicante<br><span class="page-heading-sub">Anime</span></span></h1>
+            </section>
+
             <div class="style-description" data-aos="fade-up">
                 <p><span lang="es">Si el anime forma parte de ti, aquí lo llevamos a otro nivel. En Kaos Tattoo entendemos el estilo, las proporciones y la fuerza de cada personaje para que el resultado no sea solo correcto, sino brutal. Tu personaje favorito merece estar bien hecho.</span><span lang="en">If anime is part of you, we take it to the next level here. At Kaos Tattoo we understand the style, proportions and power of each character so the result isn't just correct — it's stunning. Your favourite character deserves to be done right.</span></p>
             </div>
@@ -1178,6 +1188,11 @@ function pageUrl($pageId, $qs = '') {
                 <div class="hero-content">
                 </div>
             </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estilos de tatuaje en Alicante<br><span class="page-heading-sub">Blackwork</span></span><span lang="en">Tattoo styles in Alicante<br><span class="page-heading-sub">Blackwork</span></span></h1>
+            </section>
+
             <div class="style-description" data-aos="fade-up">
                 <p><span lang="es">El blackwork es actitud. Piezas oscuras, contrastadas y con mucha presencia. En Kaos Tattoo trabajamos el negro con profundidad y precisión para crear tatuajes que impactan desde el primer momento y que siguen haciéndolo con los años.</span><span lang="en">Blackwork is attitude. Dark, high-contrast pieces with a strong presence. At Kaos Tattoo we work black ink with depth and precision to create tattoos that make an impact from the first moment and keep doing so over the years.</span></p>
             </div>
@@ -1254,6 +1269,11 @@ function pageUrl($pageId, $qs = '') {
                 <div class="hero-content">
                 </div>
             </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estilos de tatuaje en Alicante<br><span class="page-heading-sub">Cartoon</span></span><span lang="en">Tattoo styles in Alicante<br><span class="page-heading-sub">Cartoon</span></span></h1>
+            </section>
+
             <div class="style-description" data-aos="fade-up">
                 <p><span lang="es">El estilo cartoon es libertad total. Divertido, irreverente o incluso macabro, pero siempre con personalidad. En Kaos Tattoo adaptamos cada idea para que no sea un diseño más, sino algo único que encaje contigo y destaque.</span><span lang="en">Cartoon style is total freedom. Fun, irreverent or even macabre, but always full of personality. At Kaos Tattoo we adapt every idea so it's not just another design — it's something unique that fits you and stands out.</span></p>
             </div>
@@ -1299,6 +1319,11 @@ function pageUrl($pageId, $qs = '') {
                 <div class="hero-content">
                 </div>
             </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estilos de tatuaje en Alicante<br><span class="page-heading-sub">Geométrico</span></span><span lang="en">Tattoo styles in Alicante<br><span class="page-heading-sub">Geometric</span></span></h1>
+            </section>
+
             <div class="style-description" data-aos="fade-up">
                 <p><span lang="es">El geométrico exige precisión absoluta. Líneas perfectas, simetría y equilibrio. En Kaos Tattoo cuidamos cada detalle para que el resultado sea limpio, armónico y visualmente potente. Si te gusta lo ordenado y lo estético, aquí es donde cobra sentido.</span><span lang="en">Geometric demands absolute precision. Perfect lines, symmetry and balance. At Kaos Tattoo we take care of every detail so the result is clean, harmonious and visually powerful. If you love order and aesthetics, this is where it all makes sense.</span></p>
             </div>
@@ -1356,6 +1381,11 @@ function pageUrl($pageId, $qs = '') {
                 <div class="hero-content">
                 </div>
             </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estilos de tatuaje en Alicante<br><span class="page-heading-sub">Japonés</span></span><span lang="en">Tattoo styles in Alicante<br><span class="page-heading-sub">Japanese</span></span></h1>
+            </section>
+
             <div class="style-description" data-aos="fade-up">
                 <p><span lang="es">El japonés no es solo un estilo, es una forma de entender el tatuaje. Composición, fluidez y simbolismo en cada pieza. En Kaos Tattoo respetamos la tradición y la adaptamos a tu cuerpo para crear tatuajes que encajan y fluyen de verdad.</span><span lang="en">Japanese is not just a style — it's a way of understanding tattooing. Composition, flow and symbolism in every piece. At Kaos Tattoo we respect tradition and adapt it to your body to create tattoos that truly fit and flow.</span></p>
             </div>
@@ -1419,6 +1449,11 @@ function pageUrl($pageId, $qs = '') {
                 <div class="hero-content">
                 </div>
             </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estilos de tatuaje en Alicante<br><span class="page-heading-sub">Lettering</span></span><span lang="en">Tattoo styles in Alicante<br><span class="page-heading-sub">Lettering</span></span></h1>
+            </section>
+
             <div class="style-description" data-aos="fade-up">
                 <p><span lang="es">Un buen lettering no es solo escribir, es diseñar. En Kaos Tattoo trabajamos cada trazo, cada curva y cada composición para que tus palabras tengan la fuerza que merecen. Porque si te lo vas a tatuar, tiene que estar perfecto.</span><span lang="en">Good lettering isn't just writing — it's design. At Kaos Tattoo we craft every stroke, every curve and every composition so your words carry the power they deserve. Because if you're going to tattoo it, it has to be perfect.</span></p>
             </div>
@@ -1450,6 +1485,11 @@ function pageUrl($pageId, $qs = '') {
                 <div class="hero-content">
                 </div>
             </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estilos de tatuaje en Alicante<br><span class="page-heading-sub">Microrealismo</span></span><span lang="en">Tattoo styles in Alicante<br><span class="page-heading-sub">Micro-realism</span></span></h1>
+            </section>
+
             <div class="style-description" data-aos="fade-up">
                 <p><span lang="es">El microrrealismo es detalle extremo en tamaño reducido. En Kaos Tattoo llevamos la precisión al límite para conseguir tatuajes pequeños pero con una definición que sorprende. Discreto no significa simple, y aquí lo demostramos.</span><span lang="en">Micro-realism is extreme detail in a small size. At Kaos Tattoo we push precision to the limit to achieve small tattoos with stunning definition. Subtle doesn't mean simple — and we prove it here.</span></p>
             </div>
@@ -1657,6 +1697,11 @@ function pageUrl($pageId, $qs = '') {
                 <div class="hero-content">
                 </div>
             </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estilos de tatuaje en Alicante<br><span class="page-heading-sub">Realismo</span></span><span lang="en">Tattoo styles in Alicante<br><span class="page-heading-sub">Realism</span></span></h1>
+            </section>
+
             <div class="style-description" data-aos="fade-up">
                 <p><span lang="es">El realismo no perdona errores, y por eso aquí marcamos la diferencia. En Kaos Tattoo trabajamos cada sombra, cada textura y cada detalle para que el resultado sea lo más fiel posible a la imagen que quieres llevar en la piel. Si buscas impacto y un tatuaje que hable por sí solo, estás en el sitio correcto.</span><span lang="en">Realism doesn't forgive mistakes, and that's why we make the difference here. At Kaos Tattoo we work every shadow, every texture and every detail so the result is as faithful as possible to the image you want on your skin. If you're looking for impact and a tattoo that speaks for itself, you're in the right place.</span></p>
             </div>
@@ -1862,6 +1907,11 @@ function pageUrl($pageId, $qs = '') {
                 <div class="hero-content">
                 </div>
             </section>
+
+            <section class="page-heading">
+                <h1><span lang="es">Estilos de tatuaje en Alicante<br><span class="page-heading-sub">Tradicional</span></span><span lang="en">Tattoo styles in Alicante<br><span class="page-heading-sub">Traditional</span></span></h1>
+            </section>
+
             <div class="style-description" data-aos="fade-up">
                 <p><span lang="es">El tradicional es para los que saben lo que quieren. Diseños sólidos, líneas contundentes y colores que aguantan el paso del tiempo. En Kaos Tattoo respetamos la esencia clásica pero con una ejecución impecable, para que lleves un tatuaje con historia y con presencia.</span><span lang="en">Traditional is for those who know what they want. Solid designs, bold lines and colours that stand the test of time. At Kaos Tattoo we respect the classic essence but with flawless execution, so you wear a tattoo with history and presence.</span></p>
             </div>

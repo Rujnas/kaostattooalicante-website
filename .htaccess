@@ -1,3 +1,6 @@
+# Tipos MIME
+AddType video/webm .webm
+
 # Force HTTPS and canonical domain (no www)
 # Redirect kaostattoo.es (all variants) to kaostattooalicante.es
 RewriteEngine On

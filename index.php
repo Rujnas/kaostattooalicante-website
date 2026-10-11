@@ -1,4 +1,14 @@
 <?php
+// Ocultar X-Powered-By y emitir cabeceras de seguridad
+header_remove('X-Powered-By');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()');
+header('X-Frame-Options: SAMEORIGIN');
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+    header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
+}
+
 // ---------------------------------------------------------------------------
 // Server-side SEO: resolve page + language from the URL and expose per-page
 // metadata (title, description, canonical, hreflang) before any HTML is sent.

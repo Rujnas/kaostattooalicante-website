@@ -8,6 +8,14 @@
  *    con los archivos adjuntos y los enlaces directos a las imágenes guardadas.
  */
 
+header_remove('X-Powered-By');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()');
+header('X-Frame-Options: SAMEORIGIN');
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+    header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
+}
 header('Content-Type: application/json; charset=utf-8');
 
 // Solo peticiones POST

@@ -299,12 +299,171 @@ document.addEventListener('DOMContentLoaded', function() {
         return hash;
     };
 
+    let SEO_DATA = {
+        home: {
+            es: { title: 'Kaos Tattoo | Tatuajes y Piercings en Alicante', desc: 'Estudio de tatuajes y piercings en Alicante. Equipo profesional especializado en múltiples estilos. Cuéntanos tu idea y te asesoramos.' },
+            en: { title: 'Kaos Tattoo | Tattoo & Piercing Studio in Alicante', desc: 'Tattoo and piercing studio in Alicante. Professional team specialised in many styles. Tell us your idea and we will guide you.' }
+        },
+        tatuajes: {
+            es: { title: 'Tatuajes en Alicante | Kaos Tattoo', desc: 'Estilos, artistas, proceso y cuidados de tatuaje en Kaos Tattoo Alicante. Diseño personalizado y asesoramiento en cada proyecto.' },
+            en: { title: 'Tattoos in Alicante | Kaos Tattoo', desc: "Kaos Tattoo's artists, styles, process and tattoo aftercare in Alicante. Custom design and guidance for every project." }
+        },
+        piercings: {
+            es: { title: 'Piercings en Alicante | Kaos Tattoo', desc: 'Piercings profesionales en Alicante con material de calidad e higiene certificada. Asesoramiento, colocación y cuidados en Kaos Tattoo.' },
+            en: { title: 'Piercings in Alicante | Kaos Tattoo', desc: 'Professional piercings in Alicante with quality jewellery and certified hygiene. Advice, placement and aftercare at Kaos Tattoo.' }
+        },
+        tatuadores: {
+            es: { title: 'Equipo de tatuadores en Alicante | Kaos Tattoo', desc: 'Conoce a Tailor, tatuador y responsable de Kaos Tattoo en Alicante. Especializado en tradicional, color, realismo y línea fina.' },
+            en: { title: 'Our tattoo team in Alicante | Kaos Tattoo', desc: 'Meet Tailor, tattoo artist and studio manager at Kaos Tattoo in Alicante. Specialised in traditional, colour, realism and fine line.' }
+        },
+        anilladora: {
+            es: { title: 'Anilladora profesional en Alicante | Kaos Tattoo', desc: 'La Greka, anilladora profesional en Kaos Tattoo Alicante. Piercings seguros con asesoramiento personalizado y máxima higiene.' },
+            en: { title: 'Professional piercer in Alicante | Kaos Tattoo', desc: 'La Greka, professional piercer at Kaos Tattoo Alicante. Safe piercings with personalised advice and the highest hygiene standards.' }
+        },
+        'dibujos-cuadros': {
+            es: { title: 'Dibujos y cuadros personalizados | Kaos Tattoo Alicante', desc: 'Cuadros y dibujos hechos a mano por Kike en Kaos Tattoo Alicante. Piezas únicas y encargos personalizados, incluidos retratos de mascotas.' },
+            en: { title: 'Custom drawings and paintings | Kaos Tattoo Alicante', desc: 'Handmade paintings and drawings by Kike at Kaos Tattoo Alicante. Unique pieces and custom commissions, including pet portraits.' }
+        },
+        contacto: {
+            es: { title: 'Contacto | Kaos Tattoo Alicante', desc: 'Contacta con Kaos Tattoo en Alicante. Cuéntanos tu idea de tatuaje o piercing y te responderemos lo antes posible.' },
+            en: { title: 'Contact | Kaos Tattoo Alicante', desc: 'Get in touch with Kaos Tattoo in Alicante. Tell us your tattoo or piercing idea and we will get back to you as soon as possible.' }
+        },
+        blog: {
+            es: { title: 'Blog | Kaos Tattoo Alicante', desc: 'Novedades, consejos y últimas publicaciones de Kaos Tattoo, estudio de tatuajes y piercings en Alicante.' },
+            en: { title: 'Blog | Kaos Tattoo Alicante', desc: 'News, tips and the latest posts from Kaos Tattoo, a tattoo and piercing studio in Alicante.' }
+        },
+        fineline: {
+            es: { title: 'Estilos de tatuaje | Kaos Tattoo Alicante', desc: 'Descubre los estilos de tatuaje de Kaos Tattoo Alicante: fine line, realismo, japonés, blackwork, lettering y muchos más.' },
+            en: { title: 'Tattoo styles | Kaos Tattoo Alicante', desc: 'Discover the tattoo styles at Kaos Tattoo Alicante: fine line, realism, Japanese, blackwork, lettering and many more.' }
+        },
+        privacidad: {
+            es: { title: 'Política de Privacidad | Kaos Tattoo Alicante', desc: 'Política de Privacidad de Kaos Tattoo Alicante: cómo recogemos y tratamos tus datos personales según el RGPD y la LOPDGDD.' },
+            en: { title: 'Privacy Policy | Kaos Tattoo Alicante', desc: 'Privacy Policy of Kaos Tattoo Alicante: how we collect and process your personal data under the GDPR and Spanish law.' }
+        },
+        cookies: {
+            es: { title: 'Política de Cookies | Kaos Tattoo Alicante', desc: 'Política de Cookies de Kaos Tattoo Alicante: qué cookies usamos, con qué finalidad y cómo puedes aceptarlas, rechazarlas o borrarlas.' },
+            en: { title: 'Cookie Policy | Kaos Tattoo Alicante', desc: 'Cookie Policy of Kaos Tattoo Alicante: which cookies we use, why, and how you can accept, reject or delete them.' }
+        },
+        'aviso-legal': {
+            es: { title: 'Aviso Legal | Kaos Tattoo Alicante', desc: 'Aviso Legal de Kaos Tattoo Alicante: condiciones de uso del sitio web, propiedad intelectual y responsabilidades.' },
+            en: { title: 'Legal Notice | Kaos Tattoo Alicante', desc: 'Legal Notice of Kaos Tattoo Alicante: website terms of use, intellectual property and liability.' }
+        }
+    };
+    try {
+        const seoScriptEl = document.getElementById('kaos-seo-data');
+        if (seoScriptEl && seoScriptEl.textContent.trim()) {
+            SEO_DATA = Object.assign(SEO_DATA, JSON.parse(seoScriptEl.textContent));
+        }
+    } catch (e) {}
+
+    const canonicalPathForPageLang = (pageId, lang) => {
+        const prefix = lang === 'en' ? '/en' : '';
+        if (STYLE_PAGES.has(pageId)) {
+            const seg = SLUGS.estilos[lang];
+            return prefix + '/' + (seg ? seg + '/' : '');
+        }
+        if (PORTFOLIO_PARENT_PAGE[pageId]) {
+            const parent = PORTFOLIO_PARENT_PAGE[pageId];
+            const seg = SLUGS[parent][lang];
+            return prefix + '/' + (seg ? seg + '/' : '');
+        }
+        const slugs = SLUGS[pageId];
+        const seg = slugs ? slugs[lang] : '';
+        return prefix + '/' + (seg ? seg + '/' : '');
+    };
+
+    const getSeoForPage = (pageId, lang) => {
+        if (SEO_DATA[pageId] && SEO_DATA[pageId][lang]) {
+            return SEO_DATA[pageId][lang];
+        }
+        if (STYLE_PAGES.has(pageId) && SEO_DATA.fineline && SEO_DATA.fineline[lang]) {
+            return SEO_DATA.fineline[lang];
+        }
+        if (PORTFOLIO_PARENT_PAGE[pageId]) {
+            const parent = PORTFOLIO_PARENT_PAGE[pageId];
+            if (SEO_DATA[parent] && SEO_DATA[parent][lang]) {
+                return SEO_DATA[parent][lang];
+            }
+        }
+        return SEO_DATA.home ? SEO_DATA.home[lang] : null;
+    };
+
+    const updateHeadMeta = (pageId) => {
+        const lang = currentLang();
+        const seo = getSeoForPage(pageId, lang);
+        if (!seo) return;
+
+        // 1. Page Title
+        document.title = seo.title;
+
+        // 2. Meta description
+        const descMeta = document.querySelector('meta[name="description"]');
+        if (descMeta) descMeta.setAttribute('content', seo.desc);
+
+        // URLs
+        const origin = 'https://kaostattooalicante.es';
+        const canonicalUrl = origin + canonicalPathForPageLang(pageId, lang);
+        const esUrl = origin + canonicalPathForPageLang(pageId, 'es');
+        const enUrl = origin + canonicalPathForPageLang(pageId, 'en');
+
+        // 3. Canonical Link
+        const canonicalLink = document.querySelector('link[rel="canonical"]');
+        if (canonicalLink) canonicalLink.setAttribute('href', canonicalUrl);
+
+        // 4. Hreflang alternates
+        const altEs = document.querySelector('link[rel="alternate"][hreflang="es"]');
+        if (altEs) altEs.setAttribute('href', esUrl);
+        const altEn = document.querySelector('link[rel="alternate"][hreflang="en"]');
+        if (altEn) altEn.setAttribute('href', enUrl);
+        const altDefault = document.querySelector('link[rel="alternate"][hreflang="x-default"]');
+        if (altDefault) altDefault.setAttribute('href', esUrl);
+
+        // 5. Open Graph tags
+        const ogLocale = document.querySelector('meta[property="og:locale"]');
+        if (ogLocale) ogLocale.setAttribute('content', lang === 'en' ? 'en_US' : 'es_ES');
+
+        const ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', seo.title);
+
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute('content', seo.desc);
+
+        // 6. Twitter tags
+        const twUrl = document.querySelector('meta[name="twitter:url"]');
+        if (twUrl) twUrl.setAttribute('content', canonicalUrl);
+
+        const twTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twTitle) twTitle.setAttribute('content', seo.title);
+
+        const twDesc = document.querySelector('meta[name="twitter:description"]');
+        if (twDesc) twDesc.setAttribute('content', seo.desc);
+
+        // 7. Virtual page view for Google Analytics / Tag Manager
+        if (window.dataLayer && Array.isArray(window.dataLayer)) {
+            window.dataLayer.push({
+                event: 'page_view',
+                page_path: canonicalPathForPageLang(pageId, lang),
+                page_title: seo.title
+            });
+        }
+    };
+
     // Update all nav link hrefs to the current language
     const updateNavHrefs = () => {
         document.querySelectorAll('a[data-page]').forEach(a => {
             const qs = a.dataset.tipo ? '?tipo=' + a.dataset.tipo : '';
             a.href = getPathForPage(a.dataset.page) + qs;
         });
+        const pageId = currentPageId || getPageFromCurrentUrl();
+        const esLink = document.querySelector('.lang-switcher a[data-lang="es"]');
+        if (esLink) esLink.href = pathForPageLang(pageId, 'es');
+        const enLink = document.querySelector('.lang-switcher a[data-lang="en"]');
+        if (enLink) enLink.href = pathForPageLang(pageId, 'en');
+        const logo = document.querySelector('.logo-link');
+        if (logo) logo.href = pathForPageLang('home', currentLang());
     };
 
     const navigateTo = (pageId, { replace = false, scrollTop = true } = {}) => {
@@ -315,6 +474,7 @@ document.addEventListener('DOMContentLoaded', function() {
             history.pushState({ pageId }, '', path);
         }
         showPage(pageId, { shouldScrollTop: scrollTop });
+        updateNavHrefs();
         window.dispatchEvent(new CustomEvent('pagechange', { detail: { pageId } }));
     };
 
@@ -326,6 +486,7 @@ document.addEventListener('DOMContentLoaded', function() {
         history.pushState({ pageId }, '', newPath);
         // Update all nav link hrefs to reflect new language
         updateNavHrefs();
+        updateHeadMeta(pageId);
     };
 
     const getScrollKey = (pageId) => `${SCROLL_KEY_PREFIX}${pageId}`;
@@ -892,6 +1053,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         targetPageElement.classList.add('active');
         currentPageId = targetPageId;
+        updateHeadMeta(targetPageId);
         
         document.querySelectorAll('.has-dropdown').forEach(item => {
             item.classList.remove('active');
@@ -972,6 +1134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setLang(getLangFromUrl());
         const pageId = getPageFromCurrentUrl();
         showPage(pageId, { shouldScrollTop: true });
+        updateNavHrefs();
         window.dispatchEvent(new CustomEvent('pagechange', { detail: { pageId } }));
     });
 

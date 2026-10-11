@@ -51,6 +51,8 @@ $segEs = $SLUGS[$pageId]['es'];
 $segEn = $SLUGS[$pageId]['en'];
 $esUrl = $BASE . '/' . ($segEs !== '' ? $segEs . '/' : '');
 $enUrl = $BASE . '/en/' . ($segEn !== '' ? $segEn . '/' : '');
+$esPath = '/' . ($segEs !== '' ? $segEs . '/' : '');
+$enPath = '/en/' . ($segEn !== '' ? $segEn . '/' : '');
 $canonical = ($lang === 'en') ? $enUrl : $esUrl;
 
 // Per-page SEO copy (es / en). Description ~150-160 chars.
@@ -131,7 +133,7 @@ $SEO = [
 
 // Asset cache-busting version: bump when script.js or styles change so
 // browsers (and LiteSpeed) refetch them instead of serving stale copies.
-$ASSET_VER = '20261008';
+$ASSET_VER = '20261011';
 
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
 $title  = $meta['title'];
@@ -286,6 +288,10 @@ function pageUrl($pageId, $qs = '') {
     }
     </script>
     
+    <script id="kaos-seo-data" type="application/json">
+    <?php echo json_encode($SEO, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>
+    </script>
+    
     <link rel="preload" href="fonts/Bokor/Bokor-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Cinzel/Cinzel-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Cinzel/Cinzel-Medium.woff2" as="font" type="font/woff2" crossorigin>
@@ -308,7 +314,7 @@ function pageUrl($pageId, $qs = '') {
     </div>
     <nav class="sidebar">
         <div class="sidebar-header">
-            <a href="/" class="logo-link">
+            <a href="<?php echo pageUrl('home'); ?>" class="logo-link" data-page="home">
                 <img src="images/logo_nobackground.webp" alt="Kaos Tattoo Logo" class="sidebar-logo">
             </a>
         </div>
@@ -359,9 +365,9 @@ function pageUrl($pageId, $qs = '') {
             </li>
         </ul>
         <div class="lang-switcher" aria-label="Language selector">
-            <a href="/" data-lang="es" class="active">ES</a>
+            <a href="<?php echo htmlspecialchars($esPath, ENT_QUOTES); ?>" data-lang="es" class="<?php echo ($lang === 'es' ? 'active' : ''); ?>">ES</a>
             <span class="lang-sep">|</span>
-            <a href="/en/" data-lang="en">EN</a>
+            <a href="<?php echo htmlspecialchars($enPath, ENT_QUOTES); ?>" data-lang="en" class="<?php echo ($lang === 'en' ? 'active' : ''); ?>">EN</a>
         </div>
         <div class="mobile-controls">
             <button class="mobile-menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">

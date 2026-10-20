@@ -50,6 +50,7 @@ fetch POST -> /guardar-consulta.php
         +---> 1. Guarda imágenes físicas en uploads/consultas/
         |
         +---> 2. Inserta registro en MySQL (tabla 'consultas')
+        |        (Si falla, marca el email con [PENDIENTE BBDD])
         |
         +---> 3. Reenvía a FormSubmit vía cURL con adjuntos y enlaces
         |           |
@@ -58,5 +59,5 @@ fetch POST -> /guardar-consulta.php
         |
         v
 Respuesta JSON { success: true } -> Pantalla de éxito en web (+ dataLayer)
-(En caso de fallo de red en endpoint local, el frontend cuenta con fallback directo a FormSubmit)
+(En caso de fallo de conexión con el endpoint local, el frontend cuenta con fallback directo a FormSubmit incluyendo la etiqueta [PENDIENTE BBDD] en el asunto)
 ```

@@ -2871,7 +2871,7 @@ function pageUrl($pageId, $qs = '') {
 
                             <label class="form-checkbox">
                                 <input type="checkbox" id="form-privacy" name="privacy" required>
-                                <span class="form-checkbox-label"><span lang="es">Acepto la <a href="<?php echo pageUrl('privacidad'); ?>" target="_blank" rel="noopener">política de privacidad</a> y el tratamiento de mis datos para gestionar esta consulta.</span><span lang="en">I accept the <a href="<?php echo pageUrl('privacidad'); ?>" target="_blank" rel="noopener">privacy policy</a> and the processing of my data to manage this enquiry.</span></span>
+                                <span class="form-checkbox-label"><span lang="es">Acepto la <a href="<?php echo pageUrl('privacidad'); ?>" target="_blank" rel="noopener" data-page="privacidad">política de privacidad</a> y el tratamiento de mis datos para gestionar esta consulta.</span><span lang="en">I accept the <a href="<?php echo pageUrl('privacidad'); ?>" target="_blank" rel="noopener" data-page="privacidad">privacy policy</a> and the processing of my data to manage this enquiry.</span></span>
                             </label>
 
                             <div class="form-nav">
@@ -4142,6 +4142,16 @@ function pageUrl($pageId, $qs = '') {
             })
             .catch(function() {
                 // Respaldo directo a FormSubmit en caso de fallo de conexión con el endpoint local
+                // Añadir marca visible para localizar la consulta y guardarla manualmente en BBDD
+                if (typeof formData.set === 'function') {
+                    formData.set('_subject', '[PENDIENTE BBDD] Nueva consulta de ' + tipo + ' - ' + nombre);
+                    formData.set('Estado BBDD', 'PENDIENTE BBDD (Fallo de conexión o guardado en endpoint local)');
+                } else {
+                    formData.delete('_subject');
+                    formData.append('_subject', '[PENDIENTE BBDD] Nueva consulta de ' + tipo + ' - ' + nombre);
+                    formData.append('Estado BBDD', 'PENDIENTE BBDD (Fallo de conexión o guardado en endpoint local)');
+                }
+
                 fetch('https://formsubmit.co/ajax/kaostattooalc@gmail.com', {
                     method: 'POST',
                     body: formData

@@ -213,17 +213,25 @@ if (!empty($savedImages)) {
     }
 }
 
+// Construir prefijo y aviso si falló el guardado en base de datos para localizar la consulta
+$subjectPrefix = !$dbSaved ? '[PENDIENTE BBDD] ' : '';
+$emailSubject  = $subjectPrefix . 'Nueva consulta de ' . ($tipo !== '' ? $tipo : 'proyecto') . ' - ' . $nombre;
+
 // Preparar los campos para FormSubmit
 $postFields = [
     '_captcha'  => 'false',
     '_template' => 'table',
-    '_subject'  => 'Nueva consulta de ' . ($tipo !== '' ? $tipo : 'proyecto') . ' - ' . $nombre,
+    '_subject'  => $emailSubject,
     'Tipo'      => $tipo,
     'Zona'      => $zona,
     'Nombre'    => $nombre,
     'Email'     => $email,
     'Teléfono'  => $telefono,
 ];
+
+if (!$dbSaved) {
+    $postFields['Estado BBDD'] = 'PENDIENTE BBDD (No se pudo registrar automáticamente en la base de datos)';
+}
 
 if ($idea !== '') {
     $postFields['Idea / Estilo'] = $idea;
@@ -265,8 +273,9 @@ if (function_exists('curl_init')) {
 // Respaldo de correo si FormSubmit falló por red
 if (!$emailSent) {
     $to = 'kaostattooalc@gmail.com';
-    $subject = '=?UTF-8?B?' . base64_encode('Nueva consulta de ' . $tipo . ' - ' . $nombre) . '?=';
-    $body = "Nueva consulta recibida desde la web:\n\n"
+    $subject = '=?UTF-8?B?' . base64_encode($emailSubject) . '?=';
+    $body = (!$dbSaved ? "⚠️ ATENCIÓN: Esta consulta NO se pudo guardar en la base de datos. Requiere inserción manual.\n\n" : "")
+          . "Nueva consulta recibida desde la web:\n\n"
           . "Nombre: $nombre\n"
           . "Email: $email\n"
           . "Teléfono: $telefono\n"

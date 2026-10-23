@@ -1031,7 +1031,6 @@ document.addEventListener('DOMContentLoaded', function() {
             navigateTo('home');
         };
         logoLink.addEventListener('click', logoHandler);
-        logoLink.addEventListener('touchend', logoHandler, { passive: false });
     }
     
     // Show a page by its internal ID
@@ -1455,11 +1454,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
         mobileMenuToggle.addEventListener('click', toggleMobileMenuHandler);
-        mobileMenuToggle.addEventListener('touchend', toggleMobileMenuHandler, { passive: false });
 
         if (mobileMenuOverlay) {
             mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-            mobileMenuOverlay.addEventListener('touchend', closeMobileMenu, { passive: true });
         }
 
         if (mobileSubmenuBack) {
@@ -1469,7 +1466,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 closeMobileSubmenu();
             };
             mobileSubmenuBack.addEventListener('click', submenuBackHandler);
-            mobileSubmenuBack.addEventListener('touchend', submenuBackHandler, { passive: false });
         }
 
         window.addEventListener('resize', () => {
@@ -1503,7 +1499,6 @@ document.addEventListener('DOMContentLoaded', function() {
             handleNavClick(this, e);
         };
         link.addEventListener('click', navLinkHandler);
-        link.addEventListener('touchend', navLinkHandler, { passive: false });
     });
     
     // Category navigation
@@ -1515,7 +1510,6 @@ document.addEventListener('DOMContentLoaded', function() {
             navigateTo(targetPage);
         };
         link.addEventListener('click', categoryHandler);
-        link.addEventListener('touchend', categoryHandler, { passive: false });
     });
     
     // Dropdown menu functionality
@@ -1554,7 +1548,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         handleNavClick(link, evt);
                     };
                     link.addEventListener('click', linkHandler);
-                    link.addEventListener('touchend', linkHandler, { passive: false });
                     li.appendChild(link);
                     mobileSubmenuList.appendChild(li);
                 });
@@ -1582,7 +1575,6 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         toggle.addEventListener('click', dropdownHandler);
-        toggle.addEventListener('touchend', dropdownHandler, { passive: false });
     });
     
     const galleryItems = document.querySelectorAll('.gallery-item, .card-gallery img, .gallery-main img, .portfolio-section .masonry-item img, .fineline-gallery .masonry-item');

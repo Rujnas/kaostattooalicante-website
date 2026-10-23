@@ -1403,7 +1403,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileSubmenuTitle = mobileSubmenuWrapper ? mobileSubmenuWrapper.querySelector('.mobile-submenu-title') : null;
     const mobileSubmenuBack = mobileSubmenuWrapper ? mobileSubmenuWrapper.querySelector('.mobile-submenu-back') : null;
 
-    const isMobileViewport = () => window.innerWidth <= 1024;
+    const isMobileViewport = () => window.matchMedia('(max-width: 1024px)').matches || (navMenu && navMenu.classList.contains('is-open'));
 
     const closeMobileMenu = () => {
         if (!mobileMenuToggle || !navMenu) return;
@@ -1523,6 +1523,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isMobileViewport()) {
                 const submenuItems = this.nextElementSibling?.querySelectorAll('a[data-page]');
                 if (!submenuItems || submenuItems.length === 0 || !mobileSubmenuList || !mobileSubmenuTitle) return;
+
+                document.querySelectorAll('.has-dropdown').forEach(item => item.classList.remove('active'));
 
                 if (navMenu) {
                     navMenu.classList.remove('styles-submenu-scroll');

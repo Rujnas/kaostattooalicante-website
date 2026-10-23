@@ -1,28 +1,28 @@
 /* Main CSS file that imports all modules */
-@import 'variables.css?v=20261020';
-@import 'base.css?v=20261020';
-@import 'layout.css?v=20261020';
+@import 'variables.css?v=20261023c';
+@import 'base.css?v=20261023c';
+@import 'layout.css?v=20261023c';
 
 /* Components */
-@import 'components/buttons.css?v=20261020';
-@import 'components/navigation.css?v=20261020';
-@import 'components/cookie-banner.css?v=20261020';
+@import 'components/buttons.css?v=20261023c';
+@import 'components/navigation.css?v=20261023c';
+@import 'components/cookie-banner.css?v=20261023c';
 
 /* Sections */
-@import 'sections/hero.css?v=20261020';
-@import 'sections/home.css?v=20261020';
-@import 'sections/team.css?v=20261020';
-@import 'sections/tattoo.css?v=20261020';
-@import 'sections/fineline.css?v=20261020';
-@import 'sections/contact.css?v=20261020';
-@import 'sections/contact-form.css?v=20261020';
-@import 'sections/blog.css?v=20261020';
-@import 'sections/piercings.css?v=20261020';
-@import 'sections/legal.css?v=20261020';
+@import 'sections/hero.css?v=20261023c';
+@import 'sections/home.css?v=20261023c';
+@import 'sections/team.css?v=20261023c';
+@import 'sections/tattoo.css?v=20261023c';
+@import 'sections/fineline.css?v=20261023c';
+@import 'sections/contact.css?v=20261023c';
+@import 'sections/contact-form.css?v=20261023c';
+@import 'sections/blog.css?v=20261023c';
+@import 'sections/piercings.css?v=20261023c';
+@import 'sections/legal.css?v=20261023c';
 
 /* Internationalization */
-@import 'i18n.css?v=20261020';
+@import 'i18n.css?v=20261023c';
 
 /* Utilities & Effects */
-@import 'animations.css?v=20261020';
-@import 'utilities.css?v=20261020';
+@import 'animations.css?v=20261023c';
+@import 'utilities.css?v=20261023c';

@@ -1542,6 +1542,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     link.href = getPathForPage(item.dataset.page);
                     link.dataset.page = item.dataset.page;
                     link.textContent = visibleText(item);
+                    link.draggable = false;
+                    link.addEventListener('dragstart', (e) => e.preventDefault());
                     const linkHandler = (evt) => {
                         evt.preventDefault();
                         evt.stopPropagation();

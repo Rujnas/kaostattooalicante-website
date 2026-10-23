@@ -143,7 +143,7 @@ $SEO = [
 
 // Asset cache-busting version: bump when script.js or styles change so
 // browsers (and LiteSpeed) refetch them instead of serving stale copies.
-$ASSET_VER = '20261023';
+$ASSET_VER = '20261023b';
 
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
 $title  = $meta['title'];

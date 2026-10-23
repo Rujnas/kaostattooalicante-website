@@ -167,6 +167,10 @@
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .nav-link {
@@ -278,6 +282,15 @@
 
 /* Mobile nav */
 @media (max-width: 1024px) {
+    .dropdown-menu,
+    .has-dropdown:hover .dropdown-menu,
+    .has-dropdown.active .dropdown-menu {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
     .sidebar {
         flex-wrap: wrap;
         height: auto;
@@ -403,6 +416,8 @@
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 0.5rem;
+        touch-action: pan-y;
+        overscroll-behavior: contain;
     }
 
     .nav-menu.is-open {

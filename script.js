@@ -640,16 +640,28 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const fetchMediumFeed = async () => {
-        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(BLOG_FEED_URL)}`;
-        const response = await fetch(apiUrl, { cache: 'no-store' });
-        if (!response.ok) {
-            throw new Error(`Medium feed error (${response.status})`);
+        const endpoints = [
+            '/blog-feed.php',
+            'blog-feed.php',
+            '/blog-cache.json',
+            'blog-cache.json',
+            `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(BLOG_FEED_URL)}`
+        ];
+
+        for (const endpoint of endpoints) {
+            try {
+                const response = await fetch(endpoint, { cache: 'no-store' });
+                if (!response.ok) continue;
+                const data = await response.json();
+                if (data && data.status === 'ok' && Array.isArray(data.items) && data.items.length > 0) {
+                    return data.items;
+                }
+            } catch {
+                // Try next endpoint fallback
+            }
         }
-        const data = await response.json();
-        if (!data || data.status !== 'ok' || !Array.isArray(data.items)) {
-            throw new Error('Medium feed invalid');
-        }
-        return data.items;
+
+        throw new Error('All blog feed endpoints failed');
     };
 
     const sanitizeMediumHtml = (html) => {

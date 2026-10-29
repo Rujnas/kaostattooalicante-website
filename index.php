@@ -143,7 +143,7 @@ $SEO = [
 
 // Asset cache-busting version: bump when script.js or styles change so
 // browsers (and LiteSpeed) refetch them instead of serving stale copies.
-$ASSET_VER = '20261026';
+$ASSET_VER = '20261029';
 
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
 $title  = $meta['title'];
@@ -4104,15 +4104,21 @@ function pageUrl($pageId, $qs = '') {
             });
             formData.append('idioma', getLang());
 
+            var abortCtrl = (typeof AbortController === 'function') ? new AbortController() : null;
+            var abortTimer = abortCtrl ? setTimeout(function() { abortCtrl.abort(); }, 12000) : null;
+
             fetch('/guardar-consulta.php', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                signal: abortCtrl ? abortCtrl.signal : undefined
             })
             .then(function(res) {
+                if (abortTimer) clearTimeout(abortTimer);
                 if (!res.ok) throw new Error('Server returned ' + res.status);
                 return res.json();
             })
             .then(function(data) {
+                if (abortTimer) clearTimeout(abortTimer);
                 if (data.success) {
                     // Show success UI first (protected from dataLayer errors)
                     form.style.display = 'none';
@@ -4141,6 +4147,7 @@ function pageUrl($pageId, $qs = '') {
                 }
             })
             .catch(function() {
+                if (abortTimer) clearTimeout(abortTimer);
                 // Respaldo directo a FormSubmit en caso de fallo de conexión con el endpoint local
                 // Añadir marca visible para localizar la consulta y guardarla manualmente en BBDD
                 if (typeof formData.set === 'function') {

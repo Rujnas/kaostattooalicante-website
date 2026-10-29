@@ -152,13 +152,21 @@ foreach ($incomingFiles as $file) {
 }
 
 // 4. Guardar en Base de Datos MySQL
-$dbSaved = false;
+$dbSaved   = false;
+$dbError   = null;
 $configFile = __DIR__ . '/config.db.php';
+$debugMode  = !empty($_GET['debug']) || !empty($_POST['debug']) || !empty($_SERVER['HTTP_X_DEBUG']);
 
-if (file_exists($configFile)) {
+if (!file_exists($configFile)) {
+    $dbError = 'Archivo config.db.php no encontrado en el servidor';
+    error_log('Kaos Tattoo: ' . $dbError);
+} else {
     try {
         $dbConfig = require $configFile;
-        if (!empty($dbConfig['user']) && strpos($dbConfig['user'], 'TU_USUARIO') === false) {
+        if (empty($dbConfig['user']) || strpos($dbConfig['user'], 'TU_USUARIO') !== false) {
+            $dbError = 'config.db.php contiene datos de plantilla o usuario vacío';
+            error_log('Kaos Tattoo: ' . $dbError);
+        } else {
             $dsn = sprintf(
                 'mysql:host=%s;dbname=%s;charset=%s',
                 $dbConfig['host'] ?? 'localhost',
@@ -166,37 +174,91 @@ if (file_exists($configFile)) {
                 $dbConfig['charset'] ?? 'utf8mb4'
             );
 
-            $pdo = new PDO($dsn, $dbConfig['user'], $dbConfig['password'], [
+            $pdoOptions = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_TIMEOUT            => 5,
-            ]);
+            ];
+            if (defined('PDO::MYSQL_ATTR_CONNECT_TIMEOUT')) {
+                $pdoOptions[PDO::MYSQL_ATTR_CONNECT_TIMEOUT] = 3;
+            }
 
-            $stmt = $pdo->prepare('
-                INSERT INTO consultas (
-                    tipo, zona, idea, nombre, email, telefono, imagenes, idioma, politica_aceptada, ip
-                ) VALUES (
-                    :tipo, :zona, :idea, :nombre, :email, :telefono, :imagenes, :idioma, :politica_aceptada, :ip
-                )
-            ');
+            $pdo = new PDO($dsn, $dbConfig['user'], $dbConfig['password'], $pdoOptions);
 
-            $stmt->execute([
-                ':tipo'              => mb_substr($tipo, 0, 50),
-                ':zona'              => mb_substr($zona, 0, 100),
-                ':idea'              => $idea !== '' ? $idea : null,
-                ':nombre'            => mb_substr($nombre, 0, 150),
-                ':email'             => mb_substr($email, 0, 150),
-                ':telefono'          => mb_substr($telefono, 0, 50),
-                ':imagenes'          => !empty($savedImages) ? json_encode($savedImages, JSON_UNESCAPED_SLASHES) : null,
-                ':idioma'            => mb_substr($idioma, 0, 5),
-                ':politica_aceptada' => 1,
-                ':ip'                => $ip,
-            ]);
+            // Asegurar que la tabla y columnas existen
+            try {
+                $pdo->exec("
+                    CREATE TABLE IF NOT EXISTS consultas (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+                        tipo VARCHAR(50) NOT NULL,
+                        zona VARCHAR(100) NOT NULL,
+                        idea TEXT NULL,
+                        nombre VARCHAR(150) NOT NULL,
+                        email VARCHAR(150) NOT NULL,
+                        telefono VARCHAR(50) NOT NULL,
+                        imagenes TEXT NULL,
+                        idioma VARCHAR(5) DEFAULT 'es',
+                        politica_aceptada TINYINT(1) DEFAULT 1,
+                        ip VARCHAR(45) NULL
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+                ");
+                $pdo->exec("ALTER TABLE consultas ADD COLUMN imagenes TEXT NULL AFTER telefono");
+            } catch (Throwable $eTable) {
+                // Si la columna ya existe u otro aviso DDL, continuar
+            }
 
-            $dbSaved = true;
+            // Inserción principal con columna imagenes
+            try {
+                $stmt = $pdo->prepare('
+                    INSERT INTO consultas (
+                        tipo, zona, idea, nombre, email, telefono, imagenes, idioma, politica_aceptada, ip
+                    ) VALUES (
+                        :tipo, :zona, :idea, :nombre, :email, :telefono, :imagenes, :idioma, :politica_aceptada, :ip
+                    )
+                ');
+
+                $stmt->execute([
+                    ':tipo'              => mb_substr($tipo, 0, 50),
+                    ':zona'              => mb_substr($zona, 0, 100),
+                    ':idea'              => $idea !== '' ? $idea : null,
+                    ':nombre'            => mb_substr($nombre, 0, 150),
+                    ':email'             => mb_substr($email, 0, 150),
+                    ':telefono'          => mb_substr($telefono, 0, 50),
+                    ':imagenes'          => !empty($savedImages) ? json_encode($savedImages, JSON_UNESCAPED_SLASHES) : null,
+                    ':idioma'            => mb_substr($idioma, 0, 5),
+                    ':politica_aceptada' => 1,
+                    ':ip'                => $ip,
+                ]);
+
+                $dbSaved = true;
+            } catch (Throwable $eInsert) {
+                // Inserción de respaldo sin 'imagenes' en caso de discrepancia de esquema
+                $stmtFallback = $pdo->prepare('
+                    INSERT INTO consultas (
+                        tipo, zona, idea, nombre, email, telefono, idioma, politica_aceptada, ip
+                    ) VALUES (
+                        :tipo, :zona, :idea, :nombre, :email, :telefono, :idioma, :politica_aceptada, :ip
+                    )
+                ');
+
+                $stmtFallback->execute([
+                    ':tipo'              => mb_substr($tipo, 0, 50),
+                    ':zona'              => mb_substr($zona, 0, 100),
+                    ':idea'              => $idea !== '' ? $idea : null,
+                    ':nombre'            => mb_substr($nombre, 0, 150),
+                    ':email'             => mb_substr($email, 0, 150),
+                    ':telefono'          => mb_substr($telefono, 0, 50),
+                    ':idioma'            => mb_substr($idioma, 0, 5),
+                    ':politica_aceptada' => 1,
+                    ':ip'                => $ip,
+                ]);
+
+                $dbSaved = true;
+            }
         }
     } catch (Throwable $e) {
-        error_log('Error al guardar consulta en BBDD Kaos Tattoo: ' . $e->getMessage());
+        $dbError = $e->getMessage();
+        error_log('Error al guardar consulta en BBDD Kaos Tattoo: ' . $dbError);
     }
 }
 
@@ -244,8 +306,15 @@ if (!empty($imageUrls)) {
 // Adjuntar los archivos para FormSubmit mediante cURL
 if (function_exists('curl_init')) {
     if (!empty($savedFullPaths)) {
-        foreach ($savedFullPaths as $idx => $f) {
-            $postFields['attachment[' . $idx . ']'] = new CURLFile($f['path'], $f['mime'], $f['name']);
+        // Solo adjuntar archivos pesados si el total no excede 4MB para evitar timeouts con FormSubmit
+        $totalBytes = 0;
+        foreach ($savedFullPaths as $f) {
+            $totalBytes += (int)@filesize($f['path']);
+        }
+        if ($totalBytes <= 4 * 1024 * 1024) {
+            foreach ($savedFullPaths as $idx => $f) {
+                $postFields['attachment[' . $idx . ']'] = new CURLFile($f['path'], $f['mime'], $f['name']);
+            }
         }
     }
 
@@ -254,7 +323,8 @@ if (function_exists('curl_init')) {
         CURLOPT_POST           => true,
         CURLOPT_POSTFIELDS     => $postFields,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT        => 25,
+        CURLOPT_CONNECTTIMEOUT => 4,
+        CURLOPT_TIMEOUT        => 8,
         CURLOPT_USERAGENT      => 'KaosTattooAlicante/1.0',
     ]);
 
@@ -298,15 +368,25 @@ if (!$emailSent) {
 // 6. Respuesta al cliente
 // Si se guardó en BBDD o se envió el correo, consideramos la operación exitosa para no perder al cliente.
 if ($dbSaved || $emailSent) {
-    echo json_encode([
-        'success'   => true,
-        'db_saved'  => $dbSaved,
-        'email_sent'=> $emailSent,
-    ]);
+    $responsePayload = [
+        'success'    => true,
+        'db_saved'   => $dbSaved,
+        'email_sent' => $emailSent,
+    ];
+    if ($debugMode) {
+        $responsePayload['db_error'] = $dbError;
+        $responsePayload['config_exists'] = file_exists($configFile);
+    }
+    echo json_encode($responsePayload);
 } else {
     http_response_code(500);
-    echo json_encode([
+    $responsePayload = [
         'success' => false,
         'error'   => 'No se pudo procesar la consulta. Inténtalo de nuevo.'
-    ]);
+    ];
+    if ($debugMode) {
+        $responsePayload['db_error'] = $dbError;
+        $responsePayload['config_exists'] = file_exists($configFile);
+    }
+    echo json_encode($responsePayload);
 }

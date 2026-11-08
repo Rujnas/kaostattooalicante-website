@@ -150,7 +150,7 @@ $title  = $meta['title'];
 $desc   = $meta['desc'];
 $htmlLang = $lang;
 $ogLocale = ($lang === 'en') ? 'en_US' : 'es_ES';
-$ogImage  = $BASE . '/images/logo_perro-nobackground.webp';
+$ogImage  = $BASE . '/images/logo_perro.png';
 
 // Helper: emit " active" for the page div that matches the current URL
 function pageActive($id, $current) {
@@ -278,8 +278,8 @@ function pageUrl($pageId, $qs = '') {
         "@type": "TattooParlor",
         "name": "Kaos Tattoo",
         "url": "https://kaostattooalicante.es",
-        "logo": "https://kaostattooalicante.es/images/logo_perro-nobackground.webp",
-        "image": "https://kaostattooalicante.es/images/logo_perro-nobackground.webp",
+        "logo": "https://kaostattooalicante.es/images/logo_perro.png",
+        "image": "https://kaostattooalicante.es/images/logo_perro.png",
         "description": "Estudio de tatuajes y piercings en Alicante. Equipo profesional especializado en diversos estilos.",
         "address": {
             "@type": "PostalAddress",
@@ -310,7 +310,14 @@ function pageUrl($pageId, $qs = '') {
     <link rel="preload" href="fonts/CormorantGaramond/CormorantGaramond-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles/main.css?v=<?php echo $ASSET_VER; ?>">
-    <link rel="icon" type="image/png" href="images/logo_perro-nobackground.webp">
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 </head>
 <body class="is-loading">
 

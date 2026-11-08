@@ -143,7 +143,7 @@ $SEO = [
 
 // Asset cache-busting version: bump when script.js or styles change so
 // browsers (and LiteSpeed) refetch them instead of serving stale copies.
-$ASSET_VER = '20261108';
+$ASSET_VER = '20261108b';
 
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
 $title  = $meta['title'];
@@ -3513,22 +3513,24 @@ function pageUrl($pageId, $qs = '') {
                     </span>
                 </p>
                 <div class="footer-social">
-                    <a href="https://wa.me/34618710976" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                        <img src="images/logotipos_contacts/whatsapp_bw.webp" alt="WhatsApp" class="footer-social-icon">
-                    </a>
-                    <a href="https://www.instagram.com/kaostattooalc/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                        <img src="images/logotipos_contacts/instagram_bw.webp" alt="Instagram" class="footer-social-icon">
-                    </a>
-                    <a href="mailto:kaostattooalc@gmail.com" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                        <img src="images/logotipos_contacts/mail_bw.webp" alt="Email" class="footer-social-icon">
-                    </a>
-                    <a href="https://facebook.com/KaosTattoo" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                        <img src="images/logotipos_contacts/facebook_bw.webp" alt="Facebook" class="footer-social-icon">
-                    </a>
-                    <a href="https://www.tiktok.com/@kaostattooalc" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                        <img src="images/logotipos_contacts/tik-tok_bw.webp" alt="TikTok" class="footer-social-icon">
-                    </a>
-                    <a href="<?php echo pageUrl('contacto'); ?>" class="footer-social-link footer-contact-link" data-page="contacto">
+                    <div class="footer-social-icons">
+                        <a href="https://wa.me/34618710976" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+                            <img src="images/logotipos_contacts/whatsapp_bw.webp" alt="WhatsApp" class="footer-social-icon">
+                        </a>
+                        <a href="https://www.instagram.com/kaostattooalc/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+                            <img src="images/logotipos_contacts/instagram_bw.webp" alt="Instagram" class="footer-social-icon">
+                        </a>
+                        <a href="mailto:kaostattooalc@gmail.com" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+                            <img src="images/logotipos_contacts/mail_bw.webp" alt="Email" class="footer-social-icon">
+                        </a>
+                        <a href="https://facebook.com/KaosTattoo" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+                            <img src="images/logotipos_contacts/facebook_bw.webp" alt="Facebook" class="footer-social-icon">
+                        </a>
+                        <a href="https://www.tiktok.com/@kaostattooalc" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+                            <img src="images/logotipos_contacts/tik-tok_bw.webp" alt="TikTok" class="footer-social-icon">
+                        </a>
+                    </div>
+                    <a href="<?php echo pageUrl('contacto'); ?>" class="footer-contact-link" data-page="contacto">
                         <span lang="es">Contacto</span><span lang="en">Contact</span>
                     </a>
                 </div>

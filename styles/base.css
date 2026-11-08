@@ -152,6 +152,8 @@ html.intro-seen .loading-overlay {
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 body {
@@ -170,6 +172,7 @@ body {
     min-height: 100vh;
     letter-spacing: 0.3px;
     overflow-x: hidden;
+    max-width: 100%;
     cursor: url('../images/cursor-tattoo-needle.svg') 4 4, auto;
 }
 

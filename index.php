@@ -143,7 +143,7 @@ $SEO = [
 
 // Asset cache-busting version: bump when script.js or styles change so
 // browsers (and LiteSpeed) refetch them instead of serving stale copies.
-$ASSET_VER = '20261029';
+$ASSET_VER = '20261108';
 
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
 $title  = $meta['title'];
@@ -3506,7 +3506,11 @@ function pageUrl($pageId, $qs = '') {
                 <p class="footer-copy">
                     &copy; <span id="footer-year">2026</span> Kaos Tattoo.<br>
                     <span class="footer-copy-secondary"><span lang="es">Todos los derechos reservados.</span><span lang="en">All rights reserved.</span></span>
-                    <span class="footer-address">C/ Pintor Velazquez, 17, 03004 Alacant, Alicante, Spain &middot; <a href="tel:+34618710976">+34 618 710 976</a></span>
+                    <span class="footer-address">
+                        <span class="footer-address-text">C/ Pintor Velazquez, 17, 03004 Alacant, Alicante, Spain</span>
+                        <span class="footer-address-sep">&middot;</span>
+                        <a href="tel:+34618710976" class="footer-address-phone">+34 618 710 976</a>
+                    </span>
                 </p>
                 <div class="footer-social">
                     <a href="https://wa.me/34618710976" target="_blank" rel="noopener noreferrer" class="footer-social-link">

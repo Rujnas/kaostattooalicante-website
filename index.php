@@ -143,7 +143,7 @@ $SEO = [
 
 // Asset cache-busting version: bump when script.js or styles change so
 // browsers (and LiteSpeed) refetch them instead of serving stale copies.
-$ASSET_VER = '20261111';
+$ASSET_VER = '20261111b';
 
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
 $title  = $meta['title'];
@@ -204,6 +204,30 @@ function pageUrl($pageId, $qs = '') {
     if (savedConsent !== 'accepted' && savedConsent !== 'rejected') {
         document.documentElement.classList.add('cookie-consent-pending');
     }
+    </script>
+    <style id="cookie-blocking-css">
+    html.cookie-consent-pending body {
+        overflow: hidden !important;
+        touch-action: none !important;
+    }
+    html.cookie-consent-pending body > *:not(#cookie-banner):not(#cookie-backdrop) {
+        pointer-events: none !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+    }
+    html.cookie-consent-pending .cookie-backdrop {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+    html.cookie-consent-pending .cookie-banner {
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+    </style>
+    <script>
 
     // 2. Establecer el estado predeterminado de Google Consent Mode v2 ANTES de cargar GTM
     if (savedConsent === 'accepted') {

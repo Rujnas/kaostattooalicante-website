@@ -1495,8 +1495,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Sidebar navigation
     const handleNavClick = (linkElement, event) => {
-        event.preventDefault();
         const targetPage = linkElement.getAttribute('data-page');
+        if (window.kaosConsent && 
+            window.kaosConsent.get() !== 'accepted' && 
+            window.kaosConsent.get() !== 'rejected') {
+            // Permitir exclusivamente el acceso a la política de cookies para que el usuario pueda informarse
+            if (targetPage !== 'cookies') {
+                if (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                return;
+            }
+        }
+        event.preventDefault();
         navigateTo(targetPage);
         if (isMobileViewport()) {
             closeMobileMenu();
@@ -1835,6 +1847,20 @@ document.addEventListener('DOMContentLoaded', function() {
             // Si ya se había decidido previamente, asegurarse de limpiar cualquier bloqueo inicial
             document.documentElement.classList.remove('cookie-consent-pending');
         }
+
+        // Interceptar y anular cualquier clic fuera del modal de cookies si la decisión está pendiente
+        document.addEventListener('click', function(e) {
+            if (window.kaosConsent && 
+                window.kaosConsent.get() !== 'accepted' && 
+                window.kaosConsent.get() !== 'rejected') {
+                if (!e.target.closest('#cookie-banner')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    return false;
+                }
+            }
+        }, true);
 
         // "Cambiar mis preferencias de cookies" desde la política de cookies
         document.querySelectorAll('[data-open-cookie-settings]').forEach(btn => {

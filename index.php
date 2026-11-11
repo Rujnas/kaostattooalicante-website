@@ -143,7 +143,7 @@ $SEO = [
 
 // Asset cache-busting version: bump when script.js or styles change so
 // browsers (and LiteSpeed) refetch them instead of serving stale copies.
-$ASSET_VER = '20261109';
+$ASSET_VER = '20261111';
 
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
 $title  = $meta['title'];
@@ -256,7 +256,7 @@ function pageUrl($pageId, $qs = '') {
     <link rel="alternate" hreflang="en" href="<?php echo $enUrl; ?>">
     <link rel="alternate" hreflang="x-default" href="<?php echo $esUrl; ?>">
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="<?php echo $ogLocale; ?>">
     <meta property="og:url" content="<?php echo $canonical; ?>">
@@ -2930,13 +2930,6 @@ function pageUrl($pageId, $qs = '') {
                         <span class="social-icon-name">Mail</span>
                         <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Documentación, colaboraciones o consultas sin urgencia!</span><span lang="en">Documentation, collaborations or non-urgent enquiries!</span></div>
                     </a>
-                    <a href="https://facebook.com/KaosTattoo" target="_blank" rel="noopener noreferrer" class="social-icon-link">
-                        <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/facebook.webp" alt="" aria-hidden="true">
-                        </div>
-                        <span class="social-icon-name">Facebook</span>
-                        <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
-                    </a>
                     <a href="https://www.tiktok.com/@kaostattooalc" target="_blank" rel="noopener noreferrer" class="social-icon-link">
                         <div class="social-icon-wrapper">
                             <img src="images/logotipos_contacts/tik-tok.webp" alt="" aria-hidden="true">
@@ -3017,7 +3010,7 @@ function pageUrl($pageId, $qs = '') {
                     <h3>Navegación</h3>
                     <p>El Titular recoge otros datos no identificativos que se obtienen mediante el uso de cookies que se descargan en tu dispositivo cuando navegas por el sitio web, cuyas características y finalidad están detalladas en la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Política de Cookies</a>.</p>
                     <h3>Redes sociales</h3>
-                    <p>El Titular tiene presencia en redes sociales (Instagram, Facebook, TikTok y WhatsApp). Si te haces seguidor o contactas a través de las redes sociales, el tratamiento de los datos personales se regirá por este apartado, así como por aquellas condiciones de uso, políticas de privacidad y normativas de acceso que pertenezcan a la red social que proceda en cada caso y que hayas aceptado previamente. El Titular tratará tus datos con la finalidad de administrar correctamente su presencia en la red social e informarte de sus actividades, productos o servicios. En ningún caso utilizará los perfiles de seguidores para enviar publicidad de manera individual.</p>
+                    <p>El Titular tiene presencia en redes sociales (Instagram, TikTok y WhatsApp). Si te haces seguidor o contactas a través de las redes sociales, el tratamiento de los datos personales se regirá por este apartado, así como por aquellas condiciones de uso, políticas de privacidad y normativas de acceso que pertenezcan a la red social que proceda en cada caso y que hayas aceptado previamente. El Titular tratará tus datos con la finalidad de administrar correctamente su presencia en la red social e informarte de sus actividades, productos o servicios. En ningún caso utilizará los perfiles de seguidores para enviar publicidad de manera individual.</p>
 
                     <h2>5. Legitimación</h2>
                     <p>La base legal para el tratamiento de tus datos es el <strong>consentimiento</strong> (art. 6.1.a del RGPD), que otorgas al marcar la casilla de aceptación del formulario de contacto o al aceptar el banner de cookies.</p>
@@ -3115,7 +3108,7 @@ function pageUrl($pageId, $qs = '') {
                     <h3>Browsing</h3>
                     <p>The Owner collects other non-identifying data obtained through cookies downloaded to your device while browsing the website, the characteristics and purpose of which are detailed in the <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">Cookie Policy</a>.</p>
                     <h3>Social media</h3>
-                    <p>The Owner has a presence on social media (Instagram, Facebook, TikTok and WhatsApp). If you follow or contact us through social media, the processing of personal data shall be governed by this section and by the terms of use, privacy policies and access rules of each social network that you have previously accepted. The Owner will process your data in order to properly manage its presence on the social network and inform you of its activities, products or services. In no case will follower profiles be used to send advertising individually.</p>
+                    <p>The Owner has a presence on social media (Instagram, TikTok and WhatsApp). If you follow or contact us through social media, the processing of personal data shall be governed by this section and by the terms of use, privacy policies and access rules of each social network that you have previously accepted. The Owner will process your data in order to properly manage its presence on the social network and inform you of its activities, products or services. In no case will follower profiles be used to send advertising individually.</p>
 
                     <h2>5. Legal basis</h2>
                     <p>The legal basis for the processing of your data is <strong>consent</strong> (Art. 6.1.a GDPR), given by ticking the acceptance checkbox in the contact form or by accepting the cookie banner.</p>
@@ -3532,9 +3525,6 @@ function pageUrl($pageId, $qs = '') {
                         </a>
                         <a href="mailto:kaostattooalc@gmail.com" target="_blank" rel="noopener noreferrer" class="footer-social-link">
                             <img src="images/logotipos_contacts/mail_bw.webp" alt="Email" class="footer-social-icon">
-                        </a>
-                        <a href="https://facebook.com/KaosTattoo" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                            <img src="images/logotipos_contacts/facebook_bw.webp" alt="Facebook" class="footer-social-icon">
                         </a>
                         <a href="https://www.tiktok.com/@kaostattooalc" target="_blank" rel="noopener noreferrer" class="footer-social-link">
                             <img src="images/logotipos_contacts/tik-tok_bw.webp" alt="TikTok" class="footer-social-icon">

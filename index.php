@@ -191,28 +191,46 @@ function pageUrl($pageId, $qs = '') {
 <!DOCTYPE html>
 <html lang="<?php echo $htmlLang; ?>">
 <head>
-    <!-- Cookie consent: Google Tag Manager + Google Analytics are only loaded
-         after the user accepts cookies (RGPD / LSSI-CE). See script.js banner. -->
+    <!-- Google Consent Mode v2 & Google Tag Manager -->
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    window.kaosLoadAnalytics = function() {
-        if (window.__kaosAnalyticsLoaded) return;
-        window.__kaosAnalyticsLoaded = true;
-        // Google Tag Manager
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-W7X5FVW3');
-        // Google tag (gtag.js)
-        var ga = document.createElement('script');
-        ga.async = true;
-        ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-0LDEKEJD75';
-        document.head.appendChild(ga);
-        gtag('js', new Date());
-        gtag('config', 'G-0LDEKEJD75');
-    };
+
+    // 1. Obtener consentimiento previo
+    var savedConsent = null;
+    try { savedConsent = localStorage.getItem('kaos-consent'); } catch(e) {}
+
+    // Si aún no ha decidido, marcar clase en <html> para bloquear interacción inmediatamente
+    if (savedConsent !== 'accepted' && savedConsent !== 'rejected') {
+        document.documentElement.classList.add('cookie-consent-pending');
+    }
+
+    // 2. Establecer el estado predeterminado de Google Consent Mode v2 ANTES de cargar GTM
+    if (savedConsent === 'accepted') {
+        gtag('consent', 'default', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+        });
+    } else {
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    }
+
+    // 3. Google Tag Manager (se dispara SIEMPRE en todas las páginas; GTM gestiona cookies y etiquetas)
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7X5FVW3');
+
+    // 4. Gestor de consentimiento interno
     (function() {
         var KEY = 'kaos-consent';
         window.kaosConsent = {
@@ -228,16 +246,17 @@ function pageUrl($pageId, $qs = '') {
                 window.kaosConsent.acceptCallbacks.push(cb);
             },
             fireAccepted: function() {
-                // Do not drain the list: the user can change their mind
-                // (reject first, accept later) and callbacks must run again.
                 window.kaosConsent.acceptCallbacks.forEach(function(cb) {
                     try { cb(); } catch (e) {}
                 });
             }
         };
-        // Load analytics immediately for returning visitors who already accepted
-        if (window.kaosConsent.get() === 'accepted') {
-            window.kaosLoadAnalytics();
+
+        // Para visitantes recurrentes que ya tomaron decisión, notificar a dataLayer
+        if (savedConsent === 'accepted') {
+            window.dataLayer.push({ 'event': 'consent_ok' });
+        } else if (savedConsent === 'rejected') {
+            window.dataLayer.push({ 'event': 'consent_ko' });
         }
     })();
     </script>
@@ -323,6 +342,10 @@ function pageUrl($pageId, $qs = '') {
     <meta name="theme-color" content="#111111">
 </head>
 <body class="is-loading">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7X5FVW3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <div class="loading-overlay" aria-live="polite" aria-label="Cargando Kaos Tattoo">
         <div class="loading-content">
@@ -3599,8 +3622,9 @@ function pageUrl($pageId, $qs = '') {
         </button>
     </div>
 
-    <!-- Cookie consent banner (RGPD / LSSI-CE) -->
-    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-modal="false" aria-live="polite" aria-label="Aviso de cookies">
+    <!-- Cookie consent modal & backdrop (RGPD / LSSI-CE / Google Consent Mode v2) -->
+    <div id="cookie-backdrop" class="cookie-backdrop" aria-hidden="true"></div>
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-modal="true" aria-live="assertive" aria-label="Aviso de cookies">
         <div class="cookie-banner-inner">
             <p class="cookie-banner-text">
                 <span lang="es">Usamos cookies propias técnicas para el funcionamiento de la web y, <strong>solo si las aceptas</strong>, cookies de análisis y de medición de conversiones de Google y del widget de TikTok. Puedes aceptar, rechazar o cambiar tu decisión en cualquier momento en la <a href="<?php echo pageUrl('cookies'); ?>" data-page="cookies">política de cookies</a>.</span>

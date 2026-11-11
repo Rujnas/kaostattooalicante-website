@@ -1759,11 +1759,22 @@ document.addEventListener('DOMContentLoaded', function() {
         renderGallery();
     });
 
-    // --- Cookie consent banner (RGPD / LSSI-CE) ---
+    // --- Cookie consent banner & Google Consent Mode v2 (RGPD / LSSI-CE) ---
     const cookieBanner = document.getElementById('cookie-banner');
+    const cookieBackdrop = document.getElementById('cookie-backdrop');
     if (cookieBanner && window.kaosConsent) {
-        const showBanner = () => cookieBanner.classList.add('is-visible');
-        const hideBanner = () => cookieBanner.classList.remove('is-visible');
+        const showBanner = () => {
+            cookieBanner.classList.add('is-visible');
+            if (cookieBackdrop) cookieBackdrop.classList.add('is-visible');
+            document.body.classList.add('cookie-modal-open');
+        };
+
+        const hideBanner = () => {
+            cookieBanner.classList.remove('is-visible');
+            if (cookieBackdrop) cookieBackdrop.classList.remove('is-visible');
+            document.body.classList.remove('cookie-modal-open');
+            document.documentElement.classList.remove('cookie-consent-pending');
+        };
 
         const acceptBtn = document.getElementById('cookie-accept');
         const rejectBtn = document.getElementById('cookie-reject');
@@ -1772,9 +1783,24 @@ document.addEventListener('DOMContentLoaded', function() {
             acceptBtn.addEventListener('click', () => {
                 window.kaosConsent.set('accepted');
                 hideBanner();
-                if (typeof window.kaosLoadAnalytics === 'function') {
-                    window.kaosLoadAnalytics();
+
+                // 1. Actualizar Google Consent Mode v2 a 'granted'
+                if (typeof gtag === 'function') {
+                    gtag('consent', 'update', {
+                        'ad_storage': 'granted',
+                        'ad_user_data': 'granted',
+                        'ad_personalization': 'granted',
+                        'analytics_storage': 'granted'
+                    });
                 }
+
+                // 2. Disparar evento de aceptación a GTM
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'consent_ok'
+                });
+
+                // Disparar callbacks internos adicionales
                 window.kaosConsent.fireAccepted();
             });
         }
@@ -1783,15 +1809,34 @@ document.addEventListener('DOMContentLoaded', function() {
             rejectBtn.addEventListener('click', () => {
                 window.kaosConsent.set('rejected');
                 hideBanner();
+
+                // 1. Actualizar Google Consent Mode v2 a 'denied'
+                if (typeof gtag === 'function') {
+                    gtag('consent', 'update', {
+                        'ad_storage': 'denied',
+                        'ad_user_data': 'denied',
+                        'ad_personalization': 'denied',
+                        'analytics_storage': 'denied'
+                    });
+                }
+
+                // 2. Disparar evento de rechazo a GTM
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'consent_ko'
+                });
             });
         }
 
-        // Show the banner on first visit (no decision stored yet)
+        // Si no hay decisión previa guardada, bloquear la pantalla y mostrar el modal
         if (window.kaosConsent.get() !== 'accepted' && window.kaosConsent.get() !== 'rejected') {
             showBanner();
+        } else {
+            // Si ya se había decidido previamente, asegurarse de limpiar cualquier bloqueo inicial
+            document.documentElement.classList.remove('cookie-consent-pending');
         }
 
-        // "Change my cookie preferences" button on the cookie policy page
+        // "Cambiar mis preferencias de cookies" desde la política de cookies
         document.querySelectorAll('[data-open-cookie-settings]').forEach(btn => {
             btn.addEventListener('click', showBanner);
         });

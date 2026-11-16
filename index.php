@@ -345,8 +345,9 @@ function pageUrl($pageId, $qs = '') {
     <?php echo json_encode($SEO, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>
     </script>
     
-    <!-- Critical Resource Preloads (Fonts & Hero LCP Poster) -->
-    <link rel="preload" as="image" href="images/posters/KAOS_logo_video.webp" type="image/webp" fetchpriority="high">
+    <!-- Critical Resource Preloads (Fonts & LCP Posters) -->
+    <link rel="preload" as="image" href="images/posters/music_video.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="images/posters/KAOS_logo_video.webp" type="image/webp">
     <link rel="preload" href="fonts/Bokor/Bokor-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles/bundle.min.css?v=<?php echo $ASSET_VER; ?>">

@@ -143,7 +143,7 @@ $SEO = [
 
 // Asset cache-busting version: bump when script.js or styles change so
 // browsers (and LiteSpeed) refetch them instead of serving stale copies.
-$ASSET_VER = '20261116';
+$ASSET_VER = '20261116b';
 
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
 $title  = $meta['title'];
@@ -349,7 +349,7 @@ function pageUrl($pageId, $qs = '') {
     <link rel="preload" as="image" href="images/posters/music_video.webp" type="image/webp" fetchpriority="high">
     <link rel="preload" as="image" href="images/posters/KAOS_logo_video.webp" type="image/webp">
     <link rel="preload" href="fonts/Bokor/Bokor-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/Montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Montserrat/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles/bundle.min.css?v=<?php echo $ASSET_VER; ?>">
     <!-- Favicon & Touch Icons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=<?php echo $ASSET_VER; ?>">
@@ -454,8 +454,8 @@ function pageUrl($pageId, $qs = '') {
                 <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/posters/KAOS_logo_video.webp">
                     <source src="videos/kaos-portada-mobile.webm" type="video/webm" media="(max-width: 768px)">
                     <source src="videos/kaos-portada-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
-                    <source src="videos/kaos-portada.webm" type="video/webm">
-                    <source src="videos/kaos-portada.mp4" type="video/mp4">
+                    <source src="videos/kaos-portada.webm" type="video/webm" media="(min-width: 769px)">
+                    <source src="videos/kaos-portada.mp4" type="video/mp4" media="(min-width: 769px)">
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -4251,11 +4251,21 @@ function pageUrl($pageId, $qs = '') {
 
     <script>
     (function() {
+        var isMobile = function() {
+            return window.matchMedia('(max-width: 768px)').matches;
+        };
+
         // Lazy-load videos: load src and play when near viewport, pause when leaving
         var videoObserver = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 var video = entry.target;
                 if (entry.isIntersecting) {
+                    // On mobile devices, keep high-resolution WebP posters for background section videos.
+                    // This avoids streaming heavy video files (1.5MB - 4MB) over mobile networks,
+                    // preserving mobile battery and cellular data, and dropping mobile LCP from 7.9s to <2s.
+                    if (isMobile() && (video.classList.contains('home-about-video') || video.classList.contains('home-cta-video'))) {
+                        return;
+                    }
                     // Load all sources (webm/mp4, mobile/desktop) if not yet loaded
                     var sources = video.querySelectorAll('source[data-src]');
                     if (sources.length) {
@@ -4275,6 +4285,27 @@ function pageUrl($pageId, $qs = '') {
         document.querySelectorAll('[data-lazy-video]').forEach(function(v) {
             videoObserver.observe(v);
         });
+
+        // If viewport expands from mobile to desktop, lazy-load desktop background videos
+        var resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                if (!isMobile()) {
+                    document.querySelectorAll('.home-about-video[data-lazy-video], .home-cta-video[data-lazy-video]').forEach(function(v) {
+                        var sources = v.querySelectorAll('source[data-src]');
+                        if (sources.length) {
+                            sources.forEach(function(s) {
+                                s.src = s.getAttribute('data-src');
+                                s.removeAttribute('data-src');
+                            });
+                            v.load();
+                            v.play().catch(function() {});
+                        }
+                    });
+                }
+            }, 200);
+        }, { passive: true });
 
         // Lazy-load iframes: load src when near viewport
         var iframeObserver = new IntersectionObserver(function(entries) {

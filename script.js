@@ -993,7 +993,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hideLoadingOverlay();
     } else {
         try { sessionStorage.setItem('kaosIntroShown', '1'); } catch (e) {}
-        setTimeout(hideLoadingOverlay, 900);
+        setTimeout(hideLoadingOverlay, 350);
     }
     window.addEventListener('beforeunload', () => saveScrollPosition(currentPageId));
     window.addEventListener('scroll', () => {

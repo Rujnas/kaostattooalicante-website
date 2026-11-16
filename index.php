@@ -143,7 +143,7 @@ $SEO = [
 
 // Asset cache-busting version: bump when script.js or styles change so
 // browsers (and LiteSpeed) refetch them instead of serving stale copies.
-$ASSET_VER = '20261111b';
+$ASSET_VER = '20261116';
 
 $meta   = $SEO[$pageId][$lang] ?? $SEO['home'][$lang];
 $title  = $meta['title'];
@@ -345,14 +345,11 @@ function pageUrl($pageId, $qs = '') {
     <?php echo json_encode($SEO, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>
     </script>
     
+    <!-- Critical Resource Preloads (Fonts & Hero LCP Poster) -->
+    <link rel="preload" as="image" href="images/posters/KAOS_logo_video.webp" type="image/webp" fetchpriority="high">
     <link rel="preload" href="fonts/Bokor/Bokor-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/Cinzel/Cinzel-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/Cinzel/Cinzel-Medium.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/CormorantGaramond/CormorantGaramond-Light.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/CormorantGaramond/CormorantGaramond-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/CormorantGaramond/CormorantGaramond-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles/main.css?v=<?php echo $ASSET_VER; ?>">
+    <link rel="stylesheet" href="styles/bundle.min.css?v=<?php echo $ASSET_VER; ?>">
     <!-- Favicon & Touch Icons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=<?php echo $ASSET_VER; ?>">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=<?php echo $ASSET_VER; ?>">
@@ -374,7 +371,7 @@ function pageUrl($pageId, $qs = '') {
     <div class="loading-overlay" aria-live="polite" aria-label="Cargando Kaos Tattoo">
         <div class="loading-content">
             <div class="loading-logo-wrapper">
-                <img src="images/logo_perro-nobackground.webp" alt="Kaos Tattoo Logo" class="loading-logo">
+                <img src="images/logo_perro-nobackground.webp" alt="Kaos Tattoo Logo" class="loading-logo" width="500" height="500">
             </div>
             <p class="loading-text"><span lang="es">Entrando al estudio...</span><span lang="en">Entering the studio...</span></p>
         </div>
@@ -382,7 +379,7 @@ function pageUrl($pageId, $qs = '') {
     <nav class="sidebar">
         <div class="sidebar-header">
             <a href="<?php echo pageUrl('home'); ?>" class="logo-link" data-page="home">
-                <img src="images/logo_nobackground.webp" alt="Kaos Tattoo Logo" class="sidebar-logo">
+                <img src="images/logo_nobackground.webp" alt="Kaos Tattoo Logo" class="sidebar-logo" width="716" height="348">
             </a>
         </div>
         <ul class="nav-menu">
@@ -444,7 +441,7 @@ function pageUrl($pageId, $qs = '') {
                     <span></span>
                 </span>
                 <span class="menu-label"><span lang="es">Menú</span><span lang="en">Menu</span></span>
-                <img src="images/logo_perro-nobackground.webp" alt="Kaos Tattoo Logo" class="mobile-menu-logo">
+                <img src="images/logo_perro-nobackground.webp" alt="Kaos Tattoo Logo" class="mobile-menu-logo" width="500" height="500">
             </button>
         </div>
         <div class="mobile-menu-overlay" aria-hidden="true"></div>
@@ -453,7 +450,7 @@ function pageUrl($pageId, $qs = '') {
     <main class="main-content">
         <div id="home" class="page<?php echo pageActive('home', $pageId); ?>">
             <section class="hero">
-                <video class="hero-video" autoplay muted loop playsinline poster="images/posters/KAOS_logo_video.webp">
+                <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/posters/KAOS_logo_video.webp">
                     <source src="videos/kaos-portada-mobile.webm" type="video/webm" media="(max-width: 768px)">
                     <source src="videos/kaos-portada-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
                     <source src="videos/kaos-portada.webm" type="video/webm">
@@ -481,7 +478,7 @@ function pageUrl($pageId, $qs = '') {
             <section class="home-gallery">
                 <div class="home-gallery-bg"></div>
                 <h2 class="home-gallery-title">
-                    <img src="images/logo_perroseñalando-nobg.webp" alt="Kaos Tattoo Dog Logo" class="gallery-logo">
+                    <img src="images/logo_perroseñalando-nobg.webp" alt="Kaos Tattoo Dog Logo" class="gallery-logo" width="516" height="484" loading="lazy" decoding="async">
                     <span lang="es">NUESTRO TRABAJO</span><span lang="en">OUR WORK</span>
                 </h2>
                 <div class="home-gallery-grid">
@@ -2951,35 +2948,35 @@ function pageUrl($pageId, $qs = '') {
                 <div class="contacto-social-grid">
                     <a href="https://wa.me/34618710976" target="_blank" rel="noopener noreferrer" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/whatsapp.webp" alt="" aria-hidden="true">
+                            <img src="images/logotipos_contacts/whatsapp.webp" alt="" aria-hidden="true" width="512" height="512" loading="lazy" decoding="async">
                         </div>
                         <span class="social-icon-name">WhatsApp</span>
                         <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Preguntas rápidas o seguimiento de una conversación ya iniciada!</span><span lang="en">Quick questions or follow-up on an existing conversation!</span></div>
                     </a>
                     <a href="tel:+34618710976" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/phone.svg" alt="" aria-hidden="true">
+                            <img src="images/logotipos_contacts/phone.svg" alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async">
                         </div>
                         <span class="social-icon-name"><span lang="es">Teléfono</span><span lang="en">Phone</span></span>
                         <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Consultas que necesiten respuesta dentro del horario del estudio!</span><span lang="en">Enquiries that need a response during studio hours!</span></div>
                     </a>
                     <a href="https://www.instagram.com/kaostattooalc/" target="_blank" rel="noopener noreferrer" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/instagram.webp" alt="" aria-hidden="true">
+                            <img src="images/logotipos_contacts/instagram.webp" alt="" aria-hidden="true" width="512" height="512" loading="lazy" decoding="async">
                         </div>
                         <span class="social-icon-name">Instagram</span>
                         <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
                     </a>
                     <a href="mailto:kaostattooalc@gmail.com" target="_blank" rel="noopener noreferrer" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/mail.webp" alt="" aria-hidden="true">
+                            <img src="images/logotipos_contacts/mail.webp" alt="" aria-hidden="true" width="512" height="512" loading="lazy" decoding="async">
                         </div>
                         <span class="social-icon-name">Mail</span>
                         <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Documentación, colaboraciones o consultas sin urgencia!</span><span lang="en">Documentation, collaborations or non-urgent enquiries!</span></div>
                     </a>
                     <a href="https://www.tiktok.com/@kaostattooalc" target="_blank" rel="noopener noreferrer" class="social-icon-link">
                         <div class="social-icon-wrapper">
-                            <img src="images/logotipos_contacts/tik-tok.webp" alt="" aria-hidden="true">
+                            <img src="images/logotipos_contacts/tik-tok.webp" alt="" aria-hidden="true" width="512" height="512" loading="lazy" decoding="async">
                         </div>
                         <span class="social-icon-name">TikTok</span>
                         <div class="social-tooltip" aria-hidden="true"><span lang="es">¡Mira nuestros trabajos y novedades! Para consultas, usa otro canal.</span><span lang="en">Check out our work and news! For enquiries, use another channel.</span></div>
@@ -3549,7 +3546,7 @@ function pageUrl($pageId, $qs = '') {
                 <div class="footer-powered">
                     <span class="powered-label"><span lang="es">Desarrollado por:</span><span lang="en">Powered by:</span></span>
                     <a href="https://www.instagram.com/laemestudios?utm_source=qr&igsh=YWg5d2s5azRxNW5j" target="_blank" rel="noopener noreferrer" class="powered-brand">
-                        <img src="images/logo_laM_nobg.webp" alt="La M Studios logo" class="powered-logo">
+                        <img src="images/logo_laM_nobg.webp" alt="La M Studios logo" class="powered-logo" width="500" height="500" loading="lazy" decoding="async">
                         <span class="powered-name">La M Studios</span>
                     </a>
                 </div>
@@ -3565,16 +3562,16 @@ function pageUrl($pageId, $qs = '') {
                 <div class="footer-social">
                     <div class="footer-social-icons">
                         <a href="https://wa.me/34618710976" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                            <img src="images/logotipos_contacts/whatsapp_bw.webp" alt="WhatsApp" class="footer-social-icon">
+                            <img src="images/logotipos_contacts/whatsapp_bw.webp" alt="WhatsApp" class="footer-social-icon" width="512" height="512" loading="lazy" decoding="async">
                         </a>
                         <a href="https://www.instagram.com/kaostattooalc/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                            <img src="images/logotipos_contacts/instagram_bw.webp" alt="Instagram" class="footer-social-icon">
+                            <img src="images/logotipos_contacts/instagram_bw.webp" alt="Instagram" class="footer-social-icon" width="512" height="512" loading="lazy" decoding="async">
                         </a>
                         <a href="mailto:kaostattooalc@gmail.com" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                            <img src="images/logotipos_contacts/mail_bw.webp" alt="Email" class="footer-social-icon">
+                            <img src="images/logotipos_contacts/mail_bw.webp" alt="Email" class="footer-social-icon" width="512" height="512" loading="lazy" decoding="async">
                         </a>
                         <a href="https://www.tiktok.com/@kaostattooalc" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                            <img src="images/logotipos_contacts/tik-tok_bw.webp" alt="TikTok" class="footer-social-icon">
+                            <img src="images/logotipos_contacts/tik-tok_bw.webp" alt="TikTok" class="footer-social-icon" width="512" height="512" loading="lazy" decoding="async">
                         </a>
                     </div>
                     <a href="<?php echo pageUrl('contacto'); ?>" class="footer-contact-link" data-page="contacto">
@@ -3622,7 +3619,7 @@ function pageUrl($pageId, $qs = '') {
     <div id="whatsapp-container" class="whatsapp-container">
         <div id="whatsapp-chat" class="whatsapp-chat" style="display:none">
             <div class="whatsapp-chat-header">
-                <img src="images/logotipos_contacts/whatsapp.webp" alt="WhatsApp" class="whatsapp-chat-avatar">
+                <img src="images/logotipos_contacts/whatsapp.webp" alt="WhatsApp" class="whatsapp-chat-avatar" width="512" height="512" loading="lazy" decoding="async">
                 <div class="whatsapp-chat-header-info">
                     <span class="whatsapp-chat-name">Kaos Tattoo Alicante</span>
                     <span class="whatsapp-chat-status"><span lang="es">Normalmente responde en menos de 1 hora</span><span lang="en">Usually replies within 1 hour</span></span>
@@ -3642,7 +3639,7 @@ function pageUrl($pageId, $qs = '') {
             </div>
         </div>
         <button id="whatsapp-float-btn" class="whatsapp-float" style="display:none" aria-label="Contactar por WhatsApp">
-            <img src="images/logotipos_contacts/whatsapp.webp" alt="WhatsApp">
+            <img src="images/logotipos_contacts/whatsapp.webp" alt="WhatsApp" width="512" height="512" loading="lazy" decoding="async">
         </button>
     </div>
 
@@ -4272,7 +4269,7 @@ function pageUrl($pageId, $qs = '') {
                     if (!video.paused) video.pause();
                 }
             });
-        }, { rootMargin: '0px' });
+        }, { rootMargin: '0px', threshold: 0.25 });
 
         document.querySelectorAll('[data-lazy-video]').forEach(function(v) {
             videoObserver.observe(v);
